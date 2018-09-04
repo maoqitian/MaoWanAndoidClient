@@ -89,4 +89,18 @@ public class HomePageBannerModel {
     public void setUrl(String url) {
         this.url = url;
     }
+
+    @Override
+    public String toString() {
+        return "HomePageBannerModel{" +
+                "desc='" + desc + '\'' +
+                ", id=" + id +
+                ", imagePath='" + imagePath + '\'' +
+                ", isVisible=" + isVisible +
+                ", order=" + order +
+                ", title='" + title + '\'' +
+                ", type=" + type +
+                ", url='" + url + '\'' +
+                '}';
+    }
 }

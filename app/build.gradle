@@ -33,7 +33,7 @@ dependencies {
     implementation rootProject.ext.dependencies["rxandroid"]
     implementation rootProject.ext.dependencies["rxbinding"]
     implementation rootProject.ext.dependencies["rxpermissions"]
-
+    implementation rootProject.ext.dependencies["rxlifecycle"]
 
 
     testImplementation 'junit:junit:4.12'
