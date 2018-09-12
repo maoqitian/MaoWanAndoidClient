@@ -1,7 +1,7 @@
-package mao.com.mao_wanandroid_client.bean;
+package mao.com.mao_wanandroid_client.model.banner;
 
 /**
- * 首页 banner
+ * 首页 banner model
  */
 public class HomePageBannerModel {
 

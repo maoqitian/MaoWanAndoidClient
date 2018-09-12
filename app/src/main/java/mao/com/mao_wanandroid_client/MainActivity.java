@@ -4,11 +4,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 
-import mao.com.mao_wanandroid_client.bean.HomePageBannerModel;
+import java.util.List;
+
+import mao.com.mao_wanandroid_client.model.banner.HomePageBannerModel;
 import mao.com.mao_wanandroid_client.http.ApiService;
 import mao.com.mao_wanandroid_client.http.NetworkUtils;
 import mao.com.mao_wanandroid_client.http.ProgressObserver;
-import mao.com.mao_wanandroid_client.http.ResponseBody;
+import mao.com.mao_wanandroid_client.model.ResponseBody;
 import mao.com.mao_wanandroid_client.http.RxSchedulers;
 
 public class MainActivity extends AppCompatActivity {
@@ -17,13 +19,13 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        //测试网络模块。获取首页Banner数据
         NetworkUtils.getmInstance().getApiService(ApiService.class,ApiService.HOST,true).
                 GetHomePageBannerData()
-                .compose(RxSchedulers.<ResponseBody<HomePageBannerModel>>observableIO2Main(this))
-                .subscribe(new ProgressObserver<HomePageBannerModel>(this) {
+                .compose(RxSchedulers.<ResponseBody<List<HomePageBannerModel>>>observableIO2Main(this))
+                .subscribe(new ProgressObserver<List<HomePageBannerModel>>(this,"正在加载首页Banner数据") {
                     @Override
-                    public void onSuccess(HomePageBannerModel result) {
+                    public void onSuccess(List<HomePageBannerModel> result) {
                         Log.e("mao",result.toString());
                     }
 

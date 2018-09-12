@@ -1,7 +1,8 @@
-package mao.com.mao_wanandroid_client.http;
+package mao.com.mao_wanandroid_client.model;
 
 /**
  * 通用返回数据数据
+ * @param <T> 获取同样数据之外的数据类型
  */
 public class ResponseBody<T>{
 

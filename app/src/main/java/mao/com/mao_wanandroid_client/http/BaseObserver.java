@@ -3,6 +3,7 @@ package mao.com.mao_wanandroid_client.http;
 import io.reactivex.Observer;
 import io.reactivex.annotations.Nullable;
 import io.reactivex.disposables.Disposable;
+import mao.com.mao_wanandroid_client.model.ResponseBody;
 import mao.com.mao_wanandroid_client.utils.RxExceptionUtils;
 
 /**
