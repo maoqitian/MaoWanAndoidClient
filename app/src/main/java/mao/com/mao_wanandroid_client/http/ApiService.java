@@ -7,12 +7,17 @@ import mao.com.mao_wanandroid_client.model.ResponseBody;
 import mao.com.mao_wanandroid_client.model.banner.HomePageBannerModel;
 import mao.com.mao_wanandroid_client.model.frienduser.FriendUseWebData;
 import mao.com.mao_wanandroid_client.model.home.HomeArticleListData;
+import mao.com.mao_wanandroid_client.model.login.LoginData;
 import mao.com.mao_wanandroid_client.model.navigation.NavigationListData;
 import mao.com.mao_wanandroid_client.model.project.ProjectClassifyData;
 import mao.com.mao_wanandroid_client.model.project.ProjectListData;
 import mao.com.mao_wanandroid_client.model.search.HotKeyData;
 import mao.com.mao_wanandroid_client.model.tree.KnowledgeHierarchyData;
+import mao.com.mao_wanandroid_client.model.webmark.webBookMark;
+import retrofit2.http.Field;
+import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
+import retrofit2.http.POST;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
 
@@ -110,5 +115,160 @@ public interface ApiService {
      * 登录与注册
      */
 
+    /**
+     * 登录
+     * @param username 用户名
+     * @param password 密码
+     * @return
+     */
+    @POST("/user/login")
+    @FormUrlEncoded
+    Observable<ResponseBody<LoginData>> postLoginData(
+            @Field("username")String username,
+            @Field("password")String password);
+
+    /**
+     * 注册
+     * @param username 用户名
+     * @param password 密码
+     * @param repassword 确认密码
+     * @return
+     */
+    @POST("/user/register")
+    @FormUrlEncoded
+    Observable<ResponseBody<LoginData>> postRegisterData(
+            @Field("username")String username,
+            @Field("password")String password,
+            @Field("repassword")String repassword
+    );
+
+    /**
+     * 退出登录
+     */
+   /* @GET("/user/logout/json")
+    Observable<> getLoginOut;*/
+
+    /**
+     *  收藏
+     */
+    /**
+     * 收藏文章列表
+     * @param pageNum 页码：拼接在链接中，从0开始。
+     * @return
+     */
+    @GET("/lg/collect/list/{pageNum}/json")
+    Observable<ResponseBody<HomeArticleListData>>getCollectListData(@Path("pageNum")int pageNum);
+
+    /**
+     * 收藏站内文章
+     * @param articleId 文章id，拼接在链接中。
+     * @return
+     */
+    @POST("lg/collect/{articleId}/json")
+    Observable<ResponseBody<HomeArticleListData>>getCollectInsideListData(@Path("articleId") int articleId);
+
+    /**
+     * 收藏站外文章
+     * @param title
+     * @param author
+     * @param link
+     * @return
+     */
+    @POST("/lg/collect/add/json")
+    @FormUrlEncoded
+    Observable<ResponseBody<HomeArticleListData>>getCollectOutsideListData(
+            @Field("title")String title,
+            @Field("author")String author,
+            @Field("link")String link
+    );
+
+    /**
+     * 文章列表 取消收藏
+     * @param articleId 文章id:拼接在链接上
+     * @return
+     */
+    @POST("/lg/uncollect_originId/{articleId}/json")
+    @FormUrlEncoded
+    Observable<ResponseBody<HomeArticleListData>>cancelCollectArticleListData(
+            @Path("articleId") int articleId
+    );
+
+    /**
+     * 我的收藏页面（该页面包含自己录入的内容）
+     * @param articleId 文章id:拼接在链接上
+     * @param originId  originId:列表页下发，无则为-1 （originId 代表的是你收藏之前的那篇文章本身的id； 但是收藏支持主动添加，这种情况下，没有originId则为-1）
+     * @return
+     */
+    @POST("/lg/uncollect/{articleId}/json")
+    @FormUrlEncoded
+    Observable<ResponseBody<HomeArticleListData>>cancelCollectArticlePageData(
+            @Path("articleId") int articleId,
+            @Field("originId") int originId
+    );
+
     
+
+    /**
+     * 搜索
+     * @param pageNum 页码：拼接在链接上，从0开始
+     * @param keyWord 搜索关键词
+     * @return
+     */
+    @POST("/article/query/{pageNum}/json")
+    @FormUrlEncoded
+    Observable<ResponseBody<ProjectListData>> getSearchKeyWordData(
+            @Path("pageNum") int pageNum,
+            @Field("k") String keyWord
+    );
+
+    /**
+     * 获取收藏网站列表
+     */
+    @GET("/lg/collect/usertools/json")
+    Observable<ResponseBody<List<webBookMark>>> getWebBookMark();
+
+    /**
+     * 添加收藏网址
+     * @param name 网站名称
+     * @param link 网站链接
+     * @return
+     */
+    @POST("/lg/collect/addtool/json")
+    @FormUrlEncoded
+    Observable<ResponseBody<webBookMark>> addWebBookMark(
+            @Field("name")String name,
+            @Field("link")String link
+    );
+
+    /**
+     * 编辑收藏网站
+     * @param id 收藏网站 id
+     * @param name 网站名称
+     * @param link 网站链接
+     * @return
+     */
+    @POST("/lg/collect/updatetool/json")
+    @FormUrlEncoded
+    Observable<ResponseBody<webBookMark>> updateWebBookMark(
+            @Field("id")String id,
+            @Field("name")String name,
+            @Field("link")String link
+    );
+
+    /**
+     * 删除收藏网站
+     * @param id 收藏网站 id
+     * @return
+     */
+    @POST("/lg/collect/deletetool/json")
+    @FormUrlEncoded
+    Observable<ResponseBody> deleteWebBookMark(
+            @Field("id")String id
+    );
+
+    /**
+     * todo 接口
+     */
+    
+
 }
