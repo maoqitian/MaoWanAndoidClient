@@ -1,7 +1,12 @@
 # MaoWanAndoidClient
-### License
 
--
+- Thanks
+  -
+- 参考项目
+
+- 使用的第三方库
+
+### License
 
 Copyright 2018 maoqitian
 
