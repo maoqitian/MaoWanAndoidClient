@@ -7,4 +7,5 @@ package mao.com.mao_wanandroid_client.base.activity;
  */
 public class BaseActivity {
 
+
 }

@@ -1,5 +1,4 @@
 apply plugin: 'com.android.application'
-
 android {
     compileSdkVersion rootProject.ext.android["compileSdkVersion"]
     defaultConfig {
@@ -15,6 +14,11 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+    }
+    //支持 Java 8
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
     }
 }
 
@@ -34,6 +38,12 @@ dependencies {
     implementation rootProject.ext.dependencies["rxbinding"]
     implementation rootProject.ext.dependencies["rxpermissions"]
     implementation rootProject.ext.dependencies["rxlifecycle"]
+    //fragmentation
+    implementation rootProject.ext.dependencies["fragmentation"]
+    implementation rootProject.ext.dependencies["fragmentation-swipeback"]
+    //butterknife
+    implementation rootProject.ext.dependencies["butterknife"]
+    implementation rootProject.ext.dependencies["butterknife-compiler"]
 
 
     testImplementation 'junit:junit:4.12'
