@@ -1,8 +1,11 @@
 package mao.com.mao_wanandroid_client;
 
+import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MotionEvent;
+import android.widget.TextView;
 
 import java.util.List;
 
@@ -34,5 +37,15 @@ public class MainActivity extends AppCompatActivity {
                         Log.e("mao",e.getMessage()+errorMsg);
                     }
                 });
+    }
+
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent ev) {
+        return super.dispatchTouchEvent(ev);
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        return super.onTouchEvent(event);
     }
 }
