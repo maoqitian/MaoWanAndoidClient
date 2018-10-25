@@ -44,7 +44,12 @@ dependencies {
     //butterknife
     implementation rootProject.ext.dependencies["butterknife"]
     implementation rootProject.ext.dependencies["butterknife-compiler"]
-
+    //dagger
+    implementation rootProject.ext.dependencies["dagger"]
+    annotationProcessor rootProject.ext.dependencies["dagger-compiler"]
+    implementation rootProject.ext.dependencies["dagger-android"]
+    implementation rootProject.ext.dependencies["dagger-android-support"]
+    annotationProcessor rootProject.ext.dependencies["dagger-android-processor"]
 
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
