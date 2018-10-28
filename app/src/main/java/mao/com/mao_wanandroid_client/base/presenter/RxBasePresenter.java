@@ -3,7 +3,7 @@ package mao.com.mao_wanandroid_client.base.presenter;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
 import mao.com.mao_wanandroid_client.base.BaseView;
-import mao.com.mao_wanandroid_client.http.DataClient;
+import mao.com.mao_wanandroid_client.core.http.DataClient;
 
 /**
  * @author maoqitian

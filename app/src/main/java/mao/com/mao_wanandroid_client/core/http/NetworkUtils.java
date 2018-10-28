@@ -1,4 +1,4 @@
-package mao.com.mao_wanandroid_client.http;
+package mao.com.mao_wanandroid_client.core.http;
 
 import android.util.Log;
 
