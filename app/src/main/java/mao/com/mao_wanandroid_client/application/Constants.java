@@ -14,7 +14,7 @@ import mao.com.mao_wanandroid_client.R;
 public class Constants {
     static final String  BUGLY_ID = "a29fb52485";
 
-    public static final String MY_SHARED_PREFERENCE = "my_shared_preference";
+    public static final String  SHAREDPREFERENCES_NAME= "sharepreference_name";
 
     /**
      * 登录获取的 Cookie

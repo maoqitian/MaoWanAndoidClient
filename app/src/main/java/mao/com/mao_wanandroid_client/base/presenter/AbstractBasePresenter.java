@@ -39,32 +39,32 @@ public interface AbstractBasePresenter<T extends BaseView> {
     /**
      * 设置登录状态
      *
-     * @param loginStatus login status
+     * @param loginStatus
      */
     void setLoginStatus(boolean loginStatus);
 
     /**
      * 获取登录状态
-     * @return if is login status
+     * @return
      */
     boolean getLoginStatus();
 
     /**
      * Get login account
      *
-     * @return login account
+     * @return
      */
     String getLoginAccount();
 
     /**
      * set login account
-     * @param account account
+     * @param
      */
     void setLoginAccount(String account);
 
     /**
      * 登录密码
-     * @param password password
+     * @param password
      */
     void setLoginPassword(String password);
 
