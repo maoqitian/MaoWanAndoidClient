@@ -12,9 +12,7 @@ import mao.com.mao_wanandroid_client.R;
  * @Time 2018/10/25 0025 17:30
  */
 public class Constants {
-    static final String  BUGLY_ID = "a29fb52485";
 
-    public static final String  SHAREDPREFERENCES_NAME= "sharepreference_name";
 
     /**
      * 登录获取的 Cookie
@@ -123,22 +121,27 @@ public class Constants {
 
     static final String DB_NAME = "aws_wan_android.db";
 
-    public static final String CURRENT_PAGE = "current_page";
 
-    public static final String PROJECT_CURRENT_PAGE = "project_current_page";
 
     /**
-     * Shared Preference key
+     * SharedPreferences
      */
-    public static final String ACCOUNT = "account";
+    public static final String  SHAREDPREFERENCES_NAME= "sharepreference_name";
 
-    public static final String PASSWORD = "password";
+    public static final String SP_ACCOUNT = "account";
 
-    public static final String LOGIN_STATUS = "login_status";
+    public static final String SP_PASSWORD = "password";
 
-    public static final String AUTO_CACHE_STATE = "auto_cache_state";
+    public static final String SP_LOGIN_STATUS = "login_status";
 
-    public static final String NO_IMAGE_STATE = "no_image_state";
+    public static final String SP_AUTO_CACHE = "auto_cache";
 
-    public static final String NIGHT_MODE_STATE = "night_mode_state";
+    public static final String SP_NO_IMAGE = "no_image";
+
+    public static final String SP_NIGHT_MODE = "night_mode";
+
+    public static final String SP_CURRENT_PAGE = "current_page";
+
+    public static final String SP_PROJECT_CURRENT_PAGE = "project_current_page";
+
 }

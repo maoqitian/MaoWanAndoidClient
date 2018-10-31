@@ -50,6 +50,8 @@ dependencies {
     implementation rootProject.ext.dependencies["dagger-android"]
     implementation rootProject.ext.dependencies["dagger-android-support"]
     annotationProcessor rootProject.ext.dependencies["dagger-android-processor"]
+    //db
+    implementation rootProject.ext.dependencies["greendao"]
 
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
