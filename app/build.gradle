@@ -1,4 +1,5 @@
 apply plugin: 'com.android.application'
+apply plugin: 'org.greenrobot.greendao'
 android {
     compileSdkVersion rootProject.ext.android["compileSdkVersion"]
     defaultConfig {
@@ -21,7 +22,15 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
 }
-
+//配置greendao 数据库
+greendao{
+    //数据库版本
+    schemaVersion 1
+    //生成源地址
+    targetGenDir 'src/main/java'
+    //dao 类存放路径
+    daoPackage 'mao.com.mao_wanandroid_client.core.dao'
+}
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation rootProject.ext.dependencies["appcompat-v7"]
@@ -43,7 +52,7 @@ dependencies {
     implementation rootProject.ext.dependencies["fragmentation-swipeback"]
     //butterknife
     implementation rootProject.ext.dependencies["butterknife"]
-    implementation rootProject.ext.dependencies["butterknife-compiler"]
+    annotationProcessor rootProject.ext.dependencies["butterknife-compiler"]
     //dagger
     implementation rootProject.ext.dependencies["dagger"]
     annotationProcessor rootProject.ext.dependencies["dagger-compiler"]
