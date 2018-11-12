@@ -1,9 +1,10 @@
-package mao.com.mao_wanandroid_client.core.http;
+package mao.com.mao_wanandroid_client.core.http.httpcontrol;
 
 import android.app.ProgressDialog;
 import android.content.Context;
 
 import io.reactivex.disposables.Disposable;
+import mao.com.mao_wanandroid_client.core.http.httpcontrol.BaseObserver;
 
 /**
  * @author maoqitian

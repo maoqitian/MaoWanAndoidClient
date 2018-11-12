@@ -1,4 +1,4 @@
-package mao.com.mao_wanandroid_client.core.http;
+package mao.com.mao_wanandroid_client.core.http.api;
 
 import java.util.List;
 

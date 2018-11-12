@@ -1,4 +1,4 @@
-package mao.com.mao_wanandroid_client.core.http;
+package mao.com.mao_wanandroid_client.core.http.tools;
 
 import android.util.Log;
 
@@ -19,18 +19,23 @@ public class NetworkUtils {
 
     private final static String TGA="NetworkUtils";
 
-    private Retrofit.Builder mRetrfitBuilder;
-    private static NetworkUtils mInstance;
+    private Retrofit.Builder mRetrofitBuilder;
+    //双重效验锁实现单例
+    /*private static volatile NetworkUtils mInstance;
 
-    public static NetworkUtils getmInstance() {
-         if(mInstance==null){
-             mInstance=new NetworkUtils();
-         }
+    public static NetworkUtils getInstance() {
+        if(mInstance==null){
+            synchronized (NetworkUtils.class){
+                if(mInstance==null){
+                    mInstance=new NetworkUtils();
+                }
+            }
+        }
         return mInstance;
-    }
+    }*/
 
-    private NetworkUtils(){
-       mRetrfitBuilder=new Retrofit.Builder()
+    public NetworkUtils(){
+       mRetrofitBuilder=new Retrofit.Builder()
                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                .client(getOkHttpClient());
     }
@@ -46,12 +51,12 @@ public class NetworkUtils {
     public <T> T getApiService(final Class<T> service,String url, boolean useGson){
         if(useGson){
             Log.i(TGA,"useGson url"+url);
-            return mRetrfitBuilder.addConverterFactory(GsonConverterFactory.create())
+            return mRetrofitBuilder.addConverterFactory(GsonConverterFactory.create())
                     .baseUrl(url)
                     .build().create(service);
         }else {
             Log.i(TGA,"not useGson url"+url);
-            return mRetrfitBuilder.addConverterFactory(ScalarsConverterFactory.create())
+            return mRetrofitBuilder.addConverterFactory(ScalarsConverterFactory.create())
                     .baseUrl(url)
                     .build().create(service);
         }
