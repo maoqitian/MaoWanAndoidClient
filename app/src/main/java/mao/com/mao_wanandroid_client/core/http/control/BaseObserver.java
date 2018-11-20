@@ -1,4 +1,4 @@
-package mao.com.mao_wanandroid_client.core.http.httpcontrol;
+package mao.com.mao_wanandroid_client.core.http.control;
 
 import io.reactivex.Observer;
 import io.reactivex.annotations.Nullable;

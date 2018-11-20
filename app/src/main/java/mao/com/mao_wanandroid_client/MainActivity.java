@@ -2,18 +2,7 @@ package mao.com.mao_wanandroid_client;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MotionEvent;
-
-import java.util.List;
-
-import mao.com.mao_wanandroid_client.core.http.api.ApiService;
-import mao.com.mao_wanandroid_client.core.http.tools.NetworkUtils;
-import mao.com.mao_wanandroid_client.core.http.httpcontrol.ProgressObserver;
-import mao.com.mao_wanandroid_client.core.http.httpcontrol.RxSchedulers;
-import mao.com.mao_wanandroid_client.model.banner.HomePageBannerModel;
-
-import mao.com.mao_wanandroid_client.model.ResponseBody;
 
 
 public class MainActivity extends AppCompatActivity {

@@ -54,7 +54,7 @@ public interface ApiService {
     Observable<ResponseBody<List<FriendUseWebData>>>GetFriendUseWebData();
 
     /**
-     *  搜索热词
+     * 搜索热词
      * @return
      */
     @GET("/hotkey/json")
@@ -144,9 +144,12 @@ public interface ApiService {
 
     /**
      * 退出登录
+     * 访问了 logout 后，服务端会让客户端清除 Cookie（即cookie max-Age=0），
+     * 如果客户端 Cookie 实现合理，可以实现自动清理，如果本地做了用户账号密码和保存，
+     * 及时清理。
      */
-   /* @GET("/user/logout/json")
-    Observable<> getLoginOut;*/
+    @GET("/user/logout/json")
+    Observable<ResponseBody<String>> getLoginOut();
 
     /**
      *  收藏
@@ -183,7 +186,7 @@ public interface ApiService {
     );
 
     /**
-     * 文章列表 取消收藏
+     * 文章列表 页面调用  取消收藏
      * @param articleId 文章id:拼接在链接上
      * @return
      */
@@ -194,7 +197,7 @@ public interface ApiService {
     );
 
     /**
-     * 我的收藏页面（该页面包含自己录入的内容）
+     * 我的收藏页面  取消收藏（该页面包含自己录入的内容）
      * @param articleId 文章id:拼接在链接上
      * @param originId  originId:列表页下发，无则为-1 （originId 代表的是你收藏之前的那篇文章本身的id； 但是收藏支持主动添加，这种情况下，没有originId则为-1）
      * @return
@@ -204,21 +207,6 @@ public interface ApiService {
     Observable<ResponseBody<HomeArticleListData>>cancelCollectArticlePageData(
             @Path("articleId") int articleId,
             @Field("originId") int originId
-    );
-
-    
-
-    /**
-     * 搜索
-     * @param pageNum 页码：拼接在链接上，从0开始
-     * @param keyWord 搜索关键词
-     * @return
-     */
-    @POST("/article/query/{pageNum}/json")
-    @FormUrlEncoded
-    Observable<ResponseBody<ProjectListData>> getSearchKeyWordData(
-            @Path("pageNum") int pageNum,
-            @Field("k") String keyWord
     );
 
     /**
@@ -267,8 +255,28 @@ public interface ApiService {
     );
 
     /**
+     * 搜索
+     * @param pageNum 页码：拼接在链接上，从0开始
+     * @param keyWord 搜索关键词
+     * @return
+     */
+    @POST("/article/query/{pageNum}/json")
+    @FormUrlEncoded
+    Observable<ResponseBody<ProjectListData>> getSearchKeyWordData(
+            @Path("pageNum") int pageNum,
+            @Field("k") String keyWord
+    );
+
+    /**
      * todo 接口
      */
-    
+
+    /**
+     * 最新项目接口
+     */
+
+    /**
+     * 公众号 tab 相关接口
+     */
 
 }

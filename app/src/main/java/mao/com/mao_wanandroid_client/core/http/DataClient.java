@@ -9,7 +9,15 @@ import mao.com.mao_wanandroid_client.core.http.helper.IHttpHelper;
 import mao.com.mao_wanandroid_client.core.sp.SharedPreferenceHelper;
 import mao.com.mao_wanandroid_client.model.ResponseBody;
 import mao.com.mao_wanandroid_client.model.banner.HomePageBannerModel;
+import mao.com.mao_wanandroid_client.model.frienduser.FriendUseWebData;
 import mao.com.mao_wanandroid_client.model.home.HomeArticleListData;
+import mao.com.mao_wanandroid_client.model.login.LoginData;
+import mao.com.mao_wanandroid_client.model.navigation.NavigationListData;
+import mao.com.mao_wanandroid_client.model.project.ProjectClassifyData;
+import mao.com.mao_wanandroid_client.model.project.ProjectListData;
+import mao.com.mao_wanandroid_client.model.search.HotKeyData;
+import mao.com.mao_wanandroid_client.model.tree.KnowledgeHierarchyData;
+import mao.com.mao_wanandroid_client.model.webmark.webBookMark;
 
 /**
  * @author maoqitian
@@ -41,6 +49,106 @@ public class DataClient implements IHttpHelper,SharedPreferenceHelper,DbHelper {
 
     @Override
     public Observable<ResponseBody<List<HomePageBannerModel>>> GetHomePageBannerData() {
+        return null;
+    }
+
+    @Override
+    public Observable<ResponseBody<List<FriendUseWebData>>> GetFriendUseWebData() {
+        return null;
+    }
+
+    @Override
+    public Observable<ResponseBody<List<HotKeyData>>> GetHotKeyData() {
+        return null;
+    }
+
+    @Override
+    public Observable<ResponseBody<List<KnowledgeHierarchyData>>> getKnowledgeHierarchyData() {
+        return null;
+    }
+
+    @Override
+    public Observable<ResponseBody<HomeArticleListData>> getKnowledgeTreeDetialData(int pageNum, int cid) {
+        return null;
+    }
+
+    @Override
+    public Observable<ResponseBody<NavigationListData>> getNavigationListData() {
+        return null;
+    }
+
+    @Override
+    public Observable<ResponseBody<List<ProjectClassifyData>>> getProjectClassifyData() {
+        return null;
+    }
+
+    @Override
+    public Observable<ResponseBody<ProjectListData>> getProjectListData(int pageNum, int cid) {
+        return null;
+    }
+
+    @Override
+    public Observable<ResponseBody<LoginData>> postLoginData(String username, String password) {
+        return null;
+    }
+
+    @Override
+    public Observable<ResponseBody<LoginData>> postRegisterData(String username, String password, String repassword) {
+        return null;
+    }
+
+    @Override
+    public Observable<ResponseBody<String>> getLoginOut() {
+        return null;
+    }
+
+    @Override
+    public Observable<ResponseBody<HomeArticleListData>> getCollectListData(int pageNum) {
+        return null;
+    }
+
+    @Override
+    public Observable<ResponseBody<HomeArticleListData>> getCollectInsideListData(int articleId) {
+        return null;
+    }
+
+    @Override
+    public Observable<ResponseBody<HomeArticleListData>> getCollectOutsideListData(String title, String author, String link) {
+        return null;
+    }
+
+    @Override
+    public Observable<ResponseBody<HomeArticleListData>> cancelCollectArticleListData(int articleId) {
+        return null;
+    }
+
+    @Override
+    public Observable<ResponseBody<HomeArticleListData>> cancelCollectArticlePageData(int articleId, int originId) {
+        return null;
+    }
+
+    @Override
+    public Observable<ResponseBody<List<webBookMark>>> getWebBookMark() {
+        return null;
+    }
+
+    @Override
+    public Observable<ResponseBody<webBookMark>> addWebBookMark(String name, String link) {
+        return null;
+    }
+
+    @Override
+    public Observable<ResponseBody<webBookMark>> updateWebBookMark(String id, String name, String link) {
+        return null;
+    }
+
+    @Override
+    public Observable<ResponseBody> deleteWebBookMark(String id) {
+        return null;
+    }
+
+    @Override
+    public Observable<ResponseBody<ProjectListData>> getSearchKeyWordData(int pageNum, String keyWord) {
         return null;
     }
 
