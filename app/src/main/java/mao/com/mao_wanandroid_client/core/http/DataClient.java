@@ -26,7 +26,24 @@ import mao.com.mao_wanandroid_client.model.webmark.webBookMark;
  */
 public class DataClient implements IHttpHelper,SharedPreferenceHelper,DbHelper {
 
+    private IHttpHelper mIHttpHelper;
+    private SharedPreferenceHelper mSharedPreferenceHelper;
+    private DbHelper mDbHelper;
 
+    public DataClient(IHttpHelper mIHttpHelper,
+                      SharedPreferenceHelper mSharedPreferenceHelper,
+                      DbHelper mDbHelper){
+        this.mIHttpHelper=mIHttpHelper;
+        this.mSharedPreferenceHelper=mSharedPreferenceHelper;
+        this.mDbHelper=mDbHelper;
+    }
+
+
+    /**
+     * 搜索历史数据  GreenDao 数据库缓存
+     * @param data
+     * @return
+     */
     @Override
     public List<SearchHistoryData> addSearchHistoryData(String data) {
         return null;
@@ -41,6 +58,10 @@ public class DataClient implements IHttpHelper,SharedPreferenceHelper,DbHelper {
     public void clearAllSearchHistoryData() {
 
     }
+
+    /**
+     * 网络数据请求
+     */
 
     @Override
     public Observable<ResponseBody<HomeArticleListData>> HomeArticleListData(int pageNum) {
