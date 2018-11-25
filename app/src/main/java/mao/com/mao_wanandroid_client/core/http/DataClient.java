@@ -46,17 +46,17 @@ public class DataClient implements IHttpHelper,SharedPreferenceHelper,DbHelper {
      */
     @Override
     public List<SearchHistoryData> addSearchHistoryData(String data) {
-        return null;
+        return mDbHelper.addSearchHistoryData(data);
     }
 
     @Override
     public List<SearchHistoryData> loadAllSearchHistoryData() {
-        return null;
+        return mDbHelper.loadAllSearchHistoryData();
     }
 
     @Override
     public void clearAllSearchHistoryData() {
-
+        mDbHelper.clearAllSearchHistoryData();
     }
 
     /**
