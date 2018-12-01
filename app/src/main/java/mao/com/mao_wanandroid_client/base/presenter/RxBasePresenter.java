@@ -46,42 +46,42 @@ public class RxBasePresenter<T extends BaseView> implements AbstractBasePresente
 
     @Override
     public void addRxBindingSubscribe(Disposable disposable) {
-
+         addSubscribe(disposable);
     }
 
     @Override
     public boolean getNightModeState() {
-        return false;
+        return mDataClient.getNightModeState();
     }
 
     @Override
     public void setLoginStatus(boolean loginStatus) {
-
+        mDataClient.setLoginStatus(loginStatus);
     }
 
     @Override
     public boolean getLoginStatus() {
-        return false;
+        return mDataClient.getLoginStatus();
     }
 
     @Override
     public String getLoginAccount() {
-        return null;
+        return mDataClient.getLoginAccount();
     }
 
     @Override
     public void setLoginAccount(String account) {
-
+       mDataClient.setLoginAccount(account);
     }
 
     @Override
     public void setLoginPassword(String password) {
-
+       mDataClient.setLoginPassword(password);
     }
 
     @Override
     public int getCurrentPage() {
-        return 0;
+        return mDataClient.getCurrentPage();
     }
 
 }
