@@ -2,9 +2,20 @@ package mao.com.mao_wanandroid_client.core.http.tools;
 
 import android.util.Log;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
+import mao.com.mao_wanandroid_client.BuildConfig;
+import mao.com.mao_wanandroid_client.application.Constants;
+import mao.com.mao_wanandroid_client.utils.ToolsUtils;
+import okhttp3.Cache;
+import okhttp3.CacheControl;
+import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
+import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -65,11 +76,50 @@ public class NetworkUtils {
 
     public OkHttpClient getOkHttpClient(){
         OkHttpClient.Builder clientBuilder=new OkHttpClient.Builder();
-        OkHttpClient client=clientBuilder
-                .connectTimeout(30, TimeUnit.MINUTES)
+        if(BuildConfig.DEBUG){
+            HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor();
+            loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BASIC);
+            //加入日志拦截器
+            clientBuilder.addInterceptor(loggingInterceptor);
+        }
+        File netCachePath =new File(Constants.PATH_CACHE);
+        Cache netCache = new Cache(netCachePath,1024 * 1024 * 50);
+        Interceptor netCacheInterceptor= chain -> {
+            Request request = chain.request();
+            if(!ToolsUtils.isNetworkConnected()){
+             //如果没有网络
+             request =request.newBuilder().cacheControl(CacheControl.FORCE_CACHE).build();
+            }
+            Response response = chain.proceed(request);
+            if(ToolsUtils.isNetworkConnected()){
+                //如果有网络
+                int maxAge = 0;
+                // 有网络时, 不缓存, 最大保存时长为0
+                response.newBuilder()
+                        .header("Cache-Control", "public, max-age=" + maxAge)
+                        .removeHeader("Pragma")
+                        .build();
+            }else {
+                // 无网络时，设置超时为2周
+                int maxStale = 60 * 60 * 24 * 14;
+                response.newBuilder()
+                        .header("Cache-Control", "public, only-if-cached, max-stale=" + maxStale)
+                        .removeHeader("Pragma")
+                        .build();
+            }
+            return response;
+        };
+        //加入缓存拦截器
+        clientBuilder.addInterceptor(netCacheInterceptor);
+        clientBuilder.addNetworkInterceptor(netCacheInterceptor);
+        clientBuilder.cache(netCache);
+        //设置超时时间
+        clientBuilder.connectTimeout(30, TimeUnit.MINUTES)
                 .readTimeout(30, TimeUnit.MINUTES)
                 .writeTimeout(30, TimeUnit.MINUTES)
-                .build();
-        return client;
+                //错误重连
+                .retryOnConnectionFailure(true);
+        //TODO cookie 操作未处理
+        return clientBuilder.build();
     }
 }

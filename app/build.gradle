@@ -37,6 +37,7 @@ dependencies {
     implementation rootProject.ext.dependencies["constraint-layout"]
     //http
     implementation rootProject.ext.dependencies["okhttp"]
+    implementation rootProject.ext.dependencies["logging-interceptor"]
     implementation rootProject.ext.dependencies["gson"]
     implementation rootProject.ext.dependencies["converter-gson"]
     implementation rootProject.ext.dependencies["converter-scalars"]

@@ -20,11 +20,13 @@ public class Constants {
     public static final String COOKIE = "Cookie";
 
     /**
-     * Path
+     * Path 路径
      */
     public static final String PATH_DATA = MyApplication.getInstance().getCacheDir().getAbsolutePath() + File.separator + "data";
-
-    public static final String PATH_CACHE = PATH_DATA + "/NetCache";
+    /**
+     * 网络缓存路径
+     */
+    public static final String PATH_CACHE = PATH_DATA + "/netCache";
 
     /**
      * Tag fragment classify
