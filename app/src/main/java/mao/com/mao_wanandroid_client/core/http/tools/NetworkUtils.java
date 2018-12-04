@@ -82,12 +82,13 @@ public class NetworkUtils {
             //加入日志拦截器
             clientBuilder.addInterceptor(loggingInterceptor);
         }
-        File netCachePath =new File(Constants.PATH_CACHE);
+        File netCachePath =new File(Constants.PATH_NET_CACHE);
         Cache netCache = new Cache(netCachePath,1024 * 1024 * 50);
         Interceptor netCacheInterceptor= chain -> {
             Request request = chain.request();
             if(!ToolsUtils.isNetworkConnected()){
-             //如果没有网络
+                //如果没有网络
+                //仅仅使用缓存
              request =request.newBuilder().cacheControl(CacheControl.FORCE_CACHE).build();
             }
             Response response = chain.proceed(request);

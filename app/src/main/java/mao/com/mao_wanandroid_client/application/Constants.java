@@ -26,7 +26,7 @@ public class Constants {
     /**
      * 网络缓存路径
      */
-    public static final String PATH_CACHE = PATH_DATA + "/netCache";
+    public static final String PATH_NET_CACHE = PATH_DATA + "/netCache";
 
     /**
      * Tag fragment classify
