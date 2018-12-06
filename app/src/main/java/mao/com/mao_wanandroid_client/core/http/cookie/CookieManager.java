@@ -13,14 +13,34 @@ import okhttp3.HttpUrl;
  */
 public class CookieManager implements CookieJar {
 
+
+    private static volatile CookieManager cookieManager;
+
+    private final PersistentCookieStore persistentCookieStore;
+
+    //双重效验锁实现单例
+    public static CookieManager getInstance(){
+        if(cookieManager  == null){
+            synchronized (CookieManager.class){
+                if(cookieManager  == null){
+                    cookieManager=new CookieManager();
+                }
+            }
+        }
+        return cookieManager;
+    }
+
+    public CookieManager(){
+        persistentCookieStore=new PersistentCookieStore();
+    }
+
     @Override
     public void saveFromResponse(HttpUrl url, List<Cookie> cookies) {
-
+        persistentCookieStore.add(url,cookies);
     }
 
     @Override
     public List<Cookie> loadForRequest(HttpUrl url) {
-        return null;
+        return persistentCookieStore.get(url);
     }
-
 }

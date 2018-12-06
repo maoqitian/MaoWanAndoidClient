@@ -8,6 +8,7 @@ import java.util.concurrent.TimeUnit;
 
 import mao.com.mao_wanandroid_client.BuildConfig;
 import mao.com.mao_wanandroid_client.application.Constants;
+import mao.com.mao_wanandroid_client.core.http.cookie.CookieManager;
 import mao.com.mao_wanandroid_client.utils.ToolsUtils;
 import okhttp3.Cache;
 import okhttp3.CacheControl;
@@ -120,8 +121,8 @@ public class NetworkUtils {
                 .writeTimeout(30, TimeUnit.MINUTES)
                 //错误重连
                 .retryOnConnectionFailure(true);
-        //TODO cookie 操作未处理
-
+        // cookie 操作处理
+        clientBuilder.cookieJar(CookieManager.getInstance());
         return clientBuilder.build();
     }
 }
