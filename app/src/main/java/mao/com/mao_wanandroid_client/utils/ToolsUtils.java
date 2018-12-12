@@ -16,6 +16,7 @@ public class ToolsUtils {
      */
     public static boolean isNetworkConnected() {
         ConnectivityManager connectivityManager = (ConnectivityManager) MyApplication.getInstance().getApplicationContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+        assert connectivityManager != null;
         return connectivityManager.getActiveNetworkInfo() != null;
     }
 }

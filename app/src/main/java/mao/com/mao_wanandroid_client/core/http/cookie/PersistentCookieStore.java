@@ -1,6 +1,5 @@
 package mao.com.mao_wanandroid_client.core.http.cookie;
 
-import android.content.Context;
 import android.content.SharedPreferences;
 import android.text.TextUtils;
 import android.util.Log;
