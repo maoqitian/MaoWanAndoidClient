@@ -1,18 +1,21 @@
-package mao.com.mao_wanandroid_client.base.activity;
+package mao.com.mao_wanandroid_client.base.fragment;
 
-import android.support.v4.app.Fragment;
+import javax.inject.Inject;
 
-import dagger.android.AndroidInjector;
-import dagger.android.support.HasSupportFragmentInjector;
 import mao.com.mao_wanandroid_client.base.BaseView;
 import mao.com.mao_wanandroid_client.base.presenter.AbstractBasePresenter;
 
 /**
  * @author maoqitian
- * @Description MVP BaseActivity 基类
- * @Time 2018/10/9 0009 22:46
+ * @Description MVP Fragment 基类
+ * @Time 2018/12/14 0014 22:47
  */
-public class BaseActivity <T extends AbstractBasePresenter> extends AbstractSimpleActivity implements BaseView,HasSupportFragmentInjector {
+public class BaseFragment <T extends AbstractBasePresenter> extends SimpleFragment implements BaseView {
+
+    //Presenter 对象注入
+    @Inject
+    private T mPresenter;
+
 
 
     @Override
@@ -76,27 +79,12 @@ public class BaseActivity <T extends AbstractBasePresenter> extends AbstractSimp
     }
 
     @Override
-    protected void onViewCreated() {
-
-    }
-
-    @Override
-    protected void initToolbar() {
-
+    protected int getLayoutId() {
+        return 0;
     }
 
     @Override
     protected void initEventAndData() {
 
-    }
-
-    @Override
-    protected int getLayout() {
-        return 0;
-    }
-
-    @Override
-    public AndroidInjector<Fragment> supportFragmentInjector() {
-        return null;
     }
 }

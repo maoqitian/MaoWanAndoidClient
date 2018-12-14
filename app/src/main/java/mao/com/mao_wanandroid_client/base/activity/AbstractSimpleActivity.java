@@ -10,12 +10,13 @@ import me.yokeyword.fragmentation.SupportActivity;
 
 /**
  * @author maoqitian
- * @Description 无MVP的activity基类
+ * @Description activity基类
  * @Time 2018/10/14 0014 13:53
  */
 public abstract class AbstractSimpleActivity extends SupportActivity{
 
     protected AbstractSimpleActivity mContext;
+    //ButterKnife
     private Unbinder mUnbinder;
 
 
