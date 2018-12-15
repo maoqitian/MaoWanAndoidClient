@@ -80,7 +80,7 @@ ext {
             "kotlin-stdlib"                     : "org.jetbrains.kotlin:kotlin-stdlib:1.2.10",
 
             //other
-            "lottie"                            : "com.airbnb.android:lottie:2.3.0",
+            "lottie"                            : "com.airbnb.android:lottie:2.7.0",
             "BaseRecyclerViewAdapterHelper"     : "com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.34",
             "fragmentation"                     : "me.yokeyword:fragmentation:${version["fragmentationVersion"]}",
             "fragmentation-swipeback"           : "me.yokeyword:fragmentation-swipeback:${version["fragmentationVersion"]}",
