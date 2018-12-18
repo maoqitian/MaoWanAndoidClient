@@ -3,6 +3,8 @@
 - Thanks
   -
 - 参考项目
+  
+  - [GeekNews](https://github.com/codeestX/GeekNews)
 
 - 使用的第三方库
 
