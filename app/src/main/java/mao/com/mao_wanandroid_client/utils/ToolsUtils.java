@@ -19,4 +19,6 @@ public class ToolsUtils {
         assert connectivityManager != null;
         return connectivityManager.getActiveNetworkInfo() != null;
     }
+
+    
 }
