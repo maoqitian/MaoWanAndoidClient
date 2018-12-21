@@ -10,7 +10,7 @@ import me.yokeyword.fragmentation.SupportActivity;
 
 /**
  * @author maoqitian
- * @Description activity基类
+ * @Description activity基类 （不是MVP 模式）
  * @Time 2018/10/14 0014 13:53
  */
 public abstract class AbstractSimpleActivity extends SupportActivity{

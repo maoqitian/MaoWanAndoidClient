@@ -1,6 +1,12 @@
 package mao.com.mao_wanandroid_client.base.activity;
 
+import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.view.View;
+
+import javax.inject.Inject;
 
 import dagger.android.AndroidInjector;
 import dagger.android.support.HasSupportFragmentInjector;
@@ -12,8 +18,32 @@ import mao.com.mao_wanandroid_client.base.presenter.AbstractBasePresenter;
  * @Description MVP BaseActivity 基类
  * @Time 2018/10/9 0009 22:46
  */
-public class BaseActivity <T extends AbstractBasePresenter> extends AbstractSimpleActivity implements BaseView,HasSupportFragmentInjector {
+public abstract class  BaseActivity <T extends AbstractBasePresenter> extends AbstractSimpleActivity implements BaseView,HasSupportFragmentInjector {
 
+    //Presenter 对象注入
+    @Inject
+    private T mPresenter;
+
+
+
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+    }
+
+    @Override
+    protected void onViewCreated() {
+        if (mPresenter != null) mPresenter.attachView(this);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if(mPresenter != null){
+            mPresenter.detachView();
+            mPresenter = null;
+        }
+    }
 
     @Override
     public void showNormal() {
@@ -72,11 +102,6 @@ public class BaseActivity <T extends AbstractBasePresenter> extends AbstractSimp
 
     @Override
     public void showSnackBar(String message) {
-
-    }
-
-    @Override
-    protected void onViewCreated() {
 
     }
 

@@ -16,7 +16,7 @@ import mao.com.mao_wanandroid_client.base.presenter.AbstractBasePresenter;
  * @Description MVP Fragment 基类
  * @Time 2018/12/14 0014 22:47
  */
-public class BaseFragment <T extends AbstractBasePresenter> extends SimpleFragment implements BaseView {
+public abstract class BaseFragment <T extends AbstractBasePresenter> extends SimpleFragment implements BaseView {
 
     //Presenter 对象注入
     @Inject
