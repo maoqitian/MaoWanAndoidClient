@@ -7,6 +7,11 @@ package mao.com.mao_wanandroid_client.base;
  */
 public interface BaseView {
 
+    //頁面状态
+    static final int STATE_NORMAL = 0x00;
+    static final int STATE_LOADING = 0x01;
+    static final int STATE_ERROR = 0x02;
+
     /**
      * 页面状态
      */
