@@ -12,7 +12,7 @@ ext {
 
     version = [
             supportLibraryVersion   : "28.0.0",
-            smartrefreshVersion     : "1.0.5.1",
+            smartrefreshVersion     : "1.1.0-alpha-18",
             okhttpVersion           : "3.12.0",
             retrofitVersion         : "2.3.0",
             glideVersion            : "4.0.0",
@@ -28,11 +28,12 @@ ext {
             "cardview-v7"                       : "com.android.support:cardview-v7:${version["supportLibraryVersion"]}",
             "support-v4"                        : "com.android.support:support-v4:${version["supportLibraryVersion"]}",
             "design"                            : "com.android.support:design:${version["supportLibraryVersion"]}",
+            "recyclerview"                      : "com.android.support:recyclerview-v7:${version["supportLibraryVersion"]}",
             "constraint-layout"                 : "com.android.support.constraint:constraint-layout:1.0.2",
 
             //ui
             "SmartRefreshLayout"                :"com.scwang.smartrefresh:SmartRefreshLayout:${version["smartrefreshVersion"]}",
-            "SmartRefreshHeader"                : "com.scwang.smartrefresh:SmartRefreshHeader:${version["smartrefreshVersion"]}",
+            "SmartRefreshHeader"                :"com.scwang.smartrefresh:SmartRefreshHeader:${version["smartrefreshVersion"]}",
             "banner"                            : "com.youth.banner:banner:1.4.10",
             "FlycoTabLayout_Lib"                : "com.flyco.tablayout:FlycoTabLayout_Lib:2.1.2@aar",
             "VerticalTabLayout"                 : "q.rorbin:VerticalTabLayout:1.2.5",
