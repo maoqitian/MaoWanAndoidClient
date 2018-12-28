@@ -25,6 +25,7 @@ public abstract class  BaseActivity <T extends AbstractBasePresenter> extends Ab
     private T mPresenter;
 
 
+    //TODO dagger 对象还未加载注入
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -118,6 +119,11 @@ public abstract class  BaseActivity <T extends AbstractBasePresenter> extends Ab
     @Override
     protected int getLayout() {
         return 0;
+    }
+
+    @Override
+    public void reload() {
+
     }
 
     @Override

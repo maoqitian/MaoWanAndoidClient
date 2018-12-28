@@ -1,3 +1,4 @@
 <resources>
-    <string name="app_name">Mao-WanAndroid-Client</string>
+    <string name="app_name">WanAndroidClient</string>
+    <string name="reload_text">reload</string>
 </resources>

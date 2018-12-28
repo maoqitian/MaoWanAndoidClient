@@ -81,4 +81,8 @@ public interface BaseView {
      */
     void showSnackBar(String message);
 
+    /**
+     * 页面重新加载
+     */
+    void reload();
 }

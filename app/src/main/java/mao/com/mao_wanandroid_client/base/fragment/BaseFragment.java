@@ -22,6 +22,8 @@ public abstract class BaseFragment <T extends AbstractBasePresenter> extends Sim
     @Inject
     private T mPresenter;
 
+    //TODO dagger 对象还未加载注入
+
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
@@ -119,6 +121,11 @@ public abstract class BaseFragment <T extends AbstractBasePresenter> extends Sim
 
     @Override
     protected void initEventAndData() {
+
+    }
+
+    @Override
+    public void reload() {
 
     }
 }
