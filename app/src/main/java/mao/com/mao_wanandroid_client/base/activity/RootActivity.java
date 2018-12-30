@@ -20,7 +20,7 @@ public class RootActivity<T extends RxBasePresenter> extends BaseActivity<T> imp
 
     //默认为NORMAL状态
     private int currentState = STATE_NORMAL;
-
+    //TODO 加载中的LoadingView 还未完成
     private LoadingView mLoadingView;
 
     private ViewGroup mBaseView;
