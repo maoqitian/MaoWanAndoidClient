@@ -1,5 +1,6 @@
 # MaoWanAndoidClient
-
+- 项目简介
+- 项目基本结构
 - Thanks
   -
 - 参考项目
@@ -7,6 +8,7 @@
   - [GeekNews](https://github.com/codeestX/GeekNews)
 
 - 使用的第三方库
+  - [SmartRefreshLayout](https://github.com/scwang90/SmartRefreshLayout)（上拉加载，下拉刷新）
 
 ### License
 
