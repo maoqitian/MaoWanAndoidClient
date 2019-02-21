@@ -1,8 +1,10 @@
-package mao.com.mao_wanandroid_client;
+package mao.com.mao_wanandroid_client.view.main;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MotionEvent;
+
+import mao.com.mao_wanandroid_client.R;
 
 
 public class MainActivity extends AppCompatActivity {
