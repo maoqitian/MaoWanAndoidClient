@@ -21,7 +21,7 @@ import mao.com.mao_wanandroid_client.base.presenter.AbstractBasePresenter;
 public abstract class  BaseActivity <T extends AbstractBasePresenter> extends AbstractSimpleActivity implements BaseView,HasSupportFragmentInjector {
 
     //Presenter 对象注入
-    @Inject
+    //@Inject
     private T mPresenter;
 
 

@@ -19,7 +19,7 @@ import mao.com.mao_wanandroid_client.base.presenter.AbstractBasePresenter;
 public abstract class BaseFragment <T extends AbstractBasePresenter> extends SimpleFragment implements BaseView {
 
     //Presenter 对象注入
-    @Inject
+    //@Inject
     private T mPresenter;
 
     //TODO dagger 对象还未加载注入

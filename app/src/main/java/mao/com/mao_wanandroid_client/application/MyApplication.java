@@ -18,8 +18,7 @@ public class MyApplication extends Application {
 
     private DaoSession mDaoSession;
 
-    private MyApplication(){
-    }
+
 
     public static MyApplication getInstance() {
         if (mInstance == null) {
