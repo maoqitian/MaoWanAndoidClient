@@ -146,4 +146,8 @@ public class Constants {
 
     public static final String SP_PROJECT_CURRENT_PAGE = "project_current_page";
 
+
+    //页面隐式调用
+    public static final String ACTION_MAIN_ACTIVITY="com.mao.mycustomview.action.MAIN_ACTIVITY"; // 主页面
+
 }

@@ -12,7 +12,8 @@
         android:supportsRtl="true"
         android:name=".application.MyApplication"
         android:theme="@style/AppTheme">
-        <activity android:name=".view.welcome.WelcomeActivity">
+        <activity android:name=".view.welcome.WelcomeActivity"
+            android:theme="@style/AppTheme.Launcher">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <action android:name="android.intent.action.VIEW" />
@@ -20,7 +21,10 @@
             </intent-filter>
         </activity>
         <activity android:name=".view.main.MainActivity">
-
+            <intent-filter>
+                <action android:name="com.mao.mycustomview.action.MAIN_ACTIVITY" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
         </activity>
     </application>
 

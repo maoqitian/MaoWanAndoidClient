@@ -1,4 +1,4 @@
-package mao.com.mao_wanandroid_client.presenter.mvpcontract;
+package mao.com.mao_wanandroid_client.presenter.welcome;
 
 import mao.com.mao_wanandroid_client.base.BaseView;
 import mao.com.mao_wanandroid_client.base.presenter.AbstractBasePresenter;
@@ -16,6 +16,7 @@ public interface WelcomeContract {
          */
         void jumpToMainActivity();
     }
+
 
     interface WelcomePresenter extends AbstractBasePresenter<WelcomeView>{
 
