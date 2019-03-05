@@ -66,6 +66,7 @@ dependencies {
     implementation rootProject.ext.dependencies["dagger-android"]
     implementation rootProject.ext.dependencies["dagger-android-support"]
     annotationProcessor rootProject.ext.dependencies["dagger-android-processor"]
+    implementation rootProject.ext.dependencies["javax_annotation"]
     //db
     implementation rootProject.ext.dependencies["greendao"]
 
