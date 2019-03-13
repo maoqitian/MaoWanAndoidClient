@@ -22,6 +22,7 @@ public class MyModule {
                                         DbHelper mDbHelper){
         return new DataClient(mIHttpHelper,mSharedPreferenceHelper,mDbHelper);
     }*/
+    @Provides
     public HomePageBannerModel provideHomePageBannerModel(){
        return new HomePageBannerModel();
     }

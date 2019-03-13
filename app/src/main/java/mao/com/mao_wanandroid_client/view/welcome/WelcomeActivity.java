@@ -22,14 +22,14 @@ import mao.com.mao_wanandroid_client.view.main.MainActivity;
  */
 public class WelcomeActivity extends BaseActivity<WelcomePresenter> implements WelcomeContract.WelcomeView {
 
-    /*@Inject
-    HomePageBannerModel model;*/
+    @Inject
+    HomePageBannerModel model;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        /*DaggerMyComponent.create().inJectWelcomeActivity(this);
-        Log.e("毛麒添","DaggerMyComponent :" +model.hashCode());*/
+        DaggerMyComponent.create().inJectWelcomeActivity(this);
+        Log.e("毛麒添","DaggerMyComponent :" +model.hashCode());
     }
 
     @Override

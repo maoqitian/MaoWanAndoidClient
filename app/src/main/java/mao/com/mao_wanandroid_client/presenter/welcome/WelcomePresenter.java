@@ -19,5 +19,6 @@ public class WelcomePresenter extends RxBasePresenter<WelcomeContract.WelcomeVie
     public void attachView(WelcomeContract.WelcomeView view) {
         super.attachView(view);
         view.jumpToMainActivity();
+
     }
 }
