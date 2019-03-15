@@ -8,10 +8,11 @@
   - [GeekNews](https://github.com/codeestX/GeekNews)
 
 - 使用的第三方库
-  - [SmartRefreshLayout](https://github.com/scwang90/SmartRefreshLayout)（上拉加载，下拉刷新）
   - [Dagger2](https://github.com/google/dagger)
   - [Retrofit2](https://github.com/square/retrofit)
   - [OKHttp](https://github.com/square/okhttp)
+  - [SmartRefreshLayout](https://github.com/scwang90/SmartRefreshLayout)（上拉加载，下拉刷新）
+  - [Glide4](https://github.com/bumptech/glide)
 
 ### License
 
