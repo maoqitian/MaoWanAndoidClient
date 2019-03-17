@@ -26,7 +26,7 @@ import retrofit2.http.Query;
  */
 public interface ApiService {
 
-    String HOST = "http://www.wanandroid.com";
+    String HOST = "https://www.wanandroid.com";
 
     /**
      * 首页相关接口
