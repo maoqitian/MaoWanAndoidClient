@@ -18,7 +18,7 @@ public interface WelcomeContract {
     }
 
 
-    interface WelcomePresenter extends AbstractBasePresenter<WelcomeView>{
+    interface WelcomeActivityPresenter extends AbstractBasePresenter<WelcomeView>{
 
     }
 

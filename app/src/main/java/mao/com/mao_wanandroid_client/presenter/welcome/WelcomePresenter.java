@@ -8,7 +8,7 @@ import mao.com.mao_wanandroid_client.core.http.DataClient;
  * @Description 闪屏页Presenter
  * @Time 2019/2/21 0021 21:01
  */
-public class WelcomePresenter extends RxBasePresenter<WelcomeContract.WelcomeView> implements WelcomeContract.WelcomePresenter{
+public class WelcomePresenter extends RxBasePresenter<WelcomeContract.WelcomeView> implements WelcomeContract.WelcomeActivityPresenter{
 
 
     public WelcomePresenter(DataClient dataClient) {
