@@ -3,6 +3,8 @@ package mao.com.mao_wanandroid_client.application;
 import android.app.Application;
 import android.database.sqlite.SQLiteDatabase;
 
+import dagger.android.AndroidInjector;
+import dagger.android.DaggerApplication;
 import mao.com.mao_wanandroid_client.core.dao.DaoMaster;
 import mao.com.mao_wanandroid_client.core.dao.DaoSession;
 
@@ -11,7 +13,8 @@ import mao.com.mao_wanandroid_client.core.dao.DaoSession;
  * @Description
  * @Time 2018/9/30 0030 16:39
  */
-public class MyApplication extends Application {
+public class MyApplication extends DaggerApplication {
+
 
     //双重效验锁实现单例
     private static volatile MyApplication mInstance;
@@ -35,6 +38,11 @@ public class MyApplication extends Application {
     public void onCreate() {
         super.onCreate();
         initGreenDao();
+    }
+
+    @Override
+    protected AndroidInjector<? extends DaggerApplication> applicationInjector() {
+        return null;
     }
 
     private void initGreenDao() {
