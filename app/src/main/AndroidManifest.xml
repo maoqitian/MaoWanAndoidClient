@@ -22,7 +22,7 @@
         </activity>
         <activity android:name=".view.main.MainActivity">
             <intent-filter>
-                <action android:name="com.mao.mycustomview.action.MAIN_ACTIVITY" />
+                <action android:name="com.mao.mao_wanandroid.action.MAIN_ACTIVITY" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>

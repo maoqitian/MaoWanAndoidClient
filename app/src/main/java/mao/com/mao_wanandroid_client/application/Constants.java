@@ -148,6 +148,6 @@ public class Constants {
 
 
     //页面隐式调用
-    public static final String ACTION_MAIN_ACTIVITY="com.mao.mycustomview.action.MAIN_ACTIVITY"; // 主页面
+    public static final String ACTION_MAIN_ACTIVITY="com.mao.mao_wanandroid.action.MAIN_ACTIVITY"; // 主页面
 
 }

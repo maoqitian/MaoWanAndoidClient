@@ -8,7 +8,10 @@ import android.view.View;
 
 import javax.inject.Inject;
 
+import dagger.android.AndroidInjection;
 import dagger.android.AndroidInjector;
+import dagger.android.DaggerActivity;
+import dagger.android.DispatchingAndroidInjector;
 import dagger.android.support.HasSupportFragmentInjector;
 import mao.com.mao_wanandroid_client.base.BaseView;
 import mao.com.mao_wanandroid_client.base.presenter.AbstractBasePresenter;
@@ -16,19 +19,24 @@ import mao.com.mao_wanandroid_client.base.presenter.AbstractBasePresenter;
 /**
  * @author maoqitian
  * @Description MVP BaseActivity 基类
+ * 结合 Dagger2 本应该继承 DaggerActivity，但是我们基类为AbstractSimpleActivity，则手动实现DaggerActivity功能
  * @Time 2018/10/9 0009 22:46
  */
 public abstract class  BaseActivity <T extends AbstractBasePresenter> extends AbstractSimpleActivity implements BaseView,HasSupportFragmentInjector {
 
-    //Presenter 对象注入
-    //@Inject
-    private T mPresenter;
-
+    //Presenter 对象注入 (注意不能使用 private )
+    @Inject
+    protected T mPresenter;
+    //手动实现DaggerActivity功能
+    @Inject
+    DispatchingAndroidInjector<Fragment> fragmentInjector;
 
     //TODO dagger 对象还未加载注入
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
+        //必须在super.onCreate之前调用AndroidInjection.inject
+        AndroidInjection.inject(this);
         super.onCreate(savedInstanceState);
     }
 
@@ -128,6 +136,6 @@ public abstract class  BaseActivity <T extends AbstractBasePresenter> extends Ab
 
     @Override
     public AndroidInjector<Fragment> supportFragmentInjector() {
-        return null;
+        return fragmentInjector;
     }
 }

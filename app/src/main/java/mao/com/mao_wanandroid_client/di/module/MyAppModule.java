@@ -5,7 +5,7 @@ import mao.com.mao_wanandroid_client.application.MyApplication;
 
 /**
  * @author maoqitian
- * @Description
+ * @Description 注入Application Module
  * @Time 2019/3/21 0021 20:51
  */
 @Module

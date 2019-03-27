@@ -9,7 +9,6 @@ import javax.inject.Inject;
 
 import mao.com.mao_wanandroid_client.R;
 import mao.com.mao_wanandroid_client.base.activity.BaseActivity;
-import mao.com.mao_wanandroid_client.di.DaggerMyComponent;
 import mao.com.mao_wanandroid_client.model.banner.HomePageBannerModel;
 import mao.com.mao_wanandroid_client.presenter.welcome.WelcomeContract;
 import mao.com.mao_wanandroid_client.presenter.welcome.WelcomePresenter;
@@ -22,14 +21,17 @@ import mao.com.mao_wanandroid_client.view.main.MainActivity;
  */
 public class WelcomeActivity extends BaseActivity<WelcomePresenter> implements WelcomeContract.WelcomeView {
 
-    @Inject
-    HomePageBannerModel model;
+    //测试 dagger2
+    /*@Inject
+    HomePageBannerModel model;*/
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        DaggerMyComponent.create().inJectWelcomeActivity(this);
-        Log.e("毛麒添","DaggerMyComponent :" +model.hashCode());
+        //DaggerMyComponent.create().inJectWelcomeActivity(this);
+       // Log.e("毛麒添","DaggerMyComponent :" +model.hashCode());
+
+
     }
 
     @Override
