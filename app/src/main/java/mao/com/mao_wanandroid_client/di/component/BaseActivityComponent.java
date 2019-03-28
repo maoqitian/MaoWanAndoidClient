@@ -14,6 +14,6 @@ import mao.com.mao_wanandroid_client.base.activity.BaseActivity;
  */
 @Subcomponent(modules = {AndroidInjectionModule.class})
 public interface BaseActivityComponent extends AndroidInjector<BaseActivity> {
-    @Component.Builder
+    @Subcomponent.Builder
     abstract class BaseActivityBuilder extends AndroidInjector.Builder<BaseActivity> {}
 }

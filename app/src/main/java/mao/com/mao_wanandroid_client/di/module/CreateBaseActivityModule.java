@@ -1,6 +1,8 @@
 package mao.com.mao_wanandroid_client.di.module;
 
 import dagger.Module;
+import dagger.Subcomponent;
+import dagger.android.AndroidInjectionModule;
 import dagger.android.ContributesAndroidInjector;
 import mao.com.mao_wanandroid_client.di.component.BaseActivityComponent;
 import mao.com.mao_wanandroid_client.view.welcome.WelcomeActivity;
@@ -11,7 +13,7 @@ import mao.com.mao_wanandroid_client.view.welcome.WelcomeActivity;
  * （相当于注入mvp 中的 View）
  * @Time 2019/3/27 0027 23:46
  */
-@Module(subcomponents = BaseActivityComponent.class)
+@Module(subcomponents = {BaseActivityComponent.class})
 public abstract class CreateBaseActivityModule {
 
     @ContributesAndroidInjector(modules = WelcomeActivityModule.class)

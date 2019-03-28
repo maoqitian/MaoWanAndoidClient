@@ -6,6 +6,8 @@ import java.io.File;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
+import javax.inject.Inject;
+
 import mao.com.mao_wanandroid_client.BuildConfig;
 import mao.com.mao_wanandroid_client.application.Constants;
 import mao.com.mao_wanandroid_client.core.http.cookie.CookieManager;
@@ -45,7 +47,7 @@ public class NetworkUtils {
         }
         return mInstance;
     }*/
-
+    @Inject
     public NetworkUtils(){
        mRetrofitBuilder=new Retrofit.Builder()
                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
