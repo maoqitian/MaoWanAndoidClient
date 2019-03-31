@@ -13,7 +13,7 @@ import mao.com.mao_wanandroid_client.core.sp.SharedPreferenceHelperImpl;
 
 /**
  * @author maoqitian
- * @Description 注入Application Module
+ * @Description 注入Application Module 提供基本的对象
  * @Time 2019/3/21 0021 20:51
  */
 @Module
