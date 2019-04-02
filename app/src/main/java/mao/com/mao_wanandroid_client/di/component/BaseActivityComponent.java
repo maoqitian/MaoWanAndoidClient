@@ -1,7 +1,5 @@
 package mao.com.mao_wanandroid_client.di.component;
 
-import dagger.Component;
-import dagger.Module;
 import dagger.Subcomponent;
 import dagger.android.AndroidInjectionModule;
 import dagger.android.AndroidInjector;

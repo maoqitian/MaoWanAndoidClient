@@ -1,8 +1,6 @@
 package mao.com.mao_wanandroid_client.di.module;
 
 import dagger.Module;
-import dagger.Subcomponent;
-import dagger.android.AndroidInjectionModule;
 import dagger.android.ContributesAndroidInjector;
 import mao.com.mao_wanandroid_client.di.component.BaseActivityComponent;
 import mao.com.mao_wanandroid_client.view.welcome.WelcomeActivity;

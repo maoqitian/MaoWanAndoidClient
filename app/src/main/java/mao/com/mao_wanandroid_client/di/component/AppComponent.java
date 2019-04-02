@@ -3,7 +3,6 @@ package mao.com.mao_wanandroid_client.di.component;
 import javax.inject.Singleton;
 
 import dagger.Component;
-import dagger.android.AndroidInjectionModule;
 import dagger.android.AndroidInjector;
 import dagger.android.support.AndroidSupportInjectionModule;
 import mao.com.mao_wanandroid_client.application.MyApplication;
