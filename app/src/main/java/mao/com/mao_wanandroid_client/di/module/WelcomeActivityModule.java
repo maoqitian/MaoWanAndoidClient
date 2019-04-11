@@ -1,6 +1,10 @@
 package mao.com.mao_wanandroid_client.di.module;
 
+import javax.inject.Singleton;
+
 import dagger.Module;
+import dagger.Provides;
+import mao.com.mao_wanandroid_client.view.welcome.WelcomeActivity;
 
 /**
  * @author maoqitian
@@ -9,4 +13,9 @@ import dagger.Module;
  */
 @Module
 public class WelcomeActivityModule {
+    @Singleton
+    @Provides
+    public WelcomeActivity providerWelcomeActivity(){
+        return new WelcomeActivity();
+    }
 }

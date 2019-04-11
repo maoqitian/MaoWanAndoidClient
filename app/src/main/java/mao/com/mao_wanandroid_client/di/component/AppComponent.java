@@ -21,9 +21,17 @@ import mao.com.mao_wanandroid_client.di.module.MyAppModule;
         CreateBaseActivityModule.class,
         AndroidSupportInjectionModule.class
 })
-public interface AppComponent extends AndroidInjector<MyApplication> {
+/*public interface AppComponent extends AndroidInjector<MyApplication> {
 
     @Component.Builder
     abstract class Builder extends AndroidInjector.Builder<MyApplication> {}
+
+}*/
+public interface AppComponent  {
+
+   /* @Component.Builder
+    abstract class Builder extends AndroidInjector.Builder<MyApplication> {}*/
+
+
 
 }
