@@ -12,16 +12,17 @@ import dagger.android.DispatchingAndroidInjector;
 import dagger.android.HasActivityInjector;
 import mao.com.mao_wanandroid_client.core.dao.DaoMaster;
 import mao.com.mao_wanandroid_client.core.dao.DaoSession;
+import mao.com.mao_wanandroid_client.di.module.MyAppModule;
 
 /**
  * @author maoqitian
  * @Description
  * @Time 2018/9/30 0030 16:39
  */
-public class MyApplication extends DaggerApplication {
+public class MyApplication extends Application implements HasActivityInjector {
 
-    /*@Inject
-    DispatchingAndroidInjector<Activity> mAndroidInjector;*/
+    @Inject
+    DispatchingAndroidInjector<Activity> mAndroidInjector;
 
 
     //双重效验锁实现单例
@@ -46,19 +47,21 @@ public class MyApplication extends DaggerApplication {
     public void onCreate() {
         super.onCreate();
         initGreenDao();
-
+        /*DaggerAppComponent.builder().
+                myAppModule(new MyAppModule(this))
+                .build();*/
     }
 
-    @Override
+   /* @Override
     protected AndroidInjector<? extends DaggerApplication> applicationInjector() {
         return null;
-    }
+    }*/
 
-    /*@Override
+   /* @Override
     protected AndroidInjector<? extends DaggerApplication> applicationInjector() {
         return DaggerAppComponent.builder().create(this);
     }*/
-
+    //初始化GreenDao 数据库
     private void initGreenDao() {
         DaoMaster.DevOpenHelper devOpenHelper=new DaoMaster.DevOpenHelper(this,Constants.DB_NAME,null);
         SQLiteDatabase database = devOpenHelper.getWritableDatabase();
@@ -70,8 +73,8 @@ public class MyApplication extends DaggerApplication {
         return mDaoSession;
     }
 
-   /* @Override
+    @Override
     public AndroidInjector<Activity> activityInjector() {
         return mAndroidInjector;
-    }*/
+    }
 }
