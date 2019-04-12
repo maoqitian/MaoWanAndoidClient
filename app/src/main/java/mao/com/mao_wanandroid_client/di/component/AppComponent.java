@@ -26,4 +26,6 @@ public interface AppComponent extends AndroidInjector<MyApplication> {
     @Component.Builder
     abstract class Builder extends AndroidInjector.Builder<MyApplication> {}
 
+    void inject(MyApplication myApplication);
+
 }

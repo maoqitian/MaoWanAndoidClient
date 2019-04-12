@@ -24,7 +24,7 @@ public class DbHelperImpl implements DbHelper {
     private SearchHistoryData mSearchHistoryData;
     private String data;
 
-    @Inject
+    @Inject //注解@Inject用在构造方法上表示告诉Dagger 2可以使用此构造方法提供需要的实例
     public DbHelperImpl(){
         daoSession=MyApplication.getInstance().getDaoSession();
     }
