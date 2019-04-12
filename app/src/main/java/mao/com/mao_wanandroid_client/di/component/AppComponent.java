@@ -33,5 +33,5 @@ public interface AppComponent  {
    /* @Component.Builder
     abstract class Builder extends AndroidInjector.Builder<MyApplication> {}*/
 
-   
+   void Inject(MyApplication myApplication);
 }
