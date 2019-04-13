@@ -12,7 +12,7 @@ import mao.com.mao_wanandroid_client.core.http.DataClient;
  */
 public class WelcomePresenter extends RxBasePresenter<WelcomeContract.WelcomeView> implements WelcomeContract.WelcomeActivityPresenter{
 
-    @Inject
+    @Inject //@Inject注解表示Dagger2 可以从这获取Presenter 实例
     public WelcomePresenter(DataClient dataClient) {
         super(dataClient);
     }

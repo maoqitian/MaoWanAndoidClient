@@ -13,9 +13,5 @@ import mao.com.mao_wanandroid_client.view.welcome.WelcomeActivity;
  */
 @Module
 public class WelcomeActivityModule {
-    @Singleton
-    @Provides
-    public WelcomeActivity providerWelcomeActivity(){
-        return new WelcomeActivity();
-    }
+
 }
