@@ -6,7 +6,7 @@ import dagger.Component;
 import dagger.android.AndroidInjector;
 import dagger.android.support.AndroidSupportInjectionModule;
 import mao.com.mao_wanandroid_client.application.MyApplication;
-import mao.com.mao_wanandroid_client.di.module.CreateBaseActivityModule;
+import mao.com.mao_wanandroid_client.di.module.ActivityBindingModule;
 import mao.com.mao_wanandroid_client.di.module.MyAppModule;
 
 /**
@@ -18,7 +18,7 @@ import mao.com.mao_wanandroid_client.di.module.MyAppModule;
 @Singleton
 @Component(modules = {
         MyAppModule.class,
-        CreateBaseActivityModule.class,
+        ActivityBindingModule.class,
         AndroidSupportInjectionModule.class
 })
 public interface AppComponent extends AndroidInjector<MyApplication> {

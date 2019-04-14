@@ -12,6 +12,7 @@ import dagger.android.DispatchingAndroidInjector;
 import dagger.android.HasActivityInjector;
 import mao.com.mao_wanandroid_client.core.dao.DaoMaster;
 import mao.com.mao_wanandroid_client.core.dao.DaoSession;
+import mao.com.mao_wanandroid_client.di.component.DaggerAppComponent;
 import mao.com.mao_wanandroid_client.di.module.MyAppModule;
 
 /**
@@ -19,10 +20,10 @@ import mao.com.mao_wanandroid_client.di.module.MyAppModule;
  * @Description
  * @Time 2018/9/30 0030 16:39
  */
-public class MyApplication extends Application implements HasActivityInjector {
+public class MyApplication extends DaggerApplication {
 
-    @Inject
-    DispatchingAndroidInjector<Activity> mAndroidInjector;
+    /*@Inject
+    DispatchingAndroidInjector<Activity> mAndroidInjector;*/
 
 
     //双重效验锁实现单例
@@ -52,10 +53,10 @@ public class MyApplication extends Application implements HasActivityInjector {
                 .build();*/
     }
 
-   /* @Override
+    @Override
     protected AndroidInjector<? extends DaggerApplication> applicationInjector() {
-        return null;
-    }*/
+        return DaggerAppComponent.create();
+    }
 
    /* @Override
     protected AndroidInjector<? extends DaggerApplication> applicationInjector() {
@@ -73,8 +74,8 @@ public class MyApplication extends Application implements HasActivityInjector {
         return mDaoSession;
     }
 
-    @Override
+   /* @Override
     public AndroidInjector<Activity> activityInjector() {
         return mAndroidInjector;
-    }
+    }*/
 }

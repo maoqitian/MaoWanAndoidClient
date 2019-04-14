@@ -10,16 +10,18 @@ import mao.com.mao_wanandroid_client.core.http.DataClient;
 import mao.com.mao_wanandroid_client.core.http.helper.IHttpHelperImpl;
 import mao.com.mao_wanandroid_client.core.http.tools.NetworkUtils;
 import mao.com.mao_wanandroid_client.core.sp.SharedPreferenceHelperImpl;
+import mao.com.mao_wanandroid_client.di.scope.ActivityScope;
 
 /**
  * @author maoqitian
  * @Description 注入Application Module 提供基本的对象
  * @Time 2019/3/21 0021 20:51
  */
+
 @Module
 public class MyAppModule {
 
-    private MyApplication application;
+    /*private MyApplication application;
 
     public MyAppModule(MyApplication myApplication){
         this.application = myApplication;
@@ -29,7 +31,7 @@ public class MyAppModule {
     @Singleton
     public MyApplication providerApplication(){
         return application;
-    }
+    }*/
     @Provides
     @Singleton
     public DataClient providerDataClient(IHttpHelperImpl iHttpHelper,
@@ -38,7 +40,7 @@ public class MyAppModule {
         return new DataClient(iHttpHelper,sharedPreferenceHelper,dbHelper);
     }
 
-    @Provides
+    /*@Provides
     @Singleton
     public IHttpHelperImpl providerIHttpHelperImpl(IHttpHelperImpl iHttpHelper){
         return iHttpHelper;
@@ -54,7 +56,7 @@ public class MyAppModule {
     @Singleton
     public SharedPreferenceHelperImpl providerSharedPreferenceHelper(SharedPreferenceHelperImpl sharedPreferenceHelper){
         return sharedPreferenceHelper;
-    }
+    }*/
 
 
     @Provides

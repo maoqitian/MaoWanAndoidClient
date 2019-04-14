@@ -2,9 +2,13 @@ package mao.com.mao_wanandroid_client.di.module;
 
 import javax.inject.Singleton;
 
+import dagger.Binds;
 import dagger.Module;
 import dagger.Provides;
-import mao.com.mao_wanandroid_client.view.welcome.WelcomeActivity;
+import mao.com.mao_wanandroid_client.di.scope.ActivityScope;
+import mao.com.mao_wanandroid_client.presenter.welcome.WelcomeContract;
+import mao.com.mao_wanandroid_client.presenter.welcome.WelcomePresenter;
+
 
 /**
  * @author maoqitian
@@ -12,6 +16,10 @@ import mao.com.mao_wanandroid_client.view.welcome.WelcomeActivity;
  * @Time 2019/3/27 0027 23:59
  */
 @Module
-public class WelcomeActivityModule {
-
+public abstract class WelcomeActivityModule {
+    @ActivityScope
+    @Binds
+    abstract WelcomeContract.WelcomeActivityPresenter bindPresenter(WelcomePresenter presenter);
 }
+
+
