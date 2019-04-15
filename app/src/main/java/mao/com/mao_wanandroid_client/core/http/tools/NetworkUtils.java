@@ -10,7 +10,9 @@ import javax.inject.Inject;
 
 import mao.com.mao_wanandroid_client.BuildConfig;
 import mao.com.mao_wanandroid_client.application.Constants;
+import mao.com.mao_wanandroid_client.application.MyApplication;
 import mao.com.mao_wanandroid_client.core.http.cookie.CookieManager;
+import mao.com.mao_wanandroid_client.utils.FileUtils;
 import mao.com.mao_wanandroid_client.utils.ToolsUtils;
 import okhttp3.Cache;
 import okhttp3.CacheControl;
@@ -86,6 +88,7 @@ public class NetworkUtils {
             clientBuilder.addInterceptor(loggingInterceptor);
         }
         File netCachePath =new File(Constants.PATH_NET_CACHE);
+        //File netCachePath = FileUtils.getInstance().getCacheFolder();
         Cache netCache = new Cache(netCachePath,1024 * 1024 * 50);
         Interceptor netCacheInterceptor= chain -> {
             Request request = chain.request();

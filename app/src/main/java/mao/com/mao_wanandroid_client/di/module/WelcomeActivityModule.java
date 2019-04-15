@@ -1,10 +1,9 @@
 package mao.com.mao_wanandroid_client.di.module;
 
-import javax.inject.Singleton;
+
 
 import dagger.Binds;
 import dagger.Module;
-import dagger.Provides;
 import mao.com.mao_wanandroid_client.di.scope.ActivityScope;
 import mao.com.mao_wanandroid_client.presenter.welcome.WelcomeContract;
 import mao.com.mao_wanandroid_client.presenter.welcome.WelcomePresenter;

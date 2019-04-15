@@ -27,7 +27,7 @@ import mao.com.mao_wanandroid_client.model.webmark.webBookMark;
  */
 public class IHttpHelperImpl implements IHttpHelper{
 
-    private NetworkUtils mNetworkUtils;
+    public NetworkUtils mNetworkUtils;
 
     @Inject
     public IHttpHelperImpl(NetworkUtils networkUtils){

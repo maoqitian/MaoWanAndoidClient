@@ -27,34 +27,37 @@ public class MyApplication extends DaggerApplication {
 
 
     //双重效验锁实现单例
-    private static volatile MyApplication mInstance;
-
+    //private static volatile MyApplication mInstance;
+    private static  MyApplication mInstance;
     private DaoSession mDaoSession;
 
 
 
-    public static MyApplication getInstance() {
-        if (mInstance == null) {
+    public static synchronized MyApplication getInstance() {
+       /* if (mInstance == null) {
             synchronized (MyApplication.class) {
                 if (mInstance == null) {
                     mInstance = new MyApplication();
                 }
             }
-        }
+        }*/
         return mInstance;
     }
 
     @Override
     public void onCreate() {
         super.onCreate();
+        mInstance  = this;
         initGreenDao();
         /*DaggerAppComponent.builder().
                 myAppModule(new MyAppModule(this))
                 .build();*/
     }
 
+
     @Override
     protected AndroidInjector<? extends DaggerApplication> applicationInjector() {
+        //return DaggerAppComponent.builder().myAppModule(new MyAppModule()).build();
         return DaggerAppComponent.create();
     }
 

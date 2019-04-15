@@ -1,5 +1,6 @@
 package mao.com.mao_wanandroid_client.core.http.cookie;
 
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.text.TextUtils;
 import android.util.Log;
@@ -42,6 +43,7 @@ public class PersistentCookieStore {
 
 
     public PersistentCookieStore(){
+        //需要注意getSharedPreferences 空指针问题 确保能获取到Context
         mCookiePrefs=MyApplication.getInstance().getSharedPreferences(COOKIE_PREFS,0);
         //Load any previously stored cookies into the store
         mCookies=new HashMap<>();
