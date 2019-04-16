@@ -14,6 +14,7 @@ import mao.com.mao_wanandroid_client.model.project.ProjectListData;
 import mao.com.mao_wanandroid_client.model.search.HotKeyData;
 import mao.com.mao_wanandroid_client.model.tree.KnowledgeHierarchyData;
 import mao.com.mao_wanandroid_client.model.webmark.webBookMark;
+import mao.com.mao_wanandroid_client.model.wechat.OfficialAccountsModel;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
@@ -38,6 +39,14 @@ public interface ApiService {
      */
     @GET("/article/list/{pageNum}/json")
     Observable<ResponseBody<HomeArticleListData>>HomeArticleListData(@Path("pageNum")int pageNum );
+
+    /**
+     * 最新项目tab (首页的第二个tab)
+     * @param pageNum 页码，拼接在连接中，从0开始。
+     * @return
+     */
+    @GET("/article/listproject/{pageNum}/json")
+    Observable<ResponseBody<HomeArticleListData>>HomeArticleListProjectData(@Path("pageNum")int pageNum );
 
     /**
      * 获取首页Banner数据
@@ -272,11 +281,13 @@ public interface ApiService {
      */
 
     /**
-     * 最新项目接口
-     */
-
-    /**
      * 公众号 tab 相关接口
      */
+    /**
+     * 获取公众号列表
+     * @return
+     */
+    @GET("/wxarticle/chapters/json")
+    Observable<ResponseBody<List<OfficialAccountsModel>>> getWxArticle();
 
 }
