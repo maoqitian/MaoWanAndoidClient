@@ -3,6 +3,7 @@ package mao.com.mao_wanandroid_client.di.module;
 import dagger.Module;
 import dagger.android.ContributesAndroidInjector;
 import mao.com.mao_wanandroid_client.di.scope.ActivityScope;
+import mao.com.mao_wanandroid_client.view.main.MainActivity;
 import mao.com.mao_wanandroid_client.view.welcome.WelcomeActivity;
 
 /**
@@ -15,4 +16,8 @@ public abstract class ActivityBindingModule {
     @ActivityScope
     @ContributesAndroidInjector(modules = WelcomeActivityModule.class)
     abstract WelcomeActivity contributeWelcomeActivity();
+
+    @ActivityScope
+    @ContributesAndroidInjector(modules = MainActivityModule.class)
+    abstract MainActivity contributeMainActivity();
 }

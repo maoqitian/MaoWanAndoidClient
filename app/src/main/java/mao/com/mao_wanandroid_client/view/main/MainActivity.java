@@ -5,14 +5,17 @@ import android.os.Bundle;
 import android.view.MotionEvent;
 
 import mao.com.mao_wanandroid_client.R;
+import mao.com.mao_wanandroid_client.base.activity.BaseActivity;
+import mao.com.mao_wanandroid_client.presenter.main.MainContract;
+import mao.com.mao_wanandroid_client.presenter.main.MainPresenter;
 
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseActivity<MainPresenter> implements MainContract.MainView {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        //setContentView(R.layout.activity_main);
         //测试网络模块。获取首页Banner数据
        /* NetworkUtils.getInstance().getApiService(ApiService.class,ApiService.HOST,true).
                 GetHomePageBannerData()
@@ -28,5 +31,10 @@ public class MainActivity extends AppCompatActivity {
                         Log.e("mao",e.getMessage()+errorMsg);
                     }
                 });*/
+    }
+
+    @Override
+    protected int getLayout() {
+        return R.layout.activity_main;
     }
 }
