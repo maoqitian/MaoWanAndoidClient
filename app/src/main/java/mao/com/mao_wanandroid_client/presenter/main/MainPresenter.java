@@ -18,4 +18,9 @@ public class MainPresenter extends RxBasePresenter<MainContract.MainView> implem
     }
 
 
+    @Override
+    public void attachView(MainContract.MainView view) {
+        super.attachView(view);
+
+    }
 }
