@@ -1,4 +1,11 @@
 <resources>
     <string name="app_name">WanAndroid</string>
     <string name="reload_text">重新加载</string>
+
+    <string name="navigation_drawer_open">打开侧边栏</string>
+    <string name="navigation_drawer_close">关闭侧边栏</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">导航标题</string>
+    <string name="action_settings">设置</string>
 </resources>
