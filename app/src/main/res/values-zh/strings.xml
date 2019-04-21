@@ -8,4 +8,7 @@
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">导航标题</string>
     <string name="action_settings">设置</string>
+
+    <string name="nav_settings">设置</string>
+    <string name="nav_collect">收藏</string>
 </resources>

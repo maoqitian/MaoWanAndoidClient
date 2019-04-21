@@ -29,7 +29,7 @@ ext {
             "support-v4"                        : "com.android.support:support-v4:${version["supportLibraryVersion"]}",
             "design"                            : "com.android.support:design:${version["supportLibraryVersion"]}",
             "recyclerview"                      : "com.android.support:recyclerview-v7:${version["supportLibraryVersion"]}",
-            "constraint-layout"                 : "com.android.support.constraint:constraint-layout:1.0.2",
+            "constraint-layout"                 : "com.android.support.constraint:constraint-layout:1.1.3",
 
             //ui
             "SmartRefreshLayout"                :"com.scwang.smartrefresh:SmartRefreshLayout:${version["smartrefreshVersion"]}",
