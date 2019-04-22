@@ -78,23 +78,26 @@ public class MainActivity extends BaseActivity<MainPresenter>
     }
 
 
-    @Override
-    public void onBackPressedSupport() {
-        super.onBackPressedSupport();
-    }
 
-    //再点一次退出程序
+
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
 
         if (keyCode == KeyEvent.KEYCODE_BACK) {
-            doubleClickExit();
+            //如果侧边栏打开，则先关闭侧边栏
+            if (drawer.isDrawerOpen(GravityCompat.START)) {
+                drawer.closeDrawer(GravityCompat.START);
+            }else {
+                //再点一次退出程序
+                doubleClickExit();
+            }
         }
         return false;
     }
 
     private static Boolean mIsExit = false;
 
+    //再点一次退出程序
     private void doubleClickExit() {
         Timer exitTimer = null;
         if (!mIsExit) {
