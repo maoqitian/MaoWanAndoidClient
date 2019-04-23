@@ -29,5 +29,4 @@
         android:icon="@drawable/ic_android_project_24dp"
         android:title="@string/project"
         app:showAsAction="ifRoom" />
-
 </menu>
