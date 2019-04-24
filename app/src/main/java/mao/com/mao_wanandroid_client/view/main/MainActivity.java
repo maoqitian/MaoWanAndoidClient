@@ -26,7 +26,9 @@ import mao.com.mao_wanandroid_client.presenter.main.MainPresenter;
 
 
 public class MainActivity extends BaseActivity<MainPresenter>
-        implements MainContract.MainView ,
+        implements MainContract.MainView,
+        View.OnClickListener,
+        BottomNavigationView.OnNavigationItemSelectedListener,
         NavigationView.OnNavigationItemSelectedListener {
 
     @BindView(R.id.toolbar)
@@ -60,19 +62,22 @@ public class MainActivity extends BaseActivity<MainPresenter>
                     }
                 });*/
 
+    }
+
+    @Override
+    protected void initToolbar() {
         setSupportActionBar(toolbar);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+        initView();
+    }
+
+    private void initView() {
+        fab.setOnClickListener(this);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
         navigationView.setNavigationItemSelectedListener(this);
+        bottomNavigationView.setOnNavigationItemSelectedListener(this);
     }
 
     @Override
@@ -118,18 +123,56 @@ public class MainActivity extends BaseActivity<MainPresenter>
             System.exit(0);
         }
     }
-
+    //左侧导航栏点击事件
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
         int id = menuItem.getItemId();
-
-        if (id == R.id.nav_collect) {
-            // Handle the camera action
-        } else if (id == R.id.nav_settings) {
-
+        switch (id){
+            case R.id.nav_collect:
+                Toast.makeText(this,"点击了收藏",Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.nav_settings:
+                Toast.makeText(this,"点击了设置",Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.tab_main:
+                Toast.makeText(this,"点击了主页",Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.tab_knowledge_hierarchy:
+                Toast.makeText(this,"点击了知识体系",Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.tab_official_accounts:
+                Toast.makeText(this,"点击了公众号",Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.tab_navigation:
+                Toast.makeText(this,"点击了导航",Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.tab_project:
+                Toast.makeText(this,"点击了项目",Toast.LENGTH_SHORT).show();
+                break;
+                default:
+                    break;
         }
+       /* if (id == R.id.nav_collect) {
+            Toast.makeText(this,"点击了收藏",Toast.LENGTH_SHORT).show();
+        } else if (id == R.id.nav_settings) {
+            Toast.makeText(this,"点击了设置",Toast.LENGTH_SHORT).show();
+        }*/
         //DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        //点击之后关闭DrawerLayout
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+    //view 点击事件
+    @Override
+    public void onClick(View view) {
+         switch (view.getId()){
+             case R.id.fab:
+                 /*Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();*/
+                 Toast.makeText(MainActivity.this,"点击了回到顶部",Toast.LENGTH_SHORT).show();
+                 break;
+             default:
+                 break;
+         }
     }
 }

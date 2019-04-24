@@ -17,6 +17,12 @@
         app:showAsAction="ifRoom" />
 
     <item
+        android:id="@+id/tab_official_accounts"
+        android:enabled="true"
+        android:icon="@drawable/ic_comments_solid"
+        android:title="@string/official_accounts"
+        app:showAsAction="ifRoom" />
+    <item
         android:id="@+id/tab_navigation"
         android:enabled="true"
         android:icon="@drawable/ic_navigation_24dp"
