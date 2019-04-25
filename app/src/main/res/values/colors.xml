@@ -5,4 +5,9 @@
     <color name="colorAccent">#FFC107</color>
     <color name="colorBackground">#EEEEEE</color>
     <color name="colorwhite" >#FFFFFF</color>
+
+    <!--自定义loading view 颜色-->
+    <color name="circle" >#FF9800</color>
+    <color name="rect" >#FF5722</color>
+    <color name="triangle" >#FFC107</color>
 </resources>

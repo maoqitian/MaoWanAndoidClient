@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:background="#FFFFFF"
+    android:gravity="center"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <mao.com.mao_wanandroid_client.widget.ShapeView
+        android:id="@+id/shape_view"
+        android:layout_marginBottom="82dp"
+        android:layout_width="25dp"
+        android:layout_height="25dp" />
+
+
+    <View
+        android:id="@+id/shadow_view"
+        android:background="@drawable/bg_loading_shadow"
+        android:layout_width="25dp"
+        android:layout_height="3dp"/>
+
+    <TextView
+        android:layout_marginTop="5dp"
+        android:layout_width="wrap_content"
+        android:text="@string/loading_view_text"
+        android:layout_height="wrap_content" />
+</LinearLayout>
