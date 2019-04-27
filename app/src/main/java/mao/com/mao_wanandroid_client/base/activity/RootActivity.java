@@ -25,7 +25,7 @@ public class RootActivity<T extends RxBasePresenter> extends BaseActivity<T> imp
 
     private ViewGroup mBaseView;
     private ViewGroup normalView;
-    private View loadingView;
+    private LoadingView loadingView;
     private View errorView;
     //重复加载
     private TextView tvReload;
@@ -71,6 +71,7 @@ public class RootActivity<T extends RxBasePresenter> extends BaseActivity<T> imp
         currentState = STATE_LOADING;
         loadingView.setVisibility(View.VISIBLE);
         //TODO 开始动画View 还未完成加载
+
     }
 
     @Override

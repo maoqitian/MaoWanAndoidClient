@@ -86,7 +86,11 @@ public class MainActivity extends BaseActivity<MainPresenter>
     }
 
 
-
+    @Override
+    protected void initEventAndData() {
+        super.initEventAndData();
+        showLoading();
+    }
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
