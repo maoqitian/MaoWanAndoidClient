@@ -13,7 +13,7 @@ import mao.com.mao_wanandroid_client.widget.LoadingView;
  * @Description 每個Fragment 的基类
  * @Time 2018/12/14 0014 22:48
  */
-public class RootBaseFragment <T extends AbstractBasePresenter>extends BaseFragment <T> implements View.OnClickListener {
+public abstract class RootBaseFragment <T extends AbstractBasePresenter>extends BaseFragment <T> implements View.OnClickListener {
 
     //默认为NORMAL状态
     private int currentState = STATE_NORMAL;

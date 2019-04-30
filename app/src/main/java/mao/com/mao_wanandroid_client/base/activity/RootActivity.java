@@ -15,7 +15,7 @@ import mao.com.mao_wanandroid_client.widget.LoadingView;
  * @Description
  * @Time 2018/10/25 0025 16:52
  */
-public class RootActivity<T extends RxBasePresenter> extends BaseActivity<T> implements View.OnClickListener {
+public abstract class RootActivity<T extends RxBasePresenter> extends BaseActivity<T> implements View.OnClickListener {
 
 
     //默认为NORMAL状态
