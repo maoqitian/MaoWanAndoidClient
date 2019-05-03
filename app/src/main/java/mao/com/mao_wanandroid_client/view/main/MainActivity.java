@@ -7,12 +7,14 @@ import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.Timer;
@@ -41,6 +43,8 @@ public class MainActivity extends BaseActivity<MainPresenter>
     NavigationView navigationView;
     @BindView(R.id.main_bottom_navigation_view)
     BottomNavigationView bottomNavigationView;
+    @BindView(R.id.tv_page_title)
+    TextView pageTitle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,6 +71,11 @@ public class MainActivity extends BaseActivity<MainPresenter>
     @Override
     protected void initToolbar() {
         setSupportActionBar(toolbar);
+        ActionBar supportActionBar = getSupportActionBar();
+        assert supportActionBar != null;
+        //出去toolbar 默认显示的标题
+        supportActionBar.setDisplayShowTitleEnabled(false);
+        pageTitle.setText(getString(R.string.page_home));
         initView();
     }
 
@@ -77,6 +86,9 @@ public class MainActivity extends BaseActivity<MainPresenter>
         drawer.addDrawerListener(toggle);
         toggle.syncState();
         navigationView.setNavigationItemSelectedListener(this);
+        bottomNavigationView.setItemIconSize(70);
+        /*bottomNavigationView.setItemTextAppearanceActive(R.style.bottom_selected_text);
+        bottomNavigationView.setItemTextAppearanceInactive(R.style.bottom_normal_text);*/
         bottomNavigationView.setOnNavigationItemSelectedListener(this);
     }
 
@@ -139,6 +151,7 @@ public class MainActivity extends BaseActivity<MainPresenter>
                 Toast.makeText(this,"点击了设置",Toast.LENGTH_SHORT).show();
                 break;
             case R.id.tab_main:
+                //initPage();
                 Toast.makeText(this,"点击了主页",Toast.LENGTH_SHORT).show();
                 break;
             case R.id.tab_knowledge_hierarchy:
@@ -166,6 +179,14 @@ public class MainActivity extends BaseActivity<MainPresenter>
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
+    /**
+     * 加载对应的页面
+     */
+    private void initPage(String pageTitle) {
+
+    }
+
     //view 点击事件
     @Override
     public void onClick(View view) {

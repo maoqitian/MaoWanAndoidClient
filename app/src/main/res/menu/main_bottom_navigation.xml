@@ -6,7 +6,7 @@
         android:id="@+id/tab_main"
         android:enabled="true"
         android:icon="@drawable/ic_home_normal_24dp"
-        android:title="@string/main_pager"
+        android:title="@string/page_home"
         app:showAsAction="ifRoom" />
 
     <item

@@ -11,7 +11,7 @@
 
     <string name="nav_settings">Settings</string>
     <string name="nav_collect">collect</string>
-    <string name="main_pager" >main_pager</string>
+    <string name="page_home" >main_pager</string>
     <string name="project">project</string>
     <string name="navigation">navigation</string>
     <string name="knowledge_hierarchy">PMBOK</string>

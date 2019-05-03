@@ -22,4 +22,16 @@
         <item name="android:windowBackground">@mipmap/ic_launcher</item>
         <item name="android:windowFullscreen">true</item>
     </style>
+
+
+    <!--没有选中的样式为了去除bottom动画-->
+    <style name="bottom_normal_text">
+        <item name="android:textColor">@color/font_hint</item>
+        <item name="android:textSize">11sp</item>
+    </style>
+    <!--选中的样式为了去除bottom动画-->
+    <style name="bottom_selected_text">
+        <item name="android:textColor">@color/colorPrimary</item>
+        <item name="android:textSize">11sp</item>
+    </style>
 </resources>
