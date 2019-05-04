@@ -139,7 +139,7 @@ public class MainActivity extends BaseActivity<MainPresenter>
             System.exit(0);
         }
     }
-    //左侧导航栏点击事件
+    //左侧导航栏、底部导航栏 点击事件
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
         int id = menuItem.getItemId();
@@ -151,19 +151,24 @@ public class MainActivity extends BaseActivity<MainPresenter>
                 Toast.makeText(this,"点击了设置",Toast.LENGTH_SHORT).show();
                 break;
             case R.id.tab_main:
-                //initPage();
+                initPage(getString(R.string.page_home));
                 Toast.makeText(this,"点击了主页",Toast.LENGTH_SHORT).show();
                 break;
             case R.id.tab_knowledge_hierarchy:
+                initPage(getString(R.string.knowledge_hierarchy));
                 Toast.makeText(this,"点击了知识体系",Toast.LENGTH_SHORT).show();
+
                 break;
             case R.id.tab_official_accounts:
+                initPage(getString(R.string.official_accounts));
                 Toast.makeText(this,"点击了公众号",Toast.LENGTH_SHORT).show();
                 break;
             case R.id.tab_navigation:
+                initPage(getString(R.string.navigation));
                 Toast.makeText(this,"点击了导航",Toast.LENGTH_SHORT).show();
                 break;
             case R.id.tab_project:
+                initPage(getString(R.string.project));
                 Toast.makeText(this,"点击了项目",Toast.LENGTH_SHORT).show();
                 break;
                 default:
@@ -183,8 +188,8 @@ public class MainActivity extends BaseActivity<MainPresenter>
     /**
      * 加载对应的页面
      */
-    private void initPage(String pageTitle) {
-
+    private void initPage(String pagetitle) {
+       pageTitle.setText(pagetitle);
     }
 
     //view 点击事件
