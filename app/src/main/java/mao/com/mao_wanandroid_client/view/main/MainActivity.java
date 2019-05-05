@@ -25,6 +25,9 @@ import mao.com.mao_wanandroid_client.R;
 import mao.com.mao_wanandroid_client.base.activity.BaseActivity;
 import mao.com.mao_wanandroid_client.presenter.main.MainContract;
 import mao.com.mao_wanandroid_client.presenter.main.MainPresenter;
+import mao.com.mao_wanandroid_client.view.main.fragment.HomePageFragment;
+import me.yokeyword.fragmentation.ISupportFragment;
+import me.yokeyword.fragmentation.SupportFragment;
 
 
 public class MainActivity extends BaseActivity<MainPresenter>
@@ -76,7 +79,15 @@ public class MainActivity extends BaseActivity<MainPresenter>
         //出去toolbar 默认显示的标题
         supportActionBar.setDisplayShowTitleEnabled(false);
         pageTitle.setText(getString(R.string.page_home));
+        initFragment();
         initView();
+    }
+
+    private void initFragment() {
+        HomePageFragment fragment = findFragment(HomePageFragment.class);
+        if (fragment == null) {
+            loadRootFragment(R.id.page_fragment_container, HomePageFragment.newInstance());
+        }
     }
 
     private void initView() {
@@ -143,6 +154,9 @@ public class MainActivity extends BaseActivity<MainPresenter>
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
         int id = menuItem.getItemId();
+        final ISupportFragment topFragment = getTopFragment();
+        SupportFragment myHome = (SupportFragment) topFragment;
+
         switch (id){
             case R.id.nav_collect:
                 Toast.makeText(this,"点击了收藏",Toast.LENGTH_SHORT).show();
@@ -190,6 +204,7 @@ public class MainActivity extends BaseActivity<MainPresenter>
      */
     private void initPage(String pagetitle) {
        pageTitle.setText(pagetitle);
+
     }
 
     //view 点击事件

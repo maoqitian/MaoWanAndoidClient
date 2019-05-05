@@ -4,6 +4,7 @@ import mao.com.mao_wanandroid_client.R;
 import mao.com.mao_wanandroid_client.base.fragment.RootBaseFragment;
 import mao.com.mao_wanandroid_client.presenter.main.MainContract;
 import mao.com.mao_wanandroid_client.presenter.main.MainPresenter;
+import me.yokeyword.fragmentation.ISupportFragment;
 
 /**
  * @author maoqitian
@@ -13,6 +14,9 @@ import mao.com.mao_wanandroid_client.presenter.main.MainPresenter;
 public class HomePageFragment extends RootBaseFragment<MainPresenter> implements MainContract.MainView {
 
 
+    public static HomePageFragment newInstance() {
+        return new HomePageFragment();
+    }
 
     @Override
     protected int getLayoutId() {

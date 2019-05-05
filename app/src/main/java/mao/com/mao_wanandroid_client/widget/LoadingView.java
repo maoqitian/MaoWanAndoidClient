@@ -35,10 +35,12 @@ public class LoadingView extends LinearLayout {
 
     public LoadingView(Context context) {
         super(context,null);
+        initLayout();
     }
 
     public LoadingView(Context context, AttributeSet attrs) {
         super(context, attrs,0);
+        initLayout();
     }
 
     public LoadingView(Context context, AttributeSet attrs, int defStyleAttr) {
@@ -52,7 +54,7 @@ public class LoadingView extends LinearLayout {
         //  实例化View
         // this 代表把 loading_view 加载到 LoadingView 中
         inflate(getContext(), R.layout.loading_view_layout,this);
-        shapeView = (ShapeView) findViewById(R.id.shape_view);
+        shapeView =  findViewById(R.id.shape_view);
         mShadowView = findViewById(R.id.shadow_view);
 
         // onResume 之后View绘制流程执行完毕之后（View的绘制流程源码分析那一章）

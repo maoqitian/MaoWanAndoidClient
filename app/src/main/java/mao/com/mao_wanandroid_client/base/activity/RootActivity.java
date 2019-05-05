@@ -50,7 +50,7 @@ public abstract class RootActivity<T extends RxBasePresenter> extends BaseActivi
         tvReload = errorView.findViewById(R.id.tv_reload);
         tvReload.setOnClickListener(this);
         //TODO 动画View 还未完成加载
-        mLoadingView.setVisibility(View.GONE);
+        loadingView.setVisibility(View.GONE);
         errorView.setVisibility(View.GONE);
         normalView.setVisibility(View.VISIBLE);
     }
