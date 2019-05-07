@@ -22,4 +22,5 @@ public class HomePageFragment extends RootBaseFragment<MainPresenter> implements
     protected int getLayoutId() {
         return R.layout.home_page_fragment_layout;
     }
+
 }

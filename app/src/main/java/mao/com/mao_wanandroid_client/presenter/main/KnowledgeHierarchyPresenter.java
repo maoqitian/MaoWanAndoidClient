@@ -1,5 +1,6 @@
 package mao.com.mao_wanandroid_client.presenter.main;
 
+
 import javax.inject.Inject;
 
 import mao.com.mao_wanandroid_client.base.presenter.RxBasePresenter;
@@ -7,22 +8,21 @@ import mao.com.mao_wanandroid_client.core.http.DataClient;
 
 /**
  * @author maoqitian
- * @Description
- * @Time 2019/2/21 0021 21:03
+ * @Description:
+ * @date 2019/5/7 0007 11:47
  */
-public class MainPresenter extends RxBasePresenter<MainContract.MainView> implements MainContract.MainActivityPresenter {
+public class KnowledgeHierarchyPresenter extends RxBasePresenter<KnowledgeHierarchyContract.KnowledgeHierarchyView> implements KnowledgeHierarchyContract.KnowledgeHierarchyFragmentPresenter {
 
     private DataClient mDataClient;
 
-    @Inject //@Inject注解表示Dagger2 可以从这获取Presenter 实例
-    public MainPresenter(DataClient dataClient) {
+    @Inject
+    public KnowledgeHierarchyPresenter(DataClient dataClient) {
         super(dataClient);
         this.mDataClient = dataClient;
     }
 
-
     @Override
-    public void attachView(MainContract.MainView view) {
+    public void attachView(KnowledgeHierarchyContract.KnowledgeHierarchyView view) {
         super.attachView(view);
 
     }

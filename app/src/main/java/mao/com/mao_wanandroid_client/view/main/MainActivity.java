@@ -12,6 +12,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.KeyEvent;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
@@ -25,7 +26,9 @@ import mao.com.mao_wanandroid_client.R;
 import mao.com.mao_wanandroid_client.base.activity.BaseActivity;
 import mao.com.mao_wanandroid_client.presenter.main.MainContract;
 import mao.com.mao_wanandroid_client.presenter.main.MainPresenter;
+import mao.com.mao_wanandroid_client.utils.NavHelper;
 import mao.com.mao_wanandroid_client.view.main.fragment.HomePageFragment;
+import mao.com.mao_wanandroid_client.view.main.fragment.KnowledgeHierarchyPageFragment;
 import me.yokeyword.fragmentation.ISupportFragment;
 import me.yokeyword.fragmentation.SupportFragment;
 
@@ -34,7 +37,8 @@ public class MainActivity extends BaseActivity<MainPresenter>
         implements MainContract.MainView,
         View.OnClickListener,
         BottomNavigationView.OnNavigationItemSelectedListener,
-        NavigationView.OnNavigationItemSelectedListener {
+        NavigationView.OnNavigationItemSelectedListener ,
+        NavHelper.OnTabChangeListener<String> {
 
     @BindView(R.id.toolbar)
     Toolbar toolbar;
@@ -48,6 +52,9 @@ public class MainActivity extends BaseActivity<MainPresenter>
     BottomNavigationView bottomNavigationView;
     @BindView(R.id.tv_page_title)
     TextView pageTitle;
+
+
+    private NavHelper mNavHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,10 +91,15 @@ public class MainActivity extends BaseActivity<MainPresenter>
     }
 
     private void initFragment() {
-        HomePageFragment fragment = findFragment(HomePageFragment.class);
+        /*HomePageFragment fragment = findFragment(HomePageFragment.class);
         if (fragment == null) {
             loadRootFragment(R.id.page_fragment_container, HomePageFragment.newInstance());
-        }
+            //loadMultipleRootFragment();
+        }*/
+       mNavHelper =new NavHelper<String>(this,R.id.page_fragment_container,getSupportFragmentManager(),this)
+       .add(R.id.tab_main,new NavHelper.Tab<String>(HomePageFragment.class,getString(R.string.page_home)))
+       .add(R.id.tab_knowledge_hierarchy,new NavHelper.Tab<String>(KnowledgeHierarchyPageFragment.class,getString(R.string.page_home)));
+
     }
 
     private void initView() {
@@ -101,6 +113,8 @@ public class MainActivity extends BaseActivity<MainPresenter>
         /*bottomNavigationView.setItemTextAppearanceActive(R.style.bottom_selected_text);
         bottomNavigationView.setItemTextAppearanceInactive(R.style.bottom_normal_text);*/
         bottomNavigationView.setOnNavigationItemSelectedListener(this);
+        Menu menu = bottomNavigationView.getMenu();
+        menu.performIdentifierAction(R.id.tab_main,0);
     }
 
     @Override
@@ -154,9 +168,8 @@ public class MainActivity extends BaseActivity<MainPresenter>
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
         int id = menuItem.getItemId();
-        final ISupportFragment topFragment = getTopFragment();
-        SupportFragment myHome = (SupportFragment) topFragment;
-
+        /*final ISupportFragment topFragment = getTopFragment();
+        SupportFragment myHome = (SupportFragment) topFragment;*/
         switch (id){
             case R.id.nav_collect:
                 Toast.makeText(this,"点击了收藏",Toast.LENGTH_SHORT).show();
@@ -196,7 +209,7 @@ public class MainActivity extends BaseActivity<MainPresenter>
         //DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         //点击之后关闭DrawerLayout
         drawer.closeDrawer(GravityCompat.START);
-        return true;
+        return mNavHelper.performClickMenu(id);
     }
 
     /**
@@ -219,5 +232,15 @@ public class MainActivity extends BaseActivity<MainPresenter>
              default:
                  break;
          }
+    }
+
+    /**
+     * tab 切换回调
+     * @param newTab
+     * @param oldTab
+     */
+    @Override
+    public void onTabChange(NavHelper.Tab<String> newTab, NavHelper.Tab<String> oldTab) {
+
     }
 }

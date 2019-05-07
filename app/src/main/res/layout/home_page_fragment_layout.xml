@@ -5,6 +5,10 @@
     android:layout_height="match_parent"
     android:background="@color/colorBackground"
     >
+    <TextView
+        android:text="xxxxxxxxxx"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
     <com.scwang.smartrefresh.layout.SmartRefreshLayout
         android:id="@+id/view_base_normal"
         android:layout_width="match_parent"
