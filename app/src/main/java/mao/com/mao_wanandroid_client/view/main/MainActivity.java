@@ -29,6 +29,9 @@ import mao.com.mao_wanandroid_client.presenter.main.MainPresenter;
 import mao.com.mao_wanandroid_client.utils.NavHelper;
 import mao.com.mao_wanandroid_client.view.main.fragment.HomePageFragment;
 import mao.com.mao_wanandroid_client.view.main.fragment.KnowledgeHierarchyPageFragment;
+import mao.com.mao_wanandroid_client.view.main.fragment.NavigationFragment;
+import mao.com.mao_wanandroid_client.view.main.fragment.OfficialAccountsPageFragment;
+import mao.com.mao_wanandroid_client.view.main.fragment.ProjectFragment;
 import me.yokeyword.fragmentation.ISupportFragment;
 import me.yokeyword.fragmentation.SupportFragment;
 
@@ -98,7 +101,11 @@ public class MainActivity extends BaseActivity<MainPresenter>
         }*/
        mNavHelper =new NavHelper<String>(this,R.id.page_fragment_container,getSupportFragmentManager(),this)
        .add(R.id.tab_main,new NavHelper.Tab<String>(HomePageFragment.class,getString(R.string.page_home)))
-       .add(R.id.tab_knowledge_hierarchy,new NavHelper.Tab<String>(KnowledgeHierarchyPageFragment.class,getString(R.string.page_home)));
+       .add(R.id.tab_knowledge_hierarchy,new NavHelper.Tab<String>(KnowledgeHierarchyPageFragment.class,getString(R.string.knowledge_hierarchy)))
+       .add(R.id.tab_official_accounts,new NavHelper.Tab<String>(OfficialAccountsPageFragment.class,getString(R.string.official_accounts)))
+       .add(R.id.tab_navigation,new NavHelper.Tab<String>(NavigationFragment.class,getString(R.string.navigation)))
+       .add(R.id.tab_project,new NavHelper.Tab<String>(ProjectFragment.class,getString(R.string.project)));
+
 
     }
 
