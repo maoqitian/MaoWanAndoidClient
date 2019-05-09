@@ -23,19 +23,23 @@ public class ShapeView extends View {
     private Path mPath;
 
     public ShapeView(Context context) {
-        super(context,null);
+        super(context);
+        init();
     }
 
     public ShapeView(Context context, @Nullable AttributeSet attrs) {
-        super(context, attrs,0);
+        super(context, attrs);
+        init();
     }
 
     public ShapeView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
+        init();
+    }
+    private void init(){
         mPaint = new Paint();
         mPaint.setAntiAlias(true);
     }
-
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {

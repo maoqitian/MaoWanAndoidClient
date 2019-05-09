@@ -34,22 +34,22 @@ public class LoadingView extends LinearLayout {
 
 
     public LoadingView(Context context) {
-        super(context,null);
+        super(context);
         initLayout();
     }
 
     public LoadingView(Context context, AttributeSet attrs) {
-        super(context, attrs,0);
+        super(context, attrs);
         initLayout();
     }
 
     public LoadingView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        mTranslationDistance = dip2px(80);
         initLayout();
     }
 
     private void initLayout() {
+        mTranslationDistance = dip2px(80);
         //  加载写好的 loading_view
         //  实例化View
         // this 代表把 loading_view 加载到 LoadingView 中
