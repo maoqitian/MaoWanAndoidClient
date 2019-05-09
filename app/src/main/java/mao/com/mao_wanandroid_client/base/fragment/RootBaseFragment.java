@@ -16,7 +16,7 @@ import mao.com.mao_wanandroid_client.widget.LoadingView;
 public abstract class RootBaseFragment <T extends AbstractBasePresenter>extends BaseFragment <T> implements View.OnClickListener {
 
     //默认为NORMAL状态
-    private int currentState = STATE_NORMAL;
+    protected int currentState = STATE_NORMAL;
 
     //TODO 加载中的LoadingView 还未完成
     private LoadingView mLoadingView;
@@ -46,7 +46,7 @@ public abstract class RootBaseFragment <T extends AbstractBasePresenter>extends 
         mBaseView = (ViewGroup) normalView.getParent();
         View.inflate(_mActivity,R.layout.view_loading,mBaseView);
         View.inflate(_mActivity,R.layout.view_error,mBaseView);
-        loadingView = mBaseView.findViewById(R.id.view_loading);
+        loadingView = mBaseView.findViewById(R.id.loading_view_container);
         errorView = mBaseView.findViewById(R.id.view_error);
         tvReload = errorView.findViewById(R.id.tv_reload);
         tvReload.setOnClickListener(this);
@@ -54,6 +54,7 @@ public abstract class RootBaseFragment <T extends AbstractBasePresenter>extends 
         loadingView.setVisibility(View.GONE);
         errorView.setVisibility(View.GONE);
         normalView.setVisibility(View.VISIBLE);
+        mLoadingView = loadingView.findViewById(R.id.view_loading);
 
     }
 

@@ -1,5 +1,7 @@
 package mao.com.mao_wanandroid_client.view.main.fragment;
 
+import android.util.Log;
+
 import mao.com.mao_wanandroid_client.R;
 import mao.com.mao_wanandroid_client.base.fragment.RootBaseFragment;
 import mao.com.mao_wanandroid_client.presenter.main.MainContract;
@@ -23,4 +25,10 @@ public class HomePageFragment extends RootBaseFragment<MainPresenter> implements
         return R.layout.home_page_fragment_layout;
     }
 
+    @Override
+    protected void initEventAndData() {
+        super.initEventAndData();
+        Log.e("毛麒添","当前页面状态"+currentState);
+        showLoading();
+    }
 }

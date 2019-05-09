@@ -86,7 +86,7 @@ public class MainActivity extends BaseActivity<MainPresenter>
         setSupportActionBar(toolbar);
         ActionBar supportActionBar = getSupportActionBar();
         assert supportActionBar != null;
-        //出去toolbar 默认显示的标题
+        //除去toolbar 默认显示的标题
         supportActionBar.setDisplayShowTitleEnabled(false);
         pageTitle.setText(getString(R.string.page_home));
         initFragment();
@@ -133,7 +133,6 @@ public class MainActivity extends BaseActivity<MainPresenter>
     @Override
     protected void initEventAndData() {
         super.initEventAndData();
-        showLoading();
     }
 
     @Override

@@ -1,8 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mao.com.mao_wanandroid_client.widget.LoadingView
-        xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/loading_view_container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+    <mao.com.mao_wanandroid_client.widget.LoadingView
         android:id="@+id/view_loading"
         android:layout_gravity="center"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-</mao.com.mao_wanandroid_client.widget.LoadingView>
+    </mao.com.mao_wanandroid_client.widget.LoadingView>
+</RelativeLayout>
+
