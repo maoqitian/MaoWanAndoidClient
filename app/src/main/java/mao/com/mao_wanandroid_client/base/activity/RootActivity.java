@@ -25,7 +25,7 @@ public abstract class RootActivity<T extends RxBasePresenter> extends BaseActivi
 
     private ViewGroup mBaseView;
     private ViewGroup normalView;
-    private LoadingView loadingView;
+    private View loadingView;
     private View errorView;
     //重复加载
     private TextView tvReload;
@@ -45,14 +45,14 @@ public abstract class RootActivity<T extends RxBasePresenter> extends BaseActivi
         mBaseView = (ViewGroup) normalView.getParent();
         View.inflate(this,R.layout.view_loading,mBaseView);
         View.inflate(this,R.layout.view_error,mBaseView);
-        loadingView = mBaseView.findViewById(R.id.view_loading);
+        loadingView = mBaseView.findViewById(R.id.loading_view_container);
         errorView = mBaseView.findViewById(R.id.view_error);
         tvReload = errorView.findViewById(R.id.tv_reload);
         tvReload.setOnClickListener(this);
-        //TODO 动画View 还未完成加载
         loadingView.setVisibility(View.GONE);
         errorView.setVisibility(View.GONE);
         normalView.setVisibility(View.VISIBLE);
+        mLoadingView = loadingView.findViewById(R.id.view_loading);
     }
 
 
@@ -80,7 +80,6 @@ public abstract class RootActivity<T extends RxBasePresenter> extends BaseActivi
         hideCurrentView();
         currentState = STATE_ERROR;
         errorView.setVisibility(View.VISIBLE);
-        //TODO 开始动画View 还未完成加载
     }
 
     /**
@@ -94,9 +93,9 @@ public abstract class RootActivity<T extends RxBasePresenter> extends BaseActivi
                }
                break;
            case STATE_LOADING:
-               //TODO 停止动画View 还未完成加载
                if(loadingView != null){
                    loadingView.setVisibility(View.GONE);
+                   mLoadingView.setVisibility(View.GONE);
                }
                break;
            case STATE_ERROR:

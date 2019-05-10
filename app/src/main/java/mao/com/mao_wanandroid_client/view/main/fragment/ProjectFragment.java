@@ -1,5 +1,7 @@
 package mao.com.mao_wanandroid_client.view.main.fragment;
 
+import android.util.Log;
+
 import mao.com.mao_wanandroid_client.R;
 import mao.com.mao_wanandroid_client.base.fragment.RootBaseFragment;
 import mao.com.mao_wanandroid_client.presenter.main.ProjectContract;
@@ -15,5 +17,10 @@ public class ProjectFragment extends RootBaseFragment <ProjectPresenter> impleme
     @Override
     protected int getLayoutId() {
         return R.layout.project_fragment_layout;
+    }
+    @Override
+    protected void initEventAndData() {
+        super.initEventAndData();
+        Log.e("毛麒添","当前页面状态"+currentState);
     }
 }

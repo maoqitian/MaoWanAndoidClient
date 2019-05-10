@@ -50,7 +50,6 @@ public abstract class RootBaseFragment <T extends AbstractBasePresenter>extends 
         errorView = mBaseView.findViewById(R.id.view_error);
         tvReload = errorView.findViewById(R.id.tv_reload);
         tvReload.setOnClickListener(this);
-        //TODO 动画View 还未完成加载
         loadingView.setVisibility(View.GONE);
         errorView.setVisibility(View.GONE);
         normalView.setVisibility(View.VISIBLE);
@@ -73,7 +72,6 @@ public abstract class RootBaseFragment <T extends AbstractBasePresenter>extends 
         hideCurrentView();
         currentState = STATE_LOADING;
         loadingView.setVisibility(View.VISIBLE);
-        //TODO 开始动画View 还未完成加载
     }
 
     @Override
@@ -82,7 +80,6 @@ public abstract class RootBaseFragment <T extends AbstractBasePresenter>extends 
         hideCurrentView();
         currentState = STATE_ERROR;
         errorView.setVisibility(View.VISIBLE);
-        //TODO 开始动画View 还未完成加载
     }
 
     /**
@@ -96,9 +93,9 @@ public abstract class RootBaseFragment <T extends AbstractBasePresenter>extends 
                 }
                 break;
             case STATE_LOADING:
-                //TODO 停止动画View 还未完成加载
                 if(loadingView != null){
                     loadingView.setVisibility(View.GONE);
+                    mLoadingView.setVisibility(View.GONE);
                 }
                 break;
             case STATE_ERROR:
