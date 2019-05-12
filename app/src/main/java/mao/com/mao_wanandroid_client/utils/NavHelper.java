@@ -74,7 +74,7 @@ public class NavHelper<T> {
         if (currentTab!=null){
             oldTab=currentTab;
             if (oldTab==tab){
-                //如果当前tab点击的tab，不做任何操作或者刷新
+                //如果是当前tab点击的tab，不做任何操作或者刷新
                 notifyReselect(tab);
                 return;
             }

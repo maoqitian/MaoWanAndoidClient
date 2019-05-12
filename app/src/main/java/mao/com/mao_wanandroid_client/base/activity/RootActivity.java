@@ -20,7 +20,7 @@ public abstract class RootActivity<T extends RxBasePresenter> extends BaseActivi
 
     //默认为NORMAL状态
     private int currentState = STATE_NORMAL;
-    //TODO 加载中的LoadingView 还未完成
+
     private LoadingView mLoadingView;
 
     private ViewGroup mBaseView;
@@ -46,13 +46,14 @@ public abstract class RootActivity<T extends RxBasePresenter> extends BaseActivi
         View.inflate(this,R.layout.view_loading,mBaseView);
         View.inflate(this,R.layout.view_error,mBaseView);
         loadingView = mBaseView.findViewById(R.id.loading_view_container);
+        mLoadingView = loadingView.findViewById(R.id.view_loading);
         errorView = mBaseView.findViewById(R.id.view_error);
         tvReload = errorView.findViewById(R.id.tv_reload);
         tvReload.setOnClickListener(this);
         loadingView.setVisibility(View.GONE);
         errorView.setVisibility(View.GONE);
         normalView.setVisibility(View.VISIBLE);
-        mLoadingView = loadingView.findViewById(R.id.view_loading);
+
     }
 
 
@@ -70,7 +71,6 @@ public abstract class RootActivity<T extends RxBasePresenter> extends BaseActivi
         hideCurrentView();
         currentState = STATE_LOADING;
         loadingView.setVisibility(View.VISIBLE);
-        //TODO 开始动画View 还未完成加载
 
     }
 

@@ -11,6 +11,7 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -32,8 +33,7 @@ import mao.com.mao_wanandroid_client.view.main.fragment.KnowledgeHierarchyPageFr
 import mao.com.mao_wanandroid_client.view.main.fragment.NavigationFragment;
 import mao.com.mao_wanandroid_client.view.main.fragment.OfficialAccountsPageFragment;
 import mao.com.mao_wanandroid_client.view.main.fragment.ProjectFragment;
-import me.yokeyword.fragmentation.ISupportFragment;
-import me.yokeyword.fragmentation.SupportFragment;
+
 
 
 public class MainActivity extends BaseActivity<MainPresenter>
@@ -247,6 +247,6 @@ public class MainActivity extends BaseActivity<MainPresenter>
      */
     @Override
     public void onTabChange(NavHelper.Tab<String> newTab, NavHelper.Tab<String> oldTab) {
-
+        Log.e("毛麒添","当前tab  "+newTab.extra + "SimpleName"+newTab.getClass().getSimpleName());
     }
 }

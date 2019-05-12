@@ -18,7 +18,6 @@ public abstract class RootBaseFragment <T extends AbstractBasePresenter>extends 
     //默认为NORMAL状态
     protected int currentState = STATE_NORMAL;
 
-    //TODO 加载中的LoadingView 还未完成
     private LoadingView mLoadingView;
 
     private ViewGroup mBaseView;
@@ -47,14 +46,13 @@ public abstract class RootBaseFragment <T extends AbstractBasePresenter>extends 
         View.inflate(_mActivity,R.layout.view_loading,mBaseView);
         View.inflate(_mActivity,R.layout.view_error,mBaseView);
         loadingView = mBaseView.findViewById(R.id.loading_view_container);
+        mLoadingView = loadingView.findViewById(R.id.view_loading);
         errorView = mBaseView.findViewById(R.id.view_error);
         tvReload = errorView.findViewById(R.id.tv_reload);
         tvReload.setOnClickListener(this);
         loadingView.setVisibility(View.GONE);
         errorView.setVisibility(View.GONE);
         normalView.setVisibility(View.VISIBLE);
-        mLoadingView = loadingView.findViewById(R.id.view_loading);
-
     }
 
 
