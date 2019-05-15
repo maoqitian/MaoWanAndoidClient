@@ -70,7 +70,7 @@ public class DataClient implements IHttpHelper,SharedPreferenceHelper,DbHelper {
 
     @Override
     public Observable<ResponseBody<List<HomePageBannerModel>>> GetHomePageBannerData() {
-        return null;
+        return mIHttpHelper.GetHomePageBannerData();
     }
 
     @Override

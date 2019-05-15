@@ -30,6 +30,17 @@ public class RxSchedulers {
         };
     }
 
+
+    public static <T>ObservableTransformer<T,T> observableIO2Main(){
+        return new ObservableTransformer<T, T>() {
+            @Override
+            public ObservableSource<T> apply(Observable<T> upstream) {
+                return upstream.subscribeOn(Schedulers.io())
+                        .observeOn(AndroidSchedulers.mainThread());
+            }
+        };
+    }
+
     private static <T> ObservableSource<T> composeContext(Context context, Observable<T> observable) {
         if(context instanceof RxActivity) {
             return (ObservableSource<T>) observable.compose(((RxActivity) context).bindUntilEvent(ActivityEvent.DESTROY));

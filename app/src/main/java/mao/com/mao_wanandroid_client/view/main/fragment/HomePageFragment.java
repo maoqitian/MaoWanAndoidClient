@@ -40,6 +40,7 @@ public class HomePageFragment extends RootBaseFragment<HomePagePresenter> implem
 
     @Override
     public void showHomePageBanner(List<HomePageBannerModel> bannerModelList) {
-
+       showNormal();
+       Log.e("毛麒添","首页banner 数据 "+bannerModelList.toString());
     }
 }
