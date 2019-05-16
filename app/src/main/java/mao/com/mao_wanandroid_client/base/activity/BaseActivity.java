@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.View;
 
 import javax.inject.Inject;
@@ -41,7 +42,10 @@ public abstract class  BaseActivity <T extends AbstractBasePresenter> extends Ab
 
     @Override
     protected void onViewCreated() {
-        if (mPresenter != null) mPresenter.attachView(this);
+        if (mPresenter != null) {
+            mPresenter.attachView(this);
+            Log.e("毛麒添","BaseFragment mPresenter 不为空" + mPresenter.getClass());
+        }
     }
 
     @Override

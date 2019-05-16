@@ -12,7 +12,7 @@ import mao.com.mao_wanandroid_client.core.http.DataClient;
  */
 public class RxBasePresenter<T extends BaseView> implements AbstractBasePresenter<T>{
 
-    private T mView;
+    protected T mView;
     /**
      * 一个disposable的容器，可以容纳多个disposable 防止订阅之后没有取消订阅的内存泄漏
      */

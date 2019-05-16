@@ -98,7 +98,7 @@ public class LoadingView extends LinearLayout {
         if (mIsStopAnimator) {
             return;
         }
-        Log.e("TAG", "startUpAnimator" + this);
+        //Log.e("TAG", "startUpAnimator" + this);
         // 动画作用在谁的身上
         // 下落位移动画
         ObjectAnimator translationAnimator = ObjectAnimator.ofFloat(shapeView, "translationY", mTranslationDistance, 0);

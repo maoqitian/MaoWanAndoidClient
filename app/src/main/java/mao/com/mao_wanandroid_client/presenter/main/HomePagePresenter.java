@@ -15,7 +15,7 @@ import mao.com.mao_wanandroid_client.model.banner.HomePageBannerModel;
 
 /**
  * @author maoqitian
- * @Description:
+ * @Description: 首页 Presenter
  * @date 2019/5/7 0007 11:47
  */
 public class HomePagePresenter extends RxBasePresenter<HomePageContract.HomePageView> implements HomePageContract.HomePageFragmentPresenter {
@@ -32,11 +32,11 @@ public class HomePagePresenter extends RxBasePresenter<HomePageContract.HomePage
     public void attachView(HomePageContract.HomePageView view) {
         super.attachView(view);
         Observable<ResponseBody<List<HomePageBannerModel>>> responseBodyObservable = mDataClient.GetHomePageBannerData();
-        responseBodyObservable.compose(RxSchedulers.<ResponseBody<List<HomePageBannerModel>>>observableIO2Main())
+        responseBodyObservable.compose(RxSchedulers.observableIO2Main())
                 .subscribe(new BlockingBaseObserver<ResponseBody<List<HomePageBannerModel>>>() {
                     @Override
                     public void onNext(ResponseBody<List<HomePageBannerModel>> listResponseBody) {
-                        view.showHomePageBanner(listResponseBody.getData());
+                        mView.showHomePageBanner(listResponseBody.getData());
                     }
 
                     @Override

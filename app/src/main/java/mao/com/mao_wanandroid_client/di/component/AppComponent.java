@@ -7,6 +7,7 @@ import dagger.android.AndroidInjector;
 import dagger.android.support.AndroidSupportInjectionModule;
 import mao.com.mao_wanandroid_client.application.MyApplication;
 import mao.com.mao_wanandroid_client.di.module.ActivityBindingModule;
+import mao.com.mao_wanandroid_client.di.module.FragmentBindingModule;
 import mao.com.mao_wanandroid_client.di.module.MyAppModule;
 
 /**
@@ -19,6 +20,7 @@ import mao.com.mao_wanandroid_client.di.module.MyAppModule;
 @Component(modules = {
         MyAppModule.class,
         ActivityBindingModule.class,
+        FragmentBindingModule.class,
         AndroidSupportInjectionModule.class
 })
 public interface AppComponent extends AndroidInjector<MyApplication> {

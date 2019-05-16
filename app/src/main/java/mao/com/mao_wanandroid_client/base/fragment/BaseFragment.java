@@ -4,10 +4,13 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.View;
 
 import javax.inject.Inject;
 
+import dagger.android.AndroidInjection;
+import dagger.android.support.AndroidSupportInjection;
 import mao.com.mao_wanandroid_client.base.BaseView;
 import mao.com.mao_wanandroid_client.base.presenter.AbstractBasePresenter;
 
@@ -19,13 +22,14 @@ import mao.com.mao_wanandroid_client.base.presenter.AbstractBasePresenter;
 public abstract class BaseFragment <T extends AbstractBasePresenter> extends SimpleFragment implements BaseView {
 
     //Presenter 对象注入
-    //@Inject
+    @Inject
     private T mPresenter;
 
     //TODO dagger 对象还未加载注入
 
     @Override
     public void onAttach(Activity activity) {
+        AndroidSupportInjection.inject(this);
         super.onAttach(activity);
 
     }
@@ -34,6 +38,7 @@ public abstract class BaseFragment <T extends AbstractBasePresenter> extends Sim
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         if(mPresenter != null){
+            Log.e("毛麒添","BaseFragment mPresenter 不为空" + mPresenter.getClass());
             mPresenter.attachView(this);
         }
     }
