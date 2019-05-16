@@ -23,9 +23,7 @@ public abstract class BaseFragment <T extends AbstractBasePresenter> extends Sim
 
     //Presenter 对象注入
     @Inject
-    private T mPresenter;
-
-    //TODO dagger 对象还未加载注入
+    protected T mPresenter;
 
     @Override
     public void onAttach(Activity activity) {

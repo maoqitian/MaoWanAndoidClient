@@ -44,7 +44,7 @@ public abstract class  BaseActivity <T extends AbstractBasePresenter> extends Ab
     protected void onViewCreated() {
         if (mPresenter != null) {
             mPresenter.attachView(this);
-            Log.e("毛麒添","BaseFragment mPresenter 不为空" + mPresenter.getClass());
+            Log.e("毛麒添","BaseActivity mPresenter 不为空" + mPresenter.getClass());
         }
     }
 
