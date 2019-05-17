@@ -8,7 +8,7 @@ import mao.com.mao_wanandroid_client.core.http.DataClient;
 
 /**
  * @author maoqitian
- * @Description:
+ * @Description: 知识体系
  * @date 2019/5/7 0007 11:47
  */
 public class KnowledgeHierarchyPresenter extends RxBasePresenter<KnowledgeHierarchyContract.KnowledgeHierarchyView> implements KnowledgeHierarchyContract.KnowledgeHierarchyFragmentPresenter {

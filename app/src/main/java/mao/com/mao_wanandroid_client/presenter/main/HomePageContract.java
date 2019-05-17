@@ -14,6 +14,9 @@ import mao.com.mao_wanandroid_client.model.banner.HomePageBannerModel;
 public interface HomePageContract {
 
     interface HomePageView extends BaseView {
+
+
+
         /**
          * 显示首页banner 数据
          * @param bannerModelList

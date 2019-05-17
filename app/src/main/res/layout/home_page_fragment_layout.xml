@@ -12,6 +12,7 @@
         app:srlAccentColor="@color/colorPrimary"
         >
         <android.support.v7.widget.RecyclerView
+            android:id="@+id/home_page_recyclerview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
         </android.support.v7.widget.RecyclerView>

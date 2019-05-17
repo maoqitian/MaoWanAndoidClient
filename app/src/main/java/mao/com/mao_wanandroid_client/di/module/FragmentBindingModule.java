@@ -4,6 +4,10 @@ import dagger.Module;
 import dagger.android.ContributesAndroidInjector;
 import mao.com.mao_wanandroid_client.di.scope.FragmentScope;
 import mao.com.mao_wanandroid_client.view.main.fragment.HomePageFragment;
+import mao.com.mao_wanandroid_client.view.main.fragment.KnowledgeHierarchyPageFragment;
+import mao.com.mao_wanandroid_client.view.main.fragment.NavigationFragment;
+import mao.com.mao_wanandroid_client.view.main.fragment.OfficialAccountsPageFragment;
+import mao.com.mao_wanandroid_client.view.main.fragment.ProjectFragment;
 
 
 /**
@@ -16,5 +20,21 @@ public abstract class FragmentBindingModule {
     @FragmentScope
     @ContributesAndroidInjector(modules = HomePageFragmentModule.class)
     abstract HomePageFragment contributeHomePageFragment();
+
+    @FragmentScope
+    @ContributesAndroidInjector(modules = KnowledgeHierarchyFragmentModule.class)
+    abstract KnowledgeHierarchyPageFragment contributeKnowledgeHierarchyPageFragment();
+
+    @FragmentScope
+    @ContributesAndroidInjector(modules = OfficialAccountsFragmentModule.class)
+    abstract OfficialAccountsPageFragment contributeOfficialAccountsPageFragment();
+
+    @FragmentScope
+    @ContributesAndroidInjector(modules = NavigationFragmentModule.class)
+    abstract NavigationFragment contributeNavigationFragment();
+
+    @FragmentScope
+    @ContributesAndroidInjector(modules = ProjectFragmentModule.class)
+    abstract ProjectFragment contributeProjectFragment();
 
 }
