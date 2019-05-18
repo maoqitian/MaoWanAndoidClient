@@ -72,6 +72,9 @@ dependencies {
     implementation rootProject.ext.dependencies["javax_annotation"]
     //db
     implementation rootProject.ext.dependencies["greendao"]
+    //glide
+    implementation rootProject.ext.dependencies["glide"]
+    annotationProcessor rootProject.ext.dependencies["glide_compiler"]
 
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'

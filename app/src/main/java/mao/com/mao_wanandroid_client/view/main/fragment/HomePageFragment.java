@@ -1,9 +1,16 @@
 package mao.com.mao_wanandroid_client.view.main.fragment;
 
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.bigkoo.convenientbanner.ConvenientBanner;
+import com.bigkoo.convenientbanner.holder.CBViewHolderCreator;
+import com.bigkoo.convenientbanner.holder.Holder;
 import com.bigkoo.convenientbanner.listener.OnItemClickListener;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 
@@ -15,9 +22,9 @@ import mao.com.mao_wanandroid_client.base.fragment.RootBaseFragment;
 import mao.com.mao_wanandroid_client.model.banner.HomePageBannerModel;
 import mao.com.mao_wanandroid_client.presenter.main.HomePageContract;
 import mao.com.mao_wanandroid_client.presenter.main.HomePagePresenter;
-import mao.com.mao_wanandroid_client.presenter.main.MainContract;
-import mao.com.mao_wanandroid_client.presenter.main.MainPresenter;
-import me.yokeyword.fragmentation.ISupportFragment;
+import mao.com.mao_wanandroid_client.view.main.adapter.HomePageAdapter;
+import mao.com.mao_wanandroid_client.view.main.hloder.BannerHolderView;
+
 
 /**
  * @author maoqitian
@@ -29,11 +36,15 @@ public class HomePageFragment extends RootBaseFragment<HomePagePresenter>
         OnItemClickListener {
 
     @BindView(R.id.view_base_normal)
-    private SmartRefreshLayout mSmartRefreshLayout;
+    SmartRefreshLayout mSmartRefreshLayout;
     @BindView(R.id.home_page_recyclerview)
-    private RecyclerView mRecyclerView;
+    RecyclerView mRecyclerView;
     //轮播图控件
-    private ConvenientBanner<HomePageBannerModel> mConvenientBanner;
+    @BindView(R.id.convenient_banner)
+    ConvenientBanner<HomePageBannerModel> mConvenientBanner;
+
+    private RecyclerView.LayoutManager layoutManager;
+    private HomePageAdapter mAdapter;
 
     public static HomePageFragment newInstance() {
         return new HomePageFragment();
@@ -47,7 +58,19 @@ public class HomePageFragment extends RootBaseFragment<HomePagePresenter>
     @Override
     protected void initView() {
         super.initView();
+        initRecyclerView();
+    }
 
+    private void initRecyclerView() {
+        // use this setting to improve performance if you know that changes
+        // in content do not change the layout size of the RecyclerView
+        mRecyclerView.setHasFixedSize(true);
+        // use a linear layout manager
+        layoutManager = new LinearLayoutManager(_mActivity);
+        mRecyclerView.setLayoutManager(layoutManager);
+        // specify an adapter
+        mAdapter = new HomePageAdapter();
+        mRecyclerView.setAdapter(mAdapter);
     }
 
     @Override
@@ -57,16 +80,41 @@ public class HomePageFragment extends RootBaseFragment<HomePagePresenter>
         showLoading();
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        mConvenientBanner.startTurning();
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        mConvenientBanner.stopTurning();
+    }
 
     @Override
     public void showHomePageBanner(List<HomePageBannerModel> bannerModelList) {
        showNormal();
        Log.e("毛麒添","首页banner 数据 "+bannerModelList.toString());
+       mConvenientBanner.setPages(new CBViewHolderCreator() {
+           @Override
+           public Holder createHolder(View itemView) {
+               return new BannerHolderView(itemView,_mActivity);
+           }
+
+           @Override
+           public int getLayoutId() {
+               return R.layout.item_banner_view;
+           }
+       },bannerModelList)
+               .setPageIndicator(new int[]{R.drawable.ic_circle_normal,R.drawable.ic_circle_press}) //指示器圆点样式
+               .setPageIndicatorAlign(ConvenientBanner.PageIndicatorAlign.ALIGN_PARENT_RIGHT) //设置指示器的方向
+               .setOnItemClickListener(this); // 点击事件
     }
 
     //ConvenientBanner item 点击回调
     @Override
     public void onItemClick(int position) {
-        
+        Toast.makeText(_mActivity,"点击banner ",Toast.LENGTH_SHORT).show();
     }
 }
