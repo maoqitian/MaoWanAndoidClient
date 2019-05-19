@@ -43,6 +43,7 @@ dependencies {
     implementation rootProject.ext.dependencies["SmartRefreshLayout"]
     implementation rootProject.ext.dependencies["SmartRefreshHeader"]
     implementation rootProject.ext.dependencies["convenientbanner"]
+    implementation rootProject.ext.dependencies["BaseRecyclerViewAdapterHelper"]
     //http
     implementation rootProject.ext.dependencies["okhttp"]
     implementation rootProject.ext.dependencies["logging-interceptor"]

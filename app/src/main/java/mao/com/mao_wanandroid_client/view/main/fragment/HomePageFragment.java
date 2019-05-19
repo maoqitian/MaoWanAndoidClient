@@ -40,7 +40,6 @@ public class HomePageFragment extends RootBaseFragment<HomePagePresenter>
     @BindView(R.id.home_page_recyclerview)
     RecyclerView mRecyclerView;
     //轮播图控件
-    @BindView(R.id.convenient_banner)
     ConvenientBanner<HomePageBannerModel> mConvenientBanner;
 
     private RecyclerView.LayoutManager layoutManager;
@@ -69,7 +68,11 @@ public class HomePageFragment extends RootBaseFragment<HomePagePresenter>
         layoutManager = new LinearLayoutManager(_mActivity);
         mRecyclerView.setLayoutManager(layoutManager);
         // specify an adapter
-        mAdapter = new HomePageAdapter();
+        mAdapter = new HomePageAdapter(R.layout.item_cardview_layout);
+        LinearLayout bannerViewLayout = (LinearLayout) LayoutInflater.from(_mActivity).inflate(R.layout.home_banner_view_layout,null);
+        mConvenientBanner = bannerViewLayout.findViewById(R.id.convenient_banner);
+        bannerViewLayout.removeView(mConvenientBanner);
+        mAdapter.addHeaderView(mConvenientBanner);
         mRecyclerView.setAdapter(mAdapter);
     }
 
@@ -83,7 +86,6 @@ public class HomePageFragment extends RootBaseFragment<HomePagePresenter>
     @Override
     public void onResume() {
         super.onResume();
-        mConvenientBanner.startTurning();
     }
 
     @Override
@@ -110,6 +112,7 @@ public class HomePageFragment extends RootBaseFragment<HomePagePresenter>
                .setPageIndicator(new int[]{R.drawable.ic_circle_normal,R.drawable.ic_circle_press}) //指示器圆点样式
                .setPageIndicatorAlign(ConvenientBanner.PageIndicatorAlign.ALIGN_PARENT_RIGHT) //设置指示器的方向
                .setOnItemClickListener(this); // 点击事件
+        mConvenientBanner.startTurning();
     }
 
     //ConvenientBanner item 点击回调

@@ -11,10 +11,10 @@
   - [Dagger2](https://github.com/google/dagger)
   - [Retrofit2](https://github.com/square/retrofit)
   - [OKHttp](https://github.com/square/okhttp)
-  - [SmartRefreshLayout](https://github.com/scwang90/SmartRefreshLayout)（上拉加载，下拉刷新）
+  - [SmartRefreshLayout](https://github.com/scwang90/SmartRefreshLayout)
   - [Glide4](https://github.com/bumptech/glide)
   - [Android-ConvenientBanner](https://github.com/saiwu-bigkoo/Android-ConvenientBanner)
-
+  - [BaseRecyclerViewAdapterHelper](https://github.com/CymChad/BaseRecyclerViewAdapterHelper)
 ### License
 
 Copyright 2018 maoqitian
