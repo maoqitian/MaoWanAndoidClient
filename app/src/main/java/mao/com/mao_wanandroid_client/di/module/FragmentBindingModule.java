@@ -3,7 +3,9 @@ package mao.com.mao_wanandroid_client.di.module;
 import dagger.Module;
 import dagger.android.ContributesAndroidInjector;
 import mao.com.mao_wanandroid_client.di.scope.FragmentScope;
+import mao.com.mao_wanandroid_client.view.main.fragment.HomeFirstTabFragment;
 import mao.com.mao_wanandroid_client.view.main.fragment.HomePageFragment;
+import mao.com.mao_wanandroid_client.view.main.fragment.HomeSecondTabFragment;
 import mao.com.mao_wanandroid_client.view.main.fragment.KnowledgeHierarchyPageFragment;
 import mao.com.mao_wanandroid_client.view.main.fragment.NavigationFragment;
 import mao.com.mao_wanandroid_client.view.main.fragment.OfficialAccountsPageFragment;
@@ -20,6 +22,14 @@ public abstract class FragmentBindingModule {
     @FragmentScope
     @ContributesAndroidInjector(modules = HomePageFragmentModule.class)
     abstract HomePageFragment contributeHomePageFragment();
+
+    @FragmentScope
+    @ContributesAndroidInjector(modules = HomeFirstTabFragmentModule.class)
+    abstract HomeFirstTabFragment contributeHomeFirstTabFragment();
+
+    @FragmentScope
+    @ContributesAndroidInjector(modules = HomeSecondTabFragmentModule.class)
+    abstract HomeSecondTabFragment contributeHomeSecondTabFragment();
 
     @FragmentScope
     @ContributesAndroidInjector(modules = KnowledgeHierarchyFragmentModule.class)

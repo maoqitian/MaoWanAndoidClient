@@ -18,4 +18,5 @@
     <string name="navigation">导航</string>
     <string name="official_accounts">公众号</string>
     <string name="loading_view_text">玩命加载中…</string>
+    <string name="latest_project">最新项目</string>
 </resources>

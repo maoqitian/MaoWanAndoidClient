@@ -1,5 +1,9 @@
 package mao.com.mao_wanandroid_client.view.main.fragment;
 
+import android.support.design.widget.TabLayout;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -14,6 +18,7 @@ import com.bigkoo.convenientbanner.holder.Holder;
 import com.bigkoo.convenientbanner.listener.OnItemClickListener;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -32,10 +37,17 @@ import mao.com.mao_wanandroid_client.view.main.hloder.BannerHolderView;
  * @Time 2019/5/4 0004 16:47
  */
 public class HomePageFragment extends RootBaseFragment<HomePagePresenter>
-        implements HomePageContract.HomePageView,
-        OnItemClickListener {
+        implements HomePageContract.HomePageView{
 
-    @BindView(R.id.view_base_normal)
+    @BindView(R.id.home_tab)
+    TabLayout mHomeTab;
+    @BindView(R.id.view_pager)
+    ViewPager mViewPager;
+
+    List<String> mTitle;
+    List<Fragment> mFragments;
+
+    /*@BindView(R.id.view_base_normal)
     SmartRefreshLayout mSmartRefreshLayout;
     @BindView(R.id.home_page_recyclerview)
     RecyclerView mRecyclerView;
@@ -43,7 +55,7 @@ public class HomePageFragment extends RootBaseFragment<HomePagePresenter>
     ConvenientBanner<HomePageBannerModel> mConvenientBanner;
 
     private RecyclerView.LayoutManager layoutManager;
-    private HomePageAdapter mAdapter;
+    private HomePageAdapter mAdapter;*/
 
     public static HomePageFragment newInstance() {
         return new HomePageFragment();
@@ -57,10 +69,10 @@ public class HomePageFragment extends RootBaseFragment<HomePagePresenter>
     @Override
     protected void initView() {
         super.initView();
-        initRecyclerView();
+        //initRecyclerView();
     }
 
-    private void initRecyclerView() {
+   /* private void initRecyclerView() {
         // use this setting to improve performance if you know that changes
         // in content do not change the layout size of the RecyclerView
         mRecyclerView.setHasFixedSize(true);
@@ -74,13 +86,42 @@ public class HomePageFragment extends RootBaseFragment<HomePagePresenter>
         bannerViewLayout.removeView(mConvenientBanner);
         mAdapter.addHeaderView(mConvenientBanner);
         mRecyclerView.setAdapter(mAdapter);
-    }
+    }*/
 
     @Override
     protected void initEventAndData() {
         super.initEventAndData();
         Log.e("毛麒添","当前页面状态"+currentState);
         showLoading();
+        initPage();
+    }
+
+    private void initPage() {
+        mTitle = new ArrayList<>();
+        mTitle.add(getString(R.string.page_home));
+        mTitle.add(getString(R.string.latest_project));
+
+        mFragments = new ArrayList<>();
+        mFragments.add(new HomeFirstTabFragment());
+        mFragments.add(new HomeSecondTabFragment());
+        mViewPager.setAdapter(new FragmentPagerAdapter(_mActivity.getSupportFragmentManager()) {
+            @Override
+            public Fragment getItem(int position) {
+                return mFragments.get(position);
+            }
+
+            @Override
+            public int getCount() {
+                return mFragments.size();
+            }
+
+            @Override
+            public CharSequence getPageTitle(int position) {
+                return mTitle.get(position);
+            }
+        });
+
+        mHomeTab.setupWithViewPager(mViewPager);
     }
 
     @Override
@@ -91,13 +132,13 @@ public class HomePageFragment extends RootBaseFragment<HomePagePresenter>
     @Override
     public void onPause() {
         super.onPause();
-        mConvenientBanner.stopTurning();
+        //mConvenientBanner.stopTurning();
     }
 
     @Override
     public void showHomePageBanner(List<HomePageBannerModel> bannerModelList) {
        showNormal();
-       Log.e("毛麒添","首页banner 数据 "+bannerModelList.toString());
+      /* Log.e("毛麒添","首页banner 数据 "+bannerModelList.toString());
        mConvenientBanner.setPages(new CBViewHolderCreator() {
            @Override
            public Holder createHolder(View itemView) {
@@ -112,12 +153,12 @@ public class HomePageFragment extends RootBaseFragment<HomePagePresenter>
                .setPageIndicator(new int[]{R.drawable.ic_circle_normal,R.drawable.ic_circle_press}) //指示器圆点样式
                .setPageIndicatorAlign(ConvenientBanner.PageIndicatorAlign.ALIGN_PARENT_RIGHT) //设置指示器的方向
                .setOnItemClickListener(this); // 点击事件
-        mConvenientBanner.startTurning();
+        mConvenientBanner.startTurning();*/
     }
 
-    //ConvenientBanner item 点击回调
+    /*//ConvenientBanner item 点击回调
     @Override
     public void onItemClick(int position) {
         Toast.makeText(_mActivity,"点击banner ",Toast.LENGTH_SHORT).show();
-    }
+    }*/
 }

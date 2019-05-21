@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/view_base_normal"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorBackground"
+    android:orientation="vertical"
     >
-    <com.scwang.smartrefresh.layout.SmartRefreshLayout
+    <!--<com.scwang.smartrefresh.layout.SmartRefreshLayout
         android:id="@+id/view_base_normal"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -16,6 +18,27 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
         </android.support.v7.widget.RecyclerView>
-    </com.scwang.smartrefresh.layout.SmartRefreshLayout>
-</FrameLayout>
+    </com.scwang.smartrefresh.layout.SmartRefreshLayout>-->
+
+    <android.support.design.widget.TabLayout
+        android:id="@+id/home_tab"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:tabTextColor="@color/font_hint"
+        app:tabSelectedTextColor="@color/colorPrimary"
+        app:tabIndicatorColor="@color/colorAccent"
+        app:tabBackground="@color/color_white"
+        app:tabMode="scrollable"
+        >
+    </android.support.design.widget.TabLayout>
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/view_pager"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+       >
+    </android.support.v4.view.ViewPager>
+
+</LinearLayout>
 
