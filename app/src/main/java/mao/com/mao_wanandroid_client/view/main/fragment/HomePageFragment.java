@@ -23,6 +23,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import mao.com.mao_wanandroid_client.R;
+import mao.com.mao_wanandroid_client.base.fragment.BaseFragment;
 import mao.com.mao_wanandroid_client.base.fragment.RootBaseFragment;
 import mao.com.mao_wanandroid_client.model.banner.HomePageBannerModel;
 import mao.com.mao_wanandroid_client.presenter.main.HomePageContract;
@@ -36,7 +37,7 @@ import mao.com.mao_wanandroid_client.view.main.hloder.BannerHolderView;
  * @Description 首页Fragment
  * @Time 2019/5/4 0004 16:47
  */
-public class HomePageFragment extends RootBaseFragment<HomePagePresenter>
+public class HomePageFragment extends BaseFragment<HomePagePresenter>
         implements HomePageContract.HomePageView{
 
     @BindView(R.id.home_tab)
@@ -91,8 +92,8 @@ public class HomePageFragment extends RootBaseFragment<HomePagePresenter>
     @Override
     protected void initEventAndData() {
         super.initEventAndData();
-        Log.e("毛麒添","当前页面状态"+currentState);
-        showLoading();
+        //Log.e("毛麒添","当前页面状态"+currentState);
+        //showLoading();
         initPage();
     }
 
@@ -137,7 +138,7 @@ public class HomePageFragment extends RootBaseFragment<HomePagePresenter>
 
     @Override
     public void showHomePageBanner(List<HomePageBannerModel> bannerModelList) {
-       showNormal();
+       //showNormal();
       /* Log.e("毛麒添","首页banner 数据 "+bannerModelList.toString());
        mConvenientBanner.setPages(new CBViewHolderCreator() {
            @Override

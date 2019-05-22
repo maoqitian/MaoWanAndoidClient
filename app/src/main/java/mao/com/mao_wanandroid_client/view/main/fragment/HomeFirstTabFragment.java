@@ -54,6 +54,7 @@ public class HomeFirstTabFragment extends RootBaseFragment<HomeFirstTabPresenter
     @Override
     protected void initEventAndData() {
         super.initEventAndData();
+        showLoading();
         Log.e("毛麒添","HomeFirstTabFragment 当前页面状态"+currentState);
         initRecyclerView();
     }

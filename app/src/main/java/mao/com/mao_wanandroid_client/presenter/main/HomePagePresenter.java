@@ -31,7 +31,7 @@ public class HomePagePresenter extends RxBasePresenter<HomePageContract.HomePage
     @Override
     public void attachView(HomePageContract.HomePageView view) {
         super.attachView(view);
-        Observable<ResponseBody<List<HomePageBannerModel>>> responseBodyObservable = mDataClient.GetHomePageBannerData();
+       /* Observable<ResponseBody<List<HomePageBannerModel>>> responseBodyObservable = mDataClient.GetHomePageBannerData();
         responseBodyObservable.compose(RxSchedulers.observableIO2Main())
                 .subscribe(new BlockingBaseObserver<ResponseBody<List<HomePageBannerModel>>>() {
                     @Override
@@ -43,6 +43,6 @@ public class HomePagePresenter extends RxBasePresenter<HomePageContract.HomePage
                     public void onError(Throwable e) {
 
                     }
-                });
+                });*/
     }
 }
