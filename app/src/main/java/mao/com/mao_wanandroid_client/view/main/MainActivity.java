@@ -247,6 +247,6 @@ public class MainActivity extends BaseActivity<MainPresenter>
      */
     @Override
     public void onTabChange(NavHelper.Tab<String> newTab, NavHelper.Tab<String> oldTab) {
-        Log.e("毛麒添","当前tab  "+newTab.extra + "SimpleName"+newTab.getClass().getSimpleName());
+        //Log.e("毛麒添","当前tab  "+newTab.extra + "SimpleName"+newTab.getClass().getSimpleName());
     }
 }

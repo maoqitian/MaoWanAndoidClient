@@ -29,6 +29,7 @@ import mao.com.mao_wanandroid_client.model.banner.HomePageBannerModel;
 import mao.com.mao_wanandroid_client.presenter.main.HomePageContract;
 import mao.com.mao_wanandroid_client.presenter.main.HomePagePresenter;
 import mao.com.mao_wanandroid_client.view.main.adapter.HomePageAdapter;
+import mao.com.mao_wanandroid_client.view.main.adapter.HomeTabPageAdapter;
 import mao.com.mao_wanandroid_client.view.main.hloder.BannerHolderView;
 
 
@@ -92,9 +93,9 @@ public class HomePageFragment extends BaseFragment<HomePagePresenter>
     @Override
     protected void initEventAndData() {
         super.initEventAndData();
-        //Log.e("毛麒添","当前页面状态"+currentState);
+        Log.e("毛麒添","HomePageFragment initEventAndData");
         //showLoading();
-        initPage();
+        //initPage();
     }
 
     private void initPage() {
@@ -105,23 +106,9 @@ public class HomePageFragment extends BaseFragment<HomePagePresenter>
         mFragments = new ArrayList<>();
         mFragments.add(new HomeFirstTabFragment());
         mFragments.add(new HomeSecondTabFragment());
-        mViewPager.setAdapter(new FragmentPagerAdapter(_mActivity.getSupportFragmentManager()) {
-            @Override
-            public Fragment getItem(int position) {
-                return mFragments.get(position);
-            }
-
-            @Override
-            public int getCount() {
-                return mFragments.size();
-            }
-
-            @Override
-            public CharSequence getPageTitle(int position) {
-                return mTitle.get(position);
-            }
-        });
-
+        // 在activity中使用时创建对象需传入getSupportFragmentManager()作为参数，
+        // 在fragment中使用时需要传入getChildFragmentManager()作为参数
+        mViewPager.setAdapter(new HomeTabPageAdapter(getChildFragmentManager(),mTitle,mFragments));
         mHomeTab.setupWithViewPager(mViewPager);
     }
 
@@ -137,25 +124,11 @@ public class HomePageFragment extends BaseFragment<HomePagePresenter>
     }
 
     @Override
-    public void showHomePageBanner(List<HomePageBannerModel> bannerModelList) {
-       //showNormal();
-      /* Log.e("毛麒添","首页banner 数据 "+bannerModelList.toString());
-       mConvenientBanner.setPages(new CBViewHolderCreator() {
-           @Override
-           public Holder createHolder(View itemView) {
-               return new BannerHolderView(itemView,_mActivity);
-           }
-
-           @Override
-           public int getLayoutId() {
-               return R.layout.item_banner_view;
-           }
-       },bannerModelList)
-               .setPageIndicator(new int[]{R.drawable.ic_circle_normal,R.drawable.ic_circle_press}) //指示器圆点样式
-               .setPageIndicatorAlign(ConvenientBanner.PageIndicatorAlign.ALIGN_PARENT_RIGHT) //设置指示器的方向
-               .setOnItemClickListener(this); // 点击事件
-        mConvenientBanner.startTurning();*/
+    public void showHomePageView() {
+        initPage();
     }
+
+
 
     /*//ConvenientBanner item 点击回调
     @Override

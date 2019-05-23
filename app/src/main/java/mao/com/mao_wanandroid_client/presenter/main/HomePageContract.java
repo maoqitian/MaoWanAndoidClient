@@ -18,10 +18,10 @@ public interface HomePageContract {
 
 
         /**
-         * 显示首页banner 数据
-         * @param bannerModelList
+         * 显示首页数据
+         * @param
          */
-        void showHomePageBanner(List<HomePageBannerModel> bannerModelList);
+        void showHomePageView();
     }
 
 
