@@ -59,6 +59,15 @@ public class IHttpHelperImpl implements IHttpHelper{
     public Observable<ResponseBody<List<HomePageBannerModel>>> GetHomePageBannerData() {
         return getApiServiceGson().GetHomePageBannerData();
     }
+    /**
+     * 最新项目tab (首页的第二个tab)
+     * @param pageNum 页码，拼接在连接中，从0开始。
+     * @return
+     */
+    @Override
+    public Observable<ResponseBody<HomeArticleListData>> HomeArticleListProjectData(int pageNum) {
+        return getApiServiceGson().HomeArticleListProjectData(pageNum);
+    }
 
     /**
      * 获取常用网站数据

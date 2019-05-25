@@ -20,6 +20,7 @@ import butterknife.BindView;
 import mao.com.mao_wanandroid_client.R;
 import mao.com.mao_wanandroid_client.base.fragment.RootBaseFragment;
 import mao.com.mao_wanandroid_client.model.banner.HomePageBannerModel;
+import mao.com.mao_wanandroid_client.model.home.HomeArticleListData;
 import mao.com.mao_wanandroid_client.presenter.main.HomeFirstTabPresenter;
 import mao.com.mao_wanandroid_client.presenter.main.HomePageContract;
 import mao.com.mao_wanandroid_client.presenter.main.HomePageFirstTabContract;
@@ -52,11 +53,19 @@ public class HomeFirstTabFragment extends RootBaseFragment<HomeFirstTabPresenter
     }
 
     @Override
+    protected void initView() {
+        super.initView();
+        initRecyclerView();
+    }
+
+    @Override
     protected void initEventAndData() {
         super.initEventAndData();
         showLoading();
         Log.e("毛麒添","HomeFirstTabFragment 当前页面状态"+currentState);
-        initRecyclerView();
+        //获取 banner 数据
+        mPresenter.getHomePageBanner();
+        mPresenter.getHomeArticleListData();
     }
 
     private void initRecyclerView() {
@@ -100,5 +109,12 @@ public class HomeFirstTabFragment extends RootBaseFragment<HomeFirstTabPresenter
                 .setPageIndicatorAlign(ConvenientBanner.PageIndicatorAlign.ALIGN_PARENT_RIGHT) //设置指示器的方向
                 .setOnItemClickListener(this); // 点击事件
         mConvenientBanner.startTurning();
+    }
+
+
+    @Override
+    public void showHomeArticleList(HomeArticleListData homeArticleListData) {
+        Log.e("毛麒添","首页ArticleList数据 "+homeArticleListData.toString());
+        showNormal();
     }
 }

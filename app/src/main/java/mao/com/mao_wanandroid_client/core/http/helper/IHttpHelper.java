@@ -41,6 +41,12 @@ public interface IHttpHelper {
      */
     Observable<ResponseBody<List<HomePageBannerModel>>> GetHomePageBannerData();
     /**
+     * 最新项目tab (首页的第二个tab)
+     * @param pageNum 页码，拼接在连接中，从0开始。
+     * @return
+     */
+    Observable<ResponseBody<HomeArticleListData>>HomeArticleListProjectData(int pageNum);
+    /**
      * 获取常用网站数据
      * @return
      */

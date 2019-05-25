@@ -65,12 +65,17 @@ public class DataClient implements IHttpHelper,SharedPreferenceHelper,DbHelper {
 
     @Override
     public Observable<ResponseBody<HomeArticleListData>> HomeArticleListData(int pageNum) {
-        return null;
+        return mIHttpHelper.HomeArticleListData(pageNum);
     }
 
     @Override
     public Observable<ResponseBody<List<HomePageBannerModel>>> GetHomePageBannerData() {
         return mIHttpHelper.GetHomePageBannerData();
+    }
+
+    @Override
+    public Observable<ResponseBody<HomeArticleListData>> HomeArticleListProjectData(int pageNum) {
+        return mIHttpHelper.HomeArticleListProjectData(pageNum);
     }
 
     @Override

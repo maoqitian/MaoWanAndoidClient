@@ -13,6 +13,7 @@ import mao.com.mao_wanandroid_client.core.http.control.BaseObserver;
 import mao.com.mao_wanandroid_client.core.http.control.RxSchedulers;
 import mao.com.mao_wanandroid_client.model.ResponseBody;
 import mao.com.mao_wanandroid_client.model.banner.HomePageBannerModel;
+import mao.com.mao_wanandroid_client.model.home.HomeArticleListData;
 
 /**
  * @author maoqitian
@@ -32,6 +33,10 @@ public class HomeFirstTabPresenter extends RxBasePresenter<HomePageFirstTabContr
     @Override
     public void attachView(HomePageFirstTabContract.HomePageFirstTabView view) {
         super.attachView(view);
+    }
+
+    @Override
+    public void getHomePageBanner() {
         Observable<ResponseBody<List<HomePageBannerModel>>> responseBodyObservable = mDataClient.GetHomePageBannerData();
         //获取 首页Banner 数据
         responseBodyObservable.compose(RxSchedulers.observableIO2Main())
@@ -46,8 +51,22 @@ public class HomeFirstTabPresenter extends RxBasePresenter<HomePageFirstTabContr
                         mView.showError();
                     }
                 });
-
-
     }
 
+    @Override
+    public void getHomeArticleListData() {
+        Observable<ResponseBody<HomeArticleListData>> responseBodyObservable = mDataClient.HomeArticleListData(0);
+        responseBodyObservable.compose(RxSchedulers.observableIO2Main())
+                .subscribe(new BaseObserver<HomeArticleListData>() {
+                    @Override
+                    public void onSuccess(HomeArticleListData result) {
+                        mView.showHomeArticleList(result);
+                    }
+
+                    @Override
+                    public void onFailure(Throwable e, String errorMsg) {
+
+                    }
+                });
+    }
 }
