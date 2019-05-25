@@ -15,13 +15,13 @@ public interface HomePageFirstTabContract {
 
     interface HomePageFirstTabView extends BaseView {
 
-
-
         /**
          * 显示首页banner 数据
          * @param bannerModelList
          */
         void showHomePageBanner(List<HomePageBannerModel> bannerModelList);
+
+
     }
 
 

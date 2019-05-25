@@ -41,8 +41,9 @@ public class HomeTabPageAdapter extends FragmentPagerAdapter {
         return mTitle.get(position);
     }
 
+    //注释父类实现，避免出现fragment 空白
     @Override
     public void destroyItem(@NonNull ViewGroup container, int position, @NonNull Object object) {
-
+        //super.destroyItem(container,position,object);
     }
 }

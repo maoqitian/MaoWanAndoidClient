@@ -28,9 +28,11 @@ import mao.com.mao_wanandroid_client.base.fragment.RootBaseFragment;
 import mao.com.mao_wanandroid_client.model.banner.HomePageBannerModel;
 import mao.com.mao_wanandroid_client.presenter.main.HomePageContract;
 import mao.com.mao_wanandroid_client.presenter.main.HomePagePresenter;
+import mao.com.mao_wanandroid_client.utils.ToolsUtils;
 import mao.com.mao_wanandroid_client.view.main.adapter.HomePageAdapter;
 import mao.com.mao_wanandroid_client.view.main.adapter.HomeTabPageAdapter;
 import mao.com.mao_wanandroid_client.view.main.hloder.BannerHolderView;
+import mao.com.mao_wanandroid_client.widget.EnhanceTabLayout;
 
 
 /**
@@ -43,21 +45,13 @@ public class HomePageFragment extends BaseFragment<HomePagePresenter>
 
     @BindView(R.id.home_tab)
     TabLayout mHomeTab;
+   /* @BindView(R.id.enhance_tabLayout)
+    EnhanceTabLayout mEhomeTab;*/
     @BindView(R.id.view_pager)
     ViewPager mViewPager;
 
     List<String> mTitle;
     List<Fragment> mFragments;
-
-    /*@BindView(R.id.view_base_normal)
-    SmartRefreshLayout mSmartRefreshLayout;
-    @BindView(R.id.home_page_recyclerview)
-    RecyclerView mRecyclerView;
-    //轮播图控件
-    ConvenientBanner<HomePageBannerModel> mConvenientBanner;
-
-    private RecyclerView.LayoutManager layoutManager;
-    private HomePageAdapter mAdapter;*/
 
     public static HomePageFragment newInstance() {
         return new HomePageFragment();
@@ -71,24 +65,8 @@ public class HomePageFragment extends BaseFragment<HomePagePresenter>
     @Override
     protected void initView() {
         super.initView();
-        //initRecyclerView();
     }
 
-   /* private void initRecyclerView() {
-        // use this setting to improve performance if you know that changes
-        // in content do not change the layout size of the RecyclerView
-        mRecyclerView.setHasFixedSize(true);
-        // use a linear layout manager
-        layoutManager = new LinearLayoutManager(_mActivity);
-        mRecyclerView.setLayoutManager(layoutManager);
-        // specify an adapter
-        mAdapter = new HomePageAdapter(R.layout.item_cardview_layout);
-        LinearLayout bannerViewLayout = (LinearLayout) LayoutInflater.from(_mActivity).inflate(R.layout.home_banner_view_layout,null);
-        mConvenientBanner = bannerViewLayout.findViewById(R.id.convenient_banner);
-        bannerViewLayout.removeView(mConvenientBanner);
-        mAdapter.addHeaderView(mConvenientBanner);
-        mRecyclerView.setAdapter(mAdapter);
-    }*/
 
     @Override
     protected void initEventAndData() {
@@ -100,15 +78,36 @@ public class HomePageFragment extends BaseFragment<HomePagePresenter>
 
     private void initPage() {
         mTitle = new ArrayList<>();
-        mTitle.add(getString(R.string.page_home));
+        mTitle.add(getString(R.string.page_home_recommend));
         mTitle.add(getString(R.string.latest_project));
 
         mFragments = new ArrayList<>();
         mFragments.add(new HomeFirstTabFragment());
         mFragments.add(new HomeSecondTabFragment());
+        ToolsUtils.setIndicatorWidth(mHomeTab,160);
+       /* mEhomeTab.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
+        });
+        for(int i=0;i<mTitle.size();i++){
+            mEhomeTab.addTab(mTitle.get(i));
+        }*/
         // 在activity中使用时创建对象需传入getSupportFragmentManager()作为参数，
         // 在fragment中使用时需要传入getChildFragmentManager()作为参数
         mViewPager.setAdapter(new HomeTabPageAdapter(getChildFragmentManager(),mTitle,mFragments));
+        //mViewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(mEhomeTab.getTabLayout()));
         mHomeTab.setupWithViewPager(mViewPager);
     }
 

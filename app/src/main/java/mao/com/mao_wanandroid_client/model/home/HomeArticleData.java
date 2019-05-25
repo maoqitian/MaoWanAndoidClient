@@ -9,26 +9,28 @@ import java.util.List;
  */
 public class HomeArticleData {
 
+
     /**
      * apkLink :
-     * author : 杨哲丶
-     * chapterId : 97
-     * chapterName : 音视频
+     * author : 小编
+     * chapterId : 274
+     * chapterName : 个人博客
      * collect : false
      * courseId : 13
      * desc :
      * envelopePic :
      * fresh : false
-     * id : 3337
-     * link : https://juejin.im/post/5b855bff51882542f0380e4c
-     * niceDate : 2018-08-29
+     * id : 8489
+     * link : https://blog.imallen.wang/
+     * niceDate : 1天前
      * origin :
+     * prefix :
      * projectLink :
-     * publishTime : 1535557254000
-     * superChapterId : 95
-     * superChapterName : 多媒体技术
-     * tags : []
-     * title : 音视频入门系列之绘制图片三种方式
+     * publishTime : 1558686683000
+     * superChapterId : 272
+     * superChapterName : 导航主Tab
+     * tags : [{"name":"导航","url":"/navi#274"}]
+     * title : AllenWang的个人博客
      * type : 0
      * userId : -1
      * visible : 1
@@ -48,6 +50,7 @@ public class HomeArticleData {
     private String link;
     private String niceDate;
     private String origin;
+    private String prefix;
     private String projectLink;
     private long publishTime;
     private int superChapterId;
@@ -57,7 +60,7 @@ public class HomeArticleData {
     private int userId;
     private int visible;
     private int zan;
-    private List<?> tags;
+    private List<TagsBean> tags;
 
     public String getApkLink() {
         return apkLink;
@@ -163,6 +166,14 @@ public class HomeArticleData {
         this.origin = origin;
     }
 
+    public String getPrefix() {
+        return prefix;
+    }
+
+    public void setPrefix(String prefix) {
+        this.prefix = prefix;
+    }
+
     public String getProjectLink() {
         return projectLink;
     }
@@ -235,40 +246,37 @@ public class HomeArticleData {
         this.zan = zan;
     }
 
-    public List<?> getTags() {
+    public List<TagsBean> getTags() {
         return tags;
     }
 
-    public void setTags(List<?> tags) {
+    public void setTags(List<TagsBean> tags) {
         this.tags = tags;
     }
 
-    @Override
-    public String toString() {
-        return "HomeArticleData{" +
-                "apkLink='" + apkLink + '\'' +
-                ", author='" + author + '\'' +
-                ", chapterId=" + chapterId +
-                ", chapterName='" + chapterName + '\'' +
-                ", collect=" + collect +
-                ", courseId=" + courseId +
-                ", desc='" + desc + '\'' +
-                ", envelopePic='" + envelopePic + '\'' +
-                ", fresh=" + fresh +
-                ", id=" + id +
-                ", link='" + link + '\'' +
-                ", niceDate='" + niceDate + '\'' +
-                ", origin='" + origin + '\'' +
-                ", projectLink='" + projectLink + '\'' +
-                ", publishTime=" + publishTime +
-                ", superChapterId=" + superChapterId +
-                ", superChapterName='" + superChapterName + '\'' +
-                ", title='" + title + '\'' +
-                ", type=" + type +
-                ", userId=" + userId +
-                ", visible=" + visible +
-                ", zan=" + zan +
-                ", tags=" + tags +
-                '}';
+    public static class TagsBean {
+        /**
+         * name : 导航
+         * url : /navi#274
+         */
+
+        private String name;
+        private String url;
+
+        public String getName() {
+            return name;
+        }
+
+        public void setName(String name) {
+            this.name = name;
+        }
+
+        public String getUrl() {
+            return url;
+        }
+
+        public void setUrl(String url) {
+            this.url = url;
+        }
     }
 }
