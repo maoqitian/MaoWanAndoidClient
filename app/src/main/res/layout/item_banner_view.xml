@@ -1,13 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
 <android.support.v7.widget.CardView
             xmlns:android="http://schemas.android.com/apk/res/android"
             xmlns:app="http://schemas.android.com/apk/res-auto"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_margin="@dimen/dp_10"
-            app:cardCornerRadius="@dimen/dp_10"
-            android:padding="@dimen/dp_10"
-            app:cardUseCompatPadding="true"
+            app:cardCornerRadius="@dimen/dp_8"
+            app:cardElevation="@dimen/dp_3"
+            android:layout_marginStart="@dimen/dp_12"
+            android:layout_marginEnd="@dimen/dp_12"
+            android:layout_marginTop="@dimen/dp_8"
+            android:layout_marginBottom="@dimen/dp_8"
             >
                 <ImageView
                     android:id="@+id/image_banner"
@@ -18,7 +23,7 @@
                 <TextView
                     android:id="@+id/text_banner"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/dp_30"
+                    android:layout_height="@dimen/dp_35"
                     android:layout_alignParentBottom="true"
                     android:layout_alignParentStart="true"
                     android:layout_gravity="bottom"
@@ -30,6 +35,5 @@
                     android:textColor="#ffffff"
                     android:textSize="14sp" />
 </android.support.v7.widget.CardView>
-
-
+</FrameLayout>
 

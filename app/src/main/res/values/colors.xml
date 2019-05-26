@@ -11,5 +11,5 @@
     <color name="rect" >#FF5722</color>
     <color name="triangle" >#FFC107</color>
     <color name="font_hint" >#9B9999</color>
-
+    <color name="gray" >#dcdcdc</color>
 </resources>

@@ -14,17 +14,17 @@ import com.bigkoo.convenientbanner.holder.Holder;
 import com.bigkoo.convenientbanner.listener.OnItemClickListener;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
 import mao.com.mao_wanandroid_client.R;
 import mao.com.mao_wanandroid_client.base.fragment.RootBaseFragment;
 import mao.com.mao_wanandroid_client.model.banner.HomePageBannerModel;
+import mao.com.mao_wanandroid_client.model.home.HomeArticleData;
 import mao.com.mao_wanandroid_client.model.home.HomeArticleListData;
 import mao.com.mao_wanandroid_client.presenter.main.HomeFirstTabPresenter;
-import mao.com.mao_wanandroid_client.presenter.main.HomePageContract;
 import mao.com.mao_wanandroid_client.presenter.main.HomePageFirstTabContract;
-import mao.com.mao_wanandroid_client.presenter.main.HomePagePresenter;
 import mao.com.mao_wanandroid_client.view.main.adapter.HomePageAdapter;
 import mao.com.mao_wanandroid_client.view.main.hloder.BannerHolderView;
 
@@ -46,6 +46,8 @@ public class HomeFirstTabFragment extends RootBaseFragment<HomeFirstTabPresenter
 
     private RecyclerView.LayoutManager layoutManager;
     private HomePageAdapter mAdapter;
+
+    private List<HomeArticleData> homeArticleDataList;
 
     @Override
     protected int getLayoutId() {
@@ -76,7 +78,8 @@ public class HomeFirstTabFragment extends RootBaseFragment<HomeFirstTabPresenter
         layoutManager = new LinearLayoutManager(_mActivity);
         mRecyclerView.setLayoutManager(layoutManager);
         // specify an adapter
-        mAdapter = new HomePageAdapter(R.layout.item_cardview_layout);
+        homeArticleDataList = new ArrayList<>();
+        mAdapter = new HomePageAdapter(R.layout.artical_item_cardview_layout,homeArticleDataList);
         LinearLayout bannerViewLayout = (LinearLayout) LayoutInflater.from(_mActivity).inflate(R.layout.home_banner_view_layout,null);
         mConvenientBanner = bannerViewLayout.findViewById(R.id.convenient_banner);
         bannerViewLayout.removeView(mConvenientBanner);
@@ -87,6 +90,7 @@ public class HomeFirstTabFragment extends RootBaseFragment<HomeFirstTabPresenter
     //ConvenientBanner item 点击回调
     @Override
     public void onItemClick(int position) {
+
         Toast.makeText(_mActivity,"点击banner ",Toast.LENGTH_SHORT).show();
     }
 
@@ -106,7 +110,7 @@ public class HomeFirstTabFragment extends RootBaseFragment<HomeFirstTabPresenter
             }
         },bannerModelList)
                 .setPageIndicator(new int[]{R.drawable.ic_circle_normal,R.drawable.ic_circle_press}) //指示器圆点样式
-                .setPageIndicatorAlign(ConvenientBanner.PageIndicatorAlign.ALIGN_PARENT_RIGHT) //设置指示器的方向
+                .setPageIndicatorAlign(ConvenientBanner.PageIndicatorAlign.CENTER_HORIZONTAL) //设置指示器的方向
                 .setOnItemClickListener(this); // 点击事件
         mConvenientBanner.startTurning();
     }
@@ -115,6 +119,8 @@ public class HomeFirstTabFragment extends RootBaseFragment<HomeFirstTabPresenter
     @Override
     public void showHomeArticleList(HomeArticleListData homeArticleListData) {
         Log.e("毛麒添","首页ArticleList数据 "+homeArticleListData.toString());
+        homeArticleDataList = homeArticleListData.getDatas();
+        mAdapter.addData(homeArticleDataList);
         showNormal();
     }
 }
