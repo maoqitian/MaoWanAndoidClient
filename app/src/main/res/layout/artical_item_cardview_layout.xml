@@ -1,18 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.CardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="@dimen/dp_120"
     android:layout_marginStart="@dimen/dp_12"
-    android:layout_marginEnd="@dimen/dp_12"
     android:layout_marginTop="@dimen/dp_4"
+    android:layout_marginEnd="@dimen/dp_12"
     android:layout_marginBottom="@dimen/dp_4"
-    app:cardCornerRadius="@dimen/dp_8"
-    app:cardElevation="@dimen/dp_3"
     app:cardBackgroundColor="@color/color_white"
-    >
+    app:cardCornerRadius="@dimen/dp_8"
+    app:cardElevation="@dimen/dp_3">
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
@@ -20,12 +18,16 @@
 
         <ImageView
             android:id="@+id/image_author_icon"
-            android:layout_width="@dimen/dp_35"
-            android:layout_height="@dimen/dp_35"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="269dp"
             android:src="@drawable/ic_user_circle_solid"
-            tools:ignore="MissingConstraints"
-            tools:layout_editor_absoluteX="16dp"
-            tools:layout_editor_absoluteY="0dp" />
+            app:layout_constraintBottom_toTopOf="@+id/tv_artical_title"
+            app:layout_constraintEnd_toStartOf="@+id/tv_artical_tag"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="MissingConstraints" />
 
         <TextView
             android:id="@+id/tv_author_name"
@@ -45,68 +47,88 @@
             android:id="@+id/image_collect"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="16dp"
             android:src="@drawable/ic_favorite_gray_24dp"
-            tools:ignore="MissingConstraints"
-            tools:layout_editor_absoluteX="347dp"
-            tools:layout_editor_absoluteY="5dp" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/tv_artical_tag"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="MissingConstraints" />
 
         <TextView
             android:id="@+id/tv_artical_title"
-            android:layout_width="353dp"
+            android:layout_width="0dp"
             android:layout_height="45dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="30dp"
             android:ellipsize="end"
             android:lines="2"
             android:padding="@dimen/dp_4"
             android:text="物品(尤指整套中的一件)，每日一问 View的onAttachedToWindow ,onDetachedFromWindow 调用时机，使用场景是什么？"
             android:textSize="@dimen/sp_16"
             android:textStyle="bold"
-            tools:ignore="MissingConstraints"
-            tools:layout_editor_absoluteX="16dp"
-            tools:layout_editor_absoluteY="35dp" />
+            app:layout_constraintBottom_toBottomOf="@+id/tv_artical_date"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/image_collect"
+            tools:ignore="MissingConstraints" />
 
         <TextView
             android:id="@+id/tv_super_chapterName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginBottom="5dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             tools:ignore="MissingConstraints"
-            tools:layout_editor_absoluteX="16dp"
-            tools:layout_editor_absoluteY="96dp"
             tools:text="网络访问" />
 
         <TextView
             android:id="@+id/tv_artical_tag"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="13dp"
+            app:layout_constraintEnd_toStartOf="@+id/image_collect"
+            app:layout_constraintStart_toEndOf="@+id/image_author_icon"
+            app:layout_constraintTop_toTopOf="parent"
             tools:ignore="MissingConstraints"
-            tools:layout_editor_absoluteX="320dp"
-            tools:layout_editor_absoluteY="8dp"
             tools:text="新" />
 
         <TextView
             android:id="@+id/tv_chapterName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginBottom="5dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/tv_super_chapterName"
             tools:ignore="MissingConstraints"
-            tools:layout_editor_absoluteX="82dp"
-            tools:layout_editor_absoluteY="96dp"
             tools:text="okhttp" />
 
         <ImageView
             android:id="@+id/image_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginEnd="9dp"
+            android:layout_marginBottom="5dp"
             android:src="@drawable/ic_clock_date"
-            tools:ignore="MissingConstraints"
-            tools:layout_editor_absoluteX="266dp"
-            tools:layout_editor_absoluteY="91dp" />
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/tv_artical_date"
+            tools:ignore="MissingConstraints" />
 
         <TextView
             android:id="@+id/tv_artical_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="10dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             tools:ignore="MissingConstraints"
-            tools:layout_editor_absoluteX="299dp"
-            tools:layout_editor_absoluteY="91dp"
             tools:text="2019-05-22" />
     </android.support.constraint.ConstraintLayout>
 
