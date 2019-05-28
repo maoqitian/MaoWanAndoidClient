@@ -78,12 +78,13 @@ public class HomePageFragment extends BaseFragment<HomePagePresenter>
 
     private void initPage() {
         mTitle = new ArrayList<>();
+        mFragments = new ArrayList<>();
         mTitle.add(getString(R.string.page_home_recommend));
         mTitle.add(getString(R.string.latest_project));
 
-        mFragments = new ArrayList<>();
-        mFragments.add(new HomeFirstTabFragment());
-        mFragments.add(new HomeSecondTabFragment());
+        for (String title:mTitle) {
+            mFragments.add(HomeFirstTabFragment.newInstance(title));
+        }
         ToolsUtils.setIndicatorWidth(mHomeTab,160);
        /* mEhomeTab.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override

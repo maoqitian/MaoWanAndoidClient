@@ -1,10 +1,14 @@
 package mao.com.mao_wanandroid_client.view.main.fragment;
 
+import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
@@ -49,6 +53,7 @@ public class HomeFirstTabFragment extends RootBaseFragment<HomeFirstTabPresenter
 
     private List<HomeArticleData> homeArticleDataList;
 
+    private String mTabTitle;
     @Override
     protected int getLayoutId() {
         return R.layout.home_first_tab_fragment_layout;
@@ -57,20 +62,36 @@ public class HomeFirstTabFragment extends RootBaseFragment<HomeFirstTabPresenter
     @Override
     protected void initView() {
         super.initView();
-        initRecyclerView();
+        initFirstTabRecyclerView();
+    }
+
+    public static HomeFirstTabFragment newInstance(String tabName) {
+        Bundle args = new Bundle();
+        args.putString("tabName",tabName);
+        HomeFirstTabFragment fragment = new HomeFirstTabFragment();
+        fragment.setArguments(args);
+        return fragment;
     }
 
     @Override
     protected void initEventAndData() {
         super.initEventAndData();
-        showLoading();
-        Log.e("毛麒添","HomeFirstTabFragment 当前页面状态"+currentState);
-        //获取 banner 数据
-        mPresenter.getHomePageBanner();
-        mPresenter.getHomeArticleListData();
+        if (getArguments() != null) {
+            mTabTitle = getArguments().getString("tabName");
+            Log.e("毛麒添","首页mTabTitle "+mTabTitle);
+        }
+        if(getString(R.string.page_home_recommend).equals(mTabTitle)){
+            showLoading();
+            //获取 banner 数据
+            mPresenter.getHomePageBanner();
+            mPresenter.getHomeArticleListData();
+        }else {
+            Log.e("毛麒添","HomeSecondTabFragment 当前页面状态"+currentState);
+        }
+
     }
 
-    private void initRecyclerView() {
+    private void initFirstTabRecyclerView() {
         // use this setting to improve performance if you know that changes
         // in content do not change the layout size of the RecyclerView
         mRecyclerView.setHasFixedSize(true);

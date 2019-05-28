@@ -1,9 +1,12 @@
 package mao.com.mao_wanandroid_client.view.main.fragment;
 
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 
 import com.bigkoo.convenientbanner.listener.OnItemClickListener;
+import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 
+import butterknife.BindView;
 import mao.com.mao_wanandroid_client.R;
 import mao.com.mao_wanandroid_client.base.fragment.RootBaseFragment;
 import mao.com.mao_wanandroid_client.presenter.main.HomeFirstTabPresenter;
@@ -18,6 +21,11 @@ import mao.com.mao_wanandroid_client.presenter.main.HomeSecondTabPresenter;
  */
 public class HomeSecondTabFragment extends RootBaseFragment<HomeSecondTabPresenter>
         implements HomePageSecondTabContract.HomePageSecondTabView{
+
+    @BindView(R.id.view_base_normal)
+    SmartRefreshLayout mSmartRefreshLayout;
+    @BindView(R.id.home_page_recyclerview)
+    RecyclerView mRecyclerView;
 
     @Override
     protected int getLayoutId() {

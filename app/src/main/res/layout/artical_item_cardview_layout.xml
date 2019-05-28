@@ -79,12 +79,14 @@
             android:id="@+id/tv_super_chapterName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="网络访问"
+            android:textColor="@color/light_blue"
             android:layout_marginStart="16dp"
             android:layout_marginBottom="5dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             tools:ignore="MissingConstraints"
-            tools:text="网络访问" />
+            />
 
         <TextView
             android:id="@+id/tv_artical_tag"
@@ -92,6 +94,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="13dp"
+            android:visibility="gone"
             app:layout_constraintEnd_toStartOf="@+id/image_collect"
             app:layout_constraintStart_toEndOf="@+id/image_author_icon"
             app:layout_constraintTop_toTopOf="parent"
@@ -102,12 +105,14 @@
             android:id="@+id/tv_chapterName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="@color/light_blue"
+            android:text="okhttp"
             android:layout_marginStart="10dp"
             android:layout_marginBottom="5dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/tv_super_chapterName"
             tools:ignore="MissingConstraints"
-            tools:text="okhttp" />
+            />
 
         <ImageView
             android:id="@+id/image_date"
