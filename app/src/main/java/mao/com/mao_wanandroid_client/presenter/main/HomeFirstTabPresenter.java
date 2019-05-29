@@ -69,4 +69,22 @@ public class HomeFirstTabPresenter extends RxBasePresenter<HomePageFirstTabContr
                     }
                 });
     }
+
+    @Override
+
+    public void getHomeLatestProjectListDate() {
+        Observable<ResponseBody<HomeArticleListData>> responseBodyObservable = mDataClient.HomeArticleListProjectData(0);
+        responseBodyObservable.compose(RxSchedulers.observableIO2Main())
+                .subscribe(new BaseObserver<HomeArticleListData>() {
+                    @Override
+                    public void onSuccess(HomeArticleListData result) {
+                        mView.showHomeLatestProjectList(result);
+                    }
+
+                    @Override
+                    public void onFailure(Throwable e, String errorMsg) {
+
+                    }
+                });
+    }
 }

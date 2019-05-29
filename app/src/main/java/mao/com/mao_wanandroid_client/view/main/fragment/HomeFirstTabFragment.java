@@ -1,14 +1,11 @@
 package mao.com.mao_wanandroid_client.view.main.fragment;
 
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
@@ -29,6 +26,7 @@ import mao.com.mao_wanandroid_client.model.home.HomeArticleData;
 import mao.com.mao_wanandroid_client.model.home.HomeArticleListData;
 import mao.com.mao_wanandroid_client.presenter.main.HomeFirstTabPresenter;
 import mao.com.mao_wanandroid_client.presenter.main.HomePageFirstTabContract;
+import mao.com.mao_wanandroid_client.view.main.adapter.HomeLatestProjectAdapter;
 import mao.com.mao_wanandroid_client.view.main.adapter.HomePageAdapter;
 import mao.com.mao_wanandroid_client.view.main.hloder.BannerHolderView;
 
@@ -50,7 +48,7 @@ public class HomeFirstTabFragment extends RootBaseFragment<HomeFirstTabPresenter
 
     private RecyclerView.LayoutManager layoutManager;
     private HomePageAdapter mAdapter;
-
+    private HomeLatestProjectAdapter mLatestProjectAdapter;
     private List<HomeArticleData> homeArticleDataList;
 
     private String mTabTitle;
@@ -81,14 +79,32 @@ public class HomeFirstTabFragment extends RootBaseFragment<HomeFirstTabPresenter
             Log.e("毛麒添","首页mTabTitle "+mTabTitle);
         }
         if(getString(R.string.page_home_recommend).equals(mTabTitle)){
-            showLoading();
             //获取 banner 数据
+            initHomePage();
             mPresenter.getHomePageBanner();
             mPresenter.getHomeArticleListData();
+            showLoading();
+        }else if (getString(R.string.latest_project).equals(mTabTitle)){
+            initLatestProjectPage();
+            mPresenter.getHomeLatestProjectListDate();
+            showLoading();
         }else {
-            Log.e("毛麒添","HomeSecondTabFragment 当前页面状态"+currentState);
+            Log.e("毛麒添","加载错误");
         }
-
+    }
+    //最新项目页面 init
+    private void initLatestProjectPage() {
+        mLatestProjectAdapter = new HomeLatestProjectAdapter(R.layout.artical_project_item_cardview_layout,homeArticleDataList);
+        mRecyclerView.setAdapter(mLatestProjectAdapter);
+    }
+    //首页推荐页面 init
+    private void initHomePage() {
+        mAdapter = new HomePageAdapter(R.layout.artical_item_cardview_layout,homeArticleDataList);
+        LinearLayout bannerViewLayout = (LinearLayout) LayoutInflater.from(_mActivity).inflate(R.layout.home_banner_view_layout,null);
+        mConvenientBanner = bannerViewLayout.findViewById(R.id.convenient_banner);
+        bannerViewLayout.removeView(mConvenientBanner);
+        mAdapter.addHeaderView(mConvenientBanner);
+        mRecyclerView.setAdapter(mAdapter);
     }
 
     private void initFirstTabRecyclerView() {
@@ -100,12 +116,6 @@ public class HomeFirstTabFragment extends RootBaseFragment<HomeFirstTabPresenter
         mRecyclerView.setLayoutManager(layoutManager);
         // specify an adapter
         homeArticleDataList = new ArrayList<>();
-        mAdapter = new HomePageAdapter(R.layout.artical_item_cardview_layout,homeArticleDataList);
-        LinearLayout bannerViewLayout = (LinearLayout) LayoutInflater.from(_mActivity).inflate(R.layout.home_banner_view_layout,null);
-        mConvenientBanner = bannerViewLayout.findViewById(R.id.convenient_banner);
-        bannerViewLayout.removeView(mConvenientBanner);
-        mAdapter.addHeaderView(mConvenientBanner);
-        mRecyclerView.setAdapter(mAdapter);
     }
 
     //ConvenientBanner item 点击回调
@@ -140,8 +150,18 @@ public class HomeFirstTabFragment extends RootBaseFragment<HomeFirstTabPresenter
     @Override
     public void showHomeArticleList(HomeArticleListData homeArticleListData) {
         Log.e("毛麒添","首页ArticleList数据 "+homeArticleListData.toString());
+        homeArticleDataList.clear();
         homeArticleDataList = homeArticleListData.getDatas();
         mAdapter.addData(homeArticleDataList);
+        showNormal();
+    }
+
+    @Override
+    public void showHomeLatestProjectList(HomeArticleListData homeArticleListData) {
+        Log.e("毛麒添","首页 最新项目 数据 "+homeArticleListData.toString());
+        homeArticleDataList.clear();
+        homeArticleDataList = homeArticleListData.getDatas();
+        mLatestProjectAdapter.addData(homeArticleDataList);
         showNormal();
     }
 }

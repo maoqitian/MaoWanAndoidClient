@@ -24,6 +24,7 @@ public interface HomePageFirstTabContract {
 
         void showHomeArticleList(HomeArticleListData homeArticleListData);
 
+        void showHomeLatestProjectList(HomeArticleListData homeArticleListData);
     }
 
 
@@ -32,5 +33,7 @@ public interface HomePageFirstTabContract {
         void getHomePageBanner();
 
         void getHomeArticleListData();
+
+        void getHomeLatestProjectListDate();
     }
 }
