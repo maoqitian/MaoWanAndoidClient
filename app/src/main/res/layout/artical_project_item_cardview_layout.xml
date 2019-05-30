@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="200dp"
+    android:layout_height="220dp"
     android:layout_marginStart="@dimen/dp_12"
     android:layout_marginTop="@dimen/dp_4"
     android:layout_marginEnd="@dimen/dp_12"
@@ -16,11 +16,23 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/tv_project_title"
+        <ImageView
+            android:id="@+id/image_project_author_icon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/dp_4"
+            android:layout_marginStart="@dimen/dp_8"
+            android:layout_marginTop="@dimen/dp_10"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@id/tv_project_title"
+            app:layout_constraintTop_toTopOf="parent"
+            android:src="@drawable/ic_user_circle_solid"
+            />
+
+        <TextView
+            android:id="@+id/tv_project_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/dp_8"
             android:layout_marginStart="4dp"
             android:layout_marginTop="4dp"
             android:ellipsize="end"
@@ -29,21 +41,25 @@
             android:text="物品(尤指整套中的一件)，"
             android:textSize="@dimen/sp_16"
             android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintLeft_toRightOf="@id/image_project_author_icon"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintRight_toLeftOf="@id/iv_project_pic"
+            />
 
         <TextView
             android:id="@+id/tv_project_desc"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/dp_4"
+            android:layout_margin="@dimen/dp_8"
             android:ellipsize="end"
             android:lines="2"
             android:padding="@dimen/dp_4"
             android:text="物品(尤指整套中的一件)，"
             android:textSize="@dimen/sp_14"
             android:textStyle="normal"
+            app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_project_title"
+            app:layout_constraintRight_toLeftOf="@id/iv_project_pic"
             tools:layout_editor_absoluteX="4dp"
             tools:layout_editor_absoluteY="49dp"
             tools:ignore="MissingConstraints" />
@@ -56,6 +72,7 @@
             android:src="@drawable/aaa"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
             tools:layout_editor_absoluteX="283dp"
             tools:ignore="MissingConstraints" />
 
@@ -63,11 +80,11 @@
             android:id="@+id/image_project_collect"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="4dp"
-            android:layout_marginEnd="8dp"
+            android:layout_margin="@dimen/dp_8"
             android:src="@drawable/ic_favorite_gray_24dp"
             app:layout_constraintEnd_toStartOf="@+id/tv_project_tag"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
             tools:layout_editor_absoluteY="169dp"
             tools:ignore="MissingConstraints" />
 
@@ -75,8 +92,9 @@
             android:id="@+id/tv_project_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            app:layout_constraintEnd_toStartOf="@+id/iv_project_pic"
+            android:layout_margin="@dimen/dp_8"
+            app:layout_constraintRight_toLeftOf="@id/iv_project_pic"
+            app:layout_constraintBottom_toBottomOf="parent"
             tools:layout_editor_absoluteY="174dp"
             tools:text="2019-05-22"
             tools:ignore="MissingConstraints" />
@@ -86,9 +104,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="okhttp"
-            android:layout_marginStart="@dimen/dp_8"
+            android:layout_margin="@dimen/dp_8"
             android:textColor="@color/light_blue"
             app:layout_constraintLeft_toRightOf="@id/image_project_collect"
+            app:layout_constraintBottom_toBottomOf="parent"
             tools:layout_editor_absoluteX="36dp"
             tools:layout_editor_absoluteY="174dp"
             tools:ignore="MissingConstraints" />
@@ -97,9 +116,11 @@
             android:id="@+id/tv_project_author_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="@dimen/dp_8"
+            android:layout_marginRight="@dimen/dp_4"
             android:text="author"
-            app:layout_constraintEnd_toStartOf="@+id/tv_project_date"
+            app:layout_constraintRight_toLeftOf="@id/tv_project_date"
+            app:layout_constraintBottom_toBottomOf="parent"
             tools:layout_editor_absoluteY="174dp"
             tools:ignore="MissingConstraints" />
     </android.support.constraint.ConstraintLayout>
