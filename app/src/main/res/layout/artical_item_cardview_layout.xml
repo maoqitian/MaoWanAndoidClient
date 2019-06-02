@@ -18,15 +18,15 @@
 
         <ImageView
             android:id="@+id/image_author_icon"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/dp_4"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="269dp"
             android:src="@drawable/ic_user_circle_solid"
             app:layout_constraintBottom_toTopOf="@+id/tv_artical_title"
-            app:layout_constraintEnd_toStartOf="@+id/tv_artical_tag"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintRight_toLeftOf="@id/tv_author_name"
+            app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:ignore="MissingConstraints" />
 
@@ -52,7 +52,6 @@
             android:layout_marginEnd="16dp"
             android:src="@drawable/ic_favorite_gray_24dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/tv_artical_tag"
             app:layout_constraintTop_toTopOf="parent"
             tools:ignore="MissingConstraints" />
 
@@ -66,7 +65,6 @@
             android:layout_marginBottom="30dp"
             android:ellipsize="end"
             android:lines="2"
-            android:padding="@dimen/dp_4"
             android:text="物品(尤指整套中的一件)，每日一问 View的onAttachedToWindow ,onDetachedFromWindow 调用时机，使用场景是什么？"
             android:textSize="@dimen/sp_16"
             android:textStyle="bold"
@@ -95,9 +93,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="13dp"
-            android:visibility="gone"
-            app:layout_constraintEnd_toStartOf="@+id/image_collect"
-            app:layout_constraintStart_toEndOf="@+id/image_author_icon"
+            android:visibility="visible"
+            app:layout_constraintRight_toLeftOf="@id/image_collect"
             app:layout_constraintTop_toTopOf="parent"
             tools:ignore="MissingConstraints"
             tools:text="新" />

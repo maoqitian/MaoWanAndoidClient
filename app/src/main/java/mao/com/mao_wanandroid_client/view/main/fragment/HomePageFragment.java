@@ -128,11 +128,4 @@ public class HomePageFragment extends BaseFragment<HomePagePresenter>
         initPage();
     }
 
-
-
-    /*//ConvenientBanner item 点击回调
-    @Override
-    public void onItemClick(int position) {
-        Toast.makeText(_mActivity,"点击banner ",Toast.LENGTH_SHORT).show();
-    }*/
 }

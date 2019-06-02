@@ -101,24 +101,29 @@
 
         <TextView
             android:id="@+id/tv_project_tag"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="okhttp"
             android:layout_margin="@dimen/dp_8"
             android:textColor="@color/light_blue"
             app:layout_constraintLeft_toRightOf="@id/image_project_collect"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toLeftOf="@id/tv_project_author_name"
+            android:ellipsize="end"
+            android:lines="1"
             tools:layout_editor_absoluteX="36dp"
             tools:layout_editor_absoluteY="174dp"
             tools:ignore="MissingConstraints" />
 
         <TextView
             android:id="@+id/tv_project_author_name"
-            android:layout_width="wrap_content"
+            android:layout_width="@dimen/dp_50"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/dp_8"
             android:layout_marginRight="@dimen/dp_4"
             android:text="author"
+            android:ellipsize="end"
+            android:lines="1"
             app:layout_constraintRight_toLeftOf="@id/tv_project_date"
             app:layout_constraintBottom_toBottomOf="parent"
             tools:layout_editor_absoluteY="174dp"

@@ -21,12 +21,14 @@ import java.util.List;
 
 import butterknife.BindView;
 import mao.com.mao_wanandroid_client.R;
+import mao.com.mao_wanandroid_client.application.Constants;
 import mao.com.mao_wanandroid_client.base.fragment.RootBaseFragment;
 import mao.com.mao_wanandroid_client.model.banner.HomePageBannerModel;
 import mao.com.mao_wanandroid_client.model.home.HomeArticleData;
 import mao.com.mao_wanandroid_client.model.home.HomeArticleListData;
 import mao.com.mao_wanandroid_client.presenter.main.HomeFirstTabPresenter;
 import mao.com.mao_wanandroid_client.presenter.main.HomePageFirstTabContract;
+import mao.com.mao_wanandroid_client.utils.StartDetailPage;
 import mao.com.mao_wanandroid_client.view.main.adapter.HomeLatestProjectAdapter;
 import mao.com.mao_wanandroid_client.view.main.adapter.HomePageAdapter;
 import mao.com.mao_wanandroid_client.view.main.hloder.BannerHolderView;
@@ -51,6 +53,8 @@ public class HomeFirstTabFragment extends RootBaseFragment<HomeFirstTabPresenter
     private HomePageAdapter mAdapter;
     private HomeLatestProjectAdapter mLatestProjectAdapter;
     private List<HomeArticleData> homeArticleDataList;
+
+    List<HomePageBannerModel> mBannerModelList;
 
     private String mTabTitle;
     @Override
@@ -119,18 +123,24 @@ public class HomeFirstTabFragment extends RootBaseFragment<HomeFirstTabPresenter
         mRecyclerView.setLayoutManager(layoutManager);
         // specify an adapter
         homeArticleDataList = new ArrayList<>();
+        mBannerModelList = new ArrayList<>();
     }
 
     //ConvenientBanner item 点击回调
     @Override
     public void onItemClick(int position) {
         Toast.makeText(_mActivity,"点击banner ",Toast.LENGTH_SHORT).show();
+        HomePageBannerModel homePageBannerModel = mBannerModelList.get(position);
+        HomeArticleData homeArticleData = new HomeArticleData();
+        homeArticleData.setTitle(homePageBannerModel.getTitle());
+        homeArticleData.setLink(homePageBannerModel.getUrl());
+        StartDetailPage.start(_mActivity,homeArticleData, Constants.PAGE_WEB_NOT_COLLECT);
     }
 
     @Override
     public void showHomePageBanner(List<HomePageBannerModel> bannerModelList) {
-        showNormal();
         Log.e("毛麒添","首页banner 数据 "+bannerModelList.toString());
+        mBannerModelList = bannerModelList;
         mConvenientBanner.setPages(new CBViewHolderCreator() {
             @Override
             public Holder createHolder(View itemView) {
@@ -171,5 +181,7 @@ public class HomeFirstTabFragment extends RootBaseFragment<HomeFirstTabPresenter
     @Override
     public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
         Toast.makeText(_mActivity,"首页数据 被点击 BaseQuickAdapter :"+adapter.getItem(position).toString(),Toast.LENGTH_SHORT).show();
+        HomeArticleData homeArticleData = (HomeArticleData) adapter.getItem(position);
+        StartDetailPage.start(_mActivity,homeArticleData, Constants.PAGE_WEB_COLLECT);
     }
 }

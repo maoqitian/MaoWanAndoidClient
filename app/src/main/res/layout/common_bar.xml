@@ -17,7 +17,6 @@
         android:layout_gravity="center"
         android:textColor="@color/color_white"
         android:textSize="@dimen/sp_16"
-        android:text="@string/page_home"
         />
 
 </android.support.v7.widget.Toolbar>

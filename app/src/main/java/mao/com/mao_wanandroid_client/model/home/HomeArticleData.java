@@ -1,5 +1,6 @@
 package mao.com.mao_wanandroid_client.model.home;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -7,7 +8,7 @@ import java.util.List;
  * @Description 首页每一篇文章数据
  * @Time 2018/9/5 0005 20:35
  */
-public class HomeArticleData {
+public class HomeArticleData implements Serializable {
 
 
     /**
@@ -254,7 +255,7 @@ public class HomeArticleData {
         this.tags = tags;
     }
 
-    public static class TagsBean {
+    public static class TagsBean implements Serializable{
         /**
          * name : 导航
          * url : /navi#274

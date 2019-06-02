@@ -5,6 +5,7 @@ import android.graphics.Color;
 import java.io.File;
 
 import mao.com.mao_wanandroid_client.R;
+import mao.com.mao_wanandroid_client.model.home.HomeArticleData;
 
 /**
  * @author maoqitian
@@ -101,26 +102,10 @@ public class Constants {
     public static final long DOUBLE_INTERVAL_TIME = 2000;
 
 
-    public static final String ARTICLE_LINK = "article_link";
-
-    public static final String ARTICLE_TITLE = "article_title";
-
-    public static final String ARTICLE_ID = "article_id";
-
-    public static final String IS_COLLECT = "is_collect";
-
-    public static final String IS_COMMON_SITE = "is_common_site";
-
-    public static final String IS_COLLECT_PAGE = "is_collect_page";
-
-    public static final String CHAPTER_ID = "chapter_id";
-
-    public static final String IS_SINGLE_CHAPTER = "is_single_chapter";
-
-    public static final String CHAPTER_NAME = "is_chapter_name";
-
-    public static final String SUPER_CHAPTER_NAME = "super_chapter_name";
-
+    //数据标识常量
+    public static final String HOME_ARTICLE_DATA = "homeArticleData";
+    //跳转标识
+    public static final String PAGE_TYPE = "pageType";
     public static final String DB_NAME = "mao_wanandroid.db";
 
 
@@ -147,9 +132,17 @@ public class Constants {
     public static final String SP_PROJECT_CURRENT_PAGE = "project_current_page";
 
 
+
+    //页面跳转类型 能够收藏（是否显示收藏）
+    public static final String PAGE_WEB_COLLECT = "PAGE_TYPE_WEB_COLLECT";
+    //页面跳转类型 不能收藏（是否显示收藏）例如：首页 banner
+    public static final String PAGE_WEB_NOT_COLLECT = "PAGE_TYPE_WEB_NOT_COLLECT";
+
+
     //页面隐式调用
     // 主页面
     public static final String ACTION_MAIN_ACTIVITY="com.mao.mao_wanandroid.action.MAIN_ACTIVITY";
     //详情页
     public static final String ACTION_PAGE_DETAIL_ACTIVITY="com.mao.mao_wanandroid.action.PAGE_DETAIL_ACTIVITY";
+
 }
