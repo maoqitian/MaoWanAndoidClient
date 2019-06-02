@@ -37,6 +37,7 @@ public class HomeLatestProjectAdapter extends BaseQuickAdapter<HomeArticleData, 
          helper.setText(R.id.tv_project_desc,item.getDesc());
          helper.setText(R.id.tv_project_tag,item.getChapterName());
          helper.setText(R.id.tv_project_date,item.getNiceDate());
-        GlideUtils.showBannerImage(mContext,helper.getView(R.id.iv_project_pic),item.getEnvelopePic());
+         helper.setText(R.id.tv_project_author_name,item.getAuthor());
+         GlideUtils.showBannerImage(mContext,helper.getView(R.id.iv_project_pic),item.getEnvelopePic());
     }
 }

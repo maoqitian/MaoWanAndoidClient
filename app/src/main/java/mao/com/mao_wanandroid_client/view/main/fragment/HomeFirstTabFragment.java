@@ -13,6 +13,7 @@ import com.bigkoo.convenientbanner.ConvenientBanner;
 import com.bigkoo.convenientbanner.holder.CBViewHolderCreator;
 import com.bigkoo.convenientbanner.holder.Holder;
 import com.bigkoo.convenientbanner.listener.OnItemClickListener;
+import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 
 import java.util.ArrayList;
@@ -37,7 +38,7 @@ import mao.com.mao_wanandroid_client.view.main.hloder.BannerHolderView;
  */
 public class HomeFirstTabFragment extends RootBaseFragment<HomeFirstTabPresenter>
         implements HomePageFirstTabContract.HomePageFirstTabView,
-        OnItemClickListener {
+        OnItemClickListener, BaseQuickAdapter.OnItemClickListener {
 
     @BindView(R.id.view_base_normal)
     SmartRefreshLayout mSmartRefreshLayout;
@@ -95,11 +96,13 @@ public class HomeFirstTabFragment extends RootBaseFragment<HomeFirstTabPresenter
     //最新项目页面 init
     private void initLatestProjectPage() {
         mLatestProjectAdapter = new HomeLatestProjectAdapter(R.layout.artical_project_item_cardview_layout,homeArticleDataList);
+        mLatestProjectAdapter.setOnItemClickListener(this);
         mRecyclerView.setAdapter(mLatestProjectAdapter);
     }
     //首页推荐页面 init
     private void initHomePage() {
         mAdapter = new HomePageAdapter(R.layout.artical_item_cardview_layout,homeArticleDataList);
+        mAdapter.setOnItemClickListener(this);
         LinearLayout bannerViewLayout = (LinearLayout) LayoutInflater.from(_mActivity).inflate(R.layout.home_banner_view_layout,null);
         mConvenientBanner = bannerViewLayout.findViewById(R.id.convenient_banner);
         bannerViewLayout.removeView(mConvenientBanner);
@@ -121,7 +124,6 @@ public class HomeFirstTabFragment extends RootBaseFragment<HomeFirstTabPresenter
     //ConvenientBanner item 点击回调
     @Override
     public void onItemClick(int position) {
-
         Toast.makeText(_mActivity,"点击banner ",Toast.LENGTH_SHORT).show();
     }
 
@@ -163,5 +165,11 @@ public class HomeFirstTabFragment extends RootBaseFragment<HomeFirstTabPresenter
         homeArticleDataList = homeArticleListData.getDatas();
         mLatestProjectAdapter.addData(homeArticleDataList);
         showNormal();
+    }
+
+
+    @Override
+    public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+        Toast.makeText(_mActivity,"首页数据 被点击 BaseQuickAdapter :"+adapter.getItem(position).toString(),Toast.LENGTH_SHORT).show();
     }
 }
