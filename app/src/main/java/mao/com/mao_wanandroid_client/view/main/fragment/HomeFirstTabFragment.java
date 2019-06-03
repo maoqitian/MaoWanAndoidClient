@@ -7,7 +7,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.LinearLayout;
-import android.widget.Toast;
+
 
 import com.bigkoo.convenientbanner.ConvenientBanner;
 import com.bigkoo.convenientbanner.holder.CBViewHolderCreator;
@@ -129,7 +129,7 @@ public class HomeFirstTabFragment extends RootBaseFragment<HomeFirstTabPresenter
     //ConvenientBanner item 点击回调
     @Override
     public void onItemClick(int position) {
-        Toast.makeText(_mActivity,"点击banner ",Toast.LENGTH_SHORT).show();
+        //Toast.makeText(_mActivity,"点击banner ",Toast.LENGTH_SHORT).show();
         HomePageBannerModel homePageBannerModel = mBannerModelList.get(position);
         HomeArticleData homeArticleData = new HomeArticleData();
         homeArticleData.setTitle(homePageBannerModel.getTitle());
@@ -180,7 +180,7 @@ public class HomeFirstTabFragment extends RootBaseFragment<HomeFirstTabPresenter
 
     @Override
     public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-        Toast.makeText(_mActivity,"首页数据 被点击 BaseQuickAdapter :"+adapter.getItem(position).toString(),Toast.LENGTH_SHORT).show();
+        //Toast.makeText(_mActivity,"首页数据 被点击 BaseQuickAdapter :"+adapter.getItem(position).toString(),Toast.LENGTH_SHORT).show();
         HomeArticleData homeArticleData = (HomeArticleData) adapter.getItem(position);
         StartDetailPage.start(_mActivity,homeArticleData, Constants.PAGE_WEB_COLLECT);
     }
