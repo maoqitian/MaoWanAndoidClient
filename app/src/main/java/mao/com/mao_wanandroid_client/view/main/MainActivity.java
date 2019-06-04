@@ -4,7 +4,6 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
-import android.support.design.widget.Snackbar;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
@@ -116,6 +115,7 @@ public class MainActivity extends BaseActivity<MainPresenter>
         drawer.addDrawerListener(toggle);
         toggle.syncState();
         navigationView.setNavigationItemSelectedListener(this);
+        navigationView.setCheckedItem(R.id.nav_home);
         bottomNavigationView.setItemIconSize(70);
         /*bottomNavigationView.setItemTextAppearanceActive(R.style.bottom_selected_text);
         bottomNavigationView.setItemTextAppearanceInactive(R.style.bottom_normal_text);*/
@@ -174,9 +174,10 @@ public class MainActivity extends BaseActivity<MainPresenter>
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
         int id = menuItem.getItemId();
-        /*final ISupportFragment topFragment = getTopFragment();
-        SupportFragment myHome = (SupportFragment) topFragment;*/
         switch (id){
+            case R.id.nav_home:
+                Toast.makeText(this,"点击了主页",Toast.LENGTH_SHORT).show();
+                break;
             case R.id.nav_collect:
                 Toast.makeText(this,"点击了收藏",Toast.LENGTH_SHORT).show();
                 break;
@@ -214,6 +215,7 @@ public class MainActivity extends BaseActivity<MainPresenter>
         }*/
         //DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         //点击之后关闭DrawerLayout
+        navigationView.setCheckedItem(id);
         drawer.closeDrawer(GravityCompat.START);
         return mNavHelper.performClickMenu(id);
     }
