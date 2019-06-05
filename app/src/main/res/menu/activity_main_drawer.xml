@@ -2,8 +2,10 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     tools:showIn="navigation_view">
-
-    <group android:checkableBehavior="single">
+    <!--group 标签加上id 该 组就会出现下划线-->
+    <group android:checkableBehavior="single"
+        android:id="@+id/group_one"
+        >
         <item
             android:id="@+id/nav_home"
             android:icon="@drawable/ic_home_normal_24dp"
@@ -26,15 +28,24 @@
             android:title="Tools" />-->
     </group>
 
+    <item
+        android:id="@+id/nav_share"
+        android:icon="@drawable/ic_clock_date"
+        android:title="Share" />
+    <item
+        android:id="@+id/nav_send"
+        android:icon="@drawable/ic_comments_solid"
+        android:title="Send" />
+
     <!--<item android:title="Communicate">
         <menu>
             <item
                 android:id="@+id/nav_share"
-                android:icon="@drawable/ic_menu_share"
+                android:icon="@drawable/ic_clock_date"
                 android:title="Share" />
             <item
                 android:id="@+id/nav_send"
-                android:icon="@drawable/ic_menu_send"
+                android:icon="@drawable/ic_comments_solid"
                 android:title="Send" />
         </menu>
     </item>-->
