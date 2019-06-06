@@ -28,6 +28,12 @@ public class StartDetailPage{
             context.startActivity(intent);
             return;
         }
+        if(Constants.PAGE_LOGIN.equals(pageType)){
+            Intent intent = new Intent(Constants.ACTION_LOGIN_ACTIVITY);
+            context.startActivity(intent);
+            return;
+        }
         Toast.makeText(context, "该页面暂未实现", Toast.LENGTH_SHORT).show();
     }
+
 }

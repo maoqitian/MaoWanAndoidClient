@@ -138,6 +138,7 @@ public class Constants {
     //页面跳转类型 不能收藏（是否显示收藏）例如：首页 banner
     public static final String PAGE_WEB_NOT_COLLECT = "PAGE_TYPE_WEB_NOT_COLLECT";
 
+    public static final String PAGE_LOGIN = "PAGE_LOGIN";
 
     //页面隐式调用
     // 主页面
@@ -145,4 +146,5 @@ public class Constants {
     //详情页
     public static final String ACTION_PAGE_DETAIL_ACTIVITY="com.mao.mao_wanandroid.action.PAGE_DETAIL_ACTIVITY";
 
+    public static final String ACTION_LOGIN_ACTIVITY="com.mao.mao_wanandroid.action.LOGIN_ACTIVITY";
 }

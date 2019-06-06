@@ -19,4 +19,11 @@
     <string name="official_accounts">OA</string>
     <string name="loading_view_text">loading…</string>
     <string name="latest_project">latest_project</string>
+
+    <string name="signin">sign in</string>
+    <string name="sign_up">sign up</string>
+    <string name="sign_out">sign out</string>
+    <string name="forgot_password">Forgot Password?</string>
+    <string name="username">user name</string>
+    <string name="password">Password</string>
 </resources>

@@ -15,6 +15,7 @@ import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -23,10 +24,12 @@ import java.util.TimerTask;
 
 import butterknife.BindView;
 import mao.com.mao_wanandroid_client.R;
+import mao.com.mao_wanandroid_client.application.Constants;
 import mao.com.mao_wanandroid_client.base.activity.BaseActivity;
 import mao.com.mao_wanandroid_client.presenter.main.MainContract;
 import mao.com.mao_wanandroid_client.presenter.main.MainPresenter;
 import mao.com.mao_wanandroid_client.utils.NavHelper;
+import mao.com.mao_wanandroid_client.utils.StartDetailPage;
 import mao.com.mao_wanandroid_client.view.main.fragment.HomePageFragment;
 import mao.com.mao_wanandroid_client.view.main.fragment.KnowledgeHierarchyPageFragment;
 import mao.com.mao_wanandroid_client.view.main.fragment.NavigationFragment;
@@ -116,6 +119,14 @@ public class MainActivity extends BaseActivity<MainPresenter>
         toggle.syncState();
         navigationView.setNavigationItemSelectedListener(this);
         navigationView.setCheckedItem(R.id.nav_home);
+        View headerView = navigationView.getHeaderView(0);
+        ImageView imageView = headerView.findViewById(R.id.imageView_user_icon);
+        imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                StartDetailPage.start(MainActivity.this,null, Constants.PAGE_LOGIN);
+            }
+        });
         bottomNavigationView.setItemIconSize(70);
         /*bottomNavigationView.setItemTextAppearanceActive(R.style.bottom_selected_text);
         bottomNavigationView.setItemTextAppearanceInactive(R.style.bottom_normal_text);*/
