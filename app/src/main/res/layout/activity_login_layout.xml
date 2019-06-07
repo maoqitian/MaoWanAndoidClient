@@ -7,7 +7,6 @@
 
 
     <include
-        android:id="@+id/toolbar_layout"
         layout="@layout/common_bar"
         app:layout_constraintTop_toTopOf="parent"
         tools:layout_editor_absoluteX="16dp" />
@@ -18,12 +17,11 @@
         android:layout_height="wrap_content"
         android:paddingLeft="32dp"
         android:paddingRight="32dp"
-        android:textColorHint="#96ffffff"
-        android:layout_marginTop="@dimen/dp_20"
-        android:theme="@style/EditScreenTextInputLayoutStyle"
+        android:textColorHint="@color/font_hint"
+        android:layout_marginTop="@dimen/dp_90"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/toolbar_layout">
+        app:layout_constraintTop_toTopOf="parent">
 
         <EditText
             android:id="@+id/edit_user_name"
@@ -35,7 +33,7 @@
             android:hint="@string/username"
             android:inputType="text"
             android:maxLines="1"
-            android:textColor="@android:color/white"
+            android:textColor="@color/font_hint"
             android:textSize="16sp" />
     </android.support.design.widget.TextInputLayout>
 
@@ -45,8 +43,7 @@
         android:layout_height="wrap_content"
         android:paddingLeft="32dp"
         android:paddingRight="32dp"
-        android:textColorHint="#96ffffff"
-        android:theme="@style/EditScreenTextInputLayoutStyle"
+        android:textColorHint="@color/font_hint"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/textInputLayout_name">
@@ -61,7 +58,7 @@
             android:hint="@string/password"
             android:inputType="textPassword"
             android:maxLines="1"
-            android:textColor="@android:color/white"
+            android:textColor="@color/font_hint"
             android:textSize="16sp" />
     </android.support.design.widget.TextInputLayout>
 
@@ -74,7 +71,7 @@
         android:fontFamily="@font/calibri"
         android:text="@string/sign_up"
         android:textAllCaps="false"
-        android:textColor="#96ffffff"
+        android:textColor="@color/colorAccent"
         android:textSize="@dimen/sp_16"
         android:layout_marginStart="@dimen/dp_32"
         android:textStyle="bold"
@@ -89,12 +86,12 @@
         android:id="@+id/bt_sing_in"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:background="@drawable/button_shape_white_bg"
+        android:background="@drawable/button_shape_normal_bg"
         android:fontFamily="@font/calibri"
         android:text="@string/signin"
         android:textAllCaps="false"
         android:layout_marginEnd="@dimen/dp_32"
-        android:textColor="#96ffffff"
+        android:textColor="@color/white"
         android:textSize="@dimen/sp_16"
         android:textStyle="bold"
         android:layout_marginStart="@dimen/dp_7"

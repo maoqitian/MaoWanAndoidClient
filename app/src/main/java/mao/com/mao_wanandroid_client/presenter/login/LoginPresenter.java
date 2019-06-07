@@ -1,5 +1,7 @@
 package mao.com.mao_wanandroid_client.presenter.login;
 
+import android.content.Context;
+
 import javax.inject.Inject;
 
 import mao.com.mao_wanandroid_client.base.presenter.RxBasePresenter;
@@ -23,5 +25,10 @@ public class LoginPresenter extends RxBasePresenter<LoginContract.LoginView> imp
     @Override
     public void attachView(LoginContract.LoginView view) {
         super.attachView(view);
+    }
+
+    @Override
+    public void getPostLogin(Context context,String username, String password) {
+
     }
 }

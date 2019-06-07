@@ -1,5 +1,7 @@
 package mao.com.mao_wanandroid_client.presenter.login;
 
+import android.content.Context;
+
 import mao.com.mao_wanandroid_client.base.BaseView;
 import mao.com.mao_wanandroid_client.base.presenter.AbstractBasePresenter;
 
@@ -12,11 +14,12 @@ public interface LoginContract {
 
     interface LoginView extends BaseView{
 
+        void showLoginSuccess();
     }
 
 
     interface LoginActivityPresenter extends AbstractBasePresenter<LoginView>{
-
+         void getPostLogin(Context context,String username, String password);
     }
 
 }

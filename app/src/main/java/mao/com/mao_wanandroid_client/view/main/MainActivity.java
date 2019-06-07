@@ -119,7 +119,7 @@ public class MainActivity extends BaseActivity<MainPresenter>
         toggle.syncState();
         navigationView.setNavigationItemSelectedListener(this);
         navigationView.setCheckedItem(R.id.nav_home);
-        View headerView = navigationView.getHeaderView(0);
+        View headerView = navigationView.inflateHeaderView(R.layout.nav_header_main);
         ImageView imageView = headerView.findViewById(R.id.imageView_user_icon);
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override

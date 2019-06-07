@@ -115,17 +115,17 @@ public class DataClient implements IHttpHelper,SharedPreferenceHelper,DbHelper {
 
     @Override
     public Observable<ResponseBody<LoginData>> postLoginData(String username, String password) {
-        return null;
+        return mIHttpHelper.postLoginData(username,password);
     }
 
     @Override
     public Observable<ResponseBody<LoginData>> postRegisterData(String username, String password, String repassword) {
-        return null;
+        return mIHttpHelper.postRegisterData(username,password,repassword);
     }
 
     @Override
     public Observable<ResponseBody<String>> getLoginOut() {
-        return null;
+        return mIHttpHelper.getLoginOut();
     }
 
     @Override
