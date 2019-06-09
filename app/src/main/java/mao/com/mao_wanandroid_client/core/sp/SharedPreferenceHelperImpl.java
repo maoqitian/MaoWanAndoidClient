@@ -21,9 +21,10 @@ public class SharedPreferenceHelperImpl implements SharedPreferenceHelper {
     public SharedPreferenceHelperImpl(){
         mSharedPreferences=MyApplication.getInstance().getSharedPreferences(Constants.SHAREDPREFERENCES_NAME,Context.MODE_PRIVATE);
     }
+
     @Override
-    public void setLoginAccount(String account) {
-        mSharedPreferences.edit().putString(Constants.SP_ACCOUNT,account).apply();
+    public void setLoginUserName(String userName) {
+        mSharedPreferences.edit().putString(Constants.SP_USER_NAME,userName).apply();
     }
 
     @Override
@@ -32,10 +33,9 @@ public class SharedPreferenceHelperImpl implements SharedPreferenceHelper {
     }
 
     @Override
-    public String getLoginAccount() {
-      return mSharedPreferences.getString(Constants.SP_ACCOUNT,"");
+    public String getLoginUserName() {
+        return mSharedPreferences.getString(Constants.SP_USER_NAME,"");
     }
-
     @Override
     public String getLoginPassword() {
         return mSharedPreferences.getString(Constants.SP_PASSWORD,"");

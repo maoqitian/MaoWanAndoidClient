@@ -115,7 +115,7 @@ public class Constants {
      */
     public static final String  SHAREDPREFERENCES_NAME= "sharepreference_name";
 
-    public static final String SP_ACCOUNT = "account";
+    public static final String SP_USER_NAME = "user_name";
 
     public static final String SP_PASSWORD = "password";
 

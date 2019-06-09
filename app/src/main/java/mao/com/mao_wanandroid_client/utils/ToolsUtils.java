@@ -1,10 +1,17 @@
 package mao.com.mao_wanandroid_client.utils;
 
+import android.annotation.TargetApi;
+import android.app.Activity;
 import android.content.Context;
+import android.graphics.Rect;
 import android.net.ConnectivityManager;
+import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.design.widget.TabLayout;
+import android.util.DisplayMetrics;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -71,5 +78,74 @@ public class ToolsUtils {
         });
     }
 
-    
+    /**
+     * 隐藏键盘
+     *
+     * @param etInput
+     */
+    public static void hideSoftInput(EditText etInput,Context context) {
+        InputMethodManager imm = (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
+        assert imm != null;
+        imm.hideSoftInputFromWindow(etInput.getWindowToken(), 0); // 强制隐藏键盘
+    }
+
+    /**
+     * 显示键盘
+     *
+     * @param etInput
+     */
+    public static void showSoftInput(EditText etInput,Context context) {
+        InputMethodManager imm = (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
+        assert imm != null;
+        imm.showSoftInput(etInput, InputMethodManager.RESULT_SHOWN);
+        imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, InputMethodManager.HIDE_IMPLICIT_ONLY);
+    }
+    /**
+     * 隐藏或显示软键盘
+     * 如果现在是显示调用后则隐藏 反之则显示
+     * @param activity
+     */
+    public static void showORhideSoftKeyboard(Activity activity){
+        InputMethodManager imm = (InputMethodManager) activity.getSystemService(Context.INPUT_METHOD_SERVICE);
+        assert imm != null;
+        imm.toggleSoftInput(0, InputMethodManager.HIDE_NOT_ALWAYS);
+    }
+
+    /**
+     * 判断软键盘是否显示方法
+     * @param activity
+     * @return
+     */
+
+    public static boolean isSoftShowing(Activity activity) {
+        //获取当屏幕内容的高度
+        int screenHeight = activity.getWindow().getDecorView().getHeight();
+        //获取View可见区域的bottom
+        Rect rect = new Rect();
+        //DecorView即为activity的顶级view
+        activity.getWindow().getDecorView().getWindowVisibleDisplayFrame(rect);
+        //考虑到虚拟导航栏的情况（虚拟导航栏情况下：screenHeight = rect.bottom + 虚拟导航栏高度）
+        //选取screenHeight*2/3进行判断
+        return screenHeight*2/3 > rect.bottom+getSoftButtonsBarHeight(activity);
+    }
+
+    /**
+     * 底部虚拟按键栏的高度
+     * @return
+     */
+    @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
+    private static int getSoftButtonsBarHeight(Activity activity) {
+        DisplayMetrics metrics = new DisplayMetrics();
+        //这个方法获取可能不是真实屏幕的高度
+        activity.getWindowManager().getDefaultDisplay().getMetrics(metrics);
+        int usableHeight = metrics.heightPixels;
+        //获取当前屏幕的真实高度
+        activity.getWindowManager().getDefaultDisplay().getRealMetrics(metrics);
+        int realHeight = metrics.heightPixels;
+        if (realHeight > usableHeight) {
+            return realHeight - usableHeight;
+        } else {
+            return 0;
+        }
+    }
 }

@@ -27,4 +27,6 @@
     <string name="forgot_password">忘记密码 ?</string>
     <string name="username">用户名</string>
     <string name="password">密码</string>
+    <string name="login_success">登陆成功</string>
+    <string name="login_fail">登陆失败！！！</string>
 </resources>

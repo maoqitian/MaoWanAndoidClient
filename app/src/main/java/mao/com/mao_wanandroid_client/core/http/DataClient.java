@@ -179,33 +179,33 @@ public class DataClient implements IHttpHelper,SharedPreferenceHelper,DbHelper {
     }
 
     @Override
-    public void setLoginAccount(String account) {
-
+    public void setLoginUserName(String userName) {
+        mSharedPreferenceHelper.setLoginUserName(userName);
     }
 
     @Override
     public void setLoginPassword(String password) {
-
+        mSharedPreferenceHelper.setLoginPassword(password);
     }
 
     @Override
-    public String getLoginAccount() {
-        return null;
+    public String getLoginUserName() {
+        return mSharedPreferenceHelper.getLoginUserName();
     }
 
     @Override
     public String getLoginPassword() {
-        return null;
+        return mSharedPreferenceHelper.getLoginPassword();
     }
 
     @Override
     public void setLoginStatus(boolean loginStatus) {
-
+        mSharedPreferenceHelper.setLoginStatus(loginStatus);
     }
 
     @Override
     public boolean getLoginStatus() {
-        return false;
+        return mSharedPreferenceHelper.getLoginStatus();
     }
 
     @Override

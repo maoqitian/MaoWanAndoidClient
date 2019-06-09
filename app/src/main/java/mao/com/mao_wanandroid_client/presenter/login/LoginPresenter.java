@@ -4,8 +4,14 @@ import android.content.Context;
 
 import javax.inject.Inject;
 
+import io.reactivex.Observable;
+import io.reactivex.Observer;
 import mao.com.mao_wanandroid_client.base.presenter.RxBasePresenter;
 import mao.com.mao_wanandroid_client.core.http.DataClient;
+import mao.com.mao_wanandroid_client.core.http.control.ProgressObserver;
+import mao.com.mao_wanandroid_client.core.http.control.RxSchedulers;
+import mao.com.mao_wanandroid_client.model.ResponseBody;
+import mao.com.mao_wanandroid_client.model.login.LoginData;
 
 /**
  * @author maoqitian
@@ -29,6 +35,20 @@ public class LoginPresenter extends RxBasePresenter<LoginContract.LoginView> imp
 
     @Override
     public void getPostLogin(Context context,String username, String password) {
+        Observable<ResponseBody<LoginData>> responseBodyObservable = mDataClient.postLoginData(username, password);
+        responseBodyObservable.compose(RxSchedulers.observableIO2Main(context))
+                .subscribe(new ProgressObserver<LoginData>(context, "正在登陆....") {
+                    @Override
+                    public void onSuccess(LoginData result) {
+                        mDataClient.setLoginUserName(result.getUsername());
+                        mDataClient.setLoginStatus(true);
+                        mView.showLoginSuccess();
+                    }
+                    @Override
+                    public void onFailure(Throwable e, String errorMsg) {
+                       mView.showLoginFail(errorMsg);
+                    }
+                });
 
     }
 }

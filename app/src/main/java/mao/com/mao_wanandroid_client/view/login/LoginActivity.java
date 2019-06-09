@@ -2,23 +2,29 @@ package mao.com.mao_wanandroid_client.view.login;
 
 import android.graphics.Color;
 import android.support.v7.widget.Toolbar;
+import android.text.Editable;
 import android.text.Html;
+import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import butterknife.BindView;
 import mao.com.mao_wanandroid_client.R;
 import mao.com.mao_wanandroid_client.base.activity.BaseActivity;
 import mao.com.mao_wanandroid_client.presenter.login.LoginContract;
 import mao.com.mao_wanandroid_client.presenter.login.LoginPresenter;
+import mao.com.mao_wanandroid_client.utils.EditTextUtils;
+import mao.com.mao_wanandroid_client.utils.ToolsUtils;
 
 /**
  * @author maoqitian
  * @Description: 登录
  * @date 2019/6/6 0006 11:14
  */
-public class LoginActivity extends BaseActivity<LoginPresenter> implements LoginContract.LoginView {
+public class LoginActivity extends BaseActivity<LoginPresenter> implements LoginContract.LoginView, View.OnClickListener {
 
 
     @BindView(R.id.toolbar)
@@ -32,6 +38,9 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
     Button mLogin;
     @BindView(R.id.bt_sing_up)
     Button mRegister;
+
+    private String userName;
+    private String password;
 
     @Override
     protected void initToolbar() {
@@ -54,12 +63,68 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
 
     @Override
     protected void initEventAndData() {
-      mLogin.setBackgroundResource(R.drawable.button_shape_gray_bg);
-      mLogin.setEnabled(false);
+        listenerEditText();
+        //设置 登陆按钮开始不能点击
+        mLogin.setBackgroundResource(R.drawable.button_shape_gray_bg);
+        mLogin.setEnabled(false);
+       //设置焦点并弹出键盘
+        mUserName.setFocusable(true);
+        mUserName.setFocusableInTouchMode(true);
+        mUserName.requestFocus();
+        ToolsUtils.showSoftInput(mUserName,this);
+        //监听事件
+        mLogin.setOnClickListener(this);
+        mRegister.setOnClickListener(this);
+    }
+    //监听 editText 状态
+    private void listenerEditText() {
+        EditTextUtils.textChangeListener textChangeListener = new EditTextUtils.textChangeListener(mLogin);
+        textChangeListener.addAllEditText(mUserName,mPassword);
+        EditTextUtils.setChangeListener(isAllHaveText -> {
+            if(isAllHaveText){ //都已经有内容 登陆按钮可以点击
+                mLogin.setBackgroundResource(R.drawable.button_shape_normal_bg);
+            }else { //有一个editText无内容 登陆按钮不可以点击
+                mLogin.setBackgroundResource(R.drawable.button_shape_gray_bg);
+            }
+        });
     }
 
     @Override
     public void showLoginSuccess() {
+        Toast.makeText(this,getString(R.string.login_success),Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void showLoginFail(String errorMsg) {
+        Toast.makeText(this,errorMsg,Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onClick(View view) {
+       switch (view.getId()){
+           case R.id.bt_sing_in: //登陆
+               userName = mUserName.getText().toString().trim();
+               password = mPassword.getText().toString().trim();
+               mPresenter.getPostLogin(this,userName,password);
+               Log.e("毛麒添","点击了登陆" );
+               break;
+           case R.id.bt_sing_up: //注册
+
+               break;
+       }
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        if(ToolsUtils.isSoftShowing(this)){ //如果软键盘没退出
+           ToolsUtils.hideSoftInput(mUserName,this);
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
 
     }
 }

@@ -9,12 +9,8 @@ package mao.com.mao_wanandroid_client.core.sp;
  */
 public interface SharedPreferenceHelper {
 
-    /**
-     * Set login account
-     *
-     * @param account Account
-     */
-    void setLoginAccount(String account);
+
+    void setLoginUserName(String userName);
 
     /**
      *存储登录密码
@@ -23,12 +19,8 @@ public interface SharedPreferenceHelper {
      */
     void setLoginPassword(String password);
 
-    /**
-     * Get login account
-     *
-     * @return account
-     */
-    String getLoginAccount();
+
+    String getLoginUserName();
 
     /**
      * 获取存储的登录密码

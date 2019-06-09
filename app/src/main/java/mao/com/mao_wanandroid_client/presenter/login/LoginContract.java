@@ -15,6 +15,7 @@ public interface LoginContract {
     interface LoginView extends BaseView{
 
         void showLoginSuccess();
+        void showLoginFail(String errorMsg);
     }
 
 

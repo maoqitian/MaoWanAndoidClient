@@ -66,12 +66,12 @@ public class RxBasePresenter<T extends BaseView> implements AbstractBasePresente
 
     @Override
     public String getLoginAccount() {
-        return mDataClient.getLoginAccount();
+        return mDataClient.getLoginUserName();
     }
 
     @Override
     public void setLoginAccount(String account) {
-       mDataClient.setLoginAccount(account);
+       mDataClient.setLoginUserName(account);
     }
 
     @Override
