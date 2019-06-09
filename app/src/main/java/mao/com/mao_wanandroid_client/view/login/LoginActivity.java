@@ -68,10 +68,8 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
         mLogin.setBackgroundResource(R.drawable.button_shape_gray_bg);
         mLogin.setEnabled(false);
        //设置焦点并弹出键盘
-        mUserName.setFocusable(true);
-        mUserName.setFocusableInTouchMode(true);
-        mUserName.requestFocus();
-        ToolsUtils.showSoftInput(mUserName,this);
+        //mUserName.setFocusable(true);
+        //ToolsUtils.showORhideSoftKeyboard(this);
         //监听事件
         mLogin.setOnClickListener(this);
         mRegister.setOnClickListener(this);
@@ -118,7 +116,8 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
     protected void onStop() {
         super.onStop();
         if(ToolsUtils.isSoftShowing(this)){ //如果软键盘没退出
-           ToolsUtils.hideSoftInput(mUserName,this);
+            Log.e("毛麒添","小键盘没关闭" );
+            //ToolsUtils.showORhideSoftKeyboard(this);
         }
     }
 

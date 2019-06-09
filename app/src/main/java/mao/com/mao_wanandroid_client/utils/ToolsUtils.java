@@ -97,8 +97,10 @@ public class ToolsUtils {
     public static void showSoftInput(EditText etInput,Context context) {
         InputMethodManager imm = (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
         assert imm != null;
-        imm.showSoftInput(etInput, InputMethodManager.RESULT_SHOWN);
-        imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, InputMethodManager.HIDE_IMPLICIT_ONLY);
+       /* imm.showSoftInput(etInput, InputMethodManager.RESULT_SHOWN);
+        imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, InputMethodManager.HIDE_IMPLICIT_ONLY);*/
+        imm.toggleSoftInput(0, InputMethodManager.HIDE_NOT_ALWAYS);
+
     }
     /**
      * 隐藏或显示软键盘
@@ -126,7 +128,7 @@ public class ToolsUtils {
         activity.getWindow().getDecorView().getWindowVisibleDisplayFrame(rect);
         //考虑到虚拟导航栏的情况（虚拟导航栏情况下：screenHeight = rect.bottom + 虚拟导航栏高度）
         //选取screenHeight*2/3进行判断
-        return screenHeight*2/3 > rect.bottom+getSoftButtonsBarHeight(activity);
+        return screenHeight - rect.bottom - getSoftButtonsBarHeight(activity)!= 0;
     }
 
     /**
