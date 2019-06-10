@@ -83,10 +83,26 @@ public class ToolsUtils {
      *
      * @param etInput
      */
-    public static void hideSoftInput(EditText etInput,Context context) {
-        InputMethodManager imm = (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
+    public static void hideSoftInput(EditText etInput) {
+        InputMethodManager imm = (InputMethodManager) etInput.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
         assert imm != null;
         imm.hideSoftInputFromWindow(etInput.getWindowToken(), 0); // 强制隐藏键盘
+    }
+
+    /**
+     * 隐藏 activity 当前的软键盘
+     * @param activity
+     */
+    public static void hideKeyboard(Activity activity) {
+        InputMethodManager imm = (InputMethodManager) activity.getSystemService(Activity.INPUT_METHOD_SERVICE);
+        //Find the currently focused view, so we can grab the correct window token from it.
+        View view = activity.getCurrentFocus();
+        //If no view currently has focus, create a new one, just so we can grab a window token from it
+        if (view == null) {
+            view = new View(activity);
+        }
+        assert imm != null;
+        imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
     }
 
     /**
@@ -94,13 +110,11 @@ public class ToolsUtils {
      *
      * @param etInput
      */
-    public static void showSoftInput(EditText etInput,Context context) {
-        InputMethodManager imm = (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
+    public static void showSoftInput(EditText etInput) {
+        InputMethodManager imm = (InputMethodManager) etInput.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
         assert imm != null;
-       /* imm.showSoftInput(etInput, InputMethodManager.RESULT_SHOWN);
-        imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, InputMethodManager.HIDE_IMPLICIT_ONLY);*/
-        imm.toggleSoftInput(0, InputMethodManager.HIDE_NOT_ALWAYS);
-
+        etInput.requestFocus();
+        imm.showSoftInput(etInput, 0);
     }
     /**
      * 隐藏或显示软键盘

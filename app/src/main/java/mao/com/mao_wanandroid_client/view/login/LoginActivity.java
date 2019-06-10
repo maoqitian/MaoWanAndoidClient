@@ -67,9 +67,6 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
         //设置 登陆按钮开始不能点击
         mLogin.setBackgroundResource(R.drawable.button_shape_gray_bg);
         mLogin.setEnabled(false);
-       //设置焦点并弹出键盘
-        //mUserName.setFocusable(true);
-        //ToolsUtils.showORhideSoftKeyboard(this);
         //监听事件
         mLogin.setOnClickListener(this);
         mRegister.setOnClickListener(this);
@@ -113,17 +110,23 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
     }
 
     @Override
+    protected void onResume() {
+        super.onResume();
+        //设置焦点并弹出键盘
+        ToolsUtils.showSoftInput(mUserName);
+    }
+
+    @Override
     protected void onStop() {
         super.onStop();
         if(ToolsUtils.isSoftShowing(this)){ //如果软键盘没退出
             Log.e("毛麒添","小键盘没关闭" );
-            //ToolsUtils.showORhideSoftKeyboard(this);
+            ToolsUtils.hideKeyboard(this);
         }
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-
     }
 }

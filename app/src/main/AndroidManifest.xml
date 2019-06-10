@@ -44,6 +44,7 @@
 
         <activity android:name=".view.login.LoginActivity"
             android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="stateVisible|adjustResize"
             >
             <intent-filter>
                 <action android:name="com.mao.mao_wanandroid.action.LOGIN_ACTIVITY" />
