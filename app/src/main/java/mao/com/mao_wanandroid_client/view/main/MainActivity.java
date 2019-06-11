@@ -60,6 +60,8 @@ public class MainActivity extends BaseActivity<MainPresenter>
     @BindView(R.id.tv_page_title)
     TextView pageTitle;
 
+    //用户头像
+    private ImageView userImageIcon;
 
     private NavHelper mNavHelper;
 
@@ -124,16 +126,9 @@ public class MainActivity extends BaseActivity<MainPresenter>
         navigationView.setNavigationItemSelectedListener(this);
         navigationView.setCheckedItem(R.id.nav_home);
         View headerView = navigationView.inflateHeaderView(R.layout.nav_header_main);
-        ImageView imageView = headerView.findViewById(R.id.imageView_user_icon);
-        imageView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                StartDetailPage.start(MainActivity.this,null, Constants.PAGE_LOGIN);
-            }
-        });
+        userImageIcon = headerView.findViewById(R.id.imageView_user_icon);
+        userImageIcon.setOnClickListener(this);
         bottomNavigationView.setItemIconSize(70);
-        /*bottomNavigationView.setItemTextAppearanceActive(R.style.bottom_selected_text);
-        bottomNavigationView.setItemTextAppearanceInactive(R.style.bottom_normal_text);*/
         bottomNavigationView.setOnNavigationItemSelectedListener(this);
         Menu menu = bottomNavigationView.getMenu();
         menu.performIdentifierAction(R.id.tab_main,0);
@@ -251,6 +246,14 @@ public class MainActivity extends BaseActivity<MainPresenter>
                  /*Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();*/
                  Toast.makeText(MainActivity.this,"点击了回到顶部",Toast.LENGTH_SHORT).show();
+                 break;
+             case R.id.imageView_user_icon: //用户个人头像点击
+                 if(!mPresenter.getLoginStatus()){
+                     //进入登录界面
+                     StartDetailPage.start(MainActivity.this,null, Constants.PAGE_LOGIN);
+                 }else {
+                     //进入个人中心
+                 }
                  break;
              default:
                  break;
