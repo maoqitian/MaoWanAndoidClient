@@ -4,6 +4,7 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
@@ -30,6 +31,7 @@ import mao.com.mao_wanandroid_client.presenter.main.MainContract;
 import mao.com.mao_wanandroid_client.presenter.main.MainPresenter;
 import mao.com.mao_wanandroid_client.utils.NavHelper;
 import mao.com.mao_wanandroid_client.utils.StartDetailPage;
+import mao.com.mao_wanandroid_client.utils.StatusBarUtil;
 import mao.com.mao_wanandroid_client.view.main.fragment.HomePageFragment;
 import mao.com.mao_wanandroid_client.view.main.fragment.KnowledgeHierarchyPageFragment;
 import mao.com.mao_wanandroid_client.view.main.fragment.NavigationFragment;
@@ -91,6 +93,8 @@ public class MainActivity extends BaseActivity<MainPresenter>
         //除去toolbar 默认显示的标题
         supportActionBar.setDisplayShowTitleEnabled(false);
         pageTitle.setText(getString(R.string.page_home));
+        //沉浸式状态栏
+        StatusBarUtil.setColorNoTranslucentForDrawerLayout(this,drawer,ContextCompat.getColor(this,R.color.colorPrimary));
         initFragment();
         initView();
     }

@@ -1,6 +1,7 @@
 package mao.com.mao_wanandroid_client.view.login;
 
 import android.graphics.Color;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.Html;
@@ -17,6 +18,7 @@ import mao.com.mao_wanandroid_client.base.activity.BaseActivity;
 import mao.com.mao_wanandroid_client.presenter.login.LoginContract;
 import mao.com.mao_wanandroid_client.presenter.login.LoginPresenter;
 import mao.com.mao_wanandroid_client.utils.EditTextUtils;
+import mao.com.mao_wanandroid_client.utils.StatusBarUtil;
 import mao.com.mao_wanandroid_client.utils.ToolsUtils;
 
 /**
@@ -48,6 +50,7 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
         mToolbar.setTitleTextColor(Color.WHITE);
         setSupportActionBar(mToolbar);
         mToolbar.setNavigationIcon(R.drawable.ic_arrow_back_24dp);
+        StatusBarUtil.setColorNoTranslucent(this, ContextCompat.getColor(this,R.color.colorPrimary));
         mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

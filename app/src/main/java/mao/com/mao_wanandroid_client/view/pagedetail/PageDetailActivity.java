@@ -1,6 +1,7 @@
 package mao.com.mao_wanandroid_client.view.pagedetail;
 
 import android.annotation.SuppressLint;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.Toolbar;
 import android.text.Html;
 import android.util.Log;
@@ -19,6 +20,7 @@ import mao.com.mao_wanandroid_client.base.activity.BaseActivity;
 import mao.com.mao_wanandroid_client.model.home.HomeArticleData;
 import mao.com.mao_wanandroid_client.presenter.pagedetail.PageDetailContract;
 import mao.com.mao_wanandroid_client.presenter.pagedetail.PageDetailPresenter;
+import mao.com.mao_wanandroid_client.utils.StatusBarUtil;
 
 /**
  * @author maoqitian
@@ -49,6 +51,7 @@ public class PageDetailActivity extends BaseActivity<PageDetailPresenter> implem
         mToolbar.setTitle(Html.fromHtml(homeArticleData.getTitle()));
         setSupportActionBar(mToolbar);
         mToolbar.setNavigationIcon(R.drawable.ic_arrow_back_24dp);
+        StatusBarUtil.setColorNoTranslucent(this, ContextCompat.getColor(this,R.color.colorPrimary));
         mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
