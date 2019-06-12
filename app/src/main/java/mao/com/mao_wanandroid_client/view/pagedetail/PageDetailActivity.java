@@ -51,7 +51,7 @@ public class PageDetailActivity extends BaseActivity<PageDetailPresenter> implem
         mToolbar.setTitle(Html.fromHtml(homeArticleData.getTitle()));
         setSupportActionBar(mToolbar);
         mToolbar.setNavigationIcon(R.drawable.ic_arrow_back_24dp);
-        StatusBarUtil.setColorNoTranslucent(this, ContextCompat.getColor(this,R.color.colorPrimary));
+        StatusBarUtil.setColorNoTranslucentLightMode(this, ContextCompat.getColor(this,R.color.colorPrimary));
         mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

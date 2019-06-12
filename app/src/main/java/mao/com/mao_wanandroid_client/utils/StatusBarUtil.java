@@ -1,5 +1,6 @@
 package mao.com.mao_wanandroid_client.utils;
 
+import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Context;
@@ -22,9 +23,8 @@ import mao.com.mao_wanandroid_client.R;
 
 /**
  * Created by Jaeger on 16/2/14.
- * <p>
- * Email: chjie.jaeger@gmail.com
- * GitHub: https://github.com/laobie
+ * https://github.com/laobie/StatusBarUtil
+ * 加入了一些状态栏 效果组合
  */
 public class StatusBarUtil {
 
@@ -131,6 +131,17 @@ public class StatusBarUtil {
      */
     public static void setColorNoTranslucent(Activity activity, @ColorInt int color) {
         setColor(activity, color, 0);
+    }
+
+    /**
+     * 设置状态栏纯色 不加半透明效果 字体为黑色
+     *
+     * @param activity 需要设置的 activity
+     * @param color    状态栏颜色值
+     */
+    public static void setColorNoTranslucentLightMode(Activity activity, @ColorInt int color) {
+        setColor(activity, color, 0);
+        //setLightMode(activity);
     }
 
     /**
@@ -251,6 +262,18 @@ public class StatusBarUtil {
      */
     public static void setColorNoTranslucentForDrawerLayout(Activity activity, DrawerLayout drawerLayout, @ColorInt int color) {
         setColorForDrawerLayout(activity, drawerLayout, color, 0);
+    }
+
+    /**
+     * 为DrawerLayout 布局设置状态栏颜色,纯色 字体为黑色
+     *
+     * @param activity     需要设置的activity
+     * @param drawerLayout DrawerLayout
+     * @param color        状态栏颜色值
+     */
+    public static void setColorNoTranslucentForDrawerLayoutLightMode(Activity activity, DrawerLayout drawerLayout, @ColorInt int color) {
+        setColorForDrawerLayout(activity, drawerLayout, color, 0);
+        setLightMode(activity);
     }
 
     /**
@@ -537,6 +560,7 @@ public class StatusBarUtil {
     private static void setMIUIStatusBarDarkIcon(@NonNull Activity activity, boolean darkIcon) {
         Class<? extends Window> clazz = activity.getWindow().getClass();
         try {
+            @SuppressLint("PrivateApi")
             Class<?> layoutParams = Class.forName("android.view.MiuiWindowManager$LayoutParams");
             Field field = layoutParams.getField("EXTRA_FLAG_STATUS_BAR_DARK_MODE");
             int darkModeFlag = field.getInt(layoutParams);

@@ -54,13 +54,13 @@ public interface AbstractBasePresenter<T extends BaseView> {
      *
      * @return
      */
-    String getLoginAccount();
+    String getLoginUserName();
 
     /**
      * set login account
      * @param
      */
-    void setLoginAccount(String account);
+    void setLoginUserName(String userName);
 
     /**
      * 登录密码

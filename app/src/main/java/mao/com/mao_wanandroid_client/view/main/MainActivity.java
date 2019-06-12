@@ -37,7 +37,7 @@ import mao.com.mao_wanandroid_client.view.main.fragment.KnowledgeHierarchyPageFr
 import mao.com.mao_wanandroid_client.view.main.fragment.NavigationFragment;
 import mao.com.mao_wanandroid_client.view.main.fragment.OfficialAccountsPageFragment;
 import mao.com.mao_wanandroid_client.view.main.fragment.ProjectFragment;
-
+import mao.com.mao_wanandroid_client.widget.CircleImageView;
 
 
 public class MainActivity extends BaseActivity<MainPresenter>
@@ -61,8 +61,9 @@ public class MainActivity extends BaseActivity<MainPresenter>
     TextView pageTitle;
 
     //用户头像
-    private ImageView userImageIcon;
-
+    private CircleImageView userImageIcon;
+    //用户名
+    private TextView mUserName;
     private NavHelper mNavHelper;
 
     @Override
@@ -96,7 +97,7 @@ public class MainActivity extends BaseActivity<MainPresenter>
         supportActionBar.setDisplayShowTitleEnabled(false);
         pageTitle.setText(getString(R.string.page_home));
         //沉浸式状态栏
-        StatusBarUtil.setColorNoTranslucentForDrawerLayout(this,drawer,ContextCompat.getColor(this,R.color.colorPrimary));
+        StatusBarUtil.setColorNoTranslucentForDrawerLayoutLightMode(this,drawer,ContextCompat.getColor(this,R.color.colorPrimary));
         initFragment();
         initView();
     }
@@ -186,7 +187,7 @@ public class MainActivity extends BaseActivity<MainPresenter>
         int id = menuItem.getItemId();
         switch (id){
             case R.id.nav_home:
-                Toast.makeText(this,"点击了主页",Toast.LENGTH_SHORT).show();
+                //Toast.makeText(this,"点击了主页",Toast.LENGTH_SHORT).show();
                 break;
             case R.id.nav_collect:
                 Toast.makeText(this,"点击了收藏",Toast.LENGTH_SHORT).show();
@@ -196,7 +197,7 @@ public class MainActivity extends BaseActivity<MainPresenter>
                 break;
             case R.id.tab_main:
                 initPage(getString(R.string.page_home));
-                Toast.makeText(this,"点击了主页",Toast.LENGTH_SHORT).show();
+                //Toast.makeText(this,"点击了主页",Toast.LENGTH_SHORT).show();
                 break;
             case R.id.tab_knowledge_hierarchy:
                 initPage(getString(R.string.knowledge_hierarchy));
@@ -253,6 +254,7 @@ public class MainActivity extends BaseActivity<MainPresenter>
                      StartDetailPage.start(MainActivity.this,null, Constants.PAGE_LOGIN);
                  }else {
                      //进入个人中心
+                     Toast.makeText(MainActivity.this,"进入个人中心",Toast.LENGTH_SHORT).show();
                  }
                  break;
              default:
@@ -268,5 +270,28 @@ public class MainActivity extends BaseActivity<MainPresenter>
     @Override
     public void onTabChange(NavHelper.Tab<String> newTab, NavHelper.Tab<String> oldTab) {
         //Log.e("毛麒添","当前tab  "+newTab.extra + "SimpleName"+newTab.getClass().getSimpleName());
+    }
+
+
+    @Override
+    public void showLoginView() {
+        Log.e("毛麒添","登录成功");
+        if(navigationView == null){
+            return;
+        }
+        userImageIcon = navigationView.getHeaderView(0).findViewById(R.id.imageView_user_icon);
+        mUserName = navigationView.getHeaderView(0).findViewById(R.id.textView_user_name);
+        mUserName.setText(mPresenter.getLoginUserName());
+        userImageIcon.setBackgroundResource(R.mipmap.ic_launcher);
+
+    }
+
+    @Override
+    public void showLogoutView() {
+        Log.e("毛麒添","登录失败");
+        userImageIcon = navigationView.getHeaderView(0).findViewById(R.id.imageView_user_icon);
+        mUserName = navigationView.getHeaderView(0).findViewById(R.id.textView_user_name);
+        mUserName.setText(getString(R.string.nav_header_title));
+        userImageIcon.setBackgroundResource(R.drawable.ic_default_avatar);
     }
 }

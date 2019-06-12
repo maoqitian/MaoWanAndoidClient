@@ -7,7 +7,7 @@ import mao.com.mao_wanandroid_client.core.http.DataClient;
 
 /**
  * @author maoqitian
- * @Description 基于Rx的Presenter封装,控制订阅的生命周期
+ * @Description 基于Rx的Presenter封装,控制 事件订阅的生命周期
  * @Time 2018/10/25 0025 17:22
  */
 public class RxBasePresenter<T extends BaseView> implements AbstractBasePresenter<T>{
@@ -24,7 +24,8 @@ public class RxBasePresenter<T extends BaseView> implements AbstractBasePresente
         this.mDataClient=dataClient;
     }
 
-    protected void addSubscribe(Disposable disposable) {
+    // 将订阅时间 event 加入到 disposable的容器中
+    protected void addEventSubscribe(Disposable disposable) {
         if (compositeDisposable == null) {
             compositeDisposable = new CompositeDisposable();
         }
@@ -46,7 +47,7 @@ public class RxBasePresenter<T extends BaseView> implements AbstractBasePresente
 
     @Override
     public void addRxBindingSubscribe(Disposable disposable) {
-         addSubscribe(disposable);
+        addEventSubscribe(disposable);
     }
 
     @Override
@@ -65,13 +66,13 @@ public class RxBasePresenter<T extends BaseView> implements AbstractBasePresente
     }
 
     @Override
-    public String getLoginAccount() {
+    public String getLoginUserName() {
         return mDataClient.getLoginUserName();
     }
 
     @Override
-    public void setLoginAccount(String account) {
-       mDataClient.setLoginUserName(account);
+    public void setLoginUserName(String userName) {
+       mDataClient.setLoginUserName(userName);
     }
 
     @Override

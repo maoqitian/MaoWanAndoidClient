@@ -7,6 +7,8 @@ import javax.inject.Inject;
 import io.reactivex.Observable;
 import io.reactivex.Observer;
 import mao.com.mao_wanandroid_client.base.presenter.RxBasePresenter;
+import mao.com.mao_wanandroid_client.compoent.RxBus;
+import mao.com.mao_wanandroid_client.compoent.event.LoginStatusEvent;
 import mao.com.mao_wanandroid_client.core.http.DataClient;
 import mao.com.mao_wanandroid_client.core.http.control.ProgressObserver;
 import mao.com.mao_wanandroid_client.core.http.control.RxSchedulers;
@@ -43,6 +45,8 @@ public class LoginPresenter extends RxBasePresenter<LoginContract.LoginView> imp
                         mDataClient.setLoginUserName(result.getUsername());
                         mDataClient.setLoginStatus(true);
                         mView.showLoginSuccess();
+                        //发送登录状态到事件总线
+                        RxBus.getDefault().post(new LoginStatusEvent(true));
                     }
                     @Override
                     public void onFailure(Throwable e, String errorMsg) {
