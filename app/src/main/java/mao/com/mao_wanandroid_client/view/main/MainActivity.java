@@ -282,7 +282,7 @@ public class MainActivity extends BaseActivity<MainPresenter>
         userImageIcon = navigationView.getHeaderView(0).findViewById(R.id.imageView_user_icon);
         mUserName = navigationView.getHeaderView(0).findViewById(R.id.textView_user_name);
         mUserName.setText(mPresenter.getLoginUserName());
-        userImageIcon.setBackgroundResource(R.mipmap.ic_launcher);
+        userImageIcon.setImageDrawable(getDrawable(R.mipmap.ic_launcher));
 
     }
 
@@ -292,6 +292,6 @@ public class MainActivity extends BaseActivity<MainPresenter>
         userImageIcon = navigationView.getHeaderView(0).findViewById(R.id.imageView_user_icon);
         mUserName = navigationView.getHeaderView(0).findViewById(R.id.textView_user_name);
         mUserName.setText(getString(R.string.nav_header_title));
-        userImageIcon.setBackgroundResource(R.drawable.ic_default_avatar);
+        userImageIcon.setImageDrawable(getDrawable(R.drawable.ic_default_avatar));
     }
 }

@@ -25,6 +25,8 @@
         android:layout_width="@dimen/dp_65"
         android:layout_height="@dimen/dp_65"
         android:background="@null"
+        app:civ_border_color="@color/white"
+        app:civ_border_width="@dimen/dp_2"
         android:src="@drawable/ic_default_avatar"
         android:paddingTop="@dimen/nav_header_vertical_spacing"
         />

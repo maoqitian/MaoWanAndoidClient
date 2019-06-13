@@ -68,7 +68,7 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
     protected void initEventAndData() {
         listenerEditText();
         //设置 登陆按钮开始不能点击
-        mLogin.setBackgroundResource(R.drawable.button_shape_gray_bg);
+        //mLogin.setBackgroundResource(R.drawable.button_shape_gray_bg);
         mLogin.setEnabled(false);
         //监听事件
         mLogin.setOnClickListener(this);
@@ -78,13 +78,13 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
     private void listenerEditText() {
         EditTextUtils.textChangeListener textChangeListener = new EditTextUtils.textChangeListener(mLogin);
         textChangeListener.addAllEditText(mUserName,mPassword);
-        EditTextUtils.setChangeListener(isAllHaveText -> {
+        /*EditTextUtils.setChangeListener(isAllHaveText -> {
             if(isAllHaveText){ //都已经有内容 登陆按钮可以点击
                 mLogin.setBackgroundResource(R.drawable.button_shape_normal_bg);
             }else { //有一个editText无内容 登陆按钮不可以点击
                 mLogin.setBackgroundResource(R.drawable.button_shape_gray_bg);
             }
-        });
+        });*/
     }
 
     @Override
