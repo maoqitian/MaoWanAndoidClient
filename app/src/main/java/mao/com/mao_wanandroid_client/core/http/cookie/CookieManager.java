@@ -43,4 +43,9 @@ public class CookieManager implements CookieJar {
     public List<Cookie> loadForRequest(HttpUrl url) {
         return persistentCookieStore.get(url);
     }
+
+
+    public void clearAllCookie(){
+        persistentCookieStore.removeAll();
+    }
 }

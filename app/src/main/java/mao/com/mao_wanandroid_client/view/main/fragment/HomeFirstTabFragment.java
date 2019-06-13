@@ -23,6 +23,8 @@ import butterknife.BindView;
 import mao.com.mao_wanandroid_client.R;
 import mao.com.mao_wanandroid_client.application.Constants;
 import mao.com.mao_wanandroid_client.base.fragment.RootBaseFragment;
+import mao.com.mao_wanandroid_client.compoent.RxBus;
+import mao.com.mao_wanandroid_client.compoent.event.LoginStatusEvent;
 import mao.com.mao_wanandroid_client.model.banner.HomePageBannerModel;
 import mao.com.mao_wanandroid_client.model.home.HomeArticleData;
 import mao.com.mao_wanandroid_client.model.home.HomeArticleListData;
@@ -84,10 +86,9 @@ public class HomeFirstTabFragment extends RootBaseFragment<HomeFirstTabPresenter
             Log.e("毛麒添","首页mTabTitle "+mTabTitle);
         }
         if(getString(R.string.page_home_recommend).equals(mTabTitle)){
-            //获取 banner 数据
+            //获取 首页第一个tab 数据
             initHomePage();
-            mPresenter.getHomePageBanner();
-            mPresenter.getHomeArticleListData();
+            mPresenter.getHomeFirstPageData();
             showLoading();
         }else if (getString(R.string.latest_project).equals(mTabTitle)){
             initLatestProjectPage();
@@ -175,6 +176,17 @@ public class HomeFirstTabFragment extends RootBaseFragment<HomeFirstTabPresenter
         homeArticleDataList = homeArticleListData.getDatas();
         mLatestProjectAdapter.addData(homeArticleDataList);
         showNormal();
+    }
+
+    @Override
+    public void showAutoLoginSuccess() {
+        RxBus.getDefault().post(new LoginStatusEvent(true));
+    }
+
+    @Override
+    public void showAutoLoginFail() {
+        //发送自动登录状态到事件总线
+        RxBus.getDefault().post(new LoginStatusEvent(false));
     }
 
 

@@ -89,6 +89,8 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
 
     @Override
     public void showLoginSuccess() {
+        //关闭登录页面
+        finish();
         Toast.makeText(this,getString(R.string.login_success),Toast.LENGTH_SHORT).show();
     }
 

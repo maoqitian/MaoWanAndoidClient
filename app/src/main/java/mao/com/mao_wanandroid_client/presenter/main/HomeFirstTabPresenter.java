@@ -14,6 +14,7 @@ import mao.com.mao_wanandroid_client.core.http.control.RxSchedulers;
 import mao.com.mao_wanandroid_client.model.ResponseBody;
 import mao.com.mao_wanandroid_client.model.banner.HomePageBannerModel;
 import mao.com.mao_wanandroid_client.model.home.HomeArticleListData;
+import mao.com.mao_wanandroid_client.model.login.LoginData;
 
 /**
  * @author maoqitian
@@ -36,7 +37,8 @@ public class HomeFirstTabPresenter extends RxBasePresenter<HomePageFirstTabContr
     }
 
     @Override
-    public void getHomePageBanner() {
+    public void getHomeFirstPageData() {
+        //首页第一个 tab  banner
         Observable<ResponseBody<List<HomePageBannerModel>>> responseBodyObservable = mDataClient.GetHomePageBannerData();
         //获取 首页Banner 数据
         responseBodyObservable.compose(RxSchedulers.observableIO2Main())
@@ -51,12 +53,10 @@ public class HomeFirstTabPresenter extends RxBasePresenter<HomePageFirstTabContr
                         mView.showError();
                     }
                 });
-    }
 
-    @Override
-    public void getHomeArticleListData() {
-        Observable<ResponseBody<HomeArticleListData>> responseBodyObservable = mDataClient.HomeArticleListData(0);
-        responseBodyObservable.compose(RxSchedulers.observableIO2Main())
+        //首页第一个 tab  文章
+        Observable<ResponseBody<HomeArticleListData>> homeArticleListDataObservable = mDataClient.HomeArticleListData(0);
+        homeArticleListDataObservable.compose(RxSchedulers.observableIO2Main())
                 .subscribe(new BaseObserver<HomeArticleListData>() {
                     @Override
                     public void onSuccess(HomeArticleListData result) {
@@ -65,13 +65,33 @@ public class HomeFirstTabPresenter extends RxBasePresenter<HomePageFirstTabContr
 
                     @Override
                     public void onFailure(Throwable e, String errorMsg) {
-
+                        mView.showError();
                     }
                 });
+        if(getLoginUserName()!=null){
+           //用户名不为空，自动登录
+            Observable<ResponseBody<LoginData>> loginDataObservable = mDataClient.postLoginData(mDataClient.getLoginUserName(), mDataClient.getLoginPassword());
+            loginDataObservable.compose(RxSchedulers.observableIO2Main())
+                    .subscribe(new BaseObserver<LoginData>() {
+                        @Override
+                        public void onSuccess(LoginData result) {
+                            mDataClient.setLoginUserName(result.getUsername());
+                            mDataClient.setLoginStatus(true);
+                            mView.showAutoLoginSuccess();
+                        }
+
+                        @Override
+                        public void onFailure(Throwable e, String errorMsg) {
+                            mDataClient.setLoginUserName("");
+                            mView.showAutoLoginFail();
+                        }
+                    });
+        }
+
     }
 
+    //首页第二个 tab
     @Override
-
     public void getHomeLatestProjectListDate() {
         Observable<ResponseBody<HomeArticleListData>> responseBodyObservable = mDataClient.HomeArticleListProjectData(0);
         responseBodyObservable.compose(RxSchedulers.observableIO2Main())

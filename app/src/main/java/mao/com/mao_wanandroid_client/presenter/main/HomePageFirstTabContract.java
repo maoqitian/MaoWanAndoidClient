@@ -25,15 +25,23 @@ public interface HomePageFirstTabContract {
         void showHomeArticleList(HomeArticleListData homeArticleListData);
 
         void showHomeLatestProjectList(HomeArticleListData homeArticleListData);
+
+        //自动登录成功
+        void showAutoLoginSuccess();
+
+        //自动登录失败
+        void showAutoLoginFail();
     }
 
 
     interface HomeFirstTabFragmentPresenter extends AbstractBasePresenter<HomePageFirstTabView> {
 
-        void getHomePageBanner();
+        //获取首页第一个 item 数据
+        void getHomeFirstPageData();
 
-        void getHomeArticleListData();
 
         void getHomeLatestProjectListDate();
+
+
     }
 }

@@ -44,7 +44,7 @@ public class PersistentCookieStore {
 
     public PersistentCookieStore(){
         //需要注意getSharedPreferences 空指针问题 确保能获取到Context
-        mCookiePrefs=MyApplication.getInstance().getSharedPreferences(COOKIE_PREFS,0);
+        mCookiePrefs = MyApplication.getInstance().getSharedPreferences(COOKIE_PREFS,0);
         //Load any previously stored cookies into the store
         mCookies=new HashMap<>();
 
@@ -60,8 +60,8 @@ public class PersistentCookieStore {
                             if(!mCookies.containsKey(entry.getKey())){
                                 //如果mCookies 不存在则 保存 cookie key value
                                 mCookies.put(entry.getKey(), new ConcurrentHashMap<String, Cookie>());
-                                mCookies.get(entry.getKey()).put(cookName, decodedCookie);
                             }
+                            mCookies.get(entry.getKey()).put(cookName, decodedCookie);
                         }
                     }
                 }
@@ -176,4 +176,14 @@ public class PersistentCookieStore {
         }
         return stringBuilder.toString().toUpperCase(Locale.US);
     }
+
+    public synchronized boolean removeAll() {
+        SharedPreferences.Editor prefsWriter = mCookiePrefs.edit();
+        prefsWriter.clear();
+        prefsWriter.apply();
+        mCookies.clear();
+        return true;
+    }
+
+
 }

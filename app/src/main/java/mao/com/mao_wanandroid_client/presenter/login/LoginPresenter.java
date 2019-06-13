@@ -50,7 +50,9 @@ public class LoginPresenter extends RxBasePresenter<LoginContract.LoginView> imp
                     }
                     @Override
                     public void onFailure(Throwable e, String errorMsg) {
-                       mView.showLoginFail(errorMsg);
+                        mDataClient.setLoginUserName("");
+                        mDataClient.setLoginStatus(false);
+                        mView.showLoginFail(errorMsg);
                     }
                 });
 
