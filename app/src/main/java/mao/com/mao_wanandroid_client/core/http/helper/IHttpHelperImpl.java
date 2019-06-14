@@ -150,16 +150,16 @@ public class IHttpHelperImpl implements IHttpHelper{
      * @return
      */
     @Override
-    public Observable<ResponseBody<LoginData>> postRegisterData(String username, String password, String repassword) {
-        return getApiServiceGson().postRegisterData(username,password,repassword);
+    public Observable<ResponseBody<LoginData>> postSignUpData(String username, String password, String repassword) {
+        return getApiServiceGson().postSignUpData(username,password,repassword);
     }
     /**
      * 退出登录
      * @return
      */
     @Override
-    public Observable<ResponseBody<String>> getLoginOut() {
-        return getApiServiceGson().getLoginOut();
+    public Observable<ResponseBody<String>> getSignOut() {
+        return getApiServiceGson().getSignOut();
     }
     /**
      * 收藏文章列表

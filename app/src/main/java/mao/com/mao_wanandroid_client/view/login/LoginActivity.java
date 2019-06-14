@@ -14,10 +14,12 @@ import android.widget.Toast;
 
 import butterknife.BindView;
 import mao.com.mao_wanandroid_client.R;
+import mao.com.mao_wanandroid_client.application.Constants;
 import mao.com.mao_wanandroid_client.base.activity.BaseActivity;
 import mao.com.mao_wanandroid_client.presenter.login.LoginContract;
 import mao.com.mao_wanandroid_client.presenter.login.LoginPresenter;
 import mao.com.mao_wanandroid_client.utils.EditTextUtils;
+import mao.com.mao_wanandroid_client.utils.StartDetailPage;
 import mao.com.mao_wanandroid_client.utils.StatusBarUtil;
 import mao.com.mao_wanandroid_client.utils.ToolsUtils;
 
@@ -51,12 +53,7 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
         setSupportActionBar(mToolbar);
         mToolbar.setNavigationIcon(R.drawable.ic_arrow_back_24dp);
         StatusBarUtil.setColorNoTranslucentLightMode(this, ContextCompat.getColor(this,R.color.colorPrimary));
-        mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
+        mToolbar.setNavigationOnClickListener(v -> finish());
     }
 
     @Override
@@ -90,8 +87,8 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
     @Override
     public void showLoginSuccess() {
         //关闭登录页面
-        finish();
         Toast.makeText(this,getString(R.string.login_success),Toast.LENGTH_SHORT).show();
+        finish();
     }
 
     @Override
@@ -109,7 +106,7 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
                Log.e("毛麒添","点击了登陆" );
                break;
            case R.id.bt_sing_up: //注册
-
+               StartDetailPage.start(this,null, Constants.PAGE_SIGN_UP,Constants.ACTION_SIGN_UP_ACTIVITY);
                break;
        }
     }

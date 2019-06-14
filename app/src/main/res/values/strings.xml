@@ -21,11 +21,17 @@
     <string name="latest_project">latest_project</string>
 
     <string name="signin">sign in</string>
+    <string name="signin_now">Complete registration and login</string>
     <string name="sign_up">sign up</string>
+    <string name="landing">Landing....</string>
+    <string name="registered">sign up now....</string>
     <string name="sign_out">sign out</string>
     <string name="forgot_password">Forgot Password?</string>
     <string name="username">user name</string>
     <string name="password">Password</string>
+    <string name="repassword">Confirm Password</string>
     <string name="login_success">login success!</string>
     <string name="login_fail">login fail！！！</string>
+
+    <string name="passwordInconsistency">Two password inconsistency！</string>
 </resources>

@@ -100,7 +100,7 @@ public interface IHttpHelper {
      * @param repassword 确认密码
      * @return
      */
-    Observable<ResponseBody<LoginData>> postRegisterData(
+    Observable<ResponseBody<LoginData>> postSignUpData(
             String username, String password, String repassword
     );
 
@@ -108,7 +108,7 @@ public interface IHttpHelper {
      * 退出登录
      * @return
      */
-    Observable<ResponseBody<String>> getLoginOut();
+    Observable<ResponseBody<String>> getSignOut();
     /**
      * 收藏文章列表
      * @param pageNum 页码：拼接在链接中，从0开始。

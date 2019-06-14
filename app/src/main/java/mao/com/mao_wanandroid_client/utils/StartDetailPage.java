@@ -19,17 +19,17 @@ public class StartDetailPage{
      * @param unit
      * @param pageType 跳转类型
      */
-    public static void start(final Context context, HomeArticleData unit,String pageType) {
+    public static void start(final Context context, HomeArticleData unit,String pageType,String activityType) {
 
         if(Constants.PAGE_WEB_COLLECT.equals(pageType) || Constants.PAGE_WEB_NOT_COLLECT.equals(pageType)) {//WEB 详情 页面
-            Intent intent = new Intent(Constants.ACTION_PAGE_DETAIL_ACTIVITY);
+            Intent intent = new Intent(activityType);
             intent.putExtra(Constants.HOME_ARTICLE_DATA, unit);
             intent.putExtra(Constants.PAGE_TYPE, pageType);
             context.startActivity(intent);
             return;
         }
-        if(Constants.PAGE_LOGIN.equals(pageType)){
-            Intent intent = new Intent(Constants.ACTION_LOGIN_ACTIVITY);
+        if(Constants.PAGE_MAIN.equals(pageType)||Constants.PAGE_LOGIN.equals(pageType)||Constants.PAGE_SIGN_UP.equals(pageType)){
+            Intent intent = new Intent(activityType);
             context.startActivity(intent);
             return;
         }

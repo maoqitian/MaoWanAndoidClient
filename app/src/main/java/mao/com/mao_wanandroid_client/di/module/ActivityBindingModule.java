@@ -4,6 +4,7 @@ import dagger.Module;
 import dagger.android.ContributesAndroidInjector;
 import mao.com.mao_wanandroid_client.di.scope.ActivityScope;
 import mao.com.mao_wanandroid_client.view.login.LoginActivity;
+import mao.com.mao_wanandroid_client.view.login.SignUpActivity;
 import mao.com.mao_wanandroid_client.view.main.MainActivity;
 import mao.com.mao_wanandroid_client.view.pagedetail.PageDetailActivity;
 import mao.com.mao_wanandroid_client.view.welcome.WelcomeActivity;
@@ -30,4 +31,8 @@ public abstract class ActivityBindingModule {
     @ActivityScope
     @ContributesAndroidInjector(modules = LoginActivityModule.class)
     abstract LoginActivity contributeLoginActivity();
+
+    @ActivityScope
+    @ContributesAndroidInjector(modules = SignUpActivityModule.class)
+    abstract SignUpActivity contributeSignUpActivity();
 }

@@ -6,6 +6,7 @@ import javax.inject.Inject;
 
 import io.reactivex.Observable;
 import io.reactivex.Observer;
+import mao.com.mao_wanandroid_client.R;
 import mao.com.mao_wanandroid_client.base.presenter.RxBasePresenter;
 import mao.com.mao_wanandroid_client.compoent.RxBus;
 import mao.com.mao_wanandroid_client.compoent.event.LoginStatusEvent;
@@ -39,7 +40,7 @@ public class LoginPresenter extends RxBasePresenter<LoginContract.LoginView> imp
     public void getPostLogin(Context context,String username, String password) {
         Observable<ResponseBody<LoginData>> responseBodyObservable = mDataClient.postLoginData(username, password);
         responseBodyObservable.compose(RxSchedulers.observableIO2Main(context))
-                .subscribe(new ProgressObserver<LoginData>(context, "正在登陆....") {
+                .subscribe(new ProgressObserver<LoginData>(context, context.getString(R.string.landing)) {
                     @Override
                     public void onSuccess(LoginData result) {
                         mDataClient.setLoginUserName(result.getUsername());

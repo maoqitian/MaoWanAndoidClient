@@ -135,7 +135,7 @@ public class HomeFirstTabFragment extends RootBaseFragment<HomeFirstTabPresenter
         HomeArticleData homeArticleData = new HomeArticleData();
         homeArticleData.setTitle(homePageBannerModel.getTitle());
         homeArticleData.setLink(homePageBannerModel.getUrl());
-        StartDetailPage.start(_mActivity,homeArticleData, Constants.PAGE_WEB_NOT_COLLECT);
+        StartDetailPage.start(_mActivity,homeArticleData, Constants.PAGE_WEB_NOT_COLLECT,Constants.ACTION_PAGE_DETAIL_ACTIVITY);
     }
 
     @Override
@@ -194,6 +194,6 @@ public class HomeFirstTabFragment extends RootBaseFragment<HomeFirstTabPresenter
     public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
         //Toast.makeText(_mActivity,"首页数据 被点击 BaseQuickAdapter :"+adapter.getItem(position).toString(),Toast.LENGTH_SHORT).show();
         HomeArticleData homeArticleData = (HomeArticleData) adapter.getItem(position);
-        StartDetailPage.start(_mActivity,homeArticleData, Constants.PAGE_WEB_COLLECT);
+        StartDetailPage.start(_mActivity,homeArticleData, Constants.PAGE_WEB_COLLECT,Constants.ACTION_PAGE_DETAIL_ACTIVITY);
     }
 }

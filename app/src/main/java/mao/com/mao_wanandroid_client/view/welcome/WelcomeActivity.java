@@ -1,14 +1,15 @@
 package mao.com.mao_wanandroid_client.view.welcome;
 
-import android.content.Intent;
+
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 
 import mao.com.mao_wanandroid_client.R;
+import mao.com.mao_wanandroid_client.application.Constants;
 import mao.com.mao_wanandroid_client.base.activity.BaseActivity;
 import mao.com.mao_wanandroid_client.presenter.welcome.WelcomeContract;
 import mao.com.mao_wanandroid_client.presenter.welcome.WelcomePresenter;
-import mao.com.mao_wanandroid_client.view.main.MainActivity;
+import mao.com.mao_wanandroid_client.utils.StartDetailPage;
 
 /**
  * @author maoqitian
@@ -37,8 +38,7 @@ public class WelcomeActivity extends BaseActivity<WelcomePresenter> implements W
 
     @Override
     public void jumpToMainActivity() {
-      Intent intent = new Intent(this, MainActivity.class);
-      startActivity(intent);
+        StartDetailPage.start(this,null, Constants.PAGE_MAIN,Constants.ACTION_MAIN_ACTIVITY);
         try {
             Thread.sleep(2000);
         } catch (InterruptedException e) {

@@ -37,6 +37,10 @@
         android:icon="@drawable/ic_comments_solid"
         android:title="Send" />
 
+    <item
+        android:id="@+id/nav_sign_out"
+        android:icon="@drawable/ic_power_off_solid"
+        android:title="@string/sign_out" />
     <!--<item android:title="Communicate">
         <menu>
             <item

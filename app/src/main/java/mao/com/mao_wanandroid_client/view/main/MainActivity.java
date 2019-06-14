@@ -195,6 +195,9 @@ public class MainActivity extends BaseActivity<MainPresenter>
             case R.id.nav_settings:
                 Toast.makeText(this,"点击了设置",Toast.LENGTH_SHORT).show();
                 break;
+            case R.id.nav_sign_out:
+                Toast.makeText(this,"点击退出登录",Toast.LENGTH_SHORT).show();
+                mPresenter.getSingOut();
             case R.id.tab_main:
                 initPage(getString(R.string.page_home));
                 //Toast.makeText(this,"点击了主页",Toast.LENGTH_SHORT).show();
@@ -251,7 +254,7 @@ public class MainActivity extends BaseActivity<MainPresenter>
              case R.id.imageView_user_icon: //用户个人头像点击
                  if(!mPresenter.getLoginStatus()){
                      //进入登录界面
-                     StartDetailPage.start(MainActivity.this,null, Constants.PAGE_LOGIN);
+                     StartDetailPage.start(MainActivity.this,null, Constants.PAGE_LOGIN,Constants.ACTION_LOGIN_ACTIVITY);
                  }else {
                      //进入个人中心
                      Toast.makeText(MainActivity.this,"进入个人中心",Toast.LENGTH_SHORT).show();
@@ -293,5 +296,15 @@ public class MainActivity extends BaseActivity<MainPresenter>
         mUserName = navigationView.getHeaderView(0).findViewById(R.id.textView_user_name);
         mUserName.setText(getString(R.string.nav_header_title));
         userImageIcon.setImageDrawable(getDrawable(R.drawable.ic_default_avatar));
+    }
+
+    @Override
+    public void showSingOutSuccess() {
+        showLogoutView();
+    }
+
+    @Override
+    public void showSingOutFail(String errorMsg) {
+        Toast.makeText(this,errorMsg,Toast.LENGTH_SHORT).show();
     }
 }

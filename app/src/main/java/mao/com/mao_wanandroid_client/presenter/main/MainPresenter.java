@@ -2,6 +2,7 @@ package mao.com.mao_wanandroid_client.presenter.main;
 
 import javax.inject.Inject;
 
+import io.reactivex.Observable;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
 import io.reactivex.functions.Predicate;
@@ -9,6 +10,9 @@ import mao.com.mao_wanandroid_client.base.presenter.RxBasePresenter;
 import mao.com.mao_wanandroid_client.compoent.RxBus;
 import mao.com.mao_wanandroid_client.compoent.event.LoginStatusEvent;
 import mao.com.mao_wanandroid_client.core.http.DataClient;
+import mao.com.mao_wanandroid_client.core.http.control.BaseObserver;
+import mao.com.mao_wanandroid_client.core.http.control.RxSchedulers;
+import mao.com.mao_wanandroid_client.model.ResponseBody;
 
 /**
  * @author maoqitian
@@ -42,5 +46,22 @@ public class MainPresenter extends RxBasePresenter<MainContract.MainView> implem
                 }));
 
 
+    }
+    //退出登录
+    @Override
+    public void getSingOut() {
+        Observable<ResponseBody<String>> loginOut = mDataClient.getSignOut();
+        loginOut.compose(RxSchedulers.observableIO2Main())
+                .subscribe(new BaseObserver<String>() {
+                    @Override
+                    public void onSuccess(String result) {
+                         mView.showSingOutSuccess();
+                    }
+
+                    @Override
+                    public void onFailure(Throwable e, String errorMsg) {
+                        mView.showSingOutFail(errorMsg);
+                    }
+                });
     }
 }

@@ -134,17 +134,21 @@ public class Constants {
 
 
     //页面跳转类型 能够收藏（是否显示收藏）
+    public static final String PAGE_MAIN = "PAGE_MAIN";
+
     public static final String PAGE_WEB_COLLECT = "PAGE_TYPE_WEB_COLLECT";
     //页面跳转类型 不能收藏（是否显示收藏）例如：首页 banner
     public static final String PAGE_WEB_NOT_COLLECT = "PAGE_TYPE_WEB_NOT_COLLECT";
 
     public static final String PAGE_LOGIN = "PAGE_LOGIN";
-
+    public static final String PAGE_SIGN_UP = "PAGE_SIGN_UP";
     //页面隐式调用
     // 主页面
-    public static final String ACTION_MAIN_ACTIVITY="com.mao.mao_wanandroid.action.MAIN_ACTIVITY";
+    public static final String ACTION_MAIN_ACTIVITY = "com.mao.mao_wanandroid.action.MAIN_ACTIVITY";
     //详情页
-    public static final String ACTION_PAGE_DETAIL_ACTIVITY="com.mao.mao_wanandroid.action.PAGE_DETAIL_ACTIVITY";
-
-    public static final String ACTION_LOGIN_ACTIVITY="com.mao.mao_wanandroid.action.LOGIN_ACTIVITY";
+    public static final String ACTION_PAGE_DETAIL_ACTIVITY = "com.mao.mao_wanandroid.action.PAGE_DETAIL_ACTIVITY";
+    //登录页
+    public static final String ACTION_LOGIN_ACTIVITY = "com.mao.mao_wanandroid.action.LOGIN_ACTIVITY";
+    //注册页
+    public static final String ACTION_SIGN_UP_ACTIVITY = "com.mao.mao_wanandroid.action.SIGN_UP_ACTIVITY";
 }

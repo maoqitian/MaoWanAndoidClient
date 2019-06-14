@@ -145,7 +145,7 @@ public interface ApiService {
      */
     @POST("/user/register")
     @FormUrlEncoded
-    Observable<ResponseBody<LoginData>> postRegisterData(
+    Observable<ResponseBody<LoginData>> postSignUpData(
             @Field("username")String username,
             @Field("password")String password,
             @Field("repassword")String repassword
@@ -158,7 +158,7 @@ public interface ApiService {
      * 及时清理。
      */
     @GET("/user/logout/json")
-    Observable<ResponseBody<String>> getLoginOut();
+    Observable<ResponseBody<String>> getSignOut();
 
     /**
      *  收藏

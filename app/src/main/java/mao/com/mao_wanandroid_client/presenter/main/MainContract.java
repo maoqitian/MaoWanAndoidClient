@@ -14,11 +14,15 @@ import mao.com.mao_wanandroid_client.model.banner.HomePageBannerModel;
 public interface MainContract {
 
     interface MainView extends BaseView{
+        void showSingOutSuccess();
 
+        void showSingOutFail(String errorMsg);
     }
 
 
     interface MainActivityPresenter extends AbstractBasePresenter<MainView>{
+
+        void getSingOut();
 
     }
 

@@ -27,6 +27,7 @@
         </activity>
         <activity android:name=".view.main.MainActivity"
             android:theme="@style/AppTheme.NoActionBar"
+            android:launchMode="singleTask"
             >
             <intent-filter>
                 <action android:name="com.mao.mao_wanandroid.action.MAIN_ACTIVITY" />
@@ -48,6 +49,15 @@
             >
             <intent-filter>
                 <action android:name="com.mao.mao_wanandroid.action.LOGIN_ACTIVITY" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".view.login.SignUpActivity"
+            android:windowSoftInputMode="stateVisible|adjustResize"
+            android:theme="@style/AppTheme.NoActionBar"
+            >
+            <intent-filter>
+                <action android:name="com.mao.mao_wanandroid.action.SIGN_UP_ACTIVITY" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
