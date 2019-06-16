@@ -5,7 +5,6 @@ import android.content.Context;
 import javax.inject.Inject;
 
 import io.reactivex.Observable;
-import io.reactivex.Observer;
 import mao.com.mao_wanandroid_client.R;
 import mao.com.mao_wanandroid_client.base.presenter.RxBasePresenter;
 import mao.com.mao_wanandroid_client.compoent.RxBus;
@@ -15,6 +14,7 @@ import mao.com.mao_wanandroid_client.core.http.control.ProgressObserver;
 import mao.com.mao_wanandroid_client.core.http.control.RxSchedulers;
 import mao.com.mao_wanandroid_client.model.ResponseBody;
 import mao.com.mao_wanandroid_client.model.login.LoginData;
+import mao.com.mao_wanandroid_client.utils.MD5Utils;
 
 /**
  * @author maoqitian
@@ -38,12 +38,14 @@ public class LoginPresenter extends RxBasePresenter<LoginContract.LoginView> imp
 
     @Override
     public void getPostLogin(Context context,String username, String password) {
+        String encodepassword = MD5Utils.stringToMD5(password);
         Observable<ResponseBody<LoginData>> responseBodyObservable = mDataClient.postLoginData(username, password);
         responseBodyObservable.compose(RxSchedulers.observableIO2Main(context))
                 .subscribe(new ProgressObserver<LoginData>(context, context.getString(R.string.landing)) {
                     @Override
                     public void onSuccess(LoginData result) {
                         mDataClient.setLoginUserName(result.getUsername());
+                        mDataClient.setLoginPassword(encodepassword);
                         mDataClient.setLoginStatus(true);
                         mView.showLoginSuccess();
                         //发送登录状态到事件总线

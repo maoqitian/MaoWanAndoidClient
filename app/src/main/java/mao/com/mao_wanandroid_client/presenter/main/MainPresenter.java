@@ -55,6 +55,7 @@ public class MainPresenter extends RxBasePresenter<MainContract.MainView> implem
                 .subscribe(new BaseObserver<String>() {
                     @Override
                     public void onSuccess(String result) {
+                         mDataClient.setLoginStatus(false);
                          mView.showSingOutSuccess();
                     }
 

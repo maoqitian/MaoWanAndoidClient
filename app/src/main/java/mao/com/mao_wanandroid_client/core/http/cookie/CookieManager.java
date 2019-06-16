@@ -1,5 +1,8 @@
 package mao.com.mao_wanandroid_client.core.http.cookie;
 
+import android.support.annotation.NonNull;
+import android.util.Log;
+
 import java.util.List;
 
 import okhttp3.Cookie;
@@ -39,8 +42,11 @@ public class CookieManager implements CookieJar {
         persistentCookieStore.add(url,cookies);
     }
 
+    @NonNull
     @Override
-    public List<Cookie> loadForRequest(HttpUrl url) {
+    public List<Cookie> loadForRequest(@NonNull HttpUrl url) {
+        List<Cookie> cookies = persistentCookieStore.get(url);
+        Log.e("毛麒添","cookies size: "+cookies.size()+" cookies values :"+cookies.toString());
         return persistentCookieStore.get(url);
     }
 

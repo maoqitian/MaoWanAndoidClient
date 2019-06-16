@@ -30,7 +30,7 @@ public interface HomePageFirstTabContract {
         void showAutoLoginSuccess();
 
         //自动登录失败
-        void showAutoLoginFail();
+        void showAutoLoginFail(String errorMsg);
     }
 
 

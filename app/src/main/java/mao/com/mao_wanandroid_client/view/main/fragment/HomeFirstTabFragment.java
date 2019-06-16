@@ -180,11 +180,13 @@ public class HomeFirstTabFragment extends RootBaseFragment<HomeFirstTabPresenter
 
     @Override
     public void showAutoLoginSuccess() {
+        Log.e("毛麒添","自动登录成功");
         RxBus.getDefault().post(new LoginStatusEvent(true));
     }
 
     @Override
-    public void showAutoLoginFail() {
+    public void showAutoLoginFail(String errorMsg) {
+        Log.e("毛麒添","自动登录失败 ：" + errorMsg);
         //发送自动登录状态到事件总线
         RxBus.getDefault().post(new LoginStatusEvent(false));
     }

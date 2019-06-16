@@ -1,12 +1,13 @@
 package mao.com.mao_wanandroid_client.presenter.main;
 
 
+import android.util.Log;
+
 import java.util.List;
 
 import javax.inject.Inject;
 
 import io.reactivex.Observable;
-import io.reactivex.internal.observers.BlockingBaseObserver;
 import mao.com.mao_wanandroid_client.base.presenter.RxBasePresenter;
 import mao.com.mao_wanandroid_client.core.http.DataClient;
 import mao.com.mao_wanandroid_client.core.http.control.BaseObserver;
@@ -15,6 +16,7 @@ import mao.com.mao_wanandroid_client.model.ResponseBody;
 import mao.com.mao_wanandroid_client.model.banner.HomePageBannerModel;
 import mao.com.mao_wanandroid_client.model.home.HomeArticleListData;
 import mao.com.mao_wanandroid_client.model.login.LoginData;
+import mao.com.mao_wanandroid_client.utils.MD5Utils;
 
 /**
  * @author maoqitian
@@ -68,9 +70,10 @@ public class HomeFirstTabPresenter extends RxBasePresenter<HomePageFirstTabContr
                         mView.showError();
                     }
                 });
-        if(getLoginUserName()!=null){
-           //用户名不为空，自动登录
-            Observable<ResponseBody<LoginData>> loginDataObservable = mDataClient.postLoginData(mDataClient.getLoginUserName(), mDataClient.getLoginPassword());
+        if(mDataClient.getLoginStatus()){
+           //已经登录过，自动登录
+            Log.e("毛麒添","自动登录密码 ：" + MD5Utils.encodeByMD5(mDataClient.getLoginPassword()));
+            Observable<ResponseBody<LoginData>> loginDataObservable = mDataClient.postLoginData(mDataClient.getLoginUserName(), MD5Utils.encodeByMD5(mDataClient.getLoginPassword()));
             loginDataObservable.compose(RxSchedulers.observableIO2Main())
                     .subscribe(new BaseObserver<LoginData>() {
                         @Override
@@ -82,8 +85,8 @@ public class HomeFirstTabPresenter extends RxBasePresenter<HomePageFirstTabContr
 
                         @Override
                         public void onFailure(Throwable e, String errorMsg) {
-                            mDataClient.setLoginUserName("");
-                            mView.showAutoLoginFail();
+                            mDataClient.setLoginStatus(false);
+                            mView.showAutoLoginFail(errorMsg);
                         }
                     });
         }

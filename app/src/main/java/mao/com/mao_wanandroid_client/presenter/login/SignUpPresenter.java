@@ -38,11 +38,15 @@ public class SignUpPresenter extends RxBasePresenter<SignUpContract.SignUpView> 
                               .subscribe(new ProgressObserver<LoginData>(context, context.getString(R.string.registered)) {
                                   @Override
                                   public void onSuccess(LoginData result) {
+                                      //注册成功
                                        mDataClient.setLoginUserName(result.getUsername());
+                                       mDataClient.setLoginStatus(true);
+                                       RxBus.getDefault().post(new LoginStatusEvent(true));
                                        mView.showSignUpSuccess();
                                   }
                                   @Override
                                   public void onFailure(Throwable e, String errorMsg) {
+                                      mDataClient.setLoginStatus(false);
                                        mView.showSignUpFail(errorMsg);
                                   }
                               });

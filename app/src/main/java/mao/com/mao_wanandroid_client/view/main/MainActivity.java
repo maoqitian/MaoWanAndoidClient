@@ -27,6 +27,7 @@ import butterknife.BindView;
 import mao.com.mao_wanandroid_client.R;
 import mao.com.mao_wanandroid_client.application.Constants;
 import mao.com.mao_wanandroid_client.base.activity.BaseActivity;
+import mao.com.mao_wanandroid_client.core.http.cookie.CookieManager;
 import mao.com.mao_wanandroid_client.presenter.main.MainContract;
 import mao.com.mao_wanandroid_client.presenter.main.MainPresenter;
 import mao.com.mao_wanandroid_client.utils.NavHelper;
@@ -291,10 +292,11 @@ public class MainActivity extends BaseActivity<MainPresenter>
 
     @Override
     public void showLogoutView() {
-        Log.e("毛麒添","登录失败");
+        Log.e("毛麒添","显示为登录页面");
         userImageIcon = navigationView.getHeaderView(0).findViewById(R.id.imageView_user_icon);
         mUserName = navigationView.getHeaderView(0).findViewById(R.id.textView_user_name);
         mUserName.setText(getString(R.string.nav_header_title));
+        CookieManager.getInstance().clearAllCookie();
         userImageIcon.setImageDrawable(getDrawable(R.drawable.ic_default_avatar));
     }
 

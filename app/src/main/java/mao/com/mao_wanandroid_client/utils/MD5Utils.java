@@ -6,10 +6,10 @@ import java.security.NoSuchAlgorithmException;
 
 /**
  * @author maoqitian
- * @Description
+ * @Description MD5 工具类
  * @Time 2019/6/9 0009 15:05
  */
-public class MD5Utls {
+public class MD5Utils {
     /**
      * 将字符串转成MD5值
      *
