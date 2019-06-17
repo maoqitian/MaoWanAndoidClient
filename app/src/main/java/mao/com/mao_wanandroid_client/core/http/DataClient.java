@@ -10,6 +10,7 @@ import mao.com.mao_wanandroid_client.core.sp.SharedPreferenceHelper;
 import mao.com.mao_wanandroid_client.model.ResponseBody;
 import mao.com.mao_wanandroid_client.model.banner.HomePageBannerModel;
 import mao.com.mao_wanandroid_client.model.frienduser.FriendUseWebData;
+import mao.com.mao_wanandroid_client.model.home.HomeArticleData;
 import mao.com.mao_wanandroid_client.model.home.HomeArticleListData;
 import mao.com.mao_wanandroid_client.model.login.LoginData;
 import mao.com.mao_wanandroid_client.model.navigation.NavigationListData;
@@ -86,6 +87,11 @@ public class DataClient implements IHttpHelper,SharedPreferenceHelper,DbHelper {
     @Override
     public Observable<ResponseBody<List<HotKeyData>>> GetHotKeyData() {
         return null;
+    }
+
+    @Override
+    public Observable<ResponseBody<List<HomeArticleData>>> HomeTopArticleData() {
+        return mIHttpHelper.HomeTopArticleData();
     }
 
     @Override

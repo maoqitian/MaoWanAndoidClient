@@ -5,6 +5,7 @@ import java.util.List;
 import mao.com.mao_wanandroid_client.base.BaseView;
 import mao.com.mao_wanandroid_client.base.presenter.AbstractBasePresenter;
 import mao.com.mao_wanandroid_client.model.banner.HomePageBannerModel;
+import mao.com.mao_wanandroid_client.model.home.HomeArticleData;
 import mao.com.mao_wanandroid_client.model.home.HomeArticleListData;
 
 /**
@@ -21,6 +22,8 @@ public interface HomePageFirstTabContract {
          * @param bannerModelList
          */
         void showHomePageBanner(List<HomePageBannerModel> bannerModelList);
+
+        void showTopArticleList(List<HomeArticleData> homeArticleDataList);
 
         void showHomeArticleList(HomeArticleListData homeArticleListData);
 

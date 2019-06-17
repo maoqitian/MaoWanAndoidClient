@@ -14,6 +14,7 @@ import mao.com.mao_wanandroid_client.core.http.control.BaseObserver;
 import mao.com.mao_wanandroid_client.core.http.control.RxSchedulers;
 import mao.com.mao_wanandroid_client.model.ResponseBody;
 import mao.com.mao_wanandroid_client.model.banner.HomePageBannerModel;
+import mao.com.mao_wanandroid_client.model.home.HomeArticleData;
 import mao.com.mao_wanandroid_client.model.home.HomeArticleListData;
 import mao.com.mao_wanandroid_client.model.login.LoginData;
 import mao.com.mao_wanandroid_client.utils.MD5Utils;
@@ -52,9 +53,24 @@ public class HomeFirstTabPresenter extends RxBasePresenter<HomePageFirstTabContr
 
                     @Override
                     public void onFailure(Throwable e, String errorMsg) {
-                        mView.showError();
+
                     }
                 });
+
+        //置顶文章
+        Observable<ResponseBody<List<HomeArticleData>>> homeTopArticleDataObservable = mDataClient.HomeTopArticleData();
+        homeTopArticleDataObservable.compose(RxSchedulers.observableIO2Main())
+                                    .subscribe(new BaseObserver<List<HomeArticleData>>() {
+                                        @Override
+                                        public void onSuccess(List<HomeArticleData> result) {
+                                            mView.showTopArticleList(result);
+                                        }
+
+                                        @Override
+                                        public void onFailure(Throwable e, String errorMsg) {
+
+                                        }
+                                    });
 
         //首页第一个 tab  文章
         Observable<ResponseBody<HomeArticleListData>> homeArticleListDataObservable = mDataClient.HomeArticleListData(0);

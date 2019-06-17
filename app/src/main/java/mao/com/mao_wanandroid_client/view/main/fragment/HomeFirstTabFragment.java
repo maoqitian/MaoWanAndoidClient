@@ -159,11 +159,17 @@ public class HomeFirstTabFragment extends RootBaseFragment<HomeFirstTabPresenter
         mConvenientBanner.startTurning();
     }
 
+    //置顶文章
+    @Override
+    public void showTopArticleList(List<HomeArticleData> homeTopArticleList) {
+        homeArticleDataList.clear();
+        homeArticleDataList.addAll(homeTopArticleList);
+    }
+
 
     @Override
     public void showHomeArticleList(HomeArticleListData homeArticleListData) {
         Log.e("毛麒添","首页ArticleList数据 "+homeArticleListData.toString());
-        homeArticleDataList.clear();
         homeArticleDataList = homeArticleListData.getDatas();
         mAdapter.addData(homeArticleDataList);
         showNormal();

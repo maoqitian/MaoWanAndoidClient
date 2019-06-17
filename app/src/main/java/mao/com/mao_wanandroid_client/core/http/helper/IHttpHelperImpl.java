@@ -10,6 +10,7 @@ import mao.com.mao_wanandroid_client.core.http.tools.NetworkUtils;
 import mao.com.mao_wanandroid_client.model.ResponseBody;
 import mao.com.mao_wanandroid_client.model.banner.HomePageBannerModel;
 import mao.com.mao_wanandroid_client.model.frienduser.FriendUseWebData;
+import mao.com.mao_wanandroid_client.model.home.HomeArticleData;
 import mao.com.mao_wanandroid_client.model.home.HomeArticleListData;
 import mao.com.mao_wanandroid_client.model.login.LoginData;
 import mao.com.mao_wanandroid_client.model.navigation.NavigationListData;
@@ -86,6 +87,16 @@ public class IHttpHelperImpl implements IHttpHelper{
     public Observable<ResponseBody<List<HotKeyData>>> GetHotKeyData() {
         return getApiServiceGson().GetHotKeyData();
     }
+
+    /**
+     * 置顶文章
+     * @return
+     */
+    @Override
+    public Observable<ResponseBody<List<HomeArticleData>>> HomeTopArticleData() {
+        return getApiServiceGson().HomeTopArticleData();
+    }
+
     /**
      * 知识体系数据
      * @return

@@ -6,6 +6,7 @@ import io.reactivex.Observable;
 import mao.com.mao_wanandroid_client.model.ResponseBody;
 import mao.com.mao_wanandroid_client.model.banner.HomePageBannerModel;
 import mao.com.mao_wanandroid_client.model.frienduser.FriendUseWebData;
+import mao.com.mao_wanandroid_client.model.home.HomeArticleData;
 import mao.com.mao_wanandroid_client.model.home.HomeArticleListData;
 import mao.com.mao_wanandroid_client.model.login.LoginData;
 import mao.com.mao_wanandroid_client.model.navigation.NavigationListData;
@@ -56,6 +57,13 @@ public interface IHttpHelper {
      * @return
      */
     Observable<ResponseBody<List<HotKeyData>>>GetHotKeyData();
+
+    /**
+     * 置顶文章
+     * @return
+     */
+    Observable<ResponseBody<List<HomeArticleData>>>HomeTopArticleData();
+
     /**
      * 知识体系数据
      * @return
