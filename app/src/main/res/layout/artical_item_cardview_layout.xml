@@ -88,16 +88,43 @@
             />
 
         <TextView
+            android:id="@+id/tv_artical_top_tag"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="13dp"
+            android:visibility="gone"
+            android:padding="@dimen/dp_1"
+            app:layout_constraintRight_toLeftOf="@id/tv_artical_new_tag"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="MissingConstraints"
+            tools:text="置顶" />
+
+        <TextView
+            android:id="@+id/tv_artical_new_tag"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="13dp"
+            android:visibility="gone"
+            android:padding="@dimen/dp_1"
+            app:layout_constraintRight_toLeftOf="@id/tv_artical_tag"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="MissingConstraints"
+            tools:text="新" />
+
+        <TextView
             android:id="@+id/tv_artical_tag"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="13dp"
-            android:visibility="visible"
+            android:padding="@dimen/dp_1"
+            android:visibility="gone"
             app:layout_constraintRight_toLeftOf="@id/image_collect"
             app:layout_constraintTop_toTopOf="parent"
             tools:ignore="MissingConstraints"
-            tools:text="新" />
+            tools:text="项目" />
 
         <TextView
             android:id="@+id/tv_chapterName"

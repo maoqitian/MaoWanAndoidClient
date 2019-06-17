@@ -9,6 +9,10 @@
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
 
+    <string name="new_tag">New</string>
+
+    <string name="top_tag">Top</string>
+
     <string name="nav_settings">Settings</string>
     <string name="nav_collect">collect</string>
     <string name="page_home" >main_pager</string>

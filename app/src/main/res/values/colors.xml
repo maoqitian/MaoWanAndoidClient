@@ -6,7 +6,8 @@
     <color name="colorAccent_gray">#7BFFC107</color>
     <color name="colorBackground">#EEEEEE</color>
     <color name="color_white" >#FFFFFF</color>
-
+    <color name="color_green" >#3fc75f</color>
+    <color name="color_red" >#f9382a</color>
     <!--自定义loading view 颜色-->
     <color name="circle" >#FF9800</color>
     <color name="rect" >#FF5722</color>
