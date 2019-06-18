@@ -48,13 +48,17 @@ public class HomePageAdapter extends BaseQuickAdapter<HomeArticleData, HomePageV
              helper.setText(R.id.tv_artical_tag,tagsBean.getName());
              helper.setTextColor(R.id.tv_artical_tag, ContextCompat.getColor(mContext, R.color.color_green));
              helper.setBackgroundRes(R.id.tv_artical_tag,R.drawable.tag_green_background);
+         }else {
+             helper.getView(R.id.tv_artical_tag).setVisibility(View.GONE);
          }
          // tag 新
          if(item.isFresh()){
              helper.getView(R.id.tv_artical_new_tag).setVisibility(View.VISIBLE);
              helper.setText(R.id.tv_artical_new_tag,mContext.getString(R.string.new_tag));
-             helper.setTextColor(R.id.tv_artical_tag, ContextCompat.getColor(mContext, R.color.colorPrimaryDark));
-             helper.setBackgroundRes(R.id.tv_artical_tag,R.drawable.tag_red_background);
+             helper.setTextColor(R.id.tv_artical_new_tag, ContextCompat.getColor(mContext, R.color.colorPrimaryDark));
+             helper.setBackgroundRes(R.id.tv_artical_new_tag,R.drawable.tag_red_background);
+         }else {
+             helper.getView(R.id.tv_artical_new_tag).setVisibility(View.GONE);
          }
          //tag 置顶
          if(1 == item.getType()){
@@ -62,6 +66,8 @@ public class HomePageAdapter extends BaseQuickAdapter<HomeArticleData, HomePageV
              helper.setText(R.id.tv_artical_top_tag,mContext.getString(R.string.top_tag));
              helper.setTextColor(R.id.tv_artical_top_tag, ContextCompat.getColor(mContext, R.color.color_red));
              helper.setBackgroundRes(R.id.tv_artical_top_tag,R.drawable.tag_top_red_background);
+         }else {
+             helper.getView(R.id.tv_artical_top_tag).setVisibility(View.GONE);
          }
     }
 }

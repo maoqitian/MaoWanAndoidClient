@@ -132,6 +132,8 @@
             android:layout_height="wrap_content"
             android:textColor="@color/light_blue"
             android:text="okhttp"
+            android:ellipsize="end"
+            android:lines="1"
             android:layout_marginStart="10dp"
             android:layout_marginBottom="5dp"
             app:layout_constraintBottom_toBottomOf="parent"

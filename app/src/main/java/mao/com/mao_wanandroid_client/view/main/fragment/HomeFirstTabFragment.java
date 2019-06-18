@@ -170,7 +170,7 @@ public class HomeFirstTabFragment extends RootBaseFragment<HomeFirstTabPresenter
     @Override
     public void showHomeArticleList(HomeArticleListData homeArticleListData) {
         Log.e("毛麒添","首页ArticleList数据 "+homeArticleListData.toString());
-        homeArticleDataList = homeArticleListData.getDatas();
+        homeArticleDataList.addAll(homeArticleListData.getDatas());
         mAdapter.addData(homeArticleDataList);
         showNormal();
     }
