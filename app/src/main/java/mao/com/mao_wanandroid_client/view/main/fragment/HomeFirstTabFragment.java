@@ -106,7 +106,7 @@ public class HomeFirstTabFragment extends RootBaseFragment<HomeFirstTabPresenter
     }
     //首页推荐页面 init
     private void initHomePage() {
-        mAdapter = new HomePageAdapter(R.layout.artical_item_cardview_layout,homeArticleDataList);
+        mAdapter = new HomePageAdapter(R.layout.artical_item_cardview_layout);
         mAdapter.setOnItemClickListener(this);
         LinearLayout bannerViewLayout = (LinearLayout) LayoutInflater.from(_mActivity).inflate(R.layout.home_banner_view_layout,null);
         mConvenientBanner = bannerViewLayout.findViewById(R.id.convenient_banner);

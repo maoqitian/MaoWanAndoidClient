@@ -16,6 +16,13 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+        debug {
+            debuggable true //开启 debug
+            minifyEnabled false //打断点不能开启混淆
+            //shrinkResources true
+            //zipAlignEnabled true
+            //proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
     }
     //支持 Java 8
     compileOptions {
