@@ -26,6 +26,9 @@ public class ScrollAwareFABBehavior extends FloatingActionButton.Behavior{
     private static final Interpolator INTERPOLATOR = new FastOutSlowInInterpolator();
     private boolean mIsAnimatingOut = false;
 
+    public ScrollAwareFABBehavior(){
+        super();
+    }
     public ScrollAwareFABBehavior(Context context, AttributeSet attrs) {
         super();
     }
