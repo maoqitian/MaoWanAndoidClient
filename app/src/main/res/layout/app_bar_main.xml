@@ -38,6 +38,7 @@
         android:layout_gravity="bottom|end"
         android:layout_marginBottom="@dimen/dp_70"
         android:layout_marginEnd="@dimen/dp_16"
+        app:layout_behavior="mao.com.mao_wanandroid_client.widget.layoutbehavior.ScrollAwareFABBehavior"
         app:srcCompat="@drawable/ic_arrow_upward_black_24dp" />
 
     </android.support.design.widget.CoordinatorLayout>

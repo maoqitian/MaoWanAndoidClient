@@ -31,6 +31,7 @@
             app:tabTextColor="@color/font_hint"
             app:tabSelectedTextColor="@color/colorPrimary"
             app:tabIndicatorColor="@color/colorAccent"
+            app:tabGravity="center"
             app:tabMode="fixed"
             >
         </android.support.design.widget.TabLayout>
