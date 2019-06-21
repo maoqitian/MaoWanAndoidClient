@@ -32,8 +32,8 @@ ext {
             "constraint-layout"                 : "com.android.support.constraint:constraint-layout:1.1.3",
 
             //ui
-            "SmartRefreshLayout"                :"com.scwang.smartrefresh:SmartRefreshLayout:${version["smartrefreshVersion"]}",
-            "SmartRefreshHeader"                :"com.scwang.smartrefresh:SmartRefreshHeader:${version["smartrefreshVersion"]}",
+            "SmartRefreshLayout"                : "com.scwang.smartrefresh:SmartRefreshLayout:${version["smartrefreshVersion"]}",
+            "SmartRefreshHeader"                : "com.scwang.smartrefresh:SmartRefreshHeader:${version["smartrefreshVersion"]}",
             "convenientbanner"                  : "com.bigkoo:ConvenientBanner:2.1.4",
             "FlycoTabLayout_Lib"                : "com.flyco.tablayout:FlycoTabLayout_Lib:2.1.2@aar",
             "VerticalTabLayout"                 : "q.rorbin:VerticalTabLayout:1.2.5",

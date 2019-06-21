@@ -4,6 +4,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.chad.library.adapter.base.BaseViewHolder;
 
 import butterknife.BindView;
@@ -37,6 +38,8 @@ public class HomePageViewItemHolder extends BaseViewHolder {
     TextView mArticalTag;
     @BindView(R.id.tv_artical_date)
     TextView mArticalDate;
+    @BindView(R.id.image_heart_collect)
+    LottieAnimationView mCollectView;
 
     public HomePageViewItemHolder(View view) {
         super(view);

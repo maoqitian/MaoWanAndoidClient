@@ -12,6 +12,7 @@ import java.util.List;
 import mao.com.mao_wanandroid_client.R;
 import mao.com.mao_wanandroid_client.model.home.HomeArticleData;
 import mao.com.mao_wanandroid_client.view.main.hloder.HomePageViewItemHolder;
+import mao.com.mao_wanandroid_client.widget.HeartView;
 
 /**
  * @author maoqitian
@@ -36,11 +37,12 @@ public class HomePageAdapter extends BaseQuickAdapter<HomeArticleData, HomePageV
 
     @Override
     protected void convert(HomePageViewItemHolder helper, HomeArticleData item) {
-         helper.setText(R.id.tv_author_name,item.getAuthor());
-         helper.setText(R.id.tv_artical_title,item.getTitle());
-         helper.setText(R.id.tv_super_chapterName,item.getSuperChapterName());
-         helper.setText(R.id.tv_chapterName,item.getChapterName());
-         helper.setText(R.id.tv_artical_date,item.getNiceDate());
+         helper.setText(R.id.tv_author_name,item.getAuthor())
+                 .setText(R.id.tv_artical_title,item.getTitle())
+                 .setText(R.id.tv_super_chapterName,item.getSuperChapterName())
+                 .setText(R.id.tv_chapterName,item.getChapterName())
+                 .setText(R.id.tv_artical_date,item.getNiceDate())
+                 .addOnClickListener(R.id.image_heart_collect);
          // tag
          if(item.getTags().size()>0){
              helper.getView(R.id.tv_artical_tag).setVisibility(View.VISIBLE);
@@ -69,5 +71,10 @@ public class HomePageAdapter extends BaseQuickAdapter<HomeArticleData, HomePageV
          }else {
              helper.getView(R.id.tv_artical_top_tag).setVisibility(View.GONE);
          }
+
+        HeartView view = helper.getView(R.id.image_heart_collect);
+         
+
+
     }
 }

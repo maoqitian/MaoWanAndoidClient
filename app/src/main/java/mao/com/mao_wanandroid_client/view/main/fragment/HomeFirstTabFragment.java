@@ -34,6 +34,7 @@ import mao.com.mao_wanandroid_client.utils.StartDetailPage;
 import mao.com.mao_wanandroid_client.view.main.adapter.HomeLatestProjectAdapter;
 import mao.com.mao_wanandroid_client.view.main.adapter.HomePageAdapter;
 import mao.com.mao_wanandroid_client.view.main.hloder.BannerHolderView;
+import mao.com.mao_wanandroid_client.widget.HeartView;
 
 /**
  * @author maoqitian
@@ -113,6 +114,19 @@ public class HomeFirstTabFragment extends RootBaseFragment<HomeFirstTabPresenter
         bannerViewLayout.removeView(mConvenientBanner);
         mAdapter.addHeaderView(mConvenientBanner);
         mRecyclerView.setAdapter(mAdapter);
+        setHomePageItemClickListener();
+    }
+
+    private void setHomePageItemClickListener() {
+        mAdapter.setOnItemChildClickListener((adapter, view, position) -> {
+            switch (view.getId()){
+                case R.id.image_heart_collect: //点击收藏
+                    Log.e("毛麒添","点击收藏");
+                    HeartView heartView = (HeartView) view;
+                    heartView.toggleWishlisted();
+                    break;
+            }
+        });
     }
 
     private void initFirstTabRecyclerView() {
