@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="scroll_aware_fab_behavior" translatable="false">mao.com.mao_wanandroid_client.widget.layoutbehavior.ScrollAwareFABBehavior2</string>
+</resources>
