@@ -9,6 +9,8 @@ import mao.com.mao_wanandroid_client.core.http.helper.IHttpHelper;
 import mao.com.mao_wanandroid_client.core.sp.SharedPreferenceHelper;
 import mao.com.mao_wanandroid_client.model.ResponseBody;
 import mao.com.mao_wanandroid_client.model.banner.HomePageBannerModel;
+import mao.com.mao_wanandroid_client.model.collect.CollectData;
+import mao.com.mao_wanandroid_client.model.collect.CollectListData;
 import mao.com.mao_wanandroid_client.model.frienduser.FriendUseWebData;
 import mao.com.mao_wanandroid_client.model.home.HomeArticleData;
 import mao.com.mao_wanandroid_client.model.home.HomeArticleListData;
@@ -135,53 +137,53 @@ public class DataClient implements IHttpHelper,SharedPreferenceHelper,DbHelper {
     }
 
     @Override
-    public Observable<ResponseBody<HomeArticleListData>> getCollectListData(int pageNum) {
-        return null;
+    public Observable<ResponseBody<CollectListData>> getCollectListData(int pageNum) {
+        return mIHttpHelper.getCollectListData(pageNum);
     }
 
     @Override
-    public Observable<ResponseBody<HomeArticleListData>> getCollectInsideListData(int articleId) {
-        return null;
+    public Observable<ResponseBody<String>> addCollectInsideListData(int articleId) {
+        return mIHttpHelper.addCollectInsideListData(articleId);
     }
 
     @Override
-    public Observable<ResponseBody<HomeArticleListData>> getCollectOutsideListData(String title, String author, String link) {
-        return null;
+    public Observable<ResponseBody<CollectData>> addCollectOutsideListData(String title, String author, String link) {
+        return mIHttpHelper.addCollectOutsideListData(title,author,link);
     }
 
     @Override
-    public Observable<ResponseBody<HomeArticleListData>> cancelCollectArticleListData(int articleId) {
-        return null;
+    public Observable<ResponseBody<String>> cancelCollectArticleListData(int articleId) {
+        return mIHttpHelper.cancelCollectArticleListData(articleId);
     }
 
     @Override
-    public Observable<ResponseBody<HomeArticleListData>> cancelCollectArticlePageData(int articleId, int originId) {
-        return null;
+    public Observable<ResponseBody<String>> cancelCollectArticlePageData(int articleId, int originId) {
+        return mIHttpHelper.cancelCollectArticlePageData(articleId,originId);
     }
 
     @Override
     public Observable<ResponseBody<List<webBookMark>>> getWebBookMark() {
-        return null;
+        return mIHttpHelper.getWebBookMark();
     }
 
     @Override
     public Observable<ResponseBody<webBookMark>> addWebBookMark(String name, String link) {
-        return null;
+        return mIHttpHelper.addWebBookMark(name,link);
     }
 
     @Override
     public Observable<ResponseBody<webBookMark>> updateWebBookMark(String id, String name, String link) {
-        return null;
+        return mIHttpHelper.updateWebBookMark(id,name,link);
     }
 
     @Override
     public Observable<ResponseBody> deleteWebBookMark(String id) {
-        return null;
+        return mIHttpHelper.deleteWebBookMark(id);
     }
 
     @Override
     public Observable<ResponseBody<ProjectListData>> getSearchKeyWordData(int pageNum, String keyWord) {
-        return null;
+        return mIHttpHelper.getSearchKeyWordData(pageNum,keyWord);
     }
 
     @Override

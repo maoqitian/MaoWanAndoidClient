@@ -5,6 +5,8 @@ import java.util.List;
 import io.reactivex.Observable;
 import mao.com.mao_wanandroid_client.model.ResponseBody;
 import mao.com.mao_wanandroid_client.model.banner.HomePageBannerModel;
+import mao.com.mao_wanandroid_client.model.collect.CollectData;
+import mao.com.mao_wanandroid_client.model.collect.CollectListData;
 import mao.com.mao_wanandroid_client.model.frienduser.FriendUseWebData;
 import mao.com.mao_wanandroid_client.model.home.HomeArticleData;
 import mao.com.mao_wanandroid_client.model.home.HomeArticleListData;
@@ -15,12 +17,6 @@ import mao.com.mao_wanandroid_client.model.project.ProjectListData;
 import mao.com.mao_wanandroid_client.model.search.HotKeyData;
 import mao.com.mao_wanandroid_client.model.tree.KnowledgeHierarchyData;
 import mao.com.mao_wanandroid_client.model.webmark.webBookMark;
-import retrofit2.http.Field;
-import retrofit2.http.FormUrlEncoded;
-import retrofit2.http.GET;
-import retrofit2.http.POST;
-import retrofit2.http.Path;
-import retrofit2.http.Query;
 
 
 /**
@@ -122,13 +118,13 @@ public interface IHttpHelper {
      * @param pageNum 页码：拼接在链接中，从0开始。
      * @return
      */
-    Observable<ResponseBody<HomeArticleListData>>getCollectListData(int pageNum);
+    Observable<ResponseBody<CollectListData>>getCollectListData(int pageNum);
     /**
      * 收藏站内文章
      * @param articleId 文章id，拼接在链接中。
      * @return
      */
-    Observable<ResponseBody<HomeArticleListData>>getCollectInsideListData(int articleId);
+    Observable<ResponseBody<String>>addCollectInsideListData(int articleId);
     /**
      * 收藏站外文章
      * @param title
@@ -136,14 +132,14 @@ public interface IHttpHelper {
      * @param link
      * @return
      */
-    Observable<ResponseBody<HomeArticleListData>>getCollectOutsideListData(
+    Observable<ResponseBody<CollectData>>addCollectOutsideListData(
             String title, String author, String link);
     /**
      * 文章列表 取消收藏
      * @param articleId 文章id:拼接在链接上
      * @return
      */
-    Observable<ResponseBody<HomeArticleListData>>cancelCollectArticleListData(int articleId);
+    Observable<ResponseBody<String>>cancelCollectArticleListData(int articleId);
 
     /**
      * 我的收藏页面 取消收藏（该页面包含自己录入的内容）
@@ -151,7 +147,7 @@ public interface IHttpHelper {
      * @param originId  originId:列表页下发，无则为-1 （originId 代表的是你收藏之前的那篇文章本身的id； 但是收藏支持主动添加，这种情况下，没有originId则为-1）
      * @return
      */
-    Observable<ResponseBody<HomeArticleListData>>cancelCollectArticlePageData(
+    Observable<ResponseBody<String>>cancelCollectArticlePageData(
             int articleId, int originId
     );
     /**

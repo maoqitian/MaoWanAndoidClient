@@ -37,4 +37,10 @@
     <string name="login_fail">登陆失败！！！</string>
 
     <string name="passwordInconsistency">两次密码输入不一致！</string>
+
+    <string name="collection_success">收藏文章成功！</string>
+    <string name="collection_fail">收藏文章失败！</string>
+
+    <string name="cancle_collection_success">取消收藏文章成功！</string>
+    <string name="cancle_collection_fail">取消收藏文章失败！</string>
 </resources>

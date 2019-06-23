@@ -38,14 +38,13 @@ public class LoginPresenter extends RxBasePresenter<LoginContract.LoginView> imp
 
     @Override
     public void getPostLogin(Context context,String username, String password) {
-        String encodepassword = MD5Utils.stringToMD5(password);
         Observable<ResponseBody<LoginData>> responseBodyObservable = mDataClient.postLoginData(username, password);
         responseBodyObservable.compose(RxSchedulers.observableIO2Main(context))
                 .subscribe(new ProgressObserver<LoginData>(context, context.getString(R.string.landing)) {
                     @Override
                     public void onSuccess(LoginData result) {
                         mDataClient.setLoginUserName(result.getUsername());
-                        mDataClient.setLoginPassword(encodepassword);
+                        mDataClient.setLoginPassword(password);
                         mDataClient.setLoginStatus(true);
                         mView.showLoginSuccess();
                         //发送登录状态到事件总线

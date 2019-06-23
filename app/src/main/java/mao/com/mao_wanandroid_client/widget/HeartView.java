@@ -7,7 +7,7 @@ import com.airbnb.lottie.LottieAnimationView;
 
 /**
  * @author maoqitian
- * @Description:
+ * @Description: 收藏特性按钮  使用 Lottie 库
  * @date 2019/6/21 0021 17:22
  */
 public class HeartView extends LottieAnimationView {

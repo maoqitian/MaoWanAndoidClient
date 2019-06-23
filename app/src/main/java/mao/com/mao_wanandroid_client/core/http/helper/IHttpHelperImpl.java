@@ -9,6 +9,8 @@ import mao.com.mao_wanandroid_client.core.http.api.ApiService;
 import mao.com.mao_wanandroid_client.core.http.tools.NetworkUtils;
 import mao.com.mao_wanandroid_client.model.ResponseBody;
 import mao.com.mao_wanandroid_client.model.banner.HomePageBannerModel;
+import mao.com.mao_wanandroid_client.model.collect.CollectData;
+import mao.com.mao_wanandroid_client.model.collect.CollectListData;
 import mao.com.mao_wanandroid_client.model.frienduser.FriendUseWebData;
 import mao.com.mao_wanandroid_client.model.home.HomeArticleData;
 import mao.com.mao_wanandroid_client.model.home.HomeArticleListData;
@@ -178,7 +180,7 @@ public class IHttpHelperImpl implements IHttpHelper{
      * @return
      */
     @Override
-    public Observable<ResponseBody<HomeArticleListData>> getCollectListData(int pageNum) {
+    public Observable<ResponseBody<CollectListData>> getCollectListData(int pageNum) {
         return getApiServiceGson().getCollectListData(pageNum);
     }
     /**
@@ -187,7 +189,7 @@ public class IHttpHelperImpl implements IHttpHelper{
      * @return
      */
     @Override
-    public Observable<ResponseBody<HomeArticleListData>> getCollectInsideListData(int articleId) {
+    public Observable<ResponseBody<String>> addCollectInsideListData(int articleId) {
         return getApiServiceGson().getCollectInsideListData(articleId);
     }
     /**
@@ -198,8 +200,8 @@ public class IHttpHelperImpl implements IHttpHelper{
      * @return
      */
     @Override
-    public Observable<ResponseBody<HomeArticleListData>> getCollectOutsideListData(String title, String author, String link) {
-        return getCollectOutsideListData(title,author,link);
+    public Observable<ResponseBody<CollectData>> addCollectOutsideListData(String title, String author, String link) {
+        return getApiServiceGson().getCollectOutsideListData(title,author,link);
     }
     /**
      * 文章列表 取消收藏
@@ -207,7 +209,7 @@ public class IHttpHelperImpl implements IHttpHelper{
      * @return
      */
     @Override
-    public Observable<ResponseBody<HomeArticleListData>> cancelCollectArticleListData(int articleId) {
+    public Observable<ResponseBody<String>> cancelCollectArticleListData(int articleId) {
         return getApiServiceGson().cancelCollectArticleListData(articleId);
     }
     /**
@@ -217,7 +219,7 @@ public class IHttpHelperImpl implements IHttpHelper{
      * @return
      */
     @Override
-    public Observable<ResponseBody<HomeArticleListData>> cancelCollectArticlePageData(int articleId, int originId) {
+    public Observable<ResponseBody<String>> cancelCollectArticlePageData(int articleId, int originId) {
         return getApiServiceGson().cancelCollectArticlePageData(articleId,-1);
     }
     /**

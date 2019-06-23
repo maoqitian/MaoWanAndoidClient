@@ -38,8 +38,8 @@ public class HomePageViewItemHolder extends BaseViewHolder {
     TextView mArticalTag;
     @BindView(R.id.tv_artical_date)
     TextView mArticalDate;
-    @BindView(R.id.image_heart_collect)
-    LottieAnimationView mCollectView;
+    //@BindView(R.id.image_heart_collect)
+    //LottieAnimationView mCollectView;
 
     public HomePageViewItemHolder(View view) {
         super(view);

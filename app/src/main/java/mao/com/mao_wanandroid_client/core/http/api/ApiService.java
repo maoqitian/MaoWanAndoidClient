@@ -5,6 +5,8 @@ import java.util.List;
 import io.reactivex.Observable;
 import mao.com.mao_wanandroid_client.model.ResponseBody;
 import mao.com.mao_wanandroid_client.model.banner.HomePageBannerModel;
+import mao.com.mao_wanandroid_client.model.collect.CollectData;
+import mao.com.mao_wanandroid_client.model.collect.CollectListData;
 import mao.com.mao_wanandroid_client.model.frienduser.FriendUseWebData;
 import mao.com.mao_wanandroid_client.model.home.HomeArticleData;
 import mao.com.mao_wanandroid_client.model.home.HomeArticleListData;
@@ -177,7 +179,7 @@ public interface ApiService {
      * @return
      */
     @GET("/lg/collect/list/{pageNum}/json")
-    Observable<ResponseBody<HomeArticleListData>>getCollectListData(@Path("pageNum")int pageNum);
+    Observable<ResponseBody<CollectListData>>getCollectListData(@Path("pageNum")int pageNum);
 
     /**
      * 收藏站内文章
@@ -185,7 +187,7 @@ public interface ApiService {
      * @return
      */
     @POST("lg/collect/{articleId}/json")
-    Observable<ResponseBody<HomeArticleListData>>getCollectInsideListData(@Path("articleId") int articleId);
+    Observable<ResponseBody<String>>getCollectInsideListData(@Path("articleId") int articleId);
 
     /**
      * 收藏站外文章
@@ -196,7 +198,7 @@ public interface ApiService {
      */
     @POST("/lg/collect/add/json")
     @FormUrlEncoded
-    Observable<ResponseBody<HomeArticleListData>>getCollectOutsideListData(
+    Observable<ResponseBody<CollectData>>getCollectOutsideListData(
             @Field("title")String title,
             @Field("author")String author,
             @Field("link")String link
@@ -208,8 +210,7 @@ public interface ApiService {
      * @return
      */
     @POST("/lg/uncollect_originId/{articleId}/json")
-    @FormUrlEncoded
-    Observable<ResponseBody<HomeArticleListData>>cancelCollectArticleListData(
+    Observable<ResponseBody<String>>cancelCollectArticleListData(
             @Path("articleId") int articleId
     );
 
@@ -221,7 +222,7 @@ public interface ApiService {
      */
     @POST("/lg/uncollect/{articleId}/json")
     @FormUrlEncoded
-    Observable<ResponseBody<HomeArticleListData>>cancelCollectArticlePageData(
+    Observable<ResponseBody<String>>cancelCollectArticlePageData(
             @Path("articleId") int articleId,
             @Field("originId") int originId
     );

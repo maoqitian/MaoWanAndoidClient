@@ -34,17 +34,33 @@ public interface HomePageFirstTabContract {
 
         //自动登录失败
         void showAutoLoginFail(String errorMsg);
+
+        //添加文章收藏成功
+        void showAddArticalCollectStatus(int position,HomeArticleData homeArticleData,String msg);
+        //取消文章收藏成功
+        void showCancelArticalCollectStatus(int position,HomeArticleData homeArticleData,String msg);
     }
 
 
     interface HomeFirstTabFragmentPresenter extends AbstractBasePresenter<HomePageFirstTabView> {
 
-        //获取首页第一个 item 数据
+        //获取首页第一个 item 数据 (最新博文)
         void getHomeFirstPageData();
 
 
         void getHomeLatestProjectListDate();
 
-
+        /**
+         * 文章收藏
+         * @param position 文章目前在 recycleview 位置
+         * @param homeArticleData 文章信息
+         */
+        void addArticalCollect(int position,HomeArticleData homeArticleData);
+        /**
+         * 取消文章收藏
+         * @param position 文章目前在 recycleview 位置
+         * @param homeArticleData 文章信息
+         */
+        void cancelArticalCollect(int position,HomeArticleData homeArticleData);
     }
 }

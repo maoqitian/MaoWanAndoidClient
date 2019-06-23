@@ -8,6 +8,8 @@ import java.util.List;
 import javax.inject.Inject;
 
 import io.reactivex.Observable;
+import mao.com.mao_wanandroid_client.R;
+import mao.com.mao_wanandroid_client.application.MyApplication;
 import mao.com.mao_wanandroid_client.base.presenter.RxBasePresenter;
 import mao.com.mao_wanandroid_client.core.http.DataClient;
 import mao.com.mao_wanandroid_client.core.http.control.BaseObserver;
@@ -41,6 +43,26 @@ public class HomeFirstTabPresenter extends RxBasePresenter<HomePageFirstTabContr
 
     @Override
     public void getHomeFirstPageData() {
+        if(mDataClient.getLoginStatus()){
+            //已经登录过，自动登录
+            Log.e("毛麒添","自动登录密码 ：" + mDataClient.getLoginPassword());
+            Observable<ResponseBody<LoginData>> loginDataObservable = mDataClient.postLoginData(mDataClient.getLoginUserName(),mDataClient.getLoginPassword());
+            loginDataObservable.compose(RxSchedulers.observableIO2Main())
+                    .subscribe(new BaseObserver<LoginData>() {
+                        @Override
+                        public void onSuccess(LoginData result) {
+                            mDataClient.setLoginUserName(result.getUsername());
+                            mDataClient.setLoginStatus(true);
+                            mView.showAutoLoginSuccess();
+                        }
+
+                        @Override
+                        public void onFailure(Throwable e, String errorMsg) {
+                            mDataClient.setLoginStatus(false);
+                            mView.showAutoLoginFail(errorMsg);
+                        }
+                    });
+        }
         //首页第一个 tab  banner
         Observable<ResponseBody<List<HomePageBannerModel>>> responseBodyObservable = mDataClient.GetHomePageBannerData();
         //获取 首页Banner 数据
@@ -86,27 +108,6 @@ public class HomeFirstTabPresenter extends RxBasePresenter<HomePageFirstTabContr
                         mView.showError();
                     }
                 });
-        if(mDataClient.getLoginStatus()){
-           //已经登录过，自动登录
-            Log.e("毛麒添","自动登录密码 ：" + MD5Utils.encodeByMD5(mDataClient.getLoginPassword()));
-            Observable<ResponseBody<LoginData>> loginDataObservable = mDataClient.postLoginData(mDataClient.getLoginUserName(), MD5Utils.encodeByMD5(mDataClient.getLoginPassword()));
-            loginDataObservable.compose(RxSchedulers.observableIO2Main())
-                    .subscribe(new BaseObserver<LoginData>() {
-                        @Override
-                        public void onSuccess(LoginData result) {
-                            mDataClient.setLoginUserName(result.getUsername());
-                            mDataClient.setLoginStatus(true);
-                            mView.showAutoLoginSuccess();
-                        }
-
-                        @Override
-                        public void onFailure(Throwable e, String errorMsg) {
-                            mDataClient.setLoginStatus(false);
-                            mView.showAutoLoginFail(errorMsg);
-                        }
-                    });
-        }
-
     }
 
     //首页第二个 tab
@@ -126,4 +127,43 @@ public class HomeFirstTabPresenter extends RxBasePresenter<HomePageFirstTabContr
                     }
                 });
     }
+
+    @Override
+    public void addArticalCollect(int position,HomeArticleData homeArticleData) {
+        Observable<ResponseBody<String>> responseBodyObservable = mDataClient.addCollectInsideListData(homeArticleData.getId());
+        responseBodyObservable.compose(RxSchedulers.observableIO2Main())
+                              .subscribe(new BaseObserver<String>() {
+                                  @Override
+                                  public void onSuccess(String result) {
+                                      homeArticleData.setCollect(true);
+                                      mView.showAddArticalCollectStatus(position,homeArticleData, MyApplication.getInstance().getApplicationContext().getString(R.string.collection_success));
+                                  }
+
+                                  @Override
+                                  public void onFailure(Throwable e, String errorMsg) {
+                                      mView.showAddArticalCollectStatus(position,null, MyApplication.getInstance().getApplicationContext().getString(R.string.collection_fail));
+                                  }
+                              });
+    }
+
+    @Override
+    public void cancelArticalCollect(int position, HomeArticleData homeArticleData) {
+        Observable<ResponseBody<String>> responseBodyObservable = mDataClient.cancelCollectArticleListData(homeArticleData.getId());
+        responseBodyObservable.compose(RxSchedulers.observableIO2Main())
+                              .subscribe(new BaseObserver<String>() {
+                                  @Override
+                                  public void onSuccess(String result) {
+                                      homeArticleData.setCollect(false);
+                                      mView.showCancelArticalCollectStatus(position,homeArticleData, MyApplication.getInstance().getApplicationContext().getString(R.string.cancle_collection_success));
+                                  }
+
+                                  @Override
+                                  public void onFailure(Throwable e, String errorMsg) {
+                                      mView.showCancelArticalCollectStatus(position,null, MyApplication.getInstance().getApplicationContext().getString(R.string.cancle_collection_fail));
+                                  }
+                              });
+
+    }
+
+
 }

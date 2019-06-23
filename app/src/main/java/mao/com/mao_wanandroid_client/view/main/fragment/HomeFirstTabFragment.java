@@ -1,14 +1,18 @@
 package mao.com.mao_wanandroid_client.view.main.fragment;
 
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.bigkoo.convenientbanner.ConvenientBanner;
 import com.bigkoo.convenientbanner.holder.CBViewHolderCreator;
 import com.bigkoo.convenientbanner.holder.Holder;
@@ -31,6 +35,7 @@ import mao.com.mao_wanandroid_client.model.home.HomeArticleListData;
 import mao.com.mao_wanandroid_client.presenter.main.HomeFirstTabPresenter;
 import mao.com.mao_wanandroid_client.presenter.main.HomePageFirstTabContract;
 import mao.com.mao_wanandroid_client.utils.StartDetailPage;
+import mao.com.mao_wanandroid_client.view.main.MainActivity;
 import mao.com.mao_wanandroid_client.view.main.adapter.HomeLatestProjectAdapter;
 import mao.com.mao_wanandroid_client.view.main.adapter.HomePageAdapter;
 import mao.com.mao_wanandroid_client.view.main.hloder.BannerHolderView;
@@ -119,14 +124,30 @@ public class HomeFirstTabFragment extends RootBaseFragment<HomeFirstTabPresenter
 
     private void setHomePageItemClickListener() {
         mAdapter.setOnItemChildClickListener((adapter, view, position) -> {
+            HomeArticleData homeArticleData= (HomeArticleData) adapter.getItem(position);
             switch (view.getId()){
-                case R.id.image_heart_collect: //点击收藏
+                case R.id.image_collect: //点击收藏
                     Log.e("毛麒添","点击收藏");
-                    HeartView heartView = (HeartView) view;
-                    heartView.toggleWishlisted();
+                    if(homeArticleData!=null){
+                        addOrCancelCollect(position,homeArticleData);
+                    }
                     break;
             }
         });
+    }
+    //收藏或者取消收藏
+    private void addOrCancelCollect(int position,HomeArticleData homeArticleData) {
+        if(!mPresenter.getLoginStatus()){
+            StartDetailPage.start(_mActivity,null, Constants.PAGE_LOGIN,Constants.ACTION_LOGIN_ACTIVITY);
+            return;
+        }
+        if(!homeArticleData.isCollect()){
+            //收藏
+            mPresenter.addArticalCollect(position,homeArticleData);
+        }else {
+            //取消收藏
+            mPresenter.cancelArticalCollect(position,homeArticleData);
+        }
     }
 
     private void initFirstTabRecyclerView() {
@@ -209,6 +230,23 @@ public class HomeFirstTabFragment extends RootBaseFragment<HomeFirstTabPresenter
         Log.e("毛麒添","自动登录失败 ：" + errorMsg);
         //发送自动登录状态到事件总线
         RxBus.getDefault().post(new LoginStatusEvent(false));
+    }
+
+    @Override
+    public void showAddArticalCollectStatus(int position,HomeArticleData homeArticleData,String msg) {
+        showCollectStatus(position,homeArticleData,msg);
+    }
+    //显示收藏 或取消 收藏之后的状态
+    private void showCollectStatus(int position,HomeArticleData homeArticleData,String msg){
+        if(homeArticleData!=null && mAdapter!=null){
+            mAdapter.setData(position,homeArticleData);
+        }
+        Toast.makeText(_mActivity,msg,Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void showCancelArticalCollectStatus(int position, HomeArticleData homeArticleData,String msg) {
+        showCollectStatus(position,homeArticleData,msg);
     }
 
 

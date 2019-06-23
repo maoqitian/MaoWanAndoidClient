@@ -1,10 +1,13 @@
 package mao.com.mao_wanandroid_client.view.main.adapter;
 
 
+import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
 import android.view.View;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 
 import java.util.List;
@@ -42,7 +45,9 @@ public class HomePageAdapter extends BaseQuickAdapter<HomeArticleData, HomePageV
                  .setText(R.id.tv_super_chapterName,item.getSuperChapterName())
                  .setText(R.id.tv_chapterName,item.getChapterName())
                  .setText(R.id.tv_artical_date,item.getNiceDate())
-                 .addOnClickListener(R.id.image_heart_collect);
+                 .addOnClickListener(R.id.image_collect)
+                 .addOnClickListener(R.id.tv_super_chapterName)
+                 .addOnClickListener(R.id.tv_chapterName);
          // tag
          if(item.getTags().size()>0){
              helper.getView(R.id.tv_artical_tag).setVisibility(View.VISIBLE);
@@ -71,9 +76,11 @@ public class HomePageAdapter extends BaseQuickAdapter<HomeArticleData, HomePageV
          }else {
              helper.getView(R.id.tv_artical_top_tag).setVisibility(View.GONE);
          }
-
-        HeartView view = helper.getView(R.id.image_heart_collect);
-         
+         if(item.isCollect()){
+             helper.setImageDrawable(R.id.image_collect,ContextCompat.getDrawable(mContext,R.drawable.ic_favorite_collect_24dp));
+         }else {
+             helper.setImageDrawable(R.id.image_collect,ContextCompat.getDrawable(mContext,R.drawable.ic_favorite_gray_24dp));
+         }
 
 
     }

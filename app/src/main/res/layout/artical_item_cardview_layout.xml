@@ -24,7 +24,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginEnd="269dp"
             android:src="@drawable/ic_user_circle_solid"
-            app:layout_constraintBottom_toTopOf="@+id/tv_artical_title"
+
             app:layout_constraintRight_toLeftOf="@id/tv_author_name"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -44,15 +44,22 @@
             app:layout_constraintVertical_bias="0.0"
             tools:ignore="MissingConstraints" />
 
-        <mao.com.mao_wanandroid_client.widget.HeartView
-            android:id="@+id/image_heart_collect"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        <!--<FrameLayout
+            android:layout_width="@dimen/dp_60"
+            android:layout_height="@dimen/dp_50"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:lottie_rawRes="@raw/heart"
-            android:scaleType="centerCrop"
-            />
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="16dp"
+            >
+            <mao.com.mao_wanandroid_client.widget.HeartView
+                android:id="@+id/image_heart_collect"
+                android:layout_width="@dimen/dp_96"
+                android:layout_height="@dimen/dp_96"
+                android:layout_marginTop="-36dp"
+                android:layout_marginStart="-16dp"
+                app:lottie_rawRes="@raw/heart" />
+        </FrameLayout>-->
 
         <ImageView
             android:id="@+id/image_collect"
@@ -61,7 +68,7 @@
             android:layout_marginTop="5dp"
             android:layout_marginEnd="16dp"
             android:src="@drawable/ic_favorite_gray_24dp"
-            app:layout_constraintRight_toLeftOf="@id/image_heart_collect"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:ignore="MissingConstraints" />
 
@@ -81,7 +88,7 @@
             app:layout_constraintBottom_toBottomOf="@+id/tv_artical_date"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/image_collect"
+            app:layout_constraintTop_toBottomOf="@+id/image_author_icon"
             tools:ignore="MissingConstraints" />
 
         <TextView
@@ -102,10 +109,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:layout_marginEnd="13dp"
+            android:layout_marginStart="13dp"
             android:visibility="gone"
             android:padding="@dimen/dp_1"
-            app:layout_constraintRight_toLeftOf="@id/tv_artical_new_tag"
+            app:layout_constraintLeft_toRightOf="@id/tv_author_name"
             app:layout_constraintTop_toTopOf="parent"
             tools:ignore="MissingConstraints"
             tools:text="置顶" />
@@ -115,10 +122,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:layout_marginEnd="13dp"
+            android:layout_marginStart="13dp"
             android:visibility="gone"
             android:padding="@dimen/dp_1"
-            app:layout_constraintRight_toLeftOf="@id/tv_artical_tag"
+            app:layout_constraintLeft_toRightOf="@id/tv_artical_top_tag"
             app:layout_constraintTop_toTopOf="parent"
             tools:ignore="MissingConstraints"
             tools:text="新" />
@@ -128,10 +135,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:layout_marginEnd="13dp"
+            android:layout_marginStart="13dp"
             android:padding="@dimen/dp_1"
             android:visibility="gone"
-            app:layout_constraintRight_toLeftOf="@id/image_collect"
+            app:layout_constraintLeft_toRightOf="@id/tv_artical_new_tag"
             app:layout_constraintTop_toTopOf="parent"
             tools:ignore="MissingConstraints"
             tools:text="项目" />
