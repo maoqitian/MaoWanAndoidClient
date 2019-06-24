@@ -1,17 +1,16 @@
 package mao.com.mao_wanandroid_client.presenter.main;
 
 
-import java.util.List;
 
 import javax.inject.Inject;
 
 import io.reactivex.Observable;
-import io.reactivex.internal.observers.BlockingBaseObserver;
 import mao.com.mao_wanandroid_client.base.presenter.RxBasePresenter;
 import mao.com.mao_wanandroid_client.core.http.DataClient;
+import mao.com.mao_wanandroid_client.core.http.control.BaseObserver;
 import mao.com.mao_wanandroid_client.core.http.control.RxSchedulers;
 import mao.com.mao_wanandroid_client.model.ResponseBody;
-import mao.com.mao_wanandroid_client.model.banner.HomePageBannerModel;
+import mao.com.mao_wanandroid_client.model.home.HomeArticleListData;
 
 /**
  * @author maoqitian
@@ -32,5 +31,22 @@ public class HomeSecondTabPresenter extends RxBasePresenter<HomePageSecondTabCon
     @Override
     public void attachView(HomePageSecondTabContract.HomePageSecondTabView view) {
         super.attachView(view);
+    }
+
+    @Override
+    public void getHomeLatestProjectListDate() {
+        Observable<ResponseBody<HomeArticleListData>> responseBodyObservable = mDataClient.HomeArticleListProjectData(0);
+        responseBodyObservable.compose(RxSchedulers.observableIO2Main())
+                .subscribe(new BaseObserver<HomeArticleListData>() {
+                    @Override
+                    public void onSuccess(HomeArticleListData result) {
+                        mView.showHomeLatestProjectList(result);
+                    }
+
+                    @Override
+                    public void onFailure(Throwable e, String errorMsg) {
+
+                    }
+                });
     }
 }

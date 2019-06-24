@@ -28,6 +28,7 @@ import mao.com.mao_wanandroid_client.R;
 import mao.com.mao_wanandroid_client.application.Constants;
 import mao.com.mao_wanandroid_client.base.fragment.RootBaseFragment;
 import mao.com.mao_wanandroid_client.compoent.RxBus;
+import mao.com.mao_wanandroid_client.compoent.event.AutoLoginStatusEvent;
 import mao.com.mao_wanandroid_client.compoent.event.LoginStatusEvent;
 import mao.com.mao_wanandroid_client.model.banner.HomePageBannerModel;
 import mao.com.mao_wanandroid_client.model.home.HomeArticleData;
@@ -91,18 +92,21 @@ public class HomeFirstTabFragment extends RootBaseFragment<HomeFirstTabPresenter
             mTabTitle = getArguments().getString("tabName");
             Log.e("毛麒添","首页mTabTitle "+mTabTitle);
         }
-        if(getString(R.string.page_home_recommend).equals(mTabTitle)){
+
+        showLoading();
+        mPresenter.getHomeFirstPageData(false);
+        /*if(getString(R.string.page_home_recommend).equals(mTabTitle)){
             //获取 首页第一个tab 数据
             initHomePage();
-            mPresenter.getHomeFirstPageData();
             showLoading();
+            mPresenter.getHomeFirstPageData(false);
         }else if (getString(R.string.latest_project).equals(mTabTitle)){
             initLatestProjectPage();
-            mPresenter.getHomeLatestProjectListDate();
             showLoading();
+            mPresenter.getHomeLatestProjectListDate();
         }else {
             Log.e("毛麒添","加载错误");
-        }
+        }*/
     }
     //最新项目页面 init
     private void initLatestProjectPage() {
@@ -160,6 +164,7 @@ public class HomeFirstTabFragment extends RootBaseFragment<HomeFirstTabPresenter
         // specify an adapter
         homeArticleDataList = new ArrayList<>();
         mBannerModelList = new ArrayList<>();
+        initHomePage();
     }
 
     //ConvenientBanner item 点击回调
@@ -174,8 +179,12 @@ public class HomeFirstTabFragment extends RootBaseFragment<HomeFirstTabPresenter
     }
 
     @Override
-    public void showHomePageBanner(List<HomePageBannerModel> bannerModelList) {
+    public void showHomePageBanner(boolean isRefreshData,List<HomePageBannerModel> bannerModelList) {
+        /*if (isRefreshData){
+            showLoading();
+        }*/
         Log.e("毛麒添","首页banner 数据 "+bannerModelList.toString());
+        mBannerModelList.clear();
         mBannerModelList = bannerModelList;
         mConvenientBanner.setPages(new CBViewHolderCreator() {
             @Override
@@ -201,13 +210,18 @@ public class HomeFirstTabFragment extends RootBaseFragment<HomeFirstTabPresenter
         homeArticleDataList.addAll(homeTopArticleList);
     }
 
-
+    // 首页文章数据
     @Override
-    public void showHomeArticleList(HomeArticleListData homeArticleListData) {
-        Log.e("毛麒添","首页ArticleList数据 "+homeArticleListData.toString());
-        homeArticleDataList.addAll(homeArticleListData.getDatas());
-        mAdapter.addData(homeArticleDataList);
-        showNormal();
+    public void showHomeArticleList(boolean isRefreshData,HomeArticleListData homeArticleListData) {
+        if(isRefreshData){
+            homeArticleDataList.addAll(homeArticleListData.getDatas());
+            mAdapter.replaceData(homeArticleDataList);
+        }else {
+            Log.e("毛麒添","首页ArticleList数据 "+homeArticleListData.toString());
+            homeArticleDataList.addAll(homeArticleListData.getDatas());
+            mAdapter.addData(homeArticleDataList);
+            showNormal();
+        }
     }
 
     @Override
@@ -222,7 +236,7 @@ public class HomeFirstTabFragment extends RootBaseFragment<HomeFirstTabPresenter
     @Override
     public void showAutoLoginSuccess() {
         Log.e("毛麒添","自动登录成功");
-        RxBus.getDefault().post(new LoginStatusEvent(true));
+        RxBus.getDefault().post(new AutoLoginStatusEvent(true));
     }
 
     @Override
@@ -255,5 +269,10 @@ public class HomeFirstTabFragment extends RootBaseFragment<HomeFirstTabPresenter
         //Toast.makeText(_mActivity,"首页数据 被点击 BaseQuickAdapter :"+adapter.getItem(position).toString(),Toast.LENGTH_SHORT).show();
         HomeArticleData homeArticleData = (HomeArticleData) adapter.getItem(position);
         StartDetailPage.start(_mActivity,homeArticleData, Constants.PAGE_WEB_COLLECT,Constants.ACTION_PAGE_DETAIL_ACTIVITY);
+    }
+
+    @Override
+    public void reload() {
+        super.reload();
     }
 }

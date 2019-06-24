@@ -8,6 +8,7 @@ import io.reactivex.functions.Consumer;
 import io.reactivex.functions.Predicate;
 import mao.com.mao_wanandroid_client.base.presenter.RxBasePresenter;
 import mao.com.mao_wanandroid_client.compoent.RxBus;
+import mao.com.mao_wanandroid_client.compoent.event.AutoLoginStatusEvent;
 import mao.com.mao_wanandroid_client.compoent.event.LoginStatusEvent;
 import mao.com.mao_wanandroid_client.core.http.DataClient;
 import mao.com.mao_wanandroid_client.core.http.control.BaseObserver;
@@ -44,7 +45,17 @@ public class MainPresenter extends RxBasePresenter<MainContract.MainView> implem
                         mView.showLogoutView();
                     }
                 }));
-
+        //自动登录状态订阅，登录成功之后改变侧边栏显示
+        addEventSubscribe(RxBus.getDefault().toFlowable(AutoLoginStatusEvent.class)
+                .subscribe(AutoLoginStatusEvent -> {
+                    if (AutoLoginStatusEvent.isLogin()) {
+                        //登录成功
+                        mView.showLoginView();
+                    } else {
+                        //登录失败
+                        mView.showLogoutView();
+                    }
+                }));
 
     }
     //退出登录

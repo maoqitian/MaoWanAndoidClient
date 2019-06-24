@@ -28,6 +28,7 @@ import mao.com.mao_wanandroid_client.base.fragment.RootBaseFragment;
 import mao.com.mao_wanandroid_client.model.banner.HomePageBannerModel;
 import mao.com.mao_wanandroid_client.presenter.main.HomePageContract;
 import mao.com.mao_wanandroid_client.presenter.main.HomePagePresenter;
+import mao.com.mao_wanandroid_client.presenter.main.HomeSecondTabPresenter;
 import mao.com.mao_wanandroid_client.utils.ToolsUtils;
 import mao.com.mao_wanandroid_client.view.main.adapter.HomePageAdapter;
 import mao.com.mao_wanandroid_client.view.main.adapter.HomeTabPageAdapter;
@@ -82,9 +83,11 @@ public class HomePageFragment extends BaseFragment<HomePagePresenter>
         mTitle.add(getString(R.string.page_home_recommend));
         mTitle.add(getString(R.string.latest_project));
 
-        for (String title:mTitle) {
+        /*for (String title:mTitle) {
             mFragments.add(HomeFirstTabFragment.newInstance(title));
-        }
+        }*/
+        mFragments.add(HomeFirstTabFragment.newInstance(mTitle.get(0)));
+        mFragments.add(HomeSecondTabFragment.newInstance(mTitle.get(1)));
         ToolsUtils.setIndicatorWidth(mHomeTab,160);
        /* mEhomeTab.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override

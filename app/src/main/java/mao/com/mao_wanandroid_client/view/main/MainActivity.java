@@ -27,6 +27,8 @@ import butterknife.BindView;
 import mao.com.mao_wanandroid_client.R;
 import mao.com.mao_wanandroid_client.application.Constants;
 import mao.com.mao_wanandroid_client.base.activity.BaseActivity;
+import mao.com.mao_wanandroid_client.compoent.RxBus;
+import mao.com.mao_wanandroid_client.compoent.event.LoginStatusEvent;
 import mao.com.mao_wanandroid_client.core.http.cookie.CookieManager;
 import mao.com.mao_wanandroid_client.presenter.main.MainContract;
 import mao.com.mao_wanandroid_client.presenter.main.MainPresenter;
@@ -302,6 +304,7 @@ public class MainActivity extends BaseActivity<MainPresenter>
 
     @Override
     public void showSingOutSuccess() {
+        RxBus.getDefault().post(new LoginStatusEvent(false));
         showLogoutView();
     }
 

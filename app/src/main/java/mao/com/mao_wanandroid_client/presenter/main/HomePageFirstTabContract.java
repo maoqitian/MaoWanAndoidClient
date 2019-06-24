@@ -21,11 +21,11 @@ public interface HomePageFirstTabContract {
          * 显示首页banner 数据
          * @param bannerModelList
          */
-        void showHomePageBanner(List<HomePageBannerModel> bannerModelList);
+        void showHomePageBanner(boolean isRefreshData,List<HomePageBannerModel> bannerModelList);
 
         void showTopArticleList(List<HomeArticleData> homeArticleDataList);
 
-        void showHomeArticleList(HomeArticleListData homeArticleListData);
+        void showHomeArticleList(boolean isRefreshData,HomeArticleListData homeArticleListData);
 
         void showHomeLatestProjectList(HomeArticleListData homeArticleListData);
 
@@ -44,8 +44,13 @@ public interface HomePageFirstTabContract {
 
     interface HomeFirstTabFragmentPresenter extends AbstractBasePresenter<HomePageFirstTabView> {
 
-        //获取首页第一个 item 数据 (最新博文)
-        void getHomeFirstPageData();
+
+
+        /**
+         * 获取首页第一个 item 数据 (最新博文)
+         * @param isRefreshData 是否刷新数据 true 刷新  false 正常加载
+         */
+        void getHomeFirstPageData(boolean isRefreshData);
 
 
         void getHomeLatestProjectListDate();

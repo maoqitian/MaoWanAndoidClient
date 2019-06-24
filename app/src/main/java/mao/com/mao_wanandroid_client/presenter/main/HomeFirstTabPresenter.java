@@ -8,9 +8,12 @@ import java.util.List;
 import javax.inject.Inject;
 
 import io.reactivex.Observable;
+import io.reactivex.functions.Consumer;
 import mao.com.mao_wanandroid_client.R;
 import mao.com.mao_wanandroid_client.application.MyApplication;
 import mao.com.mao_wanandroid_client.base.presenter.RxBasePresenter;
+import mao.com.mao_wanandroid_client.compoent.RxBus;
+import mao.com.mao_wanandroid_client.compoent.event.LoginStatusEvent;
 import mao.com.mao_wanandroid_client.core.http.DataClient;
 import mao.com.mao_wanandroid_client.core.http.control.BaseObserver;
 import mao.com.mao_wanandroid_client.core.http.control.RxSchedulers;
@@ -19,7 +22,7 @@ import mao.com.mao_wanandroid_client.model.banner.HomePageBannerModel;
 import mao.com.mao_wanandroid_client.model.home.HomeArticleData;
 import mao.com.mao_wanandroid_client.model.home.HomeArticleListData;
 import mao.com.mao_wanandroid_client.model.login.LoginData;
-import mao.com.mao_wanandroid_client.utils.MD5Utils;
+
 
 /**
  * @author maoqitian
@@ -39,10 +42,23 @@ public class HomeFirstTabPresenter extends RxBasePresenter<HomePageFirstTabContr
     @Override
     public void attachView(HomePageFirstTabContract.HomePageFirstTabView view) {
         super.attachView(view);
+        addEventSubscribe(RxBus.getDefault().toFlowable(LoginStatusEvent.class).subscribe(new Consumer<LoginStatusEvent>() {
+            @Override
+            public void accept(LoginStatusEvent loginStatusEvent) throws Exception {
+                // 登录成功 重新加载数据
+                Log.e("毛麒添","登录事件");
+                if(loginStatusEvent.isLogin()){
+                    getAllHomePageData(loginStatusEvent.isLogin());
+                }else {
+                    getAllHomePageData(false);
+                }
+            }
+        }));
+
     }
 
     @Override
-    public void getHomeFirstPageData() {
+    public void getHomeFirstPageData(boolean isRefreshData) {
         if(mDataClient.getLoginStatus()){
             //已经登录过，自动登录
             Log.e("毛麒添","自动登录密码 ：" + mDataClient.getLoginPassword());
@@ -55,7 +71,6 @@ public class HomeFirstTabPresenter extends RxBasePresenter<HomePageFirstTabContr
                             mDataClient.setLoginStatus(true);
                             mView.showAutoLoginSuccess();
                         }
-
                         @Override
                         public void onFailure(Throwable e, String errorMsg) {
                             mDataClient.setLoginStatus(false);
@@ -63,6 +78,10 @@ public class HomeFirstTabPresenter extends RxBasePresenter<HomePageFirstTabContr
                         }
                     });
         }
+        getAllHomePageData(isRefreshData);
+    }
+
+    private void getAllHomePageData(boolean isRefreshData) {
         //首页第一个 tab  banner
         Observable<ResponseBody<List<HomePageBannerModel>>> responseBodyObservable = mDataClient.GetHomePageBannerData();
         //获取 首页Banner 数据
@@ -70,7 +89,7 @@ public class HomeFirstTabPresenter extends RxBasePresenter<HomePageFirstTabContr
                 .subscribe(new BaseObserver<List<HomePageBannerModel>>() {
                     @Override
                     public void onSuccess(List<HomePageBannerModel> result) {
-                        mView.showHomePageBanner(result);
+                        mView.showHomePageBanner(isRefreshData,result);
                     }
 
                     @Override
@@ -100,7 +119,7 @@ public class HomeFirstTabPresenter extends RxBasePresenter<HomePageFirstTabContr
                 .subscribe(new BaseObserver<HomeArticleListData>() {
                     @Override
                     public void onSuccess(HomeArticleListData result) {
-                        mView.showHomeArticleList(result);
+                        mView.showHomeArticleList(isRefreshData,result);
                     }
 
                     @Override
