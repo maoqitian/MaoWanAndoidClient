@@ -32,7 +32,7 @@ import mao.com.mao_wanandroid_client.model.login.LoginData;
 public class HomeFirstTabPresenter extends RxBasePresenter<HomePageFirstTabContract.HomePageFirstTabView> implements HomePageFirstTabContract.HomeFirstTabFragmentPresenter {
 
     private DataClient mDataClient;
-
+    private int curPage = 0;//当前页码 实际下拉加载更多获取数据 填入该页面即可
     @Inject
     public HomeFirstTabPresenter(DataClient dataClient) {
         super(dataClient);
@@ -113,12 +113,18 @@ public class HomeFirstTabPresenter extends RxBasePresenter<HomePageFirstTabContr
                                         }
                                     });
 
+
+        getHomeArticleListData(0,isRefreshData);
+    }
+
+    private void getHomeArticleListData(int pageNum,boolean isRefreshData) {
         //首页第一个 tab  文章
-        Observable<ResponseBody<HomeArticleListData>> homeArticleListDataObservable = mDataClient.HomeArticleListData(0);
+        Observable<ResponseBody<HomeArticleListData>> homeArticleListDataObservable = mDataClient.HomeArticleListData(pageNum);
         homeArticleListDataObservable.compose(RxSchedulers.observableIO2Main())
                 .subscribe(new BaseObserver<HomeArticleListData>() {
                     @Override
                     public void onSuccess(HomeArticleListData result) {
+                        curPage = result.getCurPage();
                         mView.showHomeArticleList(isRefreshData,result);
                     }
 
@@ -130,7 +136,7 @@ public class HomeFirstTabPresenter extends RxBasePresenter<HomePageFirstTabContr
     }
 
     //首页第二个 tab
-    @Override
+   /* @Override
     public void getHomeLatestProjectListDate() {
         Observable<ResponseBody<HomeArticleListData>> responseBodyObservable = mDataClient.HomeArticleListProjectData(0);
         responseBodyObservable.compose(RxSchedulers.observableIO2Main())
@@ -145,7 +151,7 @@ public class HomeFirstTabPresenter extends RxBasePresenter<HomePageFirstTabContr
 
                     }
                 });
-    }
+    }*/
 
     @Override
     public void addArticalCollect(int position,HomeArticleData homeArticleData) {
@@ -184,5 +190,14 @@ public class HomeFirstTabPresenter extends RxBasePresenter<HomePageFirstTabContr
 
     }
 
-
+    //下拉刷新
+    @Override
+    public void getRefreshPage() {
+        getAllHomePageData(true);
+    }
+    //上拉加载更多
+    @Override
+    public void getLoadMorePage() {
+        getHomeArticleListData(curPage,false);
+    }
 }

@@ -27,7 +27,7 @@ public interface HomePageFirstTabContract {
 
         void showHomeArticleList(boolean isRefreshData,HomeArticleListData homeArticleListData);
 
-        void showHomeLatestProjectList(HomeArticleListData homeArticleListData);
+        //void showHomeLatestProjectList(HomeArticleListData homeArticleListData);
 
         //自动登录成功
         void showAutoLoginSuccess();
@@ -53,7 +53,7 @@ public interface HomePageFirstTabContract {
         void getHomeFirstPageData(boolean isRefreshData);
 
 
-        void getHomeLatestProjectListDate();
+        //void getHomeLatestProjectListDate();
 
         /**
          * 文章收藏
@@ -67,5 +67,10 @@ public interface HomePageFirstTabContract {
          * @param homeArticleData 文章信息
          */
         void cancelArticalCollect(int position,HomeArticleData homeArticleData);
+
+        //下拉刷新页面
+        void getRefreshPage();
+        //上拉加载更多
+        void getLoadMorePage();
     }
 }
