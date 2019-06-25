@@ -134,6 +134,7 @@ public class MainActivity extends BaseActivity<MainPresenter>
         userImageIcon.setOnClickListener(this);
         bottomNavigationView.setItemIconSize(70);
         bottomNavigationView.setOnNavigationItemSelectedListener(this);
+
         Menu menu = bottomNavigationView.getMenu();
         menu.performIdentifierAction(R.id.tab_main,0);
     }

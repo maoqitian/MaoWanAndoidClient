@@ -44,6 +44,9 @@
     <dimen name="sp_48">48sp</dimen>
     <dimen name="dp_32">32dp</dimen>
 
+    <!--bottomNavigationView 字体大小-->
+    <dimen name="design_bottom_navigation_active_text_size">11sp</dimen>
+    <dimen name="design_bottom_navigation_text_size">11sp</dimen>
 
 
 </resources>
