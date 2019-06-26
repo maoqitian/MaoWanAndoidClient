@@ -1,6 +1,7 @@
 package mao.com.mao_wanandroid_client.view.main.adapter;
 
 import android.support.annotation.Nullable;
+import android.support.v4.content.ContextCompat;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 
@@ -33,11 +34,19 @@ public class HomeLatestProjectAdapter extends BaseQuickAdapter<HomeArticleData, 
 
     @Override
     protected void convert(HomeLatestProjectHolder helper, HomeArticleData item) {
-         helper.setText(R.id.tv_project_title,item.getTitle());
-         helper.setText(R.id.tv_project_desc,item.getDesc());
-         helper.setText(R.id.tv_project_tag,item.getChapterName());
-         helper.setText(R.id.tv_project_date,item.getNiceDate());
-         helper.setText(R.id.tv_project_author_name,item.getAuthor());
+         helper.setText(R.id.tv_project_title,item.getTitle())
+               .setText(R.id.tv_project_desc,item.getDesc())
+               .setText(R.id.tv_project_tag,item.getChapterName())
+               .setText(R.id.tv_project_date,item.getNiceDate())
+               .setText(R.id.tv_project_author_name,item.getAuthor())
+               .addOnClickListener(R.id.image_project_collect) //项目收藏
+               .addOnClickListener(R.id.tv_project_tag); //项目tag
+
          GlideUtils.showBannerImage(mContext,helper.getView(R.id.iv_project_pic),item.getEnvelopePic());
+         if(item.isCollect()){
+            helper.setImageDrawable(R.id.image_project_collect, ContextCompat.getDrawable(mContext,R.drawable.ic_favorite_collect_24dp));
+         }else {
+            helper.setImageDrawable(R.id.image_project_collect,ContextCompat.getDrawable(mContext,R.drawable.ic_favorite_gray_24dp));
+         }
     }
 }

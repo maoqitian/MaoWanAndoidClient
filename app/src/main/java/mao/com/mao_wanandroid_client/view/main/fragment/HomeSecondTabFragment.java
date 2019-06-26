@@ -1,14 +1,19 @@
 package mao.com.mao_wanandroid_client.view.main.fragment;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
+import com.scwang.smartrefresh.layout.api.RefreshLayout;
+import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener;
+import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -72,9 +77,59 @@ public class HomeSecondTabFragment extends RootBaseFragment<HomeSecondTabPresent
 
     //最新项目页面 init
     private void initLatestProjectPage() {
-        mLatestProjectAdapter = new HomeLatestProjectAdapter(R.layout.article_project_item_cardview_layout,homeArticleDataList);
+        mLatestProjectAdapter = new HomeLatestProjectAdapter(R.layout.article_project_item_cardview_layout);
         mLatestProjectAdapter.setOnItemClickListener(this);
         mRecyclerView.setAdapter(mLatestProjectAdapter);
+        setSmartRefreshLayoutListener();
+        setHomePageItemClickListener();
+    }
+
+    private void setHomePageItemClickListener() {
+        mLatestProjectAdapter.setOnItemChildClickListener((adapter, view, position) -> {
+            HomeArticleData homeArticleData= (HomeArticleData) adapter.getItem(position);
+            switch (view.getId()){
+                case R.id.image_project_collect: //点击收藏
+                    Log.e("毛麒添","点击收藏");
+                    if(homeArticleData!=null){
+                        addOrCancelCollect(position,homeArticleData);
+                    }
+                    break;
+            }
+        });
+    }
+    //收藏或者取消收藏
+    private void addOrCancelCollect(int position, HomeArticleData homeArticleData) {
+        if(!mPresenter.getLoginStatus()){
+            StartDetailPage.start(_mActivity,null, Constants.PAGE_LOGIN,Constants.ACTION_LOGIN_ACTIVITY);
+            return;
+        }
+        if(!homeArticleData.isCollect()){
+            //收藏
+            mPresenter.addArticleCollect(position,homeArticleData);
+        }else {
+            //取消收藏
+            mPresenter.cancelArticleCollect(position,homeArticleData);
+        }
+    }
+
+    private void setSmartRefreshLayoutListener() {
+        mSmartRefreshLayout.setOnRefreshListener(new OnRefreshListener() {
+            @Override
+            public void onRefresh(@NonNull RefreshLayout refreshLayout) {
+                Log.e("毛麒添","下拉加载");
+                mPresenter.getRefreshPage();
+                refreshLayout.autoRefresh();
+            }
+        });
+        //加载更多
+        mSmartRefreshLayout.setOnLoadMoreListener(new OnLoadMoreListener() {
+            @Override
+            public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
+                Log.e("毛麒添","加载更多");
+                mPresenter.getLoadMorePage();
+                refreshLayout.autoLoadMore();
+            }
+        });
     }
 
     @Override
@@ -90,7 +145,7 @@ public class HomeSecondTabFragment extends RootBaseFragment<HomeSecondTabPresent
             Log.e("毛麒添","首页mTabTitle "+mTabTitle);
         }
         showLoading();
-        mPresenter.getHomeLatestProjectListDate();
+        mPresenter.getHomeLatestProjectListDate(false);
     }
 
 
@@ -101,11 +156,35 @@ public class HomeSecondTabFragment extends RootBaseFragment<HomeSecondTabPresent
     }
 
     @Override
-    public void showHomeLatestProjectList(HomeArticleListData homeArticleListData) {
+    public void showHomeLatestProjectList(boolean isRefreshData,HomeArticleListData homeArticleListData) {
         Log.e("毛麒添","首页 最新项目 数据 "+homeArticleListData.toString());
-        homeArticleDataList.clear();
-        homeArticleDataList = homeArticleListData.getDatas();
-        mLatestProjectAdapter.addData(homeArticleDataList);
-        showNormal();
+        if(isRefreshData){
+            mLatestProjectAdapter.addData(homeArticleListData.getDatas());
+        }else {
+            homeArticleDataList.clear();
+            homeArticleDataList = homeArticleListData.getDatas();
+            mLatestProjectAdapter.addData(homeArticleDataList);
+            showNormal();
+        }
+        mSmartRefreshLayout.finishRefresh();
+        mSmartRefreshLayout.finishLoadMore();
+
+    }
+
+    @Override
+    public void showAddArticleCollectStatus(int position, HomeArticleData homeArticleData, String msg) {
+        showCollectStatus(position,homeArticleData,msg);
+    }
+
+    @Override
+    public void showCancelArticleCollectStatus(int position, HomeArticleData homeArticleData, String msg) {
+        showCollectStatus(position,homeArticleData,msg);
+    }
+    //显示收藏 或取消 收藏之后的状态
+    private void showCollectStatus(int position,HomeArticleData homeArticleData,String msg){
+        if(homeArticleData!=null && mLatestProjectAdapter!=null){
+            mLatestProjectAdapter.setData(position,homeArticleData);
+        }
+        Toast.makeText(_mActivity,msg,Toast.LENGTH_SHORT).show();
     }
 }

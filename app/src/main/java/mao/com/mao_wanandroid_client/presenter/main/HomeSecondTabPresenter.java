@@ -5,11 +5,14 @@ package mao.com.mao_wanandroid_client.presenter.main;
 import javax.inject.Inject;
 
 import io.reactivex.Observable;
+import mao.com.mao_wanandroid_client.R;
+import mao.com.mao_wanandroid_client.application.MyApplication;
 import mao.com.mao_wanandroid_client.base.presenter.RxBasePresenter;
 import mao.com.mao_wanandroid_client.core.http.DataClient;
 import mao.com.mao_wanandroid_client.core.http.control.BaseObserver;
 import mao.com.mao_wanandroid_client.core.http.control.RxSchedulers;
 import mao.com.mao_wanandroid_client.model.ResponseBody;
+import mao.com.mao_wanandroid_client.model.home.HomeArticleData;
 import mao.com.mao_wanandroid_client.model.home.HomeArticleListData;
 
 /**
@@ -21,7 +24,7 @@ public class HomeSecondTabPresenter extends RxBasePresenter<HomePageSecondTabCon
         implements HomePageSecondTabContract.HomeSecondTabFragmentPresenter {
 
     private DataClient mDataClient;
-
+    private int curPage = 0;
     @Inject
     public HomeSecondTabPresenter(DataClient dataClient) {
         super(dataClient);
@@ -34,19 +37,72 @@ public class HomeSecondTabPresenter extends RxBasePresenter<HomePageSecondTabCon
     }
 
     @Override
-    public void getHomeLatestProjectListDate() {
-        Observable<ResponseBody<HomeArticleListData>> responseBodyObservable = mDataClient.HomeArticleListProjectData(0);
+    public void getHomeLatestProjectListDate(boolean isRefreshData) {
+        getHomeLatestProjectDate(curPage,isRefreshData);
+
+    }
+
+    private void getHomeLatestProjectDate(int pageNum, boolean isRefreshData) {
+        Observable<ResponseBody<HomeArticleListData>> responseBodyObservable = mDataClient.HomeArticleListProjectData(pageNum);
         responseBodyObservable.compose(RxSchedulers.observableIO2Main())
                 .subscribe(new BaseObserver<HomeArticleListData>() {
                     @Override
                     public void onSuccess(HomeArticleListData result) {
-                        mView.showHomeLatestProjectList(result);
+                        curPage = result.getCurPage();
+                        mView.showHomeLatestProjectList(isRefreshData,result);
                     }
 
                     @Override
                     public void onFailure(Throwable e, String errorMsg) {
-
+                        mView.showError();
                     }
                 });
+    }
+
+    //收藏项目
+    @Override
+    public void addArticleCollect(int position, HomeArticleData homeArticleData) {
+        Observable<ResponseBody<String>> responseBodyObservable = mDataClient.addCollectInsideListData(homeArticleData.getId());
+        responseBodyObservable.compose(RxSchedulers.observableIO2Main())
+                .subscribe(new BaseObserver<String>() {
+                    @Override
+                    public void onSuccess(String result) {
+                        homeArticleData.setCollect(true);
+                        mView.showAddArticleCollectStatus(position,homeArticleData, MyApplication.getInstance().getApplicationContext().getString(R.string.collection_success));
+                    }
+
+                    @Override
+                    public void onFailure(Throwable e, String errorMsg) {
+                        mView.showAddArticleCollectStatus(position,null, MyApplication.getInstance().getApplicationContext().getString(R.string.collection_fail));
+                    }
+                });
+    }
+    //取消 收藏项目
+    @Override
+    public void cancelArticleCollect(int position, HomeArticleData homeArticleData) {
+        Observable<ResponseBody<String>> responseBodyObservable = mDataClient.cancelCollectArticleListData(homeArticleData.getId());
+        responseBodyObservable.compose(RxSchedulers.observableIO2Main())
+                .subscribe(new BaseObserver<String>() {
+                    @Override
+                    public void onSuccess(String result) {
+                        homeArticleData.setCollect(false);
+                        mView.showCancelArticleCollectStatus(position,homeArticleData, MyApplication.getInstance().getApplicationContext().getString(R.string.cancle_collection_success));
+                    }
+
+                    @Override
+                    public void onFailure(Throwable e, String errorMsg) {
+                        mView.showCancelArticleCollectStatus(position,null, MyApplication.getInstance().getApplicationContext().getString(R.string.cancle_collection_fail));
+                    }
+                });
+    }
+    //刷新页面
+    @Override
+    public void getRefreshPage() {
+        getHomeLatestProjectDate(0,false);
+    }
+    //加载更多
+    @Override
+    public void getLoadMorePage() {
+        getHomeLatestProjectDate(curPage,true);
     }
 }

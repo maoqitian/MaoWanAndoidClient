@@ -258,8 +258,6 @@ public class HomeFirstTabFragment extends RootBaseFragment<HomeFirstTabPresenter
             homeArticleDataList.addAll(homeArticleListData.getDatas());
             mAdapter.addData(homeArticleDataList);
             showNormal();
-            mSmartRefreshLayout.finishRefresh();
-            mSmartRefreshLayout.finishLoadMore();
         }
     }
 
