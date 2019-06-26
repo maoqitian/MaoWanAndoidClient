@@ -36,9 +36,9 @@ public interface HomePageFirstTabContract {
         void showAutoLoginFail(String errorMsg);
 
         //添加文章收藏成功
-        void showAddArticalCollectStatus(int position,HomeArticleData homeArticleData,String msg);
+        void showAddArticleCollectStatus(int position,HomeArticleData homeArticleData,String msg);
         //取消文章收藏成功
-        void showCancelArticalCollectStatus(int position,HomeArticleData homeArticleData,String msg);
+        void showCancelArticleCollectStatus(int position,HomeArticleData homeArticleData,String msg);
     }
 
 
@@ -60,13 +60,13 @@ public interface HomePageFirstTabContract {
          * @param position 文章目前在 recycleview 位置
          * @param homeArticleData 文章信息
          */
-        void addArticalCollect(int position,HomeArticleData homeArticleData);
+        void addArticleCollect(int position,HomeArticleData homeArticleData);
         /**
          * 取消文章收藏
          * @param position 文章目前在 recycleview 位置
          * @param homeArticleData 文章信息
          */
-        void cancelArticalCollect(int position,HomeArticleData homeArticleData);
+        void cancelArticleCollect(int position,HomeArticleData homeArticleData);
 
         //下拉刷新页面
         void getRefreshPage();

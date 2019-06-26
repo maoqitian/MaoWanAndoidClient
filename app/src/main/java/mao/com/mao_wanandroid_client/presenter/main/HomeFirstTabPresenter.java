@@ -154,37 +154,37 @@ public class HomeFirstTabPresenter extends RxBasePresenter<HomePageFirstTabContr
     }*/
 
     @Override
-    public void addArticalCollect(int position,HomeArticleData homeArticleData) {
+    public void addArticleCollect(int position,HomeArticleData homeArticleData) {
         Observable<ResponseBody<String>> responseBodyObservable = mDataClient.addCollectInsideListData(homeArticleData.getId());
         responseBodyObservable.compose(RxSchedulers.observableIO2Main())
                               .subscribe(new BaseObserver<String>() {
                                   @Override
                                   public void onSuccess(String result) {
                                       homeArticleData.setCollect(true);
-                                      mView.showAddArticalCollectStatus(position,homeArticleData, MyApplication.getInstance().getApplicationContext().getString(R.string.collection_success));
+                                      mView.showAddArticleCollectStatus(position,homeArticleData, MyApplication.getInstance().getApplicationContext().getString(R.string.collection_success));
                                   }
 
                                   @Override
                                   public void onFailure(Throwable e, String errorMsg) {
-                                      mView.showAddArticalCollectStatus(position,null, MyApplication.getInstance().getApplicationContext().getString(R.string.collection_fail));
+                                      mView.showAddArticleCollectStatus(position,null, MyApplication.getInstance().getApplicationContext().getString(R.string.collection_fail));
                                   }
                               });
     }
 
     @Override
-    public void cancelArticalCollect(int position, HomeArticleData homeArticleData) {
+    public void cancelArticleCollect(int position, HomeArticleData homeArticleData) {
         Observable<ResponseBody<String>> responseBodyObservable = mDataClient.cancelCollectArticleListData(homeArticleData.getId());
         responseBodyObservable.compose(RxSchedulers.observableIO2Main())
                               .subscribe(new BaseObserver<String>() {
                                   @Override
                                   public void onSuccess(String result) {
                                       homeArticleData.setCollect(false);
-                                      mView.showCancelArticalCollectStatus(position,homeArticleData, MyApplication.getInstance().getApplicationContext().getString(R.string.cancle_collection_success));
+                                      mView.showCancelArticleCollectStatus(position,homeArticleData, MyApplication.getInstance().getApplicationContext().getString(R.string.cancle_collection_success));
                                   }
 
                                   @Override
                                   public void onFailure(Throwable e, String errorMsg) {
-                                      mView.showCancelArticalCollectStatus(position,null, MyApplication.getInstance().getApplicationContext().getString(R.string.cancle_collection_fail));
+                                      mView.showCancelArticleCollectStatus(position,null, MyApplication.getInstance().getApplicationContext().getString(R.string.cancle_collection_fail));
                                   }
                               });
 
@@ -198,6 +198,6 @@ public class HomeFirstTabPresenter extends RxBasePresenter<HomePageFirstTabContr
     //上拉加载更多
     @Override
     public void getLoadMorePage() {
-        getHomeArticleListData(curPage,false);
+        getHomeArticleListData(curPage,true);
     }
 }

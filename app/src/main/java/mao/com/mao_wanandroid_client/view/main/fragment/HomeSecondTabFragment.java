@@ -7,7 +7,6 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 
-import com.bigkoo.convenientbanner.listener.OnItemClickListener;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 
@@ -20,13 +19,10 @@ import mao.com.mao_wanandroid_client.application.Constants;
 import mao.com.mao_wanandroid_client.base.fragment.RootBaseFragment;
 import mao.com.mao_wanandroid_client.model.home.HomeArticleData;
 import mao.com.mao_wanandroid_client.model.home.HomeArticleListData;
-import mao.com.mao_wanandroid_client.presenter.main.HomeFirstTabPresenter;
-import mao.com.mao_wanandroid_client.presenter.main.HomePageFirstTabContract;
 import mao.com.mao_wanandroid_client.presenter.main.HomePageSecondTabContract;
 import mao.com.mao_wanandroid_client.presenter.main.HomeSecondTabPresenter;
 import mao.com.mao_wanandroid_client.utils.StartDetailPage;
 import mao.com.mao_wanandroid_client.view.main.adapter.HomeLatestProjectAdapter;
-import mao.com.mao_wanandroid_client.view.main.adapter.HomePageAdapter;
 
 /**
  * @author maoqitian
@@ -76,7 +72,7 @@ public class HomeSecondTabFragment extends RootBaseFragment<HomeSecondTabPresent
 
     //最新项目页面 init
     private void initLatestProjectPage() {
-        mLatestProjectAdapter = new HomeLatestProjectAdapter(R.layout.artical_project_item_cardview_layout,homeArticleDataList);
+        mLatestProjectAdapter = new HomeLatestProjectAdapter(R.layout.article_project_item_cardview_layout,homeArticleDataList);
         mLatestProjectAdapter.setOnItemClickListener(this);
         mRecyclerView.setAdapter(mLatestProjectAdapter);
     }

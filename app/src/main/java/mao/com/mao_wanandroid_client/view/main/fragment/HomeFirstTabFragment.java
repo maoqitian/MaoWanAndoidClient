@@ -117,13 +117,13 @@ public class HomeFirstTabFragment extends RootBaseFragment<HomeFirstTabPresenter
     }
     /*//最新项目页面 init
     private void initLatestProjectPage() {
-        mLatestProjectAdapter = new HomeLatestProjectAdapter(R.layout.artical_project_item_cardview_layout,homeArticleDataList);
+        mLatestProjectAdapter = new HomeLatestProjectAdapter(R.layout.Article_project_item_cardview_layout,homeArticleDataList);
         mLatestProjectAdapter.setOnItemClickListener(this);
         mRecyclerView.setAdapter(mLatestProjectAdapter);
     }*/
     //首页推荐页面 init
     private void initHomePage() {
-        mAdapter = new HomePageAdapter(R.layout.artical_item_cardview_layout);
+        mAdapter = new HomePageAdapter(R.layout.article_item_cardview_layout);
         mAdapter.setOnItemClickListener(this);
         LinearLayout bannerViewLayout = (LinearLayout) LayoutInflater.from(_mActivity).inflate(R.layout.home_banner_view_layout,null);
         mConvenientBanner = bannerViewLayout.findViewById(R.id.convenient_banner);
@@ -138,8 +138,8 @@ public class HomeFirstTabFragment extends RootBaseFragment<HomeFirstTabPresenter
         //设置 Header 为 贝塞尔雷达 样式
         //mSmartRefreshLayout.setRefreshHeader(new BezierRadarHeader(_mActivity).setEnableHorizontalDrag(true));
         //设置 Footer 为 球脉冲 样式
-        mSmartRefreshLayout.setRefreshFooter(new BallPulseFooter(_mActivity).setSpinnerStyle(SpinnerStyle.Scale));
-        mSmartRefreshLayout.setEnableLoadMore(true);
+        /*mSmartRefreshLayout.setRefreshFooter(new BallPulseFooter(_mActivity).setSpinnerStyle(SpinnerStyle.Scale));
+        mSmartRefreshLayout.setEnableLoadMore(true);*/
         //mSmartRefreshLayout.setEnableClipFooterWhenFixedBehind(true);//内容不满屏幕的时候也开启加载更多
         //下拉加载
         mSmartRefreshLayout.setOnRefreshListener(new OnRefreshListener() {
@@ -147,7 +147,7 @@ public class HomeFirstTabFragment extends RootBaseFragment<HomeFirstTabPresenter
             public void onRefresh(@NonNull RefreshLayout refreshLayout) {
                 Log.e("毛麒添","下拉加载");
                 mPresenter.getRefreshPage();
-
+                refreshLayout.autoRefresh();
             }
         });
         //加载更多
@@ -156,6 +156,7 @@ public class HomeFirstTabFragment extends RootBaseFragment<HomeFirstTabPresenter
             public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
                 Log.e("毛麒添","加载更多");
                 mPresenter.getLoadMorePage();
+                refreshLayout.autoLoadMore();
             }
         });
     }
@@ -181,10 +182,10 @@ public class HomeFirstTabFragment extends RootBaseFragment<HomeFirstTabPresenter
         }
         if(!homeArticleData.isCollect()){
             //收藏
-            mPresenter.addArticalCollect(position,homeArticleData);
+            mPresenter.addArticleCollect(position,homeArticleData);
         }else {
             //取消收藏
-            mPresenter.cancelArticalCollect(position,homeArticleData);
+            mPresenter.cancelArticleCollect(position,homeArticleData);
         }
     }
 
@@ -247,10 +248,11 @@ public class HomeFirstTabFragment extends RootBaseFragment<HomeFirstTabPresenter
     // 首页文章数据
     @Override
     public void showHomeArticleList(boolean isRefreshData,HomeArticleListData homeArticleListData) {
-        if(isRefreshData){
+        if(isRefreshData){ //登录 退出登录 刷新 下拉刷新 上来加载更多
             homeArticleDataList.addAll(homeArticleListData.getDatas());
             mAdapter.replaceData(homeArticleDataList);
             mSmartRefreshLayout.finishRefresh();
+            mSmartRefreshLayout.finishLoadMore();
         }else {
             Log.e("毛麒添","首页ArticleList数据 "+homeArticleListData.toString());
             homeArticleDataList.addAll(homeArticleListData.getDatas());
@@ -284,7 +286,7 @@ public class HomeFirstTabFragment extends RootBaseFragment<HomeFirstTabPresenter
     }
 
     @Override
-    public void showAddArticalCollectStatus(int position,HomeArticleData homeArticleData,String msg) {
+    public void showAddArticleCollectStatus(int position,HomeArticleData homeArticleData,String msg) {
         showCollectStatus(position,homeArticleData,msg);
     }
     //显示收藏 或取消 收藏之后的状态
@@ -296,7 +298,7 @@ public class HomeFirstTabFragment extends RootBaseFragment<HomeFirstTabPresenter
     }
 
     @Override
-    public void showCancelArticalCollectStatus(int position, HomeArticleData homeArticleData,String msg) {
+    public void showCancelArticleCollectStatus(int position, HomeArticleData homeArticleData,String msg) {
         showCollectStatus(position,homeArticleData,msg);
     }
 
