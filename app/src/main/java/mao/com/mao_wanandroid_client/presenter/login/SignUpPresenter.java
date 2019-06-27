@@ -40,14 +40,17 @@ public class SignUpPresenter extends RxBasePresenter<SignUpContract.SignUpView> 
                                   public void onSuccess(LoginData result) {
                                       //注册成功
                                        mDataClient.setLoginUserName(result.getUsername());
+                                       mDataClient.setLoginPassword(password);
                                        mDataClient.setLoginStatus(true);
-                                       RxBus.getDefault().post(new LoginStatusEvent(true));
+                                       RxBus.getDefault().post(new LoginStatusEvent(true,false));
                                        mView.showSignUpSuccess();
                                   }
                                   @Override
                                   public void onFailure(Throwable e, String errorMsg) {
                                       mDataClient.setLoginStatus(false);
-                                       mView.showSignUpFail(errorMsg);
+                                      mDataClient.setLoginUserName("");
+                                      mDataClient.setLoginPassword("");
+                                      mView.showSignUpFail(errorMsg);
                                   }
                               });
     }

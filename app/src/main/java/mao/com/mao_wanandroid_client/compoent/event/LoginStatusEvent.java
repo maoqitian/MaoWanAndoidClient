@@ -9,8 +9,11 @@ public class LoginStatusEvent {
 
     private boolean isLogin;
 
-    public LoginStatusEvent(boolean islogin){
+    private boolean isSignOut; //退出登录
+
+    public LoginStatusEvent(boolean islogin,boolean signout){
         this.isLogin = islogin;
+        this.isSignOut = signout;
     }
 
     public boolean isLogin() {
@@ -19,6 +22,14 @@ public class LoginStatusEvent {
 
     public void setLogin(boolean login) {
         isLogin = login;
+    }
+
+    public boolean isSignOut() {
+        return isSignOut;
+    }
+
+    public void setSignOut(boolean signOut) {
+        isSignOut = signOut;
     }
 
 }

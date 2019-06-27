@@ -158,12 +158,12 @@ public class HomeSecondTabFragment extends RootBaseFragment<HomeSecondTabPresent
     @Override
     public void showHomeLatestProjectList(boolean isRefreshData,HomeArticleListData homeArticleListData) {
         Log.e("毛麒添","首页 最新项目 数据 "+homeArticleListData.toString());
-        if(isRefreshData){
+        if(isRefreshData){ //加载更多
             mLatestProjectAdapter.addData(homeArticleListData.getDatas());
         }else {
             homeArticleDataList.clear();
             homeArticleDataList = homeArticleListData.getDatas();
-            mLatestProjectAdapter.addData(homeArticleDataList);
+            mLatestProjectAdapter.replaceData(homeArticleDataList);
             showNormal();
         }
         mSmartRefreshLayout.finishRefresh();

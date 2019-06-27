@@ -48,11 +48,12 @@ public class LoginPresenter extends RxBasePresenter<LoginContract.LoginView> imp
                         mDataClient.setLoginStatus(true);
                         mView.showLoginSuccess();
                         //发送登录状态到事件总线
-                        RxBus.getDefault().post(new LoginStatusEvent(true));
+                        RxBus.getDefault().post(new LoginStatusEvent(true,false));
                     }
                     @Override
                     public void onFailure(Throwable e, String errorMsg) {
                         mDataClient.setLoginUserName("");
+                        mDataClient.setLoginPassword("");
                         mDataClient.setLoginStatus(false);
                         mView.showLoginFail(errorMsg);
                     }

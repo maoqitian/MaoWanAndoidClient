@@ -305,7 +305,7 @@ public class MainActivity extends BaseActivity<MainPresenter>
 
     @Override
     public void showSingOutSuccess() {
-        RxBus.getDefault().post(new LoginStatusEvent(false));
+        RxBus.getDefault().post(new LoginStatusEvent(false,true));
         showLogoutView();
     }
 

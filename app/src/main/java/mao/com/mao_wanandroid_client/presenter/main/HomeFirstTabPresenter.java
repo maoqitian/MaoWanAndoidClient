@@ -47,8 +47,10 @@ public class HomeFirstTabPresenter extends RxBasePresenter<HomePageFirstTabContr
             public void accept(LoginStatusEvent loginStatusEvent) throws Exception {
                 // 登录成功 重新加载数据
                 Log.e("毛麒添","登录事件");
-                if(loginStatusEvent.isLogin()){
+                if(loginStatusEvent.isLogin()){ //登录
                     getAllHomePageData(loginStatusEvent.isLogin());
+                }else if(!loginStatusEvent.isLogin() && loginStatusEvent.isSignOut()){ //退出登录
+                    getAllHomePageData(loginStatusEvent.isSignOut());
                 }else {
                     getAllHomePageData(false);
                 }

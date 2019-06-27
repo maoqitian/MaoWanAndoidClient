@@ -142,6 +142,8 @@ public class Constants {
 
     public static final String PAGE_LOGIN = "PAGE_LOGIN";
     public static final String PAGE_SIGN_UP = "PAGE_SIGN_UP";
+
+
     //页面隐式调用
     // 主页面
     public static final String ACTION_MAIN_ACTIVITY = "com.mao.mao_wanandroid.action.MAIN_ACTIVITY";
@@ -151,4 +153,8 @@ public class Constants {
     public static final String ACTION_LOGIN_ACTIVITY = "com.mao.mao_wanandroid.action.LOGIN_ACTIVITY";
     //注册页
     public static final String ACTION_SIGN_UP_ACTIVITY = "com.mao.mao_wanandroid.action.SIGN_UP_ACTIVITY";
+
+    //页面跳转 code 标识是来自首页哪个模块跳转 帮助登录之后刷新页面
+    public static final String RESULT_CODE_HOME_PAGE = "result_code_home_page";
+
 }
