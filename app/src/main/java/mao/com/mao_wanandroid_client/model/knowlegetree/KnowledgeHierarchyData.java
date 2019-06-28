@@ -1,4 +1,4 @@
-package mao.com.mao_wanandroid_client.model.tree;
+package mao.com.mao_wanandroid_client.model.knowlegetree;
 
 import java.io.Serializable;
 import java.util.List;

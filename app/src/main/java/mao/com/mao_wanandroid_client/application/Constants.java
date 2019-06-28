@@ -149,10 +149,14 @@ public class Constants {
     public static final String ACTION_MAIN_ACTIVITY = "com.mao.mao_wanandroid.action.MAIN_ACTIVITY";
     //详情页
     public static final String ACTION_PAGE_DETAIL_ACTIVITY = "com.mao.mao_wanandroid.action.PAGE_DETAIL_ACTIVITY";
+    //知识体系二级页
+    public static final String ACTION_KNOWLEDGE_LEVEL2_ACTIVITY = "com.mao.mao_wanandroid.action.KNOWLEDGE_LEVEL2";
     //登录页
     public static final String ACTION_LOGIN_ACTIVITY = "com.mao.mao_wanandroid.action.LOGIN_ACTIVITY";
     //注册页
     public static final String ACTION_SIGN_UP_ACTIVITY = "com.mao.mao_wanandroid.action.SIGN_UP_ACTIVITY";
+
+
 
     //页面跳转 code 标识是来自首页哪个模块跳转 帮助登录之后刷新页面
     public static final String RESULT_CODE_HOME_PAGE = "result_code_home_page";

@@ -19,7 +19,7 @@ import mao.com.mao_wanandroid_client.model.navigation.NavigationListData;
 import mao.com.mao_wanandroid_client.model.project.ProjectClassifyData;
 import mao.com.mao_wanandroid_client.model.project.ProjectListData;
 import mao.com.mao_wanandroid_client.model.search.HotKeyData;
-import mao.com.mao_wanandroid_client.model.tree.KnowledgeHierarchyData;
+import mao.com.mao_wanandroid_client.model.knowlegetree.KnowledgeHierarchyData;
 import mao.com.mao_wanandroid_client.model.webmark.webBookMark;
 
 
