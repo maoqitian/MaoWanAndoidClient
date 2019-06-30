@@ -88,7 +88,7 @@ public class DataClient implements IHttpHelper,SharedPreferenceHelper,DbHelper {
 
     @Override
     public Observable<ResponseBody<List<HotKeyData>>> GetHotKeyData() {
-        return null;
+        return mIHttpHelper.GetHotKeyData();
     }
 
     @Override
@@ -98,27 +98,27 @@ public class DataClient implements IHttpHelper,SharedPreferenceHelper,DbHelper {
 
     @Override
     public Observable<ResponseBody<List<KnowledgeHierarchyData>>> getKnowledgeHierarchyData() {
-        return null;
+        return mIHttpHelper.getKnowledgeHierarchyData();
     }
 
     @Override
-    public Observable<ResponseBody<HomeArticleListData>> getKnowledgeTreeDetialData(int pageNum, int cid) {
-        return null;
+    public Observable<ResponseBody<HomeArticleListData>> getKnowledgeTreeDetailData(int pageNum, int cid) {
+        return mIHttpHelper.getKnowledgeTreeDetailData(pageNum,cid);
     }
 
     @Override
     public Observable<ResponseBody<NavigationListData>> getNavigationListData() {
-        return null;
+        return mIHttpHelper.getNavigationListData();
     }
 
     @Override
     public Observable<ResponseBody<List<ProjectClassifyData>>> getProjectClassifyData() {
-        return null;
+        return mIHttpHelper.getProjectClassifyData();
     }
 
     @Override
     public Observable<ResponseBody<ProjectListData>> getProjectListData(int pageNum, int cid) {
-        return null;
+        return mIHttpHelper.getProjectListData(pageNum,cid);
     }
 
     @Override

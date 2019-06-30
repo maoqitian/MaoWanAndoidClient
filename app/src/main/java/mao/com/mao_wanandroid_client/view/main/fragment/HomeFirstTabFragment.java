@@ -68,7 +68,7 @@ public class HomeFirstTabFragment extends RootBaseFragment<HomeFirstTabPresenter
     private RecyclerView.LayoutManager layoutManager;
     private HomePageAdapter mAdapter;
     //private HomeLatestProjectAdapter mLatestProjectAdapter;
-    private List<HomeArticleData> homeArticleDataList;
+    List<HomeArticleData> homeArticleDataList;
 
     List<HomePageBannerModel> mBannerModelList;
 
@@ -170,6 +170,10 @@ public class HomeFirstTabFragment extends RootBaseFragment<HomeFirstTabPresenter
                     if(homeArticleData!=null){
                         addOrCancelCollect(position,homeArticleData);
                     }
+                    break;
+                case R.id.tv_super_chapterName:
+                    //点击 知识体系 tag
+                    StartDetailPage.start(_mActivity,homeArticleData,Constants.RESULT_CODE_HOME_PAGE,Constants.ACTION_KNOWLEDGE_LEVEL2_ACTIVITY);
                     break;
             }
         });

@@ -43,4 +43,6 @@
     <string name="collection_fail">Collection failed！</string>
     <string name="cancle_collection_success">Cancel Collection success！</string>
     <string name="cancle_collection_fail">Cancel Collection fail！</string>
+
+    <string name="not_load_more_msg">Brother, this time is really gone!</string>
 </resources>

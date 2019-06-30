@@ -42,12 +42,12 @@ public class HomePageAdapter extends BaseQuickAdapter<HomeArticleData, HomePageV
     protected void convert(HomePageViewItemHolder helper, HomeArticleData item) {
          helper.setText(R.id.tv_author_name,item.getAuthor())
                  .setText(R.id.tv_artical_title,item.getTitle())
-                 .setText(R.id.tv_super_chapterName,item.getSuperChapterName())
-                 .setText(R.id.tv_chapterName,item.getChapterName())
+                 .setText(R.id.tv_super_chapterName,item.getSuperChapterName()+"|"+item.getChapterName())
+                 //.setText(R.id.tv_chapterName,item.getChapterName())
                  .setText(R.id.tv_artical_date,item.getNiceDate())
                  .addOnClickListener(R.id.image_collect)
-                 .addOnClickListener(R.id.tv_super_chapterName)
-                 .addOnClickListener(R.id.tv_chapterName);
+                 .addOnClickListener(R.id.tv_super_chapterName);
+                 //.addOnClickListener(R.id.tv_chapterName);
          // tag
          if(item.getTags().size()>0){
              helper.getView(R.id.tv_artical_tag).setVisibility(View.VISIBLE);

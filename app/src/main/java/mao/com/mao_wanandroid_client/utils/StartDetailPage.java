@@ -28,6 +28,13 @@ public class StartDetailPage{
             context.startActivity(intent);
             return;
         }
+        if(Constants.RESULT_CODE_HOME_PAGE.equals(pageType) ) {// 知识体系二级 页面
+            Intent intent = new Intent(activityType);
+            intent.putExtra(Constants.HOME_ARTICLE_DATA, unit);
+            intent.putExtra(Constants.PAGE_TYPE, pageType);
+            context.startActivity(intent);
+            return;
+        }
         if(Constants.PAGE_MAIN.equals(pageType)||Constants.PAGE_LOGIN.equals(pageType)||Constants.PAGE_SIGN_UP.equals(pageType)){
             Intent intent = new Intent(activityType);
             context.startActivity(intent);

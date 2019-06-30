@@ -24,5 +24,6 @@ public class KnowledgeLevel2PagePresenter extends RxBasePresenter<KnowledgeLevel
     @Override
     public void attachView(KnowledgeLevel2PageContract.KnowledgeLevel2PageView view) {
         super.attachView(view);
+        view.showLevel2PageView();
     }
 }

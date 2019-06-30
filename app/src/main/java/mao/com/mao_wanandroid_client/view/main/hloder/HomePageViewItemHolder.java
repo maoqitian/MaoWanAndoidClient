@@ -28,8 +28,8 @@ public class HomePageViewItemHolder extends BaseViewHolder {
     TextView mArticalTitle;
     @BindView(R.id.tv_super_chapterName)
     TextView mSuperChapterName;
-    @BindView(R.id.tv_chapterName)
-    TextView mChapterName;
+    /*@BindView(R.id.tv_chapterName)
+    TextView mChapterName;*/
     @BindView(R.id.tv_artical_top_tag)
     TextView mArticalTopTag;
     @BindView(R.id.tv_artical_new_tag)

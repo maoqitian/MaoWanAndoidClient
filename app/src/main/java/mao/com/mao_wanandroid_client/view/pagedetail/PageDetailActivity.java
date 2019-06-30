@@ -1,6 +1,7 @@
 package mao.com.mao_wanandroid_client.view.pagedetail;
 
 import android.annotation.SuppressLint;
+import android.graphics.Color;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.Toolbar;
 import android.text.Html;
@@ -49,6 +50,7 @@ public class PageDetailActivity extends BaseActivity<PageDetailPresenter> implem
     protected void initToolbar() {
         getIntentData();
         mToolbar.setTitle(Html.fromHtml(homeArticleData.getTitle()));
+        mToolbar.setTitleTextColor(Color.WHITE);
         setSupportActionBar(mToolbar);
         mToolbar.setNavigationIcon(R.drawable.ic_arrow_back_24dp);
         StatusBarUtil.setColorNoTranslucentLightMode(this, ContextCompat.getColor(this,R.color.colorPrimary));

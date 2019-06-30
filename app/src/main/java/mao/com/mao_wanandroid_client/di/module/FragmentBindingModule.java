@@ -7,6 +7,7 @@ import mao.com.mao_wanandroid_client.view.main.fragment.HomeFirstTabFragment;
 import mao.com.mao_wanandroid_client.view.main.fragment.HomePageFragment;
 import mao.com.mao_wanandroid_client.view.main.fragment.HomeSecondTabFragment;
 import mao.com.mao_wanandroid_client.view.main.fragment.KnowledgeHierarchyPageFragment;
+import mao.com.mao_wanandroid_client.view.main.fragment.KnowledgeLevel2PageFragment;
 import mao.com.mao_wanandroid_client.view.main.fragment.NavigationFragment;
 import mao.com.mao_wanandroid_client.view.main.fragment.OfficialAccountsPageFragment;
 import mao.com.mao_wanandroid_client.view.main.fragment.ProjectFragment;
@@ -46,5 +47,9 @@ public abstract class FragmentBindingModule {
     @FragmentScope
     @ContributesAndroidInjector(modules = ProjectFragmentModule.class)
     abstract ProjectFragment contributeProjectFragment();
+
+    @FragmentScope
+    @ContributesAndroidInjector(modules = KnowledgeLevel2PageFragmentModule.class)
+    abstract KnowledgeLevel2PageFragment contributeKnowledgeLevel2PageFragment();
 
 }

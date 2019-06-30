@@ -71,7 +71,7 @@ public interface IHttpHelper {
      * @param cid 分类的id 上述二级目录的id
      * @return
      */
-    Observable<ResponseBody<HomeArticleListData>> getKnowledgeTreeDetialData(int pageNum,int cid);
+    Observable<ResponseBody<HomeArticleListData>> getKnowledgeTreeDetailData(int pageNum, int cid);
     /**
      * 获取导航数据(网站 个人博客 社区等网站导航数据)
      * @return

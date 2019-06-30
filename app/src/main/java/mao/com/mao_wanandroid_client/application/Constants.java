@@ -102,10 +102,6 @@ public class Constants {
     public static final long DOUBLE_INTERVAL_TIME = 2000;
 
 
-    //数据标识常量
-    public static final String HOME_ARTICLE_DATA = "homeArticleData";
-    //跳转标识
-    public static final String PAGE_TYPE = "pageType";
     public static final String DB_NAME = "mao_wanandroid.db";
 
 
@@ -158,7 +154,19 @@ public class Constants {
 
 
 
-    //页面跳转 code 标识是来自首页哪个模块跳转 帮助登录之后刷新页面
+    //页面跳转 code 标识是来自首页哪个模块跳转
     public static final String RESULT_CODE_HOME_PAGE = "result_code_home_page";
+
+    //Bundle 数据 tag
+
+    //首页文章数据 常量
+    public static final String HOME_ARTICLE_DATA = "homeArticleData";
+    //跳转标识
+    public static final String PAGE_TYPE = "pageType";
+
+    //知识体系 一级 cid
+    public static final String BUNDLE_TAG_CID = "chapter_cid";
+    //知识体系 二级 cid
+    public static final String BUNDLE_TAG_SUPER_CID = "super_chapter_cid";
 
 }

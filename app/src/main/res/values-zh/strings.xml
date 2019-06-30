@@ -43,4 +43,6 @@
 
     <string name="cancle_collection_success">取消收藏文章成功！</string>
     <string name="cancle_collection_fail">取消收藏文章失败！</string>
+
+    <string name="not_load_more_msg">哥，这回真没了！</string>
 </resources>

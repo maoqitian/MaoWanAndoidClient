@@ -97,7 +97,7 @@ public interface ApiService {
      * @return
      */
     @GET("/article/list/{pageNum}/json")
-    Observable<ResponseBody<HomeArticleListData>> getKnowledgeTreeDetialData(@Path("pageNum") int pageNum, @Query("cid") int cid);
+    Observable<ResponseBody<HomeArticleListData>> getKnowledgeTreeDetailData(@Path("pageNum") int pageNum, @Query("cid") int cid);
 
     /**
      * 导航

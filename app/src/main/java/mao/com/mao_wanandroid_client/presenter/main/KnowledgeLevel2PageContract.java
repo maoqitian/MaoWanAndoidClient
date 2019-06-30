@@ -12,6 +12,7 @@ public interface KnowledgeLevel2PageContract {
 
     interface KnowledgeLevel2PageView extends BaseView {
 
+        void showLevel2PageView();
     }
 
     interface KnowledgeLevel2PageActivityPresenter extends AbstractBasePresenter<KnowledgeLevel2PageContract.KnowledgeLevel2PageView> {
