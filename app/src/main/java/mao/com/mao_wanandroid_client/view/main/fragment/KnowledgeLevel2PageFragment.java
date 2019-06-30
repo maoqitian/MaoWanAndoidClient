@@ -147,7 +147,6 @@ public class KnowledgeLevel2PageFragment extends RootBaseFragment<Level2PagePres
     @Override
     public void showAddArticleCollectStatus(int position, HomeArticleData homeArticleData, String msg) {
         showCollectStatus(position,homeArticleData,msg);
-        smartRefreshLayout.finishLoadMore();
     }
 
     @Override
@@ -158,7 +157,7 @@ public class KnowledgeLevel2PageFragment extends RootBaseFragment<Level2PagePres
 
     @Override
     public void showLoadDataMessage(String msg) {
-
+        smartRefreshLayout.finishLoadMore();
         Toast.makeText(_mActivity,msg,Toast.LENGTH_SHORT).show();
     }
 
