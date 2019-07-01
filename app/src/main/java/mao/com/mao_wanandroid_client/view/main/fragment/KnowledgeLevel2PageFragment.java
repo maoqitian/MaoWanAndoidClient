@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.scwang.smartrefresh.header.MaterialHeader;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 
 import java.util.ArrayList;
@@ -46,6 +47,9 @@ public class KnowledgeLevel2PageFragment extends RootBaseFragment<Level2PagePres
 
     int superChapterId;
 
+    //下拉刷新头部
+    private MaterialHeader mMaterialHeader;
+
     public static KnowledgeLevel2PageFragment newInstance(int cid) {
 
         Bundle args = new Bundle();
@@ -55,9 +59,17 @@ public class KnowledgeLevel2PageFragment extends RootBaseFragment<Level2PagePres
         return fragment;
     }
 
+    @Override
+    protected int getLayoutId() {
+        return R.layout.level2_page_fragment_layout;
+    }
 
     @Override
     protected void initView() {
+        mMaterialHeader = (MaterialHeader)smartRefreshLayout.getRefreshHeader();
+        //拖动Header的时候是否同时拖动内容（默认true）
+        smartRefreshLayout.setEnableHeaderTranslationContent(false);
+        mMaterialHeader.setColorSchemeResources(R.color.colorPrimary,android.R.color.holo_green_light,android.R.color.holo_red_light,android.R.color.holo_blue_light);
         mRecyclerView.setHasFixedSize(true);
         // use a linear layout manager
         layoutManager = new LinearLayoutManager(_mActivity);
@@ -109,10 +121,7 @@ public class KnowledgeLevel2PageFragment extends RootBaseFragment<Level2PagePres
         }
     }
 
-    @Override
-    protected int getLayoutId() {
-        return R.layout.level2_page_fragment_layout;
-    }
+
 
     @Override
     protected void initEventAndData() {

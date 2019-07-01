@@ -11,7 +11,11 @@
         android:layout_height="match_parent"
         app:srlAccentColor="@color/colorPrimaryDark"
         app:srlPrimaryColor="@color/colorPrimary"
+        app:srlEnableLoadMoreWhenContentNotFull="false"
         app:srlEnableAutoLoadMore="true">
+        <com.scwang.smartrefresh.header.MaterialHeader
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
         <android.support.v7.widget.RecyclerView
             android:id="@+id/level2_page_recyclerview"
             android:layout_width="match_parent"

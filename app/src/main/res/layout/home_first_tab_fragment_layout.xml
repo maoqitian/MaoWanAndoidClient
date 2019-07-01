@@ -11,6 +11,7 @@
         android:layout_height="match_parent"
         app:srlAccentColor="@color/colorPrimaryDark"
         app:srlPrimaryColor="@color/colorPrimary"
+        app:srlEnableLoadMoreWhenContentNotFull="false"
         app:srlEnableAutoLoadMore="true">
         <android.support.v7.widget.RecyclerView
             android:id="@+id/home_page_recyclerview"
