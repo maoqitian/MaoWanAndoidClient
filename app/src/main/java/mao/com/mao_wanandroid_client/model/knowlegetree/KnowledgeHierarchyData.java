@@ -10,6 +10,7 @@ import java.util.List;
  */
 public class KnowledgeHierarchyData implements Serializable {
 
+    private static final long serialVersionUID = 6149702407301906636L;
     /**
      * children : []
      * courseId : 13

@@ -1,7 +1,10 @@
 package mao.com.mao_wanandroid_client.presenter.main;
 
+import java.util.List;
+
 import mao.com.mao_wanandroid_client.base.BaseView;
 import mao.com.mao_wanandroid_client.base.presenter.AbstractBasePresenter;
+import mao.com.mao_wanandroid_client.model.knowlegetree.KnowledgeHierarchyData;
 
 /**
  * @author maoqitian
@@ -12,11 +15,13 @@ public interface KnowledgeHierarchyContract {
 
     interface KnowledgeHierarchyView extends BaseView {
 
+        void showKnowledgeHierarchyData(List<KnowledgeHierarchyData> knowledgeHierarchyData);
+
     }
 
 
     interface KnowledgeHierarchyFragmentPresenter extends AbstractBasePresenter<KnowledgeHierarchyView> {
 
-
+        void getKnowledgeHierarchyData();
     }
 }

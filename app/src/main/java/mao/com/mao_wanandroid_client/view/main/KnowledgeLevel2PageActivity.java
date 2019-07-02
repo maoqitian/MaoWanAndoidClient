@@ -19,6 +19,7 @@ import mao.com.mao_wanandroid_client.R;
 import mao.com.mao_wanandroid_client.application.Constants;
 import mao.com.mao_wanandroid_client.base.activity.BaseActivity;
 import mao.com.mao_wanandroid_client.model.home.HomeArticleData;
+import mao.com.mao_wanandroid_client.model.knowlegetree.KnowledgeHierarchyData;
 import mao.com.mao_wanandroid_client.presenter.main.KnowledgeLevel2PageContract;
 import mao.com.mao_wanandroid_client.presenter.main.KnowledgeLevel2PagePresenter;
 import mao.com.mao_wanandroid_client.utils.StatusBarUtil;
@@ -47,6 +48,7 @@ public class KnowledgeLevel2PageActivity extends BaseActivity<KnowledgeLevel2Pag
 
     //点击文章对应数据
     HomeArticleData homeArticleData;
+    KnowledgeHierarchyData mKnowledgeHierarchyData;
     private String pageType;//当前 页面类型 由哪个页面跳转（是否可以收藏）
 
     @Override
@@ -60,8 +62,12 @@ public class KnowledgeLevel2PageActivity extends BaseActivity<KnowledgeLevel2Pag
     }
 
     private void getIntentInitViewData() {
-        homeArticleData= (HomeArticleData) getIntent().getSerializableExtra(Constants.HOME_ARTICLE_DATA);
         pageType = getIntent().getStringExtra(Constants.PAGE_TYPE);
+        if(Constants.RESULT_CODE_HOME_PAGE.equals(pageType)){
+            homeArticleData= (HomeArticleData) getIntent().getSerializableExtra(Constants.HOME_ARTICLE_DATA);
+        }else if(Constants.RESULT_CODE_KNOWLEDGE_PAGE.equals(pageType)){
+            mKnowledgeHierarchyData = (KnowledgeHierarchyData) getIntent().getSerializableExtra(Constants.KNOWLEDGE_DATA);
+        }
         mTitle = new ArrayList<>();
         mFragments = new ArrayList<>();
 
@@ -80,16 +86,18 @@ public class KnowledgeLevel2PageActivity extends BaseActivity<KnowledgeLevel2Pag
     @Override
     public void showLevel2PageView() {
         getIntentInitViewData();
-        if(homeArticleData!=null){
-            mTextTitle.setText(homeArticleData.getChapterName());
-        }
         if(homeArticleData!=null && Constants.RESULT_CODE_HOME_PAGE.equals(pageType)){
+            mTextTitle.setText(homeArticleData.getChapterName());
             //首页 点击 知识体系 tag
             mTitle.add(homeArticleData.getSuperChapterName());
             mFragments.add(KnowledgeLevel2PageFragment.newInstance(homeArticleData.getSuperChapterId()));
-        }else {
+        }else if(mKnowledgeHierarchyData !=null && Constants.RESULT_CODE_KNOWLEDGE_PAGE.equals(pageType)){
+            mTextTitle.setText(mKnowledgeHierarchyData.getName());
             //知识体系 模块正常加载
-
+            for (KnowledgeHierarchyData knowledgeHierarchyData:mKnowledgeHierarchyData.getChildren()) {
+                mTitle.add(knowledgeHierarchyData.getName());
+                mFragments.add(KnowledgeLevel2PageFragment.newInstance(knowledgeHierarchyData.getId()));
+            }
         }
         mViewPager.setAdapter(new HomeTabPageAdapter(getSupportFragmentManager(),mTitle,mFragments));
         mLevel2PageTab.setupWithViewPager(mViewPager);

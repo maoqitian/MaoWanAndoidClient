@@ -154,13 +154,17 @@ public class Constants {
 
 
 
-    //页面跳转 code 标识是来自首页哪个模块跳转
+    //页面跳转 code 标识是来自 哪个模块跳转
+    //首页跳转
     public static final String RESULT_CODE_HOME_PAGE = "result_code_home_page";
-
+    //知识体系 跳转
+    public static final String RESULT_CODE_KNOWLEDGE_PAGE = "result_code_knowledge_page";
     //Bundle 数据 tag
 
     //首页文章数据 常量
     public static final String HOME_ARTICLE_DATA = "homeArticleData";
+    //知识体系 数据 常量
+    public static final String KNOWLEDGE_DATA = "knowledgeData";
     //跳转标识
     public static final String PAGE_TYPE = "pageType";
 

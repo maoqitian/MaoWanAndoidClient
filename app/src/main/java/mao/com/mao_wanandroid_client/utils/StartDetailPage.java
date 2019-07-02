@@ -5,7 +5,9 @@ import android.content.Intent;
 import android.widget.Toast;
 
 import mao.com.mao_wanandroid_client.application.Constants;
+import mao.com.mao_wanandroid_client.model.ResponseBody;
 import mao.com.mao_wanandroid_client.model.home.HomeArticleData;
+import mao.com.mao_wanandroid_client.model.knowlegetree.KnowledgeHierarchyData;
 
 /**
  * @author maoqitian
@@ -19,7 +21,7 @@ public class StartDetailPage{
      * @param unit
      * @param pageType 跳转类型
      */
-    public static void start(final Context context, HomeArticleData unit,String pageType,String activityType) {
+    public static void start(final Context context, HomeArticleData unit, String pageType, String activityType) {
 
         if(Constants.PAGE_WEB_COLLECT.equals(pageType) || Constants.PAGE_WEB_NOT_COLLECT.equals(pageType)) {//WEB 详情 页面
             Intent intent = new Intent(activityType);
@@ -28,7 +30,7 @@ public class StartDetailPage{
             context.startActivity(intent);
             return;
         }
-        if(Constants.RESULT_CODE_HOME_PAGE.equals(pageType) ) {// 知识体系二级 页面
+        if(Constants.RESULT_CODE_HOME_PAGE.equals(pageType)) {// 知识体系二级 页面
             Intent intent = new Intent(activityType);
             intent.putExtra(Constants.HOME_ARTICLE_DATA, unit);
             intent.putExtra(Constants.PAGE_TYPE, pageType);

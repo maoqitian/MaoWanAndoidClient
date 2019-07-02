@@ -1,19 +1,60 @@
 package mao.com.mao_wanandroid_client.view.main.fragment;
 
+import android.content.Intent;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.util.Log;
+import android.view.View;
 
+import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.scwang.smartrefresh.layout.SmartRefreshLayout;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import butterknife.BindView;
 import mao.com.mao_wanandroid_client.R;
+import mao.com.mao_wanandroid_client.application.Constants;
+import mao.com.mao_wanandroid_client.base.fragment.BaseFragment;
 import mao.com.mao_wanandroid_client.base.fragment.RootBaseFragment;
+import mao.com.mao_wanandroid_client.model.knowlegetree.KnowledgeHierarchyData;
 import mao.com.mao_wanandroid_client.presenter.main.KnowledgeHierarchyContract;
 import mao.com.mao_wanandroid_client.presenter.main.KnowledgeHierarchyPresenter;
+import mao.com.mao_wanandroid_client.view.main.adapter.KnowledgeHierarchyAdapter;
 
 /**
  * @author maoqitian
  * @Description: 知识体系 Fragment
  * @date 2019/5/7 0007 11:43
  */
-public class KnowledgeHierarchyPageFragment extends RootBaseFragment<KnowledgeHierarchyPresenter> implements KnowledgeHierarchyContract.KnowledgeHierarchyView {
+public class KnowledgeHierarchyPageFragment extends BaseFragment<KnowledgeHierarchyPresenter>
+        implements KnowledgeHierarchyContract.KnowledgeHierarchyView,
+        BaseQuickAdapter.OnItemClickListener {
 
+
+    @BindView(R.id.knowledge_page_recyclerview)
+    RecyclerView mRecyclerView;
+    @BindView(R.id.knowledge_smartRefresh)
+    SmartRefreshLayout smartRefreshLayout;
+
+    StaggeredGridLayoutManager layoutManager;
+
+    KnowledgeHierarchyAdapter mAdapter;
+
+    List<KnowledgeHierarchyData> mKnowledgeHierarchyData;
+
+    @Override
+    protected void initView() {
+        mRecyclerView.setHasFixedSize(true);
+        // use a linear layout manager
+        layoutManager = new StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL);
+        mRecyclerView.setLayoutManager(layoutManager);
+        mAdapter = new KnowledgeHierarchyAdapter(R.layout.knowledge_item_cardview_layout);
+        mRecyclerView.setAdapter(mAdapter);
+        mAdapter.setOnItemClickListener(this);
+        mKnowledgeHierarchyData = new ArrayList<>();
+    }
     @Override
     protected int getLayoutId() {
         return R.layout.knowledge_hierarchy_fragment_layout;
@@ -21,6 +62,25 @@ public class KnowledgeHierarchyPageFragment extends RootBaseFragment<KnowledgeHi
     @Override
     protected void initEventAndData() {
         super.initEventAndData();
-        Log.e("毛麒添","当前页面状态"+currentState);
+        //Log.e("毛麒添","当前页面状态"+currentState);
+        mPresenter.getKnowledgeHierarchyData();
+
+    }
+
+    @Override
+    public void showKnowledgeHierarchyData(List<KnowledgeHierarchyData> knowledgeHierarchyData) {
+       mKnowledgeHierarchyData.clear();
+       mKnowledgeHierarchyData.addAll(knowledgeHierarchyData);
+       mAdapter.replaceData(mKnowledgeHierarchyData);
+       showNormal();
+    }
+
+    @Override
+    public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+        KnowledgeHierarchyData knowledgeHierarchyData = mKnowledgeHierarchyData.get(position);
+        Intent intent = new Intent(Constants.ACTION_KNOWLEDGE_LEVEL2_ACTIVITY);
+        intent.putExtra(Constants.KNOWLEDGE_DATA, knowledgeHierarchyData);
+        intent.putExtra(Constants.PAGE_TYPE, Constants.RESULT_CODE_KNOWLEDGE_PAGE);
+        _mActivity.startActivity(intent);
     }
 }
