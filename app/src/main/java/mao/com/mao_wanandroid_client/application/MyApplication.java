@@ -46,16 +46,6 @@ public class MyApplication extends DaggerApplication {
                 layout.setPrimaryColorsId(R.color.colorPrimary, android.R.color.white); //主题\强调颜色资源Id
             }
         });
-
-        /*//全局设置默认的 Header
-        SmartRefreshLayout.setDefaultRefreshHeaderCreator(new DefaultRefreshHeaderCreator() {
-            @Override
-            public RefreshHeader createRefreshHeader(Context context, RefreshLayout layout) {
-                //开始设置全局的基本参数（这里设置的属性只跟下面的MaterialHeader绑定，其他Header不会生效，能覆盖DefaultRefreshInitializer的属性和Xml设置的属性）
-                layout.setEnableHeaderTranslationContent(false);//拖动Header的时候是否同时拖动内容（默认true）
-                return new MaterialHeader(context).setColorSchemeResources(R.color.colorPrimary,android.R.color.holo_green_light,android.R.color.holo_red_light,android.R.color.holo_blue_light);
-            }
-        });*/
     }
 
     //双重效验锁实现单例

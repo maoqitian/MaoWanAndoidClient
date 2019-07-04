@@ -93,6 +93,9 @@ public class HomeSecondTabFragment extends RootBaseFragment<HomeSecondTabPresent
                     if(homeArticleData!=null){
                         addOrCancelCollect(position,homeArticleData);
                     }
+                case R.id.tv_project_tag:
+                    //点击项目tag
+                    StartDetailPage.start(_mActivity,homeArticleData,Constants.RESULT_CODE_HOME_PAGE,Constants.ACTION_KNOWLEDGE_LEVEL2_ACTIVITY);
                     break;
             }
         });

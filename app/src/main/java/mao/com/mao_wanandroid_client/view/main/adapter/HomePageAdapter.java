@@ -1,13 +1,10 @@
 package mao.com.mao_wanandroid_client.view.main.adapter;
 
 
-import android.graphics.Color;
-import android.graphics.PorterDuff;
 import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
 import android.view.View;
 
-import com.airbnb.lottie.LottieAnimationView;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 
 import java.util.List;
@@ -15,8 +12,6 @@ import java.util.List;
 import mao.com.mao_wanandroid_client.R;
 import mao.com.mao_wanandroid_client.model.home.HomeArticleData;
 import mao.com.mao_wanandroid_client.view.main.hloder.HomePageViewItemHolder;
-import mao.com.mao_wanandroid_client.widget.HeartView;
-
 /**
  * @author maoqitian
  * @Description 最新博文  RecyclerView Adapter
@@ -42,7 +37,7 @@ public class HomePageAdapter extends BaseQuickAdapter<HomeArticleData, HomePageV
     protected void convert(HomePageViewItemHolder helper, HomeArticleData item) {
          helper.setText(R.id.tv_author_name,item.getAuthor())
                  .setText(R.id.tv_artical_title,item.getTitle())
-                 .setText(R.id.tv_super_chapterName,item.getSuperChapterName()+"|"+item.getChapterName())
+                 .setText(R.id.tv_super_chapterName,item.getSuperChapterName()+" | "+item.getChapterName())
                  //.setText(R.id.tv_chapterName,item.getChapterName())
                  .setText(R.id.tv_artical_date,item.getNiceDate())
                  .addOnClickListener(R.id.image_collect)

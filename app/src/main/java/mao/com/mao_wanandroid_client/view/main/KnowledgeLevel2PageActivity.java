@@ -13,6 +13,7 @@ import com.just.agentweb.AgentWeb;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import butterknife.BindView;
 import mao.com.mao_wanandroid_client.R;
@@ -55,10 +56,11 @@ public class KnowledgeLevel2PageActivity extends BaseActivity<KnowledgeLevel2Pag
     protected void initToolbar() {
         mToolbar.setTitleTextColor(Color.WHITE);
         setSupportActionBar(mToolbar);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayShowTitleEnabled(false);
         mToolbar.setNavigationIcon(R.drawable.ic_arrow_back_24dp);
         StatusBarUtil.setColorNoTranslucentLightMode(this, ContextCompat.getColor(this,R.color.colorPrimary));
         mToolbar.setNavigationOnClickListener(v -> finish());
-        ToolsUtils.setIndicatorWidth(mLevel2PageTab,160);
+        ToolsUtils.setIndicatorWidth(mLevel2PageTab,50);
     }
 
     private void getIntentInitViewData() {

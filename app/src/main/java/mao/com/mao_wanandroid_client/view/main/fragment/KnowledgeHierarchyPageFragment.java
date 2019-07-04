@@ -1,14 +1,15 @@
 package mao.com.mao_wanandroid_client.view.main.fragment;
 
 import android.content.Intent;
-import android.support.v7.widget.LinearLayoutManager;
+import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
-import android.util.Log;
 import android.view.View;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
+import com.scwang.smartrefresh.layout.api.RefreshLayout;
+import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,7 +18,6 @@ import butterknife.BindView;
 import mao.com.mao_wanandroid_client.R;
 import mao.com.mao_wanandroid_client.application.Constants;
 import mao.com.mao_wanandroid_client.base.fragment.BaseFragment;
-import mao.com.mao_wanandroid_client.base.fragment.RootBaseFragment;
 import mao.com.mao_wanandroid_client.model.knowlegetree.KnowledgeHierarchyData;
 import mao.com.mao_wanandroid_client.presenter.main.KnowledgeHierarchyContract;
 import mao.com.mao_wanandroid_client.presenter.main.KnowledgeHierarchyPresenter;
@@ -37,11 +37,8 @@ public class KnowledgeHierarchyPageFragment extends BaseFragment<KnowledgeHierar
     RecyclerView mRecyclerView;
     @BindView(R.id.knowledge_smartRefresh)
     SmartRefreshLayout smartRefreshLayout;
-
     StaggeredGridLayoutManager layoutManager;
-
     KnowledgeHierarchyAdapter mAdapter;
-
     List<KnowledgeHierarchyData> mKnowledgeHierarchyData;
 
     @Override
@@ -54,7 +51,19 @@ public class KnowledgeHierarchyPageFragment extends BaseFragment<KnowledgeHierar
         mRecyclerView.setAdapter(mAdapter);
         mAdapter.setOnItemClickListener(this);
         mKnowledgeHierarchyData = new ArrayList<>();
+        smartRefreshLayoutListener();
     }
+
+    private void smartRefreshLayoutListener() {
+        smartRefreshLayout.setOnRefreshListener(new OnRefreshListener() {
+            @Override
+            public void onRefresh(@NonNull RefreshLayout refreshLayout) {
+                smartRefreshLayout.autoRefresh();
+                mPresenter.getKnowledgeHierarchyData();
+            }
+        });
+    }
+
     @Override
     protected int getLayoutId() {
         return R.layout.knowledge_hierarchy_fragment_layout;
@@ -63,8 +72,8 @@ public class KnowledgeHierarchyPageFragment extends BaseFragment<KnowledgeHierar
     protected void initEventAndData() {
         super.initEventAndData();
         //Log.e("毛麒添","当前页面状态"+currentState);
+        smartRefreshLayout.autoRefresh();
         mPresenter.getKnowledgeHierarchyData();
-
     }
 
     @Override
@@ -72,6 +81,7 @@ public class KnowledgeHierarchyPageFragment extends BaseFragment<KnowledgeHierar
        mKnowledgeHierarchyData.clear();
        mKnowledgeHierarchyData.addAll(knowledgeHierarchyData);
        mAdapter.replaceData(mKnowledgeHierarchyData);
+       smartRefreshLayout.finishRefresh();
        showNormal();
     }
 
