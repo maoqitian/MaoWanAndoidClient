@@ -14,6 +14,7 @@ import mao.com.mao_wanandroid_client.core.http.control.RxSchedulers;
 import mao.com.mao_wanandroid_client.model.ResponseBody;
 import mao.com.mao_wanandroid_client.model.home.HomeArticleData;
 import mao.com.mao_wanandroid_client.model.home.HomeArticleListData;
+import mao.com.mao_wanandroid_client.model.project.ProjectListData;
 
 /**
  * @author maoqitian
@@ -37,11 +38,33 @@ public class HomeSecondTabPresenter extends RxBasePresenter<HomePageSecondTabCon
     }
 
     @Override
-    public void getHomeLatestProjectListDate(boolean isRefreshData) {
-        getHomeLatestProjectDate(curPage,isRefreshData);
+    public void getProjectListDate(boolean isRefreshData,int projectId) {
+        if(-1 == projectId){
+            //首页最新项目
+            getHomeLatestProjectDate(0,isRefreshData);
+        }else {
+            getProjectDate(projectId,1,isRefreshData);
+        }
+    }
+    //获取项目模块数据
+    private void getProjectDate(int projectId,int pageNum, boolean isRefreshData){
+        Observable<ResponseBody<ProjectListData>> projectListData = mDataClient.getProjectListData(pageNum, projectId);
+        projectListData.compose(RxSchedulers.observableIO2Main())
+                       .subscribe(new BaseObserver<ProjectListData>() {
+                           @Override
+                           public void onSuccess(ProjectListData result) {
+                               curPage = result.getCurPage()+1;
+                               mView.showHomeLatestProjectList(isRefreshData,result.getDatas());
+                           }
 
+                           @Override
+                           public void onFailure(Throwable e, String errorMsg) {
+                               mView.showError();
+                           }
+                       });
     }
 
+    //获取首页最新项目数据
     private void getHomeLatestProjectDate(int pageNum, boolean isRefreshData) {
         Observable<ResponseBody<HomeArticleListData>> responseBodyObservable = mDataClient.HomeArticleListProjectData(pageNum);
         responseBodyObservable.compose(RxSchedulers.observableIO2Main())
@@ -49,7 +72,7 @@ public class HomeSecondTabPresenter extends RxBasePresenter<HomePageSecondTabCon
                     @Override
                     public void onSuccess(HomeArticleListData result) {
                         curPage = result.getCurPage();
-                        mView.showHomeLatestProjectList(isRefreshData,result);
+                        mView.showHomeLatestProjectList(isRefreshData,result.getDatas());
                     }
 
                     @Override
@@ -97,12 +120,23 @@ public class HomeSecondTabPresenter extends RxBasePresenter<HomePageSecondTabCon
     }
     //刷新页面
     @Override
-    public void getRefreshPage() {
-        getHomeLatestProjectDate(0,false);
+    public void getRefreshPage(int projectId) {
+        if(-1 == projectId){
+            //首页最新项目
+            getHomeLatestProjectDate(0,false);
+        }else {
+            getProjectDate(projectId,1,false);
+        }
     }
     //加载更多
     @Override
-    public void getLoadMorePage() {
-        getHomeLatestProjectDate(curPage,true);
+    public void getLoadMorePage(int projectId) {
+        if(-1 == projectId){
+            //首页最新项目
+            getHomeLatestProjectDate(curPage,true);
+        }else {
+            getProjectDate(projectId,curPage,true);
+        }
+
     }
 }

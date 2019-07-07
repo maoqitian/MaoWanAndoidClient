@@ -45,13 +45,22 @@ public class HomeSecondTabFragment extends RootBaseFragment<HomeSecondTabPresent
     private RecyclerView.LayoutManager layoutManager;
     private HomeLatestProjectAdapter mLatestProjectAdapter;
 
-    private List<HomeArticleData> homeArticleDataList;
+    private List<HomeArticleData> mHomeArticleDataList;
 
     private String mTabTitle;
+    // 该id在获取该分类下项目时需要用到
+    private int projectId;
 
-    public static Fragment newInstance(String tabName) {
+    /**
+     *
+     * @param tabName tab name
+     * @param id 该id在获取该分类下项目时需要用到
+     * @return
+     */
+    public static Fragment newInstance(String tabName,int id) {
         Bundle args = new Bundle();
         args.putString("tabName",tabName);
+        args.putInt(Constants.BUNDLE_PROJECT_ID,id);
         HomeSecondTabFragment fragment = new HomeSecondTabFragment();
         fragment.setArguments(args);
         return fragment;
@@ -71,7 +80,7 @@ public class HomeSecondTabFragment extends RootBaseFragment<HomeSecondTabPresent
         layoutManager = new LinearLayoutManager(_mActivity);
         mRecyclerView.setLayoutManager(layoutManager);
         // specify an adapter
-        homeArticleDataList = new ArrayList<>();
+        mHomeArticleDataList = new ArrayList<>();
         initLatestProjectPage();
     }
 
@@ -93,6 +102,7 @@ public class HomeSecondTabFragment extends RootBaseFragment<HomeSecondTabPresent
                     if(homeArticleData!=null){
                         addOrCancelCollect(position,homeArticleData);
                     }
+                    break;
                 case R.id.tv_project_tag:
                     //点击项目tag
                     StartDetailPage.start(_mActivity,homeArticleData,Constants.RESULT_CODE_HOME_PAGE,Constants.ACTION_KNOWLEDGE_LEVEL2_ACTIVITY);
@@ -120,7 +130,7 @@ public class HomeSecondTabFragment extends RootBaseFragment<HomeSecondTabPresent
             @Override
             public void onRefresh(@NonNull RefreshLayout refreshLayout) {
                 Log.e("毛麒添","下拉加载");
-                mPresenter.getRefreshPage();
+                mPresenter.getRefreshPage(projectId);
                 refreshLayout.autoRefresh();
             }
         });
@@ -129,7 +139,7 @@ public class HomeSecondTabFragment extends RootBaseFragment<HomeSecondTabPresent
             @Override
             public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
                 Log.e("毛麒添","加载更多");
-                mPresenter.getLoadMorePage();
+                mPresenter.getLoadMorePage(projectId);
                 refreshLayout.autoLoadMore();
             }
         });
@@ -145,10 +155,15 @@ public class HomeSecondTabFragment extends RootBaseFragment<HomeSecondTabPresent
         super.initEventAndData();
         if (getArguments() != null) {
             mTabTitle = getArguments().getString("tabName");
+            projectId = getArguments().getInt(Constants.BUNDLE_PROJECT_ID);
             Log.e("毛麒添","首页mTabTitle "+mTabTitle);
         }
         showLoading();
-        mPresenter.getHomeLatestProjectListDate(false);
+        mPresenter.getProjectListDate(false,projectId);
+        if(-1 != projectId){
+            //项目模块不显示tag 
+            mLatestProjectAdapter.isShowTag(false);
+        }
     }
 
 
@@ -159,13 +174,13 @@ public class HomeSecondTabFragment extends RootBaseFragment<HomeSecondTabPresent
     }
 
     @Override
-    public void showHomeLatestProjectList(boolean isRefreshData,HomeArticleListData homeArticleListData) {
-        Log.e("毛麒添","首页 最新项目 数据 "+homeArticleListData.toString());
+    public void showHomeLatestProjectList(boolean isRefreshData,List<HomeArticleData> homeArticleDataList) {
+        Log.e("毛麒添","首页 最新项目 数据 "+homeArticleDataList.toString());
         if(isRefreshData){ //加载更多
-            mLatestProjectAdapter.addData(homeArticleListData.getDatas());
+            mLatestProjectAdapter.addData(homeArticleDataList);
         }else {
-            homeArticleDataList.clear();
-            homeArticleDataList = homeArticleListData.getDatas();
+            mHomeArticleDataList.clear();
+            mHomeArticleDataList.addAll(homeArticleDataList);
             mLatestProjectAdapter.replaceData(homeArticleDataList);
             showNormal();
         }

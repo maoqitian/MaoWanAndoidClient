@@ -17,7 +17,7 @@ public interface HomePageSecondTabContract {
 
     interface HomePageSecondTabView extends BaseView {
 
-        void showHomeLatestProjectList(boolean isRefreshData,HomeArticleListData homeArticleListData);
+        void showHomeLatestProjectList(boolean isRefreshData,List<HomeArticleData> homeArticleDataList);
 
         //添加文章收藏成功
         void showAddArticleCollectStatus(int position, HomeArticleData homeArticleData, String msg);
@@ -29,9 +29,10 @@ public interface HomePageSecondTabContract {
     interface HomeSecondTabFragmentPresenter extends AbstractBasePresenter<HomePageSecondTabView> {
         /**
          * 获取最新项目数据
-         * @param isRefreshData
+         * @param isRefreshData 是否刷新数据
+         * @param projectId 该id在获取该分类下项目时需要用到
          */
-        void getHomeLatestProjectListDate(boolean isRefreshData);
+        void getProjectListDate(boolean isRefreshData,int projectId);
 
         /**
          * 文章收藏
@@ -47,8 +48,8 @@ public interface HomePageSecondTabContract {
         void cancelArticleCollect(int position,HomeArticleData homeArticleData);
 
         //下拉刷新页面
-        void getRefreshPage();
+        void getRefreshPage(int projectId);
         //上拉加载更多
-        void getLoadMorePage();
+        void getLoadMorePage(int projectId);
     }
 }

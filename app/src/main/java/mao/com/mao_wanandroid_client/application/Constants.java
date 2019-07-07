@@ -172,5 +172,6 @@ public class Constants {
     public static final String BUNDLE_TAG_CID = "chapter_cid";
     //知识体系 二级 cid
     public static final String BUNDLE_TAG_SUPER_CID = "super_chapter_cid";
-
+    //获取项目模块 项目列表数据 id
+    public static final String BUNDLE_PROJECT_ID = "projectId";
 }

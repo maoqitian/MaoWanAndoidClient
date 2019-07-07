@@ -2,6 +2,7 @@ package mao.com.mao_wanandroid_client.view.main.adapter;
 
 import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
+import android.view.View;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 
@@ -32,6 +33,13 @@ public class HomeLatestProjectAdapter extends BaseQuickAdapter<HomeArticleData, 
     }
 
 
+    private boolean isShowTag = true;
+
+    public void isShowTag(boolean showTag){
+        this.isShowTag = showTag;
+        notifyDataSetChanged();
+    }
+
     @Override
     protected void convert(HomeLatestProjectHolder helper, HomeArticleData item) {
          helper.setText(R.id.tv_project_title,item.getTitle())
@@ -41,7 +49,11 @@ public class HomeLatestProjectAdapter extends BaseQuickAdapter<HomeArticleData, 
                .setText(R.id.tv_project_author_name,item.getAuthor())
                .addOnClickListener(R.id.image_project_collect) //项目收藏
                .addOnClickListener(R.id.tv_project_tag); //项目tag
-
+         if(!isShowTag){
+             helper.getView(R.id.tv_project_tag).setVisibility(View.GONE);
+         }else {
+             helper.getView(R.id.tv_project_tag).setVisibility(View.VISIBLE);
+         }
          GlideUtils.showBannerImage(mContext,helper.getView(R.id.iv_project_pic),item.getEnvelopePic());
          if(item.isCollect()){
             helper.setImageDrawable(R.id.image_project_collect, ContextCompat.getDrawable(mContext,R.drawable.ic_favorite_collect_24dp));

@@ -1,9 +1,16 @@
 package mao.com.mao_wanandroid_client.presenter.main;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
+import io.reactivex.Observable;
 import mao.com.mao_wanandroid_client.base.presenter.RxBasePresenter;
 import mao.com.mao_wanandroid_client.core.http.DataClient;
+import mao.com.mao_wanandroid_client.core.http.control.BaseObserver;
+import mao.com.mao_wanandroid_client.core.http.control.RxSchedulers;
+import mao.com.mao_wanandroid_client.model.ResponseBody;
+import mao.com.mao_wanandroid_client.model.project.ProjectClassifyData;
 
 /**
  * @author maoqitian
@@ -24,5 +31,22 @@ public class ProjectPresenter
     @Override
     public void attachView(ProjectContract.ProjectView view) {
         super.attachView(view);
+    }
+
+    @Override
+    public void getProjectClassifyData() {
+        Observable<ResponseBody<List<ProjectClassifyData>>> projectClassifyData = mDataClient.getProjectClassifyData();
+        projectClassifyData.compose(RxSchedulers.observableIO2Main())
+                           .subscribe(new BaseObserver<List<ProjectClassifyData>>() {
+                               @Override
+                               public void onSuccess(List<ProjectClassifyData> result) {
+                                   mView.showProjectClassifyData(result);
+                               }
+
+                               @Override
+                               public void onFailure(Throwable e, String errorMsg) {
+                                   mView.showError();
+                               }
+                           });
     }
 }

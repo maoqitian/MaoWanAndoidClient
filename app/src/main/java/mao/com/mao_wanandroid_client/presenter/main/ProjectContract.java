@@ -1,7 +1,10 @@
 package mao.com.mao_wanandroid_client.presenter.main;
 
+import java.util.List;
+
 import mao.com.mao_wanandroid_client.base.BaseView;
 import mao.com.mao_wanandroid_client.base.presenter.AbstractBasePresenter;
+import mao.com.mao_wanandroid_client.model.project.ProjectClassifyData;
 
 /**
  * @author maoqitian
@@ -10,7 +13,11 @@ import mao.com.mao_wanandroid_client.base.presenter.AbstractBasePresenter;
  */
 public interface ProjectContract {
 
-    interface ProjectView extends BaseView{}
+    interface ProjectView extends BaseView{
+        void showProjectClassifyData(List<ProjectClassifyData> projectClassifyDataList);
+    }
 
-    interface ProjectFragmentPresenter extends AbstractBasePresenter<ProjectView>{}
+    interface ProjectFragmentPresenter extends AbstractBasePresenter<ProjectView>{
+        void getProjectClassifyData();
+    }
 }
