@@ -17,6 +17,10 @@ import mao.com.mao_wanandroid_client.model.project.ProjectListData;
 import mao.com.mao_wanandroid_client.model.search.HotKeyData;
 import mao.com.mao_wanandroid_client.model.knowlegetree.KnowledgeHierarchyData;
 import mao.com.mao_wanandroid_client.model.webmark.webBookMark;
+import retrofit2.http.Field;
+import retrofit2.http.FormUrlEncoded;
+import retrofit2.http.GET;
+import retrofit2.http.Path;
 
 
 /**
@@ -188,4 +192,31 @@ public interface IHttpHelper {
     Observable<ResponseBody<ProjectListData>> getSearchKeyWordData(
              int pageNum, String keyWord
     );
+
+    /**
+     * 获取公众号列表
+     * @return
+     */
+    Observable<ResponseBody<List<KnowledgeHierarchyData>>> getWxArticle();
+
+    /**
+     * 查看某个公众号历史数据
+     * @param id 公众号 ID：拼接在 url 中，eg:405
+     * @param pageNum 公众号页码：拼接在url 中，eg:1
+     * @return
+     */
+    Observable<ResponseBody<HomeArticleListData>>getWxArticleHistory(
+            int id, int pageNum);
+
+    /**
+     * 在某个公众号中搜索历史文章
+     * @param id 公众号 ID：拼接在 url 中，eg:405
+     * @param pageNum 公众号页码：拼接在url 中，eg:1
+     * @param key 搜索关键词 k : 字符串，eg:Java
+     * @return
+     */
+    Observable<ResponseBody<HomeArticleListData>>getWxArticleHistoryByKey(
+             int id, int pageNum, String key);
+
+
 }

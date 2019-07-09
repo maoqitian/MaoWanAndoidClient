@@ -17,7 +17,6 @@ import mao.com.mao_wanandroid_client.model.project.ProjectListData;
 import mao.com.mao_wanandroid_client.model.search.HotKeyData;
 import mao.com.mao_wanandroid_client.model.knowlegetree.KnowledgeHierarchyData;
 import mao.com.mao_wanandroid_client.model.webmark.webBookMark;
-import mao.com.mao_wanandroid_client.model.wechat.OfficialAccountsModel;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
@@ -286,10 +285,6 @@ public interface ApiService {
     );
 
     /**
-     * todo 接口
-     */
-
-    /**
      * 公众号 tab 相关接口
      */
     /**
@@ -297,6 +292,33 @@ public interface ApiService {
      * @return
      */
     @GET("/wxarticle/chapters/json")
-    Observable<ResponseBody<List<OfficialAccountsModel>>> getWxArticle();
+    Observable<ResponseBody<List<KnowledgeHierarchyData>>> getWxArticle();
+
+    /**
+     * 查看某个公众号历史数据
+     * @param id 公众号 ID：拼接在 url 中，eg:405
+     * @param pageNum 公众号页码：拼接在url 中，eg:1
+     * @return
+     */
+    @GET("/wxarticle/list/{WxId}/{pageNum}/json")
+    Observable<ResponseBody<HomeArticleListData>>getWxArticleHistory(
+            @Path("WxId") int id,@Path("pageNum") int pageNum);
+
+    /**
+     * 在某个公众号中搜索历史文章
+     * @param id 公众号 ID：拼接在 url 中，eg:405
+     * @param pageNum 公众号页码：拼接在url 中，eg:1
+     * @param key 搜索关键词 k : 字符串，eg:Java
+     * @return
+     */
+    @GET("/wxarticle/list/{WxId}/{pageNum}/json")
+    @FormUrlEncoded
+    Observable<ResponseBody<HomeArticleListData>>getWxArticleHistoryByKey(
+            @Path("WxId") int id,@Path("pageNum") int pageNum,
+            @Field("k") String key);
+
+    /**
+     * todo 接口
+     */
 
 }

@@ -187,6 +187,21 @@ public class DataClient implements IHttpHelper,SharedPreferenceHelper,DbHelper {
     }
 
     @Override
+    public Observable<ResponseBody<List<KnowledgeHierarchyData>>> getWxArticle() {
+        return mIHttpHelper.getWxArticle();
+    }
+
+    @Override
+    public Observable<ResponseBody<HomeArticleListData>> getWxArticleHistory(int id, int pageNum) {
+        return mIHttpHelper.getWxArticleHistory(id,pageNum);
+    }
+
+    @Override
+    public Observable<ResponseBody<HomeArticleListData>> getWxArticleHistoryByKey(int id, int pageNum, String key) {
+        return mIHttpHelper.getWxArticleHistoryByKey(id,pageNum,key);
+    }
+
+    @Override
     public void setLoginUserName(String userName) {
         mSharedPreferenceHelper.setLoginUserName(userName);
     }

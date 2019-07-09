@@ -11,6 +11,7 @@ import java.util.List;
 public class KnowledgeHierarchyData implements Serializable {
 
     private static final long serialVersionUID = 6149702407301906636L;
+
     /**
      * children : []
      * courseId : 13
@@ -18,6 +19,7 @@ public class KnowledgeHierarchyData implements Serializable {
      * name : Android Studio相关
      * order : 1000
      * parentChapterId : 150
+     * userControlSetTop : false
      * visible : 1
      */
 
@@ -26,6 +28,7 @@ public class KnowledgeHierarchyData implements Serializable {
     private String name;
     private int order;
     private int parentChapterId;
+    private boolean userControlSetTop;
     private int visible;
     private List<KnowledgeHierarchyData> children;
 
@@ -67,6 +70,14 @@ public class KnowledgeHierarchyData implements Serializable {
 
     public void setParentChapterId(int parentChapterId) {
         this.parentChapterId = parentChapterId;
+    }
+
+    public boolean isUserControlSetTop() {
+        return userControlSetTop;
+    }
+
+    public void setUserControlSetTop(boolean userControlSetTop) {
+        this.userControlSetTop = userControlSetTop;
     }
 
     public int getVisible() {

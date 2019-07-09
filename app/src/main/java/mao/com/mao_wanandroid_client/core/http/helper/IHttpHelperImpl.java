@@ -270,5 +270,38 @@ public class IHttpHelperImpl implements IHttpHelper{
         return getApiServiceGson().getSearchKeyWordData(pageNum,keyWord);
     }
 
+    /**
+     * 公众号相关
+     */
+    /**
+     * 获取公众号列表
+     * @return
+     */
+    @Override
+    public Observable<ResponseBody<List<KnowledgeHierarchyData>>> getWxArticle() {
+        return getApiServiceGson().getWxArticle();
+    }
+    /**
+     * 查看某个公众号历史数据
+     * @param id 公众号 ID：拼接在 url 中，eg:405
+     * @param pageNum 公众号页码：拼接在url 中，eg:1
+     * @return
+     */
+    @Override
+    public Observable<ResponseBody<HomeArticleListData>> getWxArticleHistory(int id, int pageNum) {
+        return getApiServiceGson().getWxArticleHistory(id,pageNum);
+    }
+    /**
+     * 在某个公众号中搜索历史文章
+     * @param id 公众号 ID：拼接在 url 中，eg:405
+     * @param pageNum 公众号页码：拼接在url 中，eg:1
+     * @param key 搜索关键词 k : 字符串，eg:Java
+     * @return
+     */
+    @Override
+    public Observable<ResponseBody<HomeArticleListData>> getWxArticleHistoryByKey(int id, int pageNum, String key) {
+        return getApiServiceGson().getWxArticleHistoryByKey(id,pageNum,key);
+    }
+
 
 }
