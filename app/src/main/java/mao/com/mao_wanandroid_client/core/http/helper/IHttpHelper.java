@@ -80,7 +80,7 @@ public interface IHttpHelper {
      * 获取导航数据(网站 个人博客 社区等网站导航数据)
      * @return
      */
-    Observable<ResponseBody<NavigationListData>>getNavigationListData();
+    Observable<ResponseBody<List<NavigationListData>>>getNavigationListData();
     /**
      * 项目分类 项目为包含一个分类，该接口返回整个分类。
      * @return

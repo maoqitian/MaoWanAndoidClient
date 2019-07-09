@@ -107,7 +107,7 @@ public interface ApiService {
      * @return
      */
     @GET("/navi/json")
-    Observable<ResponseBody<NavigationListData>>getNavigationListData();
+    Observable<ResponseBody<List<NavigationListData>>>getNavigationListData();
 
     /**
      * 项目

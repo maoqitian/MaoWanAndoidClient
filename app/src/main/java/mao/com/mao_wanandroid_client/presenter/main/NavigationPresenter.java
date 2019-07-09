@@ -1,9 +1,16 @@
 package mao.com.mao_wanandroid_client.presenter.main;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
+import io.reactivex.Observable;
 import mao.com.mao_wanandroid_client.base.presenter.RxBasePresenter;
 import mao.com.mao_wanandroid_client.core.http.DataClient;
+import mao.com.mao_wanandroid_client.core.http.control.BaseObserver;
+import mao.com.mao_wanandroid_client.core.http.control.RxSchedulers;
+import mao.com.mao_wanandroid_client.model.ResponseBody;
+import mao.com.mao_wanandroid_client.model.navigation.NavigationListData;
 
 /**
  * @author maoqitian
@@ -24,5 +31,23 @@ public class NavigationPresenter
     @Override
     public void attachView(NavigationContract.NavigationView view) {
         super.attachView(view);
+    }
+
+
+    @Override
+    public void getNavigationData() {
+        Observable<ResponseBody<List<NavigationListData>>> navigationListData = mDataClient.getNavigationListData();
+        navigationListData.compose(RxSchedulers.observableIO2Main())
+                          .subscribe(new BaseObserver<List<NavigationListData>>() {
+                              @Override
+                              public void onSuccess(List<NavigationListData> result) {
+                                  mView.showNavigationListData(result);
+                              }
+
+                              @Override
+                              public void onFailure(Throwable e, String errorMsg) {
+
+                              }
+                          });
     }
 }

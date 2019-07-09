@@ -122,7 +122,7 @@ public class IHttpHelperImpl implements IHttpHelper{
      * @return
      */
     @Override
-    public Observable<ResponseBody<NavigationListData>> getNavigationListData() {
+    public Observable<ResponseBody<List<NavigationListData>>> getNavigationListData() {
         return getApiServiceGson().getNavigationListData();
     }
 

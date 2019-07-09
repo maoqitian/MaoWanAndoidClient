@@ -25,6 +25,7 @@
     <dimen name="dp_80">80dp</dimen>
     <dimen name="dp_90">90dp</dimen>
     <dimen name="dp_96">96dp</dimen>
+    <dimen name="dp_100">100dp</dimen>
     <dimen name="dp_120">120dp</dimen>
     <!--sp 尺寸-->
     <dimen name="sp_6">6sp</dimen>
@@ -44,9 +45,11 @@
     <dimen name="sp_48">48sp</dimen>
     <dimen name="dp_32">32dp</dimen>
 
-    <!--bottomNavigationView 字体大小-->
+    <!--自定义 bottomNavigationView 字体大小-->
     <dimen name="design_bottom_navigation_active_text_size">11sp</dimen>
     <dimen name="design_bottom_navigation_text_size">11sp</dimen>
+
+
 
 
 </resources>

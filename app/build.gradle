@@ -54,6 +54,7 @@ dependencies {
     implementation rootProject.ext.dependencies["convenientbanner"]
     implementation rootProject.ext.dependencies["BaseRecyclerViewAdapterHelper"]
     implementation rootProject.ext.dependencies["lottie"]
+    implementation rootProject.ext.dependencies["verticalTabLayout"]
     //http
     implementation rootProject.ext.dependencies["okhttp"]
     implementation rootProject.ext.dependencies["logging-interceptor"]

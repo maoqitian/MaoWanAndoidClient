@@ -1,13 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/view_base_normal"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-    <TextView
-        android:text="@string/navigation"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+    android:layout_height="match_parent"
+    android:orientation="horizontal">
+    <q.rorbin.verticaltablayout.VerticalTabLayout
+        android:id="@+id/vertical_tab"
+        android:layout_width="@dimen/dp_100"
+        android:layout_height="match_parent"
+        android:background="@color/gray"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        app:indicator_corners="20dp"
+        app:indicator_gravity="fill"
+        app:tab_margin="10dp"
+        android:visibility="visible"
+        app:tab_mode="scrollable"
+        >
+    </q.rorbin.verticaltablayout.VerticalTabLayout>
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/nav_recyclerview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    </android.support.v7.widget.RecyclerView>
 
 </LinearLayout>

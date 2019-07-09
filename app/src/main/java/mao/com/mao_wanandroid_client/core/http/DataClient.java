@@ -107,7 +107,7 @@ public class DataClient implements IHttpHelper,SharedPreferenceHelper,DbHelper {
     }
 
     @Override
-    public Observable<ResponseBody<NavigationListData>> getNavigationListData() {
+    public Observable<ResponseBody<List<NavigationListData>>> getNavigationListData() {
         return mIHttpHelper.getNavigationListData();
     }
 

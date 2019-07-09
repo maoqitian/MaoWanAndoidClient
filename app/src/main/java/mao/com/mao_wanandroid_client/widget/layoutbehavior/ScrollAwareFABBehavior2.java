@@ -127,12 +127,7 @@ public class ScrollAwareFABBehavior2 extends CoordinatorLayout.Behavior<Floating
                 //RecyclerView 滑动到顶部隐藏 fab
                 RecyclerView recyclerView = (RecyclerView) target;
                 //直接设置监听事件让 recyclerView 回到顶部
-                child.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        recyclerView.smoothScrollToPosition(0);
-                    }
-                });
+                child.setOnClickListener(v -> recyclerView.smoothScrollToPosition(0));
                 recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
                     @Override
                     public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
