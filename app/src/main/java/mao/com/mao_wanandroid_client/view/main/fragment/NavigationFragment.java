@@ -1,5 +1,7 @@
 package mao.com.mao_wanandroid_client.view.main.fragment;
 
+import android.content.ContextWrapper;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -16,6 +18,8 @@ import mao.com.mao_wanandroid_client.presenter.main.NavigationContract;
 import mao.com.mao_wanandroid_client.presenter.main.NavigationPresenter;
 import mao.com.mao_wanandroid_client.view.main.adapter.NavigationViewAdapter;
 import q.rorbin.verticaltablayout.VerticalTabLayout;
+import q.rorbin.verticaltablayout.adapter.TabAdapter;
+import q.rorbin.verticaltablayout.widget.ITabView;
 
 /**
  * @author maoqitian
@@ -67,6 +71,40 @@ public class NavigationFragment  extends BaseFragment<NavigationPresenter> imple
 
     @Override
     public void showNavigationListData(List<NavigationListData> navigationListData) {
-         
+
+        mNavigationListData.clear();
+        mNavigationListData.addAll(navigationListData);
+        verticalTabLayout.setTabAdapter(new TabAdapter() {
+            @Override
+            public int getCount() {
+                return navigationListData.size();
+            }
+
+            @Override
+            public ITabView.TabBadge getBadge(int position) {
+                return null;
+            }
+
+            @Override
+            public ITabView.TabIcon getIcon(int position) {
+                return null;
+            }
+
+            @Override
+            public ITabView.TabTitle getTitle(int position) {
+                return new ITabView.TabTitle.Builder()
+                        .setContent(mNavigationListData.get(position).getName())
+                        .setTextColor(ContextCompat.getColor(_mActivity,R.color.colorPrimaryDark), ContextCompat.getColor(_mActivity,R.color.color_white))
+                        .build();
+            }
+
+            @Override
+            public int getBackground(int position) {
+                return -1;
+            }
+        });
+        mAdapter.replaceData(mNavigationListData);
     }
+
+
 }

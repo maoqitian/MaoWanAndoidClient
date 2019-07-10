@@ -161,7 +161,7 @@ public class HomeSecondTabFragment extends RootBaseFragment<HomeSecondTabPresent
         showLoading();
         mPresenter.getProjectListDate(false,projectId);
         if(-1 != projectId){
-            //项目模块不显示tag 
+            //项目模块不显示tag
             mLatestProjectAdapter.isShowTag(false);
         }
     }
