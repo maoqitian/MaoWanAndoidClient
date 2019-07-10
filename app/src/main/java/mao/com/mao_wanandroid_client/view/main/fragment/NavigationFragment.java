@@ -67,6 +67,6 @@ public class NavigationFragment  extends BaseFragment<NavigationPresenter> imple
 
     @Override
     public void showNavigationListData(List<NavigationListData> navigationListData) {
-
+         
     }
 }
