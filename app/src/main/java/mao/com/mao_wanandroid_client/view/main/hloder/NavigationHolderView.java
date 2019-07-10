@@ -19,8 +19,8 @@ public class NavigationHolderView extends BaseViewHolder {
 
     @BindView(R.id.tv_nav_article_title)
     TextView mNavgationTitle;
-    @BindView(R.id.tv_nav_article_date)
-    TextView mTextData;
+    @BindView(R.id.nav_flow_layout)
+    FlowLayout mFlowLayout;
 
     public NavigationHolderView(View view) {
         super(view);

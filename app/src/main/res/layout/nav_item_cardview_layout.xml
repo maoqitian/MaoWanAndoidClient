@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/dp_96"
+    android:layout_height="wrap_content"
     android:layout_marginStart="@dimen/dp_12"
     android:layout_marginTop="@dimen/dp_4"
     android:layout_marginEnd="@dimen/dp_12"
@@ -31,28 +31,14 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             tools:ignore="MissingConstraints" />
-        <ImageView
-            android:id="@+id/image_nav_date"
-            android:layout_width="wrap_content"
+        <mao.com.mao_wanandroid_client.widget.FlowLayout
+            android:id="@+id/nav_flow_layout"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/dp_16"
-            android:layout_marginBottom="@dimen/dp_10"
-            android:src="@drawable/ic_clock_date"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            tools:ignore="MissingConstraints" />
-
-        <TextView
-            android:id="@+id/tv_nav_article_date"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/dp_16"
-            android:layout_marginBottom="@dimen/dp_10"
-            tools:text="2019-05-22"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toRightOf="@id/image_nav_date"
-            tools:ignore="MissingConstraints"
-            />
+            android:layout_marginTop="@dimen/dp_10"
+            app:layout_constraintTop_toBottomOf="@id/tv_nav_article_title"
+            >
+        </mao.com.mao_wanandroid_client.widget.FlowLayout>
     </android.support.constraint.ConstraintLayout>
 
 </android.support.v7.widget.CardView>

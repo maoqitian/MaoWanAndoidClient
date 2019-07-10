@@ -11,20 +11,23 @@ import mao.com.mao_wanandroid_client.model.home.HomeArticleData;
  * @Description:
  * @date 2019/7/10 0010 10:45
  */
-public class NavigationTypeData {
+public class NavigationTypeData implements MultiItemEntity{
 
-    private List<HomeArticleData> articles;
-
-    public static class NavigationInfo implements MultiItemEntity {
-
-        public static final int TYPE_HEADER = 1;
-        public static final int TYPE_DATA = 2;
+        private List<HomeArticleData> articles;
 
         private int itemType;
-        public String titleName;
+        public String mTitleName;
+
+        public NavigationTypeData(int itemType) {
+            this.itemType = itemType;
+        }
 
         public void setItemType(int itemType) {
             this.itemType = itemType;
+        }
+        public NavigationTypeData(int itemType, String titleName) {
+            this(itemType);
+            this.mTitleName = titleName;
         }
 
         @Override
@@ -32,5 +35,4 @@ public class NavigationTypeData {
             return itemType;
         }
 
-    }
 }

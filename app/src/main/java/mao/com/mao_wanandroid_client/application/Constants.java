@@ -128,6 +128,14 @@ public class Constants {
     public static final String SP_PROJECT_CURRENT_PAGE = "project_current_page";
 
 
+    //RecycleView item 类型
+    //头部类型
+    public static final int TYPE_HEADER = 1;
+    //数据类型
+    public static final int TYPE_DATA = 2;
+
+
+
 
     //页面跳转类型 能够收藏（是否显示收藏）
     public static final String PAGE_MAIN = "PAGE_MAIN";

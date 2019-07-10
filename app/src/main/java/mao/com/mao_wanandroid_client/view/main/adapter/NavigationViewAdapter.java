@@ -41,7 +41,16 @@ public class NavigationViewAdapter extends BaseQuickAdapter<NavigationListData, 
 
     @Override
     protected void convert(NavigationHolderView helper, NavigationListData item) {
-        /*helper.setText(R.id.tv_nav_article_title,item.getTitle());
-        helper.setText(R.id.tv_nav_article_date,item.getNiceDate());*/
+        helper.setText(R.id.tv_nav_article_title,item.getName());
+        FlowLayout flowLayout = helper.getView(R.id.nav_flow_layout);
+        List<HomeArticleData> childrens = item.getArticles();
+        if(childrens.size()>0){
+            flowLayout.removeAllViews();
+            for (HomeArticleData homeArticleData:childrens) {
+                TextView viewTag = (TextView) LayoutInflater.from(mContext).inflate(R.layout.flow_text_tag_layout, flowLayout, false);
+                viewTag.setText(homeArticleData.getTitle());
+                flowLayout.addView(viewTag);
+            }
+        }
     }
 }

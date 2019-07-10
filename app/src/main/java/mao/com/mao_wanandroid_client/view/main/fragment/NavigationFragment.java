@@ -14,6 +14,7 @@ import mao.com.mao_wanandroid_client.R;
 import mao.com.mao_wanandroid_client.base.fragment.BaseFragment;
 import mao.com.mao_wanandroid_client.base.fragment.RootBaseFragment;
 import mao.com.mao_wanandroid_client.model.navigation.NavigationListData;
+import mao.com.mao_wanandroid_client.model.navigation.NavigationTypeData;
 import mao.com.mao_wanandroid_client.presenter.main.NavigationContract;
 import mao.com.mao_wanandroid_client.presenter.main.NavigationPresenter;
 import mao.com.mao_wanandroid_client.view.main.adapter.NavigationViewAdapter;
@@ -71,7 +72,6 @@ public class NavigationFragment  extends BaseFragment<NavigationPresenter> imple
 
     @Override
     public void showNavigationListData(List<NavigationListData> navigationListData) {
-
         mNavigationListData.clear();
         mNavigationListData.addAll(navigationListData);
         verticalTabLayout.setTabAdapter(new TabAdapter() {
