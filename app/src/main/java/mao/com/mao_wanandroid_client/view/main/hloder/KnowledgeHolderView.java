@@ -1,19 +1,14 @@
 package mao.com.mao_wanandroid_client.view.main.hloder;
 
-import android.content.Context;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.bigkoo.convenientbanner.holder.Holder;
 import com.chad.library.adapter.base.BaseViewHolder;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import mao.com.mao_wanandroid_client.R;
-import mao.com.mao_wanandroid_client.model.banner.HomePageBannerModel;
-import mao.com.mao_wanandroid_client.utils.GlideUtils;
-import mao.com.mao_wanandroid_client.widget.FlowLayout;
+import mao.com.mao_wanandroid_client.widget.flowlayout.FlowLayout;
 
 /**
  * @author maoqitian

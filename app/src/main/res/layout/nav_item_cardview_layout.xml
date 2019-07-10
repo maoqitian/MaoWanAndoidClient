@@ -31,14 +31,15 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             tools:ignore="MissingConstraints" />
-        <mao.com.mao_wanandroid_client.widget.FlowLayout
+        <mao.com.mao_wanandroid_client.widget.flowlayout.TagFlowLayout
             android:id="@+id/nav_flow_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dp_10"
+            android:paddingBottom="@dimen/dp_8"
+            android:paddingStart="@dimen/dp_8"
             app:layout_constraintTop_toBottomOf="@id/tv_nav_article_title"
             >
-        </mao.com.mao_wanandroid_client.widget.FlowLayout>
+        </mao.com.mao_wanandroid_client.widget.flowlayout.TagFlowLayout>
     </android.support.constraint.ConstraintLayout>
 
 </android.support.v7.widget.CardView>

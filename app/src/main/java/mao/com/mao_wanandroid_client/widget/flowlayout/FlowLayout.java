@@ -1,4 +1,4 @@
-package mao.com.mao_wanandroid_client.widget;
+package mao.com.mao_wanandroid_client.widget.flowlayout;
 
 import android.content.Context;
 import android.content.res.TypedArray;

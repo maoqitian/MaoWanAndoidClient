@@ -8,7 +8,8 @@ import com.chad.library.adapter.base.BaseViewHolder;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import mao.com.mao_wanandroid_client.R;
-import mao.com.mao_wanandroid_client.widget.FlowLayout;
+import mao.com.mao_wanandroid_client.widget.flowlayout.FlowLayout;
+import mao.com.mao_wanandroid_client.widget.flowlayout.TagFlowLayout;
 
 /**
  * @author maoqitian
@@ -20,7 +21,7 @@ public class NavigationHolderView extends BaseViewHolder {
     @BindView(R.id.tv_nav_article_title)
     TextView mNavgationTitle;
     @BindView(R.id.nav_flow_layout)
-    FlowLayout mFlowLayout;
+    TagFlowLayout mFlowLayout;
 
     public NavigationHolderView(View view) {
         super(view);
