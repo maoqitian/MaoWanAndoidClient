@@ -9,6 +9,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import mao.com.mao_wanandroid_client.R;
 import mao.com.mao_wanandroid_client.widget.flowlayout.FlowLayout;
+import mao.com.mao_wanandroid_client.widget.flowlayout.TagFlowLayout;
 
 /**
  * @author maoqitian
@@ -20,7 +21,7 @@ public class KnowledgeHolderView extends BaseViewHolder {
     @BindView(R.id.tv_knowledge_title)
     TextView mKnowledgeTitle;
     @BindView(R.id.flow_layout)
-    FlowLayout flowLayout;
+    TagFlowLayout flowLayout;
 
     public KnowledgeHolderView(View view) {
         super(view);

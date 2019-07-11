@@ -27,7 +27,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             />
-        <mao.com.mao_wanandroid_client.widget.flowlayout.FlowLayout
+        <mao.com.mao_wanandroid_client.widget.flowlayout.TagFlowLayout
             android:id="@+id/flow_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -35,7 +35,7 @@
             android:paddingStart="@dimen/dp_8"
             app:layout_constraintTop_toBottomOf="@id/tv_knowledge_title"
             >
-        </mao.com.mao_wanandroid_client.widget.flowlayout.FlowLayout>
+        </mao.com.mao_wanandroid_client.widget.flowlayout.TagFlowLayout>
     </android.support.constraint.ConstraintLayout>
 
 </android.support.v7.widget.CardView>
