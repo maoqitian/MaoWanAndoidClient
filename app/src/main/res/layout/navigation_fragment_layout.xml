@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/view_base_normal"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="horizontal">
+
     <q.rorbin.verticaltablayout.VerticalTabLayout
         android:id="@+id/vertical_tab"
         android:layout_width="@dimen/dp_100"
@@ -19,10 +19,21 @@
         app:tab_mode="scrollable"
         >
     </q.rorbin.verticaltablayout.VerticalTabLayout>
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/nav_recyclerview"
+    <com.scwang.smartrefresh.layout.SmartRefreshLayout
+        android:id="@+id/nav_smart_refresh"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-    </android.support.v7.widget.RecyclerView>
-
+        android:layout_height="match_parent"
+        app:srlAccentColor="@color/colorPrimaryDark"
+        app:srlPrimaryColor="@color/colorPrimary"
+        app:srlEnableLoadMoreWhenContentNotFull="false"
+        app:srlEnableAutoLoadMore="true">
+        <com.scwang.smartrefresh.header.MaterialHeader
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+           <android.support.v7.widget.RecyclerView
+            android:id="@+id/nav_recyclerview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        </android.support.v7.widget.RecyclerView>
+    </com.scwang.smartrefresh.layout.SmartRefreshLayout>
 </LinearLayout>

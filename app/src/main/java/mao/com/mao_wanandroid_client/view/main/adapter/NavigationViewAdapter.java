@@ -43,8 +43,6 @@ public class NavigationViewAdapter extends BaseQuickAdapter<NavigationListData, 
     }
 
 
-
-
     @Override
     protected void convert(NavigationHolderView helper, NavigationListData item) {
         helper.setText(R.id.tv_nav_article_title,item.getName());
