@@ -17,6 +17,7 @@ public class OfficialAccountsDetailPresenter extends RxBasePresenter<OfficialAcc
     @Inject
     public OfficialAccountsDetailPresenter(DataClient dataClient) {
         super(dataClient);
+        this.mDataClient = dataClient;
     }
 
 

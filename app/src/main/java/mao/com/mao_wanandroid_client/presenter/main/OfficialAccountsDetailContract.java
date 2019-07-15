@@ -9,11 +9,11 @@ import mao.com.mao_wanandroid_client.base.presenter.AbstractBasePresenter;
  * @date 2019/7/15 0015 17:48
  */
 public class OfficialAccountsDetailContract {
-    interface OfficialAccountsDetailView extends BaseView {
+    public interface OfficialAccountsDetailView extends BaseView {
 
     }
 
-    interface OfficialAccountsDetailActivityPresenter extends AbstractBasePresenter<OfficialAccountsDetailContract.OfficialAccountsDetailView> {
+    public interface OfficialAccountsDetailActivityPresenter extends AbstractBasePresenter<OfficialAccountsDetailContract.OfficialAccountsDetailView> {
 
     }
 }

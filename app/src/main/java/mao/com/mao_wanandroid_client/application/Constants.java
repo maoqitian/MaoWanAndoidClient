@@ -155,6 +155,8 @@ public class Constants {
     public static final String ACTION_PAGE_DETAIL_ACTIVITY = "com.mao.mao_wanandroid.action.PAGE_DETAIL_ACTIVITY";
     //知识体系二级页
     public static final String ACTION_KNOWLEDGE_LEVEL2_ACTIVITY = "com.mao.mao_wanandroid.action.KNOWLEDGE_LEVEL2";
+    //公众号详情页
+    public static final String ACTION_OFFICIAL_ACCOUNTS_ACTIVITY = "com.mao.mao_wanandroid.action.OFFICIAL_ACCOUNTS";
     //登录页
     public static final String ACTION_LOGIN_ACTIVITY = "com.mao.mao_wanandroid.action.LOGIN_ACTIVITY";
     //注册页
