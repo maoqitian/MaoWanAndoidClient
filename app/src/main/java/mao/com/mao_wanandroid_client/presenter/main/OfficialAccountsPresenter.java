@@ -1,9 +1,16 @@
 package mao.com.mao_wanandroid_client.presenter.main;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
+import io.reactivex.Observable;
 import mao.com.mao_wanandroid_client.base.presenter.RxBasePresenter;
 import mao.com.mao_wanandroid_client.core.http.DataClient;
+import mao.com.mao_wanandroid_client.core.http.control.BaseObserver;
+import mao.com.mao_wanandroid_client.core.http.control.RxSchedulers;
+import mao.com.mao_wanandroid_client.model.ResponseBody;
+import mao.com.mao_wanandroid_client.model.knowlegetree.KnowledgeHierarchyData;
 
 /**
  * @author maoqitian
@@ -13,6 +20,7 @@ import mao.com.mao_wanandroid_client.core.http.DataClient;
 public class OfficialAccountsPresenter extends
         RxBasePresenter<OfficialAccountsContract.OfficialAccountsView>
         implements OfficialAccountsContract.OfficialAccountsFragmentPresenter {
+
     private DataClient mDataClient;
     @Inject
     public OfficialAccountsPresenter(DataClient dataClient) {
@@ -23,5 +31,22 @@ public class OfficialAccountsPresenter extends
     @Override
     public void attachView(OfficialAccountsContract.OfficialAccountsView view) {
         super.attachView(view);
+    }
+
+    @Override
+    public void getOfficialAccountsListData() {
+        Observable<ResponseBody<List<KnowledgeHierarchyData>>> wxArticle = mDataClient.getWxArticle();
+        wxArticle.compose(RxSchedulers.observableIO2Main())
+                 .subscribe(new BaseObserver<List<KnowledgeHierarchyData>>() {
+                     @Override
+                     public void onSuccess(List<KnowledgeHierarchyData> result) {
+                           mView.showOfficialAccountsList(result);
+                     }
+
+                     @Override
+                     public void onFailure(Throwable e, String errorMsg) {
+
+                     }
+                 });
     }
 }
