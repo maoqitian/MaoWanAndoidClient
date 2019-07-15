@@ -66,6 +66,8 @@ public class NavigationFragment  extends BaseFragment<NavigationPresenter> imple
     private boolean isClickTab;
     //指向位置
     private int indexPosition;
+    //VerticalTabLayout 点击获取位置让 RecycleView滑动到相应位置
+    private int scrollToPosition;
 
     @Override
     protected int getLayoutId() {
@@ -91,7 +93,6 @@ public class NavigationFragment  extends BaseFragment<NavigationPresenter> imple
 
     }
 
-    @SuppressLint("ClickableViewAccessibility")
     private void VerticalTabLayoutWithRecyclerView() {
          onScrollListener =new RecyclerView.OnScrollListener() {
             // RecyclerView 滚动状态变化时回调
@@ -134,7 +135,7 @@ public class NavigationFragment  extends BaseFragment<NavigationPresenter> imple
     }
     //滑动到对应位置
     private void RecyclerViewSmoothScroll() {
-        int indexPositionDistance = indexPosition - layoutManager.findFirstVisibleItemPosition();
+        int indexPositionDistance = scrollToPosition - layoutManager.findFirstVisibleItemPosition();
         if (indexPositionDistance >= 0 && indexPositionDistance < mRecyclerView.getChildCount()) {
             int top = mRecyclerView.getChildAt(indexPositionDistance).getTop();
             mRecyclerView.smoothScrollBy(0, top);
@@ -169,22 +170,23 @@ public class NavigationFragment  extends BaseFragment<NavigationPresenter> imple
         indexPosition = position;
     }
     //VerticalTabLayout 点击使 RecyclerView 滑动到对应位置
-    private void moveToPosition(LinearLayoutManager layoutManager, RecyclerView mRecyclerView, int position) {
+    private void moveToPosition(LinearLayoutManager layoutManager, RecyclerView recyclerView, int position) {
         // 第一个可见的view的位置
         int firstItem = layoutManager.findFirstVisibleItemPosition();
         // 最后一个可见的view的位置
         int lastItem = layoutManager.findLastVisibleItemPosition();
         if (position <= firstItem) {
             // 如果跳转位置firstItem 之前(滑出屏幕的情况)，就smoothScrollToPosition可以直接跳转，
-            mRecyclerView.smoothScrollToPosition(position);
+            recyclerView.smoothScrollToPosition(position);
         } else if (position <= lastItem) {
             // 跳转位置在firstItem 之后，lastItem 之间（显示在当前屏幕），smoothScrollBy来滑动到指定位置
-            int top = mRecyclerView.getChildAt(position - firstItem).getTop();
-            mRecyclerView.smoothScrollBy(0, top);
+            int top = recyclerView.getChildAt(position - firstItem).getTop();
+            recyclerView.smoothScrollBy(0, top);
         } else {
             // 如果要跳转的位置在lastItem 之后，则先调用smoothScrollToPosition将要跳转的位置滚动到可见位置
             // 再通过onScrollStateChanged控制再次调用当前moveToPosition方法，执行上一个判断中的方法
-            mRecyclerView.smoothScrollToPosition(position);
+            recyclerView.smoothScrollToPosition(position);
+            scrollToPosition = position;
             canScroll = true;
         }
     }
