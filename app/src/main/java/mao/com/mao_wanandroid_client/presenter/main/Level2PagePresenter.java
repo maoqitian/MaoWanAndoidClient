@@ -61,7 +61,7 @@ public class Level2PagePresenter extends RxBasePresenter<Level2PageContract.Leve
                 });
     }
 
-    //收藏项目
+    /*//收藏项目
     @Override
     public void addArticleCollect(int position, HomeArticleData homeArticleData) {
         Observable<ResponseBody<String>> responseBodyObservable = mDataClient.addCollectInsideListData(homeArticleData.getId());
@@ -96,7 +96,7 @@ public class Level2PagePresenter extends RxBasePresenter<Level2PageContract.Leve
                         mView.showCancelArticleCollectStatus(position,null, MyApplication.getInstance().getApplicationContext().getString(R.string.cancle_collection_fail));
                     }
                 });
-    }
+    }*/
     //下拉刷新
     @Override
     public void getRefreshPage(int cid) {

@@ -45,4 +45,23 @@ public class StartDetailPage{
         Toast.makeText(context, "该页面暂未实现", Toast.LENGTH_SHORT).show();
     }
 
+    public static void start2(final Context context, KnowledgeHierarchyData unit, String pageType, String activityType) {
+
+        if(Constants.PAGE_OFFICIAL_ACCOUNTS_DETAIL.equals(pageType)) {//公众号详情页
+            Intent intent = new Intent(activityType);
+            intent.putExtra(Constants.KNOWLEDGE_DATA, unit);
+            context.startActivity(intent);
+            return;
+        }
+        if(Constants.RESULT_CODE_KNOWLEDGE_PAGE.equals(pageType)) {//知识体系模块跳转知识体系详情
+            Intent intent = new Intent(activityType);
+            intent.putExtra(Constants.KNOWLEDGE_DATA, unit);
+            intent.putExtra(Constants.PAGE_TYPE, Constants.RESULT_CODE_KNOWLEDGE_PAGE);
+            context.startActivity(intent);
+            return;
+        }
+
+        Toast.makeText(context, "该页面暂未实现", Toast.LENGTH_SHORT).show();
+    }
+
 }

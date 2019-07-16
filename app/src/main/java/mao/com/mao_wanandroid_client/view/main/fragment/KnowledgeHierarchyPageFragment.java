@@ -21,6 +21,7 @@ import mao.com.mao_wanandroid_client.base.fragment.BaseFragment;
 import mao.com.mao_wanandroid_client.model.knowlegetree.KnowledgeHierarchyData;
 import mao.com.mao_wanandroid_client.presenter.main.KnowledgeHierarchyContract;
 import mao.com.mao_wanandroid_client.presenter.main.KnowledgeHierarchyPresenter;
+import mao.com.mao_wanandroid_client.utils.StartDetailPage;
 import mao.com.mao_wanandroid_client.view.main.adapter.KnowledgeHierarchyAdapter;
 
 /**
@@ -88,9 +89,10 @@ public class KnowledgeHierarchyPageFragment extends BaseFragment<KnowledgeHierar
     @Override
     public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
         KnowledgeHierarchyData knowledgeHierarchyData = mKnowledgeHierarchyData.get(position);
-        Intent intent = new Intent(Constants.ACTION_KNOWLEDGE_LEVEL2_ACTIVITY);
+        StartDetailPage.start2(_mActivity,knowledgeHierarchyData,Constants.RESULT_CODE_KNOWLEDGE_PAGE,Constants.ACTION_KNOWLEDGE_LEVEL2_ACTIVITY);
+       /* Intent intent = new Intent(Constants.ACTION_KNOWLEDGE_LEVEL2_ACTIVITY);
         intent.putExtra(Constants.KNOWLEDGE_DATA, knowledgeHierarchyData);
         intent.putExtra(Constants.PAGE_TYPE, Constants.RESULT_CODE_KNOWLEDGE_PAGE);
-        _mActivity.startActivity(intent);
+        _mActivity.startActivity(intent);*/
     }
 }

@@ -121,8 +121,6 @@ public class KnowledgeLevel2PageFragment extends RootBaseFragment<Level2PagePres
         }
     }
 
-
-
     @Override
     protected void initEventAndData() {
         if(getArguments()!=null){

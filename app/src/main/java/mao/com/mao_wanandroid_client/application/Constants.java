@@ -137,15 +137,17 @@ public class Constants {
 
 
 
-    //页面跳转类型 能够收藏（是否显示收藏）
+    //页面跳转类型 进入主页
     public static final String PAGE_MAIN = "PAGE_MAIN";
-
+    //能够收藏（是否显示收藏）
     public static final String PAGE_WEB_COLLECT = "PAGE_TYPE_WEB_COLLECT";
     //页面跳转类型 不能收藏（是否显示收藏）例如：首页 banner
     public static final String PAGE_WEB_NOT_COLLECT = "PAGE_TYPE_WEB_NOT_COLLECT";
 
     public static final String PAGE_LOGIN = "PAGE_LOGIN";
     public static final String PAGE_SIGN_UP = "PAGE_SIGN_UP";
+    //公众号详情页
+    public static final String PAGE_OFFICIAL_ACCOUNTS_DETAIL = "PAGE_OFFICIAL_ACCOUNTS_DETAIL";
 
 
     //页面隐式调用
@@ -169,8 +171,10 @@ public class Constants {
     public static final String RESULT_CODE_HOME_PAGE = "result_code_home_page";
     //知识体系 跳转
     public static final String RESULT_CODE_KNOWLEDGE_PAGE = "result_code_knowledge_page";
-    //Bundle 数据 tag
 
+
+
+    //Bundle 数据 tag
     //首页文章数据 常量
     public static final String HOME_ARTICLE_DATA = "homeArticleData";
     //知识体系 数据 常量

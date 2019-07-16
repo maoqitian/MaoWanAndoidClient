@@ -7,8 +7,6 @@ import dagger.Module;
 import mao.com.mao_wanandroid_client.di.scope.ActivityScope;
 import mao.com.mao_wanandroid_client.presenter.login.LoginContract;
 import mao.com.mao_wanandroid_client.presenter.login.LoginPresenter;
-import mao.com.mao_wanandroid_client.presenter.main.MainContract;
-import mao.com.mao_wanandroid_client.presenter.main.MainPresenter;
 
 
 /**

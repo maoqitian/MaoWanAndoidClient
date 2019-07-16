@@ -95,4 +95,18 @@ public class KnowledgeHierarchyData implements Serializable {
     public void setChildren(List<KnowledgeHierarchyData> children) {
         this.children = children;
     }
+
+    @Override
+    public String toString() {
+        return "KnowledgeHierarchyData{" +
+                "courseId=" + courseId +
+                ", id=" + id +
+                ", name='" + name + '\'' +
+                ", order=" + order +
+                ", parentChapterId=" + parentChapterId +
+                ", userControlSetTop=" + userControlSetTop +
+                ", visible=" + visible +
+                ", children=" + children +
+                '}';
+    }
 }

@@ -2,6 +2,7 @@ package mao.com.mao_wanandroid_client.base.presenter;
 
 import io.reactivex.disposables.Disposable;
 import mao.com.mao_wanandroid_client.base.BaseView;
+import mao.com.mao_wanandroid_client.model.home.HomeArticleData;
 
 /**
  * @author maoqitian
@@ -74,4 +75,16 @@ public interface AbstractBasePresenter<T extends BaseView> {
      */
     int getCurrentPage();
 
+    /**
+     * 文章收藏
+     * @param position 文章目前在 recycleview 位置
+     * @param homeArticleData 文章信息
+     */
+    void addArticleCollect(int position, HomeArticleData homeArticleData);
+    /**
+     * 取消文章收藏
+     * @param position 文章目前在 recycleview 位置
+     * @param homeArticleData 文章信息
+     */
+    void cancelArticleCollect(int position,HomeArticleData homeArticleData);
 }

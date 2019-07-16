@@ -2,7 +2,9 @@
 <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/colorBackground"
+    >
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -12,8 +14,32 @@
         layout="@layout/common_bar" />
     </android.support.design.widget.AppBarLayout>
 
-
-
+    <LinearLayout
+        android:orientation="vertical"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <com.scwang.smartrefresh.layout.SmartRefreshLayout
+            android:id="@+id/official_accounts_detail_smartRefresh"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:srlAccentColor="@color/colorPrimaryDark"
+            app:srlPrimaryColor="@color/colorPrimary"
+            app:srlEnableLoadMoreWhenContentNotFull="false"
+            app:srlEnableAutoLoadMore="true">
+            <com.scwang.smartrefresh.header.MaterialHeader
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+            <android.support.v7.widget.RecyclerView
+               android:id="@+id/official_accounts_detail_recycleview"
+               android:layout_width="match_parent"
+               android:layout_height="match_parent">
+            </android.support.v7.widget.RecyclerView>
+            <com.scwang.smartrefresh.header.TaurusHeader
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+        </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+    </LinearLayout>
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab_level2_page"
         android:layout_width="wrap_content"

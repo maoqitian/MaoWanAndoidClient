@@ -1,9 +1,16 @@
 package mao.com.mao_wanandroid_client.base.presenter;
 
+import io.reactivex.Observable;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
+import mao.com.mao_wanandroid_client.R;
+import mao.com.mao_wanandroid_client.application.MyApplication;
 import mao.com.mao_wanandroid_client.base.BaseView;
 import mao.com.mao_wanandroid_client.core.http.DataClient;
+import mao.com.mao_wanandroid_client.core.http.control.BaseObserver;
+import mao.com.mao_wanandroid_client.core.http.control.RxSchedulers;
+import mao.com.mao_wanandroid_client.model.ResponseBody;
+import mao.com.mao_wanandroid_client.model.home.HomeArticleData;
 
 /**
  * @author maoqitian
@@ -83,6 +90,42 @@ public class RxBasePresenter<T extends BaseView> implements AbstractBasePresente
     @Override
     public int getCurrentPage() {
         return mDataClient.getCurrentPage();
+    }
+
+    @Override
+    public void addArticleCollect(int position, HomeArticleData homeArticleData) {
+        Observable<ResponseBody<String>> responseBodyObservable = mDataClient.addCollectInsideListData(homeArticleData.getId());
+        responseBodyObservable.compose(RxSchedulers.observableIO2Main())
+                .subscribe(new BaseObserver<String>() {
+                    @Override
+                    public void onSuccess(String result) {
+                        homeArticleData.setCollect(true);
+                        mView.showAddArticleCollectStatus(position,homeArticleData, MyApplication.getInstance().getApplicationContext().getString(R.string.collection_success));
+                    }
+
+                    @Override
+                    public void onFailure(Throwable e, String errorMsg) {
+                        mView.showAddArticleCollectStatus(position,null, MyApplication.getInstance().getApplicationContext().getString(R.string.collection_fail));
+                    }
+                });
+    }
+
+    @Override
+    public void cancelArticleCollect(int position, HomeArticleData homeArticleData) {
+        Observable<ResponseBody<String>> responseBodyObservable = mDataClient.cancelCollectArticleListData(homeArticleData.getId());
+        responseBodyObservable.compose(RxSchedulers.observableIO2Main())
+                .subscribe(new BaseObserver<String>() {
+                    @Override
+                    public void onSuccess(String result) {
+                        homeArticleData.setCollect(false);
+                        mView.showCancelArticleCollectStatus(position,homeArticleData, MyApplication.getInstance().getApplicationContext().getString(R.string.cancle_collection_success));
+                    }
+
+                    @Override
+                    public void onFailure(Throwable e, String errorMsg) {
+                        mView.showCancelArticleCollectStatus(position,null, MyApplication.getInstance().getApplicationContext().getString(R.string.cancle_collection_fail));
+                    }
+                });
     }
 
 }

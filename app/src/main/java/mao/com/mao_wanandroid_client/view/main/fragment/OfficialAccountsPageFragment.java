@@ -12,11 +12,13 @@ import java.util.List;
 
 import butterknife.BindView;
 import mao.com.mao_wanandroid_client.R;
+import mao.com.mao_wanandroid_client.application.Constants;
 import mao.com.mao_wanandroid_client.base.fragment.BaseFragment;
 import mao.com.mao_wanandroid_client.base.fragment.RootBaseFragment;
 import mao.com.mao_wanandroid_client.model.knowlegetree.KnowledgeHierarchyData;
 import mao.com.mao_wanandroid_client.presenter.main.OfficialAccountsContract;
 import mao.com.mao_wanandroid_client.presenter.main.OfficialAccountsPresenter;
+import mao.com.mao_wanandroid_client.utils.StartDetailPage;
 import mao.com.mao_wanandroid_client.view.main.adapter.OfficialAccountsAdapter;
 
 /**
@@ -45,6 +47,7 @@ public class OfficialAccountsPageFragment extends BaseFragment<OfficialAccountsP
         mRecyclerView.setLayoutManager(layoutManager);
         mAdapter = new OfficialAccountsAdapter(R.layout.official_accounts_item_cardview_layout);
         mRecyclerView.setAdapter(mAdapter);
+        mAdapter.setOnItemClickListener(this);
         mOfficialAccountsListData = new ArrayList<>();
     }
 
@@ -69,6 +72,7 @@ public class OfficialAccountsPageFragment extends BaseFragment<OfficialAccountsP
 
     @Override
     public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-
+        KnowledgeHierarchyData knowledgeHierarchyData = (KnowledgeHierarchyData) adapter.getItem(position);
+        StartDetailPage.start2(_mActivity,knowledgeHierarchyData, Constants.PAGE_OFFICIAL_ACCOUNTS_DETAIL,Constants.ACTION_OFFICIAL_ACCOUNTS_ACTIVITY);
     }
 }

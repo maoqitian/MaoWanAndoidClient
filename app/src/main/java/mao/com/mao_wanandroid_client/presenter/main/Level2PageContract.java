@@ -26,20 +26,6 @@ public interface Level2PageContract {
     interface KnowledgeLevel2PageFragmentPresenter extends AbstractBasePresenter<Level2PageContract.Level2PageView> {
 
         void getSuperChapterArticleData(int cid);
-
-        /**
-         * 文章收藏
-         * @param position 文章目前在 recycleview 位置
-         * @param homeArticleData 文章信息
-         */
-        void addArticleCollect(int position, HomeArticleData homeArticleData);
-        /**
-         * 取消文章收藏
-         * @param position 文章目前在 recycleview 位置
-         * @param homeArticleData 文章信息
-         */
-        void cancelArticleCollect(int position,HomeArticleData homeArticleData);
-
         //下拉刷新页面
         void getRefreshPage(int cid);
         //上拉加载更多
