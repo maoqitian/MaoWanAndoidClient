@@ -111,7 +111,7 @@ public class HomeSecondTabFragment extends RootBaseFragment<HomeSecondTabPresent
         });
     }
     //收藏或者取消收藏
-    private void addOrCancelCollect(int position, HomeArticleData homeArticleData) {
+    /*private void addOrCancelCollect(int position, HomeArticleData homeArticleData) {
         if(!mPresenter.getLoginStatus()){
             StartDetailPage.start(_mActivity,null, Constants.PAGE_LOGIN,Constants.ACTION_LOGIN_ACTIVITY);
             return;
@@ -123,7 +123,7 @@ public class HomeSecondTabFragment extends RootBaseFragment<HomeSecondTabPresent
             //取消收藏
             mPresenter.cancelArticleCollect(position,homeArticleData);
         }
-    }
+    }*/
 
     private void setSmartRefreshLayoutListener() {
         mSmartRefreshLayout.setOnRefreshListener(new OnRefreshListener() {

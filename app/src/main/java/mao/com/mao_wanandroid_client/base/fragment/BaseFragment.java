@@ -11,8 +11,11 @@ import javax.inject.Inject;
 
 import dagger.android.AndroidInjection;
 import dagger.android.support.AndroidSupportInjection;
+import mao.com.mao_wanandroid_client.application.Constants;
 import mao.com.mao_wanandroid_client.base.BaseView;
 import mao.com.mao_wanandroid_client.base.presenter.AbstractBasePresenter;
+import mao.com.mao_wanandroid_client.model.home.HomeArticleData;
+import mao.com.mao_wanandroid_client.utils.StartDetailPage;
 
 /**
  * @author maoqitian
@@ -129,6 +132,30 @@ public abstract class BaseFragment <T extends AbstractBasePresenter> extends Sim
 
     @Override
     public void reload() {
+
+    }
+    //收藏或者取消收藏
+    protected void addOrCancelCollect(int position,HomeArticleData homeArticleData) {
+        if(!mPresenter.getLoginStatus()){
+            StartDetailPage.start(_mActivity,null, Constants.PAGE_LOGIN,Constants.ACTION_LOGIN_ACTIVITY);
+            return;
+        }
+        if(!homeArticleData.isCollect()){
+            //收藏
+            mPresenter.addArticleCollect(position,homeArticleData);
+        }else {
+            //取消收藏
+            mPresenter.cancelArticleCollect(position,homeArticleData);
+        }
+    }
+
+    @Override
+    public void showAddArticleCollectStatus(int position, HomeArticleData homeArticleData, String msg) {
+
+    }
+
+    @Override
+    public void showCancelArticleCollectStatus(int position, HomeArticleData homeArticleData, String msg) {
 
     }
 }

@@ -9,6 +9,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.scwang.smartrefresh.header.MaterialHeader;
@@ -86,7 +87,7 @@ public class OfficialAccountsDetailActivity extends BaseActivity<OfficialAccount
             if (view.getId() == R.id.image_collect) {
                 Log.e("毛麒添", "点击收藏");
                 if (homeArticleData != null) {
-                    //addOrCancelCollect(position, homeArticleData);
+                    addOrCancelCollect(position, homeArticleData);
                 }
             }
         });
@@ -163,13 +164,22 @@ public class OfficialAccountsDetailActivity extends BaseActivity<OfficialAccount
         StartDetailPage.start(this,homeArticleData, Constants.PAGE_WEB_COLLECT,Constants.ACTION_PAGE_DETAIL_ACTIVITY);
     }
 
+
     @Override
     public void showAddArticleCollectStatus(int position, HomeArticleData homeArticleData, String msg) {
-
+        showCollectStatus(position,homeArticleData,msg);
     }
 
     @Override
     public void showCancelArticleCollectStatus(int position, HomeArticleData homeArticleData, String msg) {
+        showCollectStatus(position,homeArticleData,msg);
+    }
 
+    //显示收藏 或取消 收藏之后的状态
+    private void showCollectStatus(int position,HomeArticleData homeArticleData,String msg){
+        if(homeArticleData!=null && mAdapter!=null){
+            mAdapter.setData(position,homeArticleData);
+        }
+        Toast.makeText(this,msg,Toast.LENGTH_SHORT).show();
     }
 }

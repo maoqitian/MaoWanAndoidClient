@@ -35,10 +35,7 @@ public interface HomePageFirstTabContract {
         //自动登录失败
         void showAutoLoginFail(String errorMsg);
 
-        //添加文章收藏成功
-        void showAddArticleCollectStatus(int position,HomeArticleData homeArticleData,String msg);
-        //取消文章收藏成功
-        void showCancelArticleCollectStatus(int position,HomeArticleData homeArticleData,String msg);
+
     }
 
 

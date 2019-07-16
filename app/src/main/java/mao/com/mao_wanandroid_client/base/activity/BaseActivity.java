@@ -15,8 +15,11 @@ import dagger.android.DispatchingAndroidInjector;
 import dagger.android.HasFragmentInjector;
 import dagger.android.support.DaggerAppCompatActivity;
 import dagger.android.support.HasSupportFragmentInjector;
+import mao.com.mao_wanandroid_client.application.Constants;
 import mao.com.mao_wanandroid_client.base.BaseView;
 import mao.com.mao_wanandroid_client.base.presenter.AbstractBasePresenter;
+import mao.com.mao_wanandroid_client.model.home.HomeArticleData;
+import mao.com.mao_wanandroid_client.utils.StartDetailPage;
 
 /**
  * @author maoqitian
@@ -145,5 +148,30 @@ public abstract class  BaseActivity <T extends AbstractBasePresenter> extends Ab
     @Override
     public AndroidInjector<android.app.Fragment> fragmentInjector() {
         return frameworkFragmentInjector;
+    }
+
+    //收藏或者取消收藏
+    protected void addOrCancelCollect(int position,HomeArticleData homeArticleData) {
+        if(!mPresenter.getLoginStatus()){
+            StartDetailPage.start(this,null, Constants.PAGE_LOGIN,Constants.ACTION_LOGIN_ACTIVITY);
+            return;
+        }
+        if(!homeArticleData.isCollect()){
+            //收藏
+            mPresenter.addArticleCollect(position,homeArticleData);
+        }else {
+            //取消收藏
+            mPresenter.cancelArticleCollect(position,homeArticleData);
+        }
+    }
+
+    @Override
+    public void showAddArticleCollectStatus(int position, HomeArticleData homeArticleData, String msg) {
+
+    }
+
+    @Override
+    public void showCancelArticleCollectStatus(int position, HomeArticleData homeArticleData, String msg) {
+
     }
 }

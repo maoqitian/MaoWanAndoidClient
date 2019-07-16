@@ -1,5 +1,7 @@
 package mao.com.mao_wanandroid_client.base;
 
+import mao.com.mao_wanandroid_client.model.home.HomeArticleData;
+
 /**
  * @author maoqitian
  * @Description View 的基类
@@ -85,4 +87,9 @@ public interface BaseView {
      * 页面重新加载
      */
     void reload();
+
+    //添加文章收藏成功
+    void showAddArticleCollectStatus(int position, HomeArticleData homeArticleData, String msg);
+    //取消文章收藏成功
+    void showCancelArticleCollectStatus(int position,HomeArticleData homeArticleData,String msg);
 }

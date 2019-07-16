@@ -107,7 +107,7 @@ public class KnowledgeLevel2PageFragment extends RootBaseFragment<Level2PagePres
     }
 
     //收藏或者取消收藏
-    private void addOrCancelCollect(int position, HomeArticleData homeArticleData) {
+    /*private void addOrCancelCollect(int position, HomeArticleData homeArticleData) {
         if(!mPresenter.getLoginStatus()){
             StartDetailPage.start(_mActivity,null, Constants.PAGE_LOGIN,Constants.ACTION_LOGIN_ACTIVITY);
             return;
@@ -119,7 +119,7 @@ public class KnowledgeLevel2PageFragment extends RootBaseFragment<Level2PagePres
             //取消收藏
             mPresenter.cancelArticleCollect(position,homeArticleData);
         }
-    }
+    }*/
 
     @Override
     protected void initEventAndData() {
