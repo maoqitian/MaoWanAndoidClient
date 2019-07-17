@@ -11,6 +11,7 @@ import mao.com.mao_wanandroid_client.view.main.fragment.KnowledgeLevel2PageFragm
 import mao.com.mao_wanandroid_client.view.main.fragment.NavigationFragment;
 import mao.com.mao_wanandroid_client.view.main.fragment.OfficialAccountsPageFragment;
 import mao.com.mao_wanandroid_client.view.main.fragment.ProjectFragment;
+import mao.com.mao_wanandroid_client.view.main.fragment.SearchFragment;
 
 
 /**
@@ -51,5 +52,9 @@ public abstract class FragmentBindingModule {
     @FragmentScope
     @ContributesAndroidInjector(modules = KnowledgeLevel2PageFragmentModule.class)
     abstract KnowledgeLevel2PageFragment contributeKnowledgeLevel2PageFragment();
+
+    @FragmentScope
+    @ContributesAndroidInjector(modules = SearchFragmentModule.class)
+    abstract SearchFragment contributeSearchFragment();
 
 }

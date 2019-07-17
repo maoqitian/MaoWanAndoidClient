@@ -40,6 +40,7 @@ import mao.com.mao_wanandroid_client.view.main.fragment.KnowledgeHierarchyPageFr
 import mao.com.mao_wanandroid_client.view.main.fragment.NavigationFragment;
 import mao.com.mao_wanandroid_client.view.main.fragment.OfficialAccountsPageFragment;
 import mao.com.mao_wanandroid_client.view.main.fragment.ProjectFragment;
+import mao.com.mao_wanandroid_client.view.main.fragment.SearchFragment;
 import mao.com.mao_wanandroid_client.widget.CircleImageView;
 
 
@@ -62,12 +63,17 @@ public class MainActivity extends BaseActivity<MainPresenter>
     BottomNavigationView bottomNavigationView;
     @BindView(R.id.tv_page_title)
     TextView pageTitle;
+    @BindView(R.id.iv_search)
+    ImageView mSearch;
+
 
     //用户头像
     private CircleImageView userImageIcon;
     //用户名
     private TextView mUserName;
     private NavHelper mNavHelper;
+
+    SearchFragment mSearchFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -123,12 +129,15 @@ public class MainActivity extends BaseActivity<MainPresenter>
 
     private void initView() {
         fab.setOnClickListener(this);
+        mSearch.setOnClickListener(this);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
         navigationView.setNavigationItemSelectedListener(this);
+        //默认选择 首页
         navigationView.setCheckedItem(R.id.nav_home);
+        //获取侧边栏头部属性
         View headerView = navigationView.inflateHeaderView(R.layout.nav_header_main);
         userImageIcon = headerView.findViewById(R.id.imageView_user_icon);
         userImageIcon.setOnClickListener(this);
@@ -263,6 +272,16 @@ public class MainActivity extends BaseActivity<MainPresenter>
                      //进入个人中心
                      Toast.makeText(MainActivity.this,"进入个人中心",Toast.LENGTH_SHORT).show();
                  }
+                 break;
+             case R.id.iv_search:
+                 if (mSearchFragment == null) {
+                     mSearchFragment = SearchFragment.newInstance();
+                 }
+                 Toast.makeText(MainActivity.this,"点击搜索",Toast.LENGTH_SHORT).show();
+                 /*if (!isDestroyed() && mSearchFragment.isAdded()) {
+                     mSearchFragment.
+                 }*/
+                 //mSearchFragment.
                  break;
              default:
                  break;

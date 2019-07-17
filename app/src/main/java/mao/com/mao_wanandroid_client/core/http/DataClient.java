@@ -182,7 +182,7 @@ public class DataClient implements IHttpHelper,SharedPreferenceHelper,DbHelper {
     }
 
     @Override
-    public Observable<ResponseBody<ProjectListData>> getSearchKeyWordData(int pageNum, String keyWord) {
+    public Observable<ResponseBody<HomeArticleListData>> getSearchKeyWordData(int pageNum, String keyWord) {
         return mIHttpHelper.getSearchKeyWordData(pageNum,keyWord);
     }
 

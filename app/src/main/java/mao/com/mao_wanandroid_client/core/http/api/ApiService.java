@@ -279,7 +279,7 @@ public interface ApiService {
      */
     @POST("/article/query/{pageNum}/json")
     @FormUrlEncoded
-    Observable<ResponseBody<ProjectListData>> getSearchKeyWordData(
+    Observable<ResponseBody<HomeArticleListData>> getSearchKeyWordData(
             @Path("pageNum") int pageNum,
             @Field("k") String keyWord
     );

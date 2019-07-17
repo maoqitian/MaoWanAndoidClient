@@ -266,7 +266,7 @@ public class IHttpHelperImpl implements IHttpHelper{
      * @return
      */
     @Override
-    public Observable<ResponseBody<ProjectListData>> getSearchKeyWordData(int pageNum, String keyWord) {
+    public Observable<ResponseBody<HomeArticleListData>> getSearchKeyWordData(int pageNum, String keyWord) {
         return getApiServiceGson().getSearchKeyWordData(pageNum,keyWord);
     }
 

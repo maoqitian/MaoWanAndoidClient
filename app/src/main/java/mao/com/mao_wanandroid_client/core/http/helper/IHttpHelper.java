@@ -189,7 +189,7 @@ public interface IHttpHelper {
      * @param keyWord 搜索关键词
      * @return
      */
-    Observable<ResponseBody<ProjectListData>> getSearchKeyWordData(
+    Observable<ResponseBody<HomeArticleListData>> getSearchKeyWordData(
              int pageNum, String keyWord
     );
 
