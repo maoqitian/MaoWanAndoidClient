@@ -278,10 +278,10 @@ public class MainActivity extends BaseActivity<MainPresenter>
                      mSearchFragment = SearchFragment.newInstance();
                  }
                  Toast.makeText(MainActivity.this,"点击搜索",Toast.LENGTH_SHORT).show();
-                 /*if (!isDestroyed() && mSearchFragment.isAdded()) {
-                     mSearchFragment.
-                 }*/
-                 //mSearchFragment.
+                 if (!isDestroyed() && mSearchFragment.isAdded()) {
+                     mSearchFragment.dismiss();
+                 }
+                 mSearchFragment.show(getSupportFragmentManager(),"showSearch");
                  break;
              default:
                  break;
