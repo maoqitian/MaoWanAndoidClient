@@ -8,6 +8,8 @@ import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
@@ -27,6 +29,15 @@ public abstract class SimpleDialogFragment extends DialogFragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        //去掉dialog的标题，需要在setContentView()之前
+        this.getDialog().requestWindowFeature(Window.FEATURE_NO_TITLE);
+        Window window = this.getDialog().getWindow();
+        //去掉dialog默认的padding
+        window.getDecorView().setPadding(0, 0, 0, 0);
+        WindowManager.LayoutParams lp = window.getAttributes();
+        lp.width = WindowManager.LayoutParams.MATCH_PARENT;
+        lp.height = WindowManager.LayoutParams.MATCH_PARENT;
+        window.setAttributes(lp);
         View view = inflater.inflate(getLayoutId(), container, false);
         mUnbinder=ButterKnife.bind(this,view);
         initViewAndData();

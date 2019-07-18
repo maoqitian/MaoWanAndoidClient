@@ -91,7 +91,7 @@ public class RxBasePresenter<T extends BaseView> implements AbstractBasePresente
     public int getCurrentPage() {
         return mDataClient.getCurrentPage();
     }
-    //收藏 与 取消收藏 
+    //收藏 与 取消收藏
     @Override
     public void addArticleCollect(int position, HomeArticleData homeArticleData) {
         Observable<ResponseBody<String>> responseBodyObservable = mDataClient.addCollectInsideListData(homeArticleData.getId());
