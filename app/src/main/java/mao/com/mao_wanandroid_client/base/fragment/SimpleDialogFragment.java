@@ -29,7 +29,8 @@ public abstract class SimpleDialogFragment extends DialogFragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        //去掉dialog的标题，需要在setContentView()之前
+        //该方式有边距
+        /*//去掉dialog的标题，需要在setContentView()之前
         this.getDialog().requestWindowFeature(Window.FEATURE_NO_TITLE);
         Window window = this.getDialog().getWindow();
         //去掉dialog默认的padding
@@ -37,7 +38,7 @@ public abstract class SimpleDialogFragment extends DialogFragment {
         WindowManager.LayoutParams lp = window.getAttributes();
         lp.width = WindowManager.LayoutParams.MATCH_PARENT;
         lp.height = WindowManager.LayoutParams.MATCH_PARENT;
-        window.setAttributes(lp);
+        window.setAttributes(lp);*/
         View view = inflater.inflate(getLayoutId(), container, false);
         mUnbinder=ButterKnife.bind(this,view);
         initViewAndData();

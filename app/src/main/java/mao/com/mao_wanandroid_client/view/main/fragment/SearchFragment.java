@@ -1,7 +1,11 @@
 package mao.com.mao_wanandroid_client.view.main.fragment;
 
 import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.support.v4.app.DialogFragment;
 import android.view.View;
+import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import butterknife.BindView;
@@ -19,8 +23,13 @@ public class SearchFragment extends BaseDialogFragment<SearchPagePresenter> impl
 
 
 
-    @BindView(R.id.tv_search)
-    TextView mTextView;
+    /*@BindView(R.id.iv_search_back)
+    ImageView mSearchBack;
+    @BindView(R.id.iv_search_clear)
+    ImageView mSearchClear;
+
+    @BindView(R.id.et_search)
+    EditText mEditTextSearch;*/
 
     public static SearchFragment newInstance() {
         Bundle args = new Bundle();
@@ -29,6 +38,12 @@ public class SearchFragment extends BaseDialogFragment<SearchPagePresenter> impl
         return fragment;
     }
 
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        //dialog全屏
+        setStyle(DialogFragment.STYLE_NO_TITLE,R.style.DialogFullScreen);
+    }
 
     @Override
     protected int getLayoutId() {
@@ -37,11 +52,11 @@ public class SearchFragment extends BaseDialogFragment<SearchPagePresenter> impl
 
     @Override
     protected void initViewAndData() {
-        mTextView.setOnClickListener(new View.OnClickListener() {
+        /*mSearchBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 dismiss();
             }
-        });
+        });*/
     }
 }

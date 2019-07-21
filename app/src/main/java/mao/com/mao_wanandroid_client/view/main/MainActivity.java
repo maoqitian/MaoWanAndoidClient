@@ -262,7 +262,7 @@ public class MainActivity extends BaseActivity<MainPresenter>
              case R.id.fab:
                  /*Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();*/
-                 Toast.makeText(MainActivity.this,"点击了回到顶部",Toast.LENGTH_SHORT).show();
+                 //Toast.makeText(MainActivity.this,"点击了回到顶部",Toast.LENGTH_SHORT).show();
                  break;
              case R.id.imageView_user_icon: //用户个人头像点击
                  if(!mPresenter.getLoginStatus()){
@@ -277,7 +277,7 @@ public class MainActivity extends BaseActivity<MainPresenter>
                  if (mSearchFragment == null) {
                      mSearchFragment = SearchFragment.newInstance();
                  }
-                 Toast.makeText(MainActivity.this,"点击搜索",Toast.LENGTH_SHORT).show();
+                 //Toast.makeText(MainActivity.this,"点击搜索",Toast.LENGTH_SHORT).show();
                  if (!isDestroyed() && mSearchFragment.isAdded()) {
                      mSearchFragment.dismiss();
                  }
