@@ -46,7 +46,7 @@
 
 
     <!-- dialogfragmnet 全屏样式-->
-    <style name="DialogFullScreen" parent="Theme.AppCompat.Dialog">
+    <style name="DialogFullScreen" parent="AppTheme.NoActionBar">
         <item name="android:windowIsFloating">false</item>
         <item name="android:windowBackground">@android:color/transparent</item>
         <item name="android:windowFrame">@null</item>
