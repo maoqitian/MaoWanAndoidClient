@@ -27,16 +27,14 @@
         </activity>
         <activity android:name=".view.main.MainActivity"
             android:theme="@style/AppTheme.NoActionBar"
-            android:launchMode="singleTask"
-            >
+            android:launchMode="singleTask">
             <intent-filter>
                 <action android:name="com.mao.mao_wanandroid.action.MAIN_ACTIVITY" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
         <activity android:name=".view.pagedetail.PageDetailActivity"
-            android:theme="@style/AppTheme.NoActionBar"
-            >
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="com.mao.mao_wanandroid.action.PAGE_DETAIL_ACTIVITY" />
                 <category android:name="android.intent.category.DEFAULT" />
@@ -45,8 +43,7 @@
 
         <activity android:name=".view.login.LoginActivity"
             android:theme="@style/AppTheme.NoActionBar"
-            android:windowSoftInputMode="stateVisible|adjustResize"
-            >
+            android:windowSoftInputMode="stateVisible|adjustResize">
             <intent-filter>
                 <action android:name="com.mao.mao_wanandroid.action.LOGIN_ACTIVITY" />
                 <category android:name="android.intent.category.DEFAULT" />
@@ -54,26 +51,30 @@
         </activity>
         <activity android:name=".view.login.SignUpActivity"
             android:windowSoftInputMode="stateVisible|adjustResize"
-            android:theme="@style/AppTheme.NoActionBar"
-            >
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="com.mao.mao_wanandroid.action.SIGN_UP_ACTIVITY" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
         <activity android:name=".view.main.KnowledgeLevel2PageActivity"
-            android:theme="@style/AppTheme.NoActionBar"
-            >
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="com.mao.mao_wanandroid.action.KNOWLEDGE_LEVEL2" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
         <activity android:name=".view.main.OfficialAccountsDetailActivity"
-            android:theme="@style/AppTheme.NoActionBar"
-            >
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="com.mao.mao_wanandroid.action.OFFICIAL_ACCOUNTS" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".view.main.SearchResultActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="com.mao.mao_wanandroid.action.SEARCH_RESULT" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
