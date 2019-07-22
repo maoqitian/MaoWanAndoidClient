@@ -9,7 +9,6 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import mao.com.mao_wanandroid_client.R;
 import mao.com.mao_wanandroid_client.widget.CircleImageView;
-import mao.com.mao_wanandroid_client.widget.flowlayout.TagFlowLayout;
 
 /**
  * @author maoqitian

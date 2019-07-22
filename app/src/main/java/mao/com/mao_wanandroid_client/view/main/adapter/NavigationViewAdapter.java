@@ -1,26 +1,22 @@
 package mao.com.mao_wanandroid_client.view.main.adapter;
 
-import android.graphics.Color;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 
 import java.util.List;
 
+import mao.com.flexibleflowlayout.TagAdapter;
+import mao.com.flexibleflowlayout.TagFlowLayout;
 import mao.com.mao_wanandroid_client.R;
 import mao.com.mao_wanandroid_client.application.Constants;
-import mao.com.mao_wanandroid_client.model.home.HomeArticleData;
 import mao.com.mao_wanandroid_client.model.navigation.NavigationListData;
 import mao.com.mao_wanandroid_client.utils.StartDetailPage;
 import mao.com.mao_wanandroid_client.view.main.hloder.NavigationHolderView;
-import mao.com.mao_wanandroid_client.widget.flowlayout.FlowLayout;
-import mao.com.mao_wanandroid_client.widget.flowlayout.TagAdapter;
-import mao.com.mao_wanandroid_client.widget.flowlayout.TagFlowLayout;
 
 /**
  * @author maoqitian

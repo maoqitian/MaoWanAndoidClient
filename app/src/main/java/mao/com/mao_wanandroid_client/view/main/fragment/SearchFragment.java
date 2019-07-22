@@ -6,6 +6,7 @@ import android.support.v4.app.DialogFragment;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import butterknife.BindView;
@@ -19,17 +20,19 @@ import mao.com.mao_wanandroid_client.presenter.main.SearchPagePresenter;
  * @Description: 搜索 Fragment
  * @date 2019/7/17 0017 11:21
  */
-public class SearchFragment extends BaseDialogFragment<SearchPagePresenter> implements SearchPageContract.SearchPageView {
+public class SearchFragment extends BaseDialogFragment<SearchPagePresenter> implements SearchPageContract.SearchPageView, View.OnClickListener {
 
 
 
-    /*@BindView(R.id.iv_search_back)
-    ImageView mSearchBack;
-    @BindView(R.id.iv_search_clear)
-    ImageView mSearchClear;
+
+    @BindView(R.id.tv_cancel_search)
+    TextView mCancelSearch;
 
     @BindView(R.id.et_search)
-    EditText mEditTextSearch;*/
+    EditText mEditTextSearch;
+
+    @BindView(R.id.ll_search_layout)
+    LinearLayout mSearchLayout;
 
     public static SearchFragment newInstance() {
         Bundle args = new Bundle();
@@ -52,11 +55,18 @@ public class SearchFragment extends BaseDialogFragment<SearchPagePresenter> impl
 
     @Override
     protected void initViewAndData() {
-        /*mSearchBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        mSearchLayout.setVisibility(View.VISIBLE);
+        mCancelSearch.setVisibility(View.VISIBLE);
+        mCancelSearch.setOnClickListener(this);
+
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.tv_cancel_search :
                 dismiss();
-            }
-        });*/
+                break;
+        }
     }
 }

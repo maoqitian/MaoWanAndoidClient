@@ -15,9 +15,8 @@
     <color name="font_hint" >#9B9999</color>
     <color name="gray" >#dcdcdc</color>
     <color name="ic_gray" >#96ffffff</color>
-
+    <color name="ic_drawable_dark">#FF424242</color>
     <color name="textInputLayout">#96ffffff</color>
-
     <color name="light_blue" >#00BCD4</color>
 
 </resources>

@@ -7,9 +7,8 @@ import com.chad.library.adapter.base.BaseViewHolder;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import mao.com.flexibleflowlayout.TagFlowLayout;
 import mao.com.mao_wanandroid_client.R;
-import mao.com.mao_wanandroid_client.widget.flowlayout.FlowLayout;
-import mao.com.mao_wanandroid_client.widget.flowlayout.TagFlowLayout;
 
 /**
  * @author maoqitian

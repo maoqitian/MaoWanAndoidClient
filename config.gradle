@@ -35,6 +35,7 @@ ext {
             "SmartRefreshLayout"                : "com.scwang.smartrefresh:SmartRefreshLayout:${version["smartrefreshVersion"]}",
             "SmartRefreshHeader"                : "com.scwang.smartrefresh:SmartRefreshHeader:${version["smartrefreshVersion"]}",
             "convenientbanner"                  : "com.bigkoo:ConvenientBanner:2.1.4",
+            "flexibleflowlayout"                : "com.mao:flexibleflowlayout:1.0.0",
             "verticalTabLayout"                 : "q.rorbin:VerticalTabLayout:1.2.9",
             "agentweb"                          : "com.just.agentweb:agentweb:4.0.3-beta",
 

@@ -28,4 +28,42 @@
         android:visibility="gone"
         android:background="@drawable/ic_search_24dp"
         />
+    <LinearLayout
+        android:id="@+id/ll_search_layout"
+        android:layout_width="@dimen/dp_250"
+        android:layout_height="@dimen/dp_30"
+        android:orientation="horizontal"
+        android:background="@drawable/search_shape_bg"
+        android:visibility="gone"
+        >
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="@dimen/dp_7"
+            android:visibility="visible"
+            android:background="@drawable/ic_search_dark_24dp"
+            />
+        <EditText
+            android:id="@+id/et_search"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/dp_30"
+            android:layout_gravity="center_vertical"
+            android:imeOptions="actionSearch"
+            android:inputType="textCapWords"
+            android:maxLines="1"
+            android:background="@null"
+            />
+    </LinearLayout>
+    <TextView
+        android:id="@+id/tv_cancel_search"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:textSize="@dimen/sp_16"
+        android:padding="@dimen/dp_10"
+        android:text="取消"
+        android:visibility="gone"
+        />
 </android.support.v7.widget.Toolbar>

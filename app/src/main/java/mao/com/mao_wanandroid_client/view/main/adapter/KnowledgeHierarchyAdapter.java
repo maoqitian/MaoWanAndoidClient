@@ -10,12 +10,11 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 
 import java.util.List;
 
+import mao.com.flexibleflowlayout.TagAdapter;
+import mao.com.flexibleflowlayout.TagFlowLayout;
 import mao.com.mao_wanandroid_client.R;
 import mao.com.mao_wanandroid_client.model.knowlegetree.KnowledgeHierarchyData;
 import mao.com.mao_wanandroid_client.view.main.hloder.KnowledgeHolderView;
-import mao.com.mao_wanandroid_client.widget.flowlayout.FlowLayout;
-import mao.com.mao_wanandroid_client.widget.flowlayout.TagAdapter;
-import mao.com.mao_wanandroid_client.widget.flowlayout.TagFlowLayout;
 
 /**
  * @author maoqitian
