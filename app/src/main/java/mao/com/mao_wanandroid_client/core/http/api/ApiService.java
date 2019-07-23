@@ -312,10 +312,9 @@ public interface ApiService {
      * @return
      */
     @GET("/wxarticle/list/{WxId}/{pageNum}/json")
-    @FormUrlEncoded
     Observable<ResponseBody<HomeArticleListData>>getWxArticleHistoryByKey(
             @Path("WxId") int id,@Path("pageNum") int pageNum,
-            @Field("k") String key);
+            @Query("k") String key);
 
     /**
      * todo 接口

@@ -14,6 +14,7 @@ import mao.com.mao_wanandroid_client.core.http.control.BaseObserver;
 import mao.com.mao_wanandroid_client.core.http.control.RxSchedulers;
 import mao.com.mao_wanandroid_client.model.ResponseBody;
 import mao.com.mao_wanandroid_client.model.home.HomeArticleListData;
+import mao.com.mao_wanandroid_client.model.search.HotKeyData;
 
 /**
  * @author maoqitian
@@ -86,6 +87,26 @@ public class SearchPagePresenter extends RxBasePresenter<SearchPageContract.Sear
          }else {
              getWxArticleSearchData(id,mKeyWord,curPage+1,true);
          }
+    }
+
+    /**
+     * 搜索热词 数据
+     */
+    @Override
+    public void getHotKeyData() {
+        Observable<ResponseBody<List<HotKeyData>>> responseBodyObservable = mDataClient.GetHotKeyData();
+        responseBodyObservable.compose(RxSchedulers.observableIO2Main())
+                              .subscribe(new BaseObserver<List<HotKeyData>>() {
+                                  @Override
+                                  public void onSuccess(List<HotKeyData> result) {
+
+                                  }
+
+                                  @Override
+                                  public void onFailure(Throwable e, String errorMsg) {
+
+                                  }
+                              });
     }
 
     /**

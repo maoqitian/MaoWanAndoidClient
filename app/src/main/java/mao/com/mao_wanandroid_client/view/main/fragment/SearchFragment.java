@@ -33,6 +33,7 @@ import mao.com.mao_wanandroid_client.R;
 import mao.com.mao_wanandroid_client.application.Constants;
 import mao.com.mao_wanandroid_client.base.fragment.BaseDialogFragment;
 import mao.com.mao_wanandroid_client.model.home.HomeArticleData;
+import mao.com.mao_wanandroid_client.model.search.HotKeyData;
 import mao.com.mao_wanandroid_client.presenter.main.SearchPageContract;
 import mao.com.mao_wanandroid_client.presenter.main.SearchPagePresenter;
 import mao.com.mao_wanandroid_client.utils.StartDetailPage;
@@ -46,8 +47,6 @@ import mao.com.mao_wanandroid_client.view.main.adapter.HomePageAdapter;
  */
 public class SearchFragment extends BaseDialogFragment<SearchPagePresenter> implements
         SearchPageContract.SearchPageView, View.OnClickListener, BaseQuickAdapter.OnItemClickListener {
-
-
 
     @BindView(R.id.iv_search_clear)
     ImageView mSearchClear;
@@ -67,6 +66,7 @@ public class SearchFragment extends BaseDialogFragment<SearchPagePresenter> impl
     @BindView(R.id.search_result_recyclerview)
     RecyclerView mSearchResultRecyclerView;
 
+    //搜索结果数据
     List<HomeArticleData> mHomeArticleDataList;
 
     private RecyclerView.LayoutManager layoutManager;
@@ -78,8 +78,8 @@ public class SearchFragment extends BaseDialogFragment<SearchPagePresenter> impl
     private int wxid = 0;
     //公众号名称
     private String wxName;
-
-
+    //搜索热词数据
+    List<HotKeyData> mHotKeyDataList;
 
     public static SearchFragment newInstance(String pageType,int id,String wxname) {
         Bundle args = new Bundle();
@@ -106,6 +106,7 @@ public class SearchFragment extends BaseDialogFragment<SearchPagePresenter> impl
     @Override
     protected void initViewAndData() {
         mHomeArticleDataList = new ArrayList<>();
+        mHotKeyDataList = new ArrayList<>();
         initView();
         EditTextSearchListener();
 
@@ -141,7 +142,13 @@ public class SearchFragment extends BaseDialogFragment<SearchPagePresenter> impl
             @Override
             public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
                 Log.e("毛麒添","加载更多");
-                mPresenter.getLoadMoreSearchData(0);
+                if(Constants.RESULT_CODE_OFFICIAL_ACCOUNTS_PAGE.equals(pageType)){
+                    //公众号搜索搜索加载更多
+                    mPresenter.getLoadMoreSearchData(wxid);
+                }else {
+                    //普通搜索加载更多
+                    mPresenter.getLoadMoreSearchData(0);
+                }
                 refreshLayout.autoLoadMore();
             }
         });
@@ -155,6 +162,15 @@ public class SearchFragment extends BaseDialogFragment<SearchPagePresenter> impl
         mSearchResultAdapter = new HomePageAdapter(R.layout.article_item_cardview_layout);
         mSearchResultAdapter.setOnItemClickListener(this);
         mSearchResultRecyclerView.setAdapter(mSearchResultAdapter);
+        mSearchResultAdapter.setOnItemChildClickListener((adapter, view, position) -> {
+            HomeArticleData homeArticleData= (HomeArticleData) adapter.getItem(position);
+            if(view.getId() == R.id.image_collect){
+                //收藏
+                if(homeArticleData!=null){
+                    addOrCancelCollect(position,homeArticleData);
+                }
+            }
+        });
     }
 
     private void EditTextSearchListener() {
@@ -280,8 +296,30 @@ public class SearchFragment extends BaseDialogFragment<SearchPagePresenter> impl
     }
 
     @Override
+    public void showHotKeyListData(List<HotKeyData> hotKeyDataList) {
+
+    }
+
+    @Override
     public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
         HomeArticleData homeArticleData = (HomeArticleData) adapter.getItem(position);
         StartDetailPage.start(getActivity(),homeArticleData, Constants.PAGE_WEB_COLLECT,Constants.ACTION_PAGE_DETAIL_ACTIVITY);
+    }
+
+    @Override
+    public void showAddArticleCollectStatus(int position,HomeArticleData homeArticleData,String msg) {
+        showCollectStatus(position,homeArticleData,msg);
+    }
+    //显示收藏 或取消 收藏之后的状态
+    private void showCollectStatus(int position,HomeArticleData homeArticleData,String msg){
+        if(homeArticleData!=null && mSearchResultAdapter!=null){
+            mSearchResultAdapter.setData(position,homeArticleData);
+        }
+        Toast.makeText(getContext(),msg,Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void showCancelArticleCollectStatus(int position, HomeArticleData homeArticleData,String msg) {
+        showCollectStatus(position,homeArticleData,msg);
     }
 }

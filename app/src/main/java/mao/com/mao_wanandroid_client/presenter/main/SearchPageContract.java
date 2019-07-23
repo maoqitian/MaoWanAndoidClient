@@ -6,6 +6,7 @@ import mao.com.mao_wanandroid_client.base.BaseView;
 import mao.com.mao_wanandroid_client.base.presenter.AbstractBasePresenter;
 import mao.com.mao_wanandroid_client.model.home.HomeArticleData;
 import mao.com.mao_wanandroid_client.model.home.HomeArticleListData;
+import mao.com.mao_wanandroid_client.model.search.HotKeyData;
 
 /**
  * @author maoqitian
@@ -19,6 +20,8 @@ public interface SearchPageContract {
         void showSearchArticleList(List<HomeArticleData> homeArticleDataList,boolean isLoadMore);
         //搜索加载更多为空调用
         void showLoadDataMessage(String msg);
+
+        void showHotKeyListData(List<HotKeyData> hotKeyDataList);
     }
 
     interface SearchFragmentPresenter extends AbstractBasePresenter<SearchPageView> {
@@ -29,5 +32,7 @@ public interface SearchPageContract {
         void getWxArticleHistoryByKey(int id,String keyWord);
 
         void getLoadMoreSearchData(int id);
+
+        void getHotKeyData();
     }
 }

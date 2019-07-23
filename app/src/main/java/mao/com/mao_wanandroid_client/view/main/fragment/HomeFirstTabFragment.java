@@ -47,7 +47,6 @@ import mao.com.mao_wanandroid_client.view.main.MainActivity;
 import mao.com.mao_wanandroid_client.view.main.adapter.HomeLatestProjectAdapter;
 import mao.com.mao_wanandroid_client.view.main.adapter.HomePageAdapter;
 import mao.com.mao_wanandroid_client.view.main.hloder.BannerHolderView;
-import mao.com.mao_wanandroid_client.widget.HeartView;
 
 /**
  * @author maoqitian
