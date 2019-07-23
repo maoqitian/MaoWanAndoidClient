@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -31,6 +32,7 @@ import mao.com.mao_wanandroid_client.utils.StartDetailPage;
 import mao.com.mao_wanandroid_client.utils.StatusBarUtil;
 import mao.com.mao_wanandroid_client.utils.ToolsUtils;
 import mao.com.mao_wanandroid_client.view.main.adapter.HomePageAdapter;
+import mao.com.mao_wanandroid_client.view.main.fragment.SearchFragment;
 
 /**
  * @author maoqitian
@@ -38,7 +40,8 @@ import mao.com.mao_wanandroid_client.view.main.adapter.HomePageAdapter;
  * @date 2019/7/15 0015 17:39
  */
 public class OfficialAccountsDetailActivity extends BaseActivity<OfficialAccountsDetailPresenter> implements
-        OfficialAccountsDetailContract.OfficialAccountsDetailView, BaseQuickAdapter.OnItemClickListener {
+        OfficialAccountsDetailContract.OfficialAccountsDetailView, BaseQuickAdapter.OnItemClickListener,
+        View.OnClickListener {
 
 
     @BindView(R.id.toolbar)
@@ -49,17 +52,22 @@ public class OfficialAccountsDetailActivity extends BaseActivity<OfficialAccount
     RecyclerView mRecyclerView;
     @BindView(R.id.official_accounts_detail_smartRefresh)
     SmartRefreshLayout smartRefreshLayout;
+    @BindView(R.id.iv_search)
+    ImageView mSearch;
+
 
     KnowledgeHierarchyData mKnowledgeHierarchyData;
 
     private RecyclerView.LayoutManager layoutManager;
     private HomePageAdapter mAdapter;
     List<HomeArticleData> mHomeArticleDataList;
-
+    //公众号id
     private int id = 0;
 
     //下拉刷新头部
     private MaterialHeader mMaterialHeader;
+
+    SearchFragment mSearchFragment;
 
     @Override
     protected void onViewCreated() {
@@ -130,6 +138,8 @@ public class OfficialAccountsDetailActivity extends BaseActivity<OfficialAccount
     }
 
     private void getIntentInitViewData() {
+        mSearch.setVisibility(View.VISIBLE);
+        mSearch.setOnClickListener(this);
         Intent intent = getIntent();
         if (intent != null){
             mKnowledgeHierarchyData = (KnowledgeHierarchyData) intent.getSerializableExtra(Constants.KNOWLEDGE_DATA);
@@ -181,5 +191,19 @@ public class OfficialAccountsDetailActivity extends BaseActivity<OfficialAccount
             mAdapter.setData(position,homeArticleData);
         }
         Toast.makeText(this,msg,Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onClick(View v) {
+        //公众号搜索
+        if(v.getId() == R.id.iv_search){
+            if (mSearchFragment == null) {
+                mSearchFragment = SearchFragment.newInstance(Constants.RESULT_CODE_OFFICIAL_ACCOUNTS_PAGE,id,mKnowledgeHierarchyData.getName());
+            }
+            if (!isDestroyed() && mSearchFragment.isAdded()) {
+                mSearchFragment.dismiss();
+            }
+            mSearchFragment.show(getSupportFragmentManager(),"showOfficialSearch");
+        }
     }
 }

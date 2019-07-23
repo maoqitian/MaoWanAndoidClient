@@ -172,7 +172,8 @@ public class Constants {
     public static final String RESULT_CODE_HOME_PAGE = "result_code_home_page";
     //知识体系 跳转
     public static final String RESULT_CODE_KNOWLEDGE_PAGE = "result_code_knowledge_page";
-
+    //微信公众号详情页 跳转
+    public static final String RESULT_CODE_OFFICIAL_ACCOUNTS_PAGE = "official_accounts_detail_page";
 
 
     //Bundle 数据 tag
@@ -182,7 +183,10 @@ public class Constants {
     public static final String KNOWLEDGE_DATA = "knowledgeData";
     //跳转标识
     public static final String PAGE_TYPE = "pageType";
-
+    //公众号id 标识
+    public static final String WX_ID = "wxid";
+    //公众号名称 标识
+    public static final String WX_NAME = "wxname";
     //知识体系 一级 cid
     public static final String BUNDLE_TAG_CID = "chapter_cid";
     //知识体系 二级 cid

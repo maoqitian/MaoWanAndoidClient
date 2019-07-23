@@ -276,13 +276,12 @@ public class MainActivity extends BaseActivity<MainPresenter>
                  break;
              case R.id.iv_search:
                  if (mSearchFragment == null) {
-                     mSearchFragment = SearchFragment.newInstance();
+                     mSearchFragment = SearchFragment.newInstance(Constants.RESULT_CODE_HOME_PAGE,0,"");
                  }
-                 //Toast.makeText(MainActivity.this,"点击搜索",Toast.LENGTH_SHORT).show();
                  if (!isDestroyed() && mSearchFragment.isAdded()) {
                      mSearchFragment.dismiss();
                  }
-                 mSearchFragment.show(getSupportFragmentManager(),"showSearch");
+                 mSearchFragment.show(getSupportFragmentManager(),"showMainSearch");
                  break;
              default:
                  break;

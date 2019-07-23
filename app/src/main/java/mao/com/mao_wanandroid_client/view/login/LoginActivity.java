@@ -65,7 +65,6 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
     protected void initEventAndData() {
         listenerEditText();
         //设置 登陆按钮开始不能点击
-        //mLogin.setBackgroundResource(R.drawable.button_shape_gray_bg);
         mLogin.setEnabled(false);
         //监听事件
         mLogin.setOnClickListener(this);

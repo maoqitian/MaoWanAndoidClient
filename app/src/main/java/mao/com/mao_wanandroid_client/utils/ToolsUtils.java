@@ -116,6 +116,14 @@ public class ToolsUtils {
         etInput.requestFocus();
         imm.showSoftInput(etInput, 0);
     }
+
+    public static void showSoftInput2(EditText etInput) {
+        InputMethodManager imm = (InputMethodManager) etInput.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+        assert imm != null;
+        imm.showSoftInput(etInput, InputMethodManager.RESULT_SHOWN);
+        imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, InputMethodManager.HIDE_IMPLICIT_ONLY);
+    }
+
     /**
      * 隐藏或显示软键盘
      * 如果现在是显示调用后则隐藏 反之则显示

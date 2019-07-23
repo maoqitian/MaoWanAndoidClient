@@ -30,40 +30,70 @@
         />
     <LinearLayout
         android:id="@+id/ll_search_layout"
-        android:layout_width="@dimen/dp_250"
-        android:layout_height="@dimen/dp_30"
         android:orientation="horizontal"
-        android:background="@drawable/search_shape_bg"
+        android:layout_marginEnd="@dimen/dp_15"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:visibility="gone"
         >
-        <ImageView
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="@dimen/dp_30"
+            android:visibility="visible"
+            android:layout_gravity="center_vertical"
+            android:background="@drawable/search_shape_bg"
+            >
+            <ImageView
+                android:id="@+id/ic_search"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dp_7"
+                android:visibility="visible"
+                android:background="@drawable/ic_search_dark_24dp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                />
+            <EditText
+                android:id="@+id/et_search"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/dp_2"
+                android:layout_gravity="center_vertical"
+                android:imeOptions="actionSearch"
+                android:inputType="textCapWords"
+                android:maxLines="1"
+                android:background="@null"
+                android:textSize="@dimen/sp_13"
+                android:hint="@string/search_key"
+                app:layout_constraintLeft_toRightOf="@id/ic_search"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintRight_toLeftOf="@id/iv_search_clear"
+                />
+            <ImageView
+                android:id="@+id/iv_search_clear"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/dp_8"
+                android:background="@drawable/ic_close_clear"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginEnd="@dimen/dp_8"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                />
+        </android.support.constraint.ConstraintLayout>
+        <TextView
+            android:id="@+id/tv_cancel_search"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_marginStart="@dimen/dp_7"
-            android:visibility="visible"
-            android:background="@drawable/ic_search_dark_24dp"
-            />
-        <EditText
-            android:id="@+id/et_search"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="@dimen/dp_30"
-            android:layout_gravity="center_vertical"
-            android:imeOptions="actionSearch"
-            android:inputType="textCapWords"
-            android:maxLines="1"
-            android:background="@null"
+            android:textColor="@color/white"
+            android:textSize="@dimen/sp_16"
+            android:padding="@dimen/dp_10"
+            android:text="取消"
             />
     </LinearLayout>
-    <TextView
-        android:id="@+id/tv_cancel_search"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="@color/white"
-        android:textSize="@dimen/sp_16"
-        android:padding="@dimen/dp_10"
-        android:text="取消"
-        android:visibility="gone"
-        />
+
 </android.support.v7.widget.Toolbar>

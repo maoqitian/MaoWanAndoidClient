@@ -45,4 +45,6 @@
     <string name="cancle_collection_fail">Cancel Collection fail！</string>
 
     <string name="not_load_more_msg">Brother, this time is really gone!</string>
+
+    <string name="search_key">search keyword</string>
 </resources>
