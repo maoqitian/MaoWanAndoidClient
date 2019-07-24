@@ -21,12 +21,12 @@
 
     <ImageView
         android:id="@+id/iv_search"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="@dimen/dp_30"
+        android:layout_height="@dimen/dp_30"
         android:layout_gravity="end"
-        android:layout_marginEnd="@dimen/dp_10"
+        android:layout_marginEnd="@dimen/dp_15"
         android:visibility="gone"
-        android:background="@drawable/ic_search_24dp"
+        android:src="@drawable/ic_search_24dp"
         />
     <LinearLayout
         android:id="@+id/ll_search_layout"

@@ -1,9 +1,11 @@
 package mao.com.mao_wanandroid_client.view.main.fragment;
 
+import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
+import android.support.v4.widget.NestedScrollView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
@@ -11,7 +13,9 @@ import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.KeyEvent;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -29,9 +33,12 @@ import java.util.List;
 import java.util.Objects;
 
 import butterknife.BindView;
+import mao.com.flexibleflowlayout.TagAdapter;
+import mao.com.flexibleflowlayout.TagFlowLayout;
 import mao.com.mao_wanandroid_client.R;
 import mao.com.mao_wanandroid_client.application.Constants;
 import mao.com.mao_wanandroid_client.base.fragment.BaseDialogFragment;
+import mao.com.mao_wanandroid_client.core.dao.SearchHistoryData;
 import mao.com.mao_wanandroid_client.model.home.HomeArticleData;
 import mao.com.mao_wanandroid_client.model.search.HotKeyData;
 import mao.com.mao_wanandroid_client.presenter.main.SearchPageContract;
@@ -58,7 +65,17 @@ public class SearchFragment extends BaseDialogFragment<SearchPagePresenter> impl
     LinearLayout mSearchLayout;
 
     //搜索界面
-
+    @BindView(R.id.nested_view)
+    NestedScrollView mSearchContainer;
+    @BindView(R.id.tv_search_history)
+    TextView mTvshTitle;
+    @BindView(R.id.flow_layout_search_history)
+    TagFlowLayout mfwSearchHistory;
+    //清除历史记录
+    @BindView(R.id.ll_clear_history)
+    LinearLayout mLlClearHistory;
+    @BindView(R.id.flow_layout_hot_key)
+    TagFlowLayout mfwHotKey;
 
     //搜索结果
     @BindView(R.id.search_smart_refresh_layout)
@@ -81,6 +98,8 @@ public class SearchFragment extends BaseDialogFragment<SearchPagePresenter> impl
     //搜索热词数据
     List<HotKeyData> mHotKeyDataList;
 
+    List<SearchHistoryData> mSearchHistoryDataList;
+
     public static SearchFragment newInstance(String pageType,int id,String wxname) {
         Bundle args = new Bundle();
         SearchFragment fragment = new SearchFragment();
@@ -94,7 +113,7 @@ public class SearchFragment extends BaseDialogFragment<SearchPagePresenter> impl
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //dialog全屏
+        //dialogFragment全屏
         setStyle(DialogFragment.STYLE_NO_TITLE,R.style.DialogFullScreen);
     }
 
@@ -107,6 +126,7 @@ public class SearchFragment extends BaseDialogFragment<SearchPagePresenter> impl
     protected void initViewAndData() {
         mHomeArticleDataList = new ArrayList<>();
         mHotKeyDataList = new ArrayList<>();
+        mSearchHistoryDataList = new ArrayList<>();
         initView();
         EditTextSearchListener();
 
@@ -187,13 +207,7 @@ public class SearchFragment extends BaseDialogFragment<SearchPagePresenter> impl
                             showSearchResult();
                             //去除焦点
                             mEditTextSearch.clearFocus();
-                            if(Constants.RESULT_CODE_OFFICIAL_ACCOUNTS_PAGE.equals(pageType)){
-                                //公众号搜索搜索
-                                mPresenter.getWxArticleHistoryByKey(wxid,keyword);
-                            }else {
-                                //普通搜索
-                                mPresenter.getSearchKeyWordData(keyword);
-                            }
+                            getSearchData(keyword);
                         } else {
                             Toast.makeText(getContext(),"请输入搜索的关键字"+keyword,Toast.LENGTH_SHORT).show();
                         }
@@ -294,12 +308,62 @@ public class SearchFragment extends BaseDialogFragment<SearchPagePresenter> impl
         mSmartRefreshLayout.finishLoadMore();
         Toast.makeText(getContext(),msg,Toast.LENGTH_SHORT).show();
     }
-
+    //大家都在搜
     @Override
     public void showHotKeyListData(List<HotKeyData> hotKeyDataList) {
+         mHotKeyDataList.clear();
+         mHotKeyDataList.addAll(hotKeyDataList);
+         mfwHotKey.setAdapter(new TagAdapter() {
+             @Override
+             public int getItemCount() {
+                 return mHotKeyDataList.size();
+             }
+
+             @Override
+             public View createView(LayoutInflater inflater, ViewGroup parent, int position) {
+                 return inflater.inflate(R.layout.flow_text_hot_search_layout,parent,false);
+             }
+
+             @Override
+             public void bindView(View view, int position) {
+                 TextView textView = view.findViewById(R.id.text_tag_hot_search);
+                 GradientDrawable gradientDrawable = new GradientDrawable();
+                 gradientDrawable.setShape(GradientDrawable.RECTANGLE);//形状
+                 gradientDrawable.setCornerRadius(10f);//设置圆角Radius
+                 gradientDrawable.setColor(ToolsUtils.getRandSomeColor());//颜色
+                 view.setBackground(gradientDrawable);
+                 textView.setText(mHotKeyDataList.get(position).getName());
+             }
+
+             @Override
+             public void onTagItemViewClick(View v, int position) {
+                 String keyword = mHotKeyDataList.get(position).getName();
+                 getSearchData(keyword);
+             }
+         });
+    }
+
+    @Override
+    public void showSearchHistoryListData(List<SearchHistoryData> searchHistoryData) {
+
+    }
+    
+    @Override
+    public void showClearAllSearchHistoryEvent() {
 
     }
 
+    //开始搜索
+    private void getSearchData(String keyword) {
+        if (Constants.RESULT_CODE_OFFICIAL_ACCOUNTS_PAGE.equals(pageType)) {
+            //公众号搜索搜索
+            mPresenter.getWxArticleHistoryByKey(wxid, keyword);
+        } else {
+            //普通搜索
+            mPresenter.getSearchKeyWordData(keyword);
+        }
+    }
+    //搜索结果 item 点击
     @Override
     public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
         HomeArticleData homeArticleData = (HomeArticleData) adapter.getItem(position);

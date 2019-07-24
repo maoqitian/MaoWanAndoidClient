@@ -3,6 +3,7 @@ package mao.com.mao_wanandroid_client.utils;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Color;
 import android.graphics.Rect;
 import android.net.ConnectivityManager;
 import android.os.Build;
@@ -16,7 +17,9 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.lang.reflect.Field;
+import java.util.Random;
 
+import mao.com.mao_wanandroid_client.R;
 import mao.com.mao_wanandroid_client.application.MyApplication;
 
 /**
@@ -171,5 +174,40 @@ public class ToolsUtils {
         } else {
             return 0;
         }
+    }
+
+    /**
+     * 随机获取颜色
+     * @return
+     */
+    public static int getRandColor() {
+        Random random=new Random();
+        int r=0;
+        int g=0;
+        int b=0;
+        for(int i=0;i<2;i++){
+            int temp=random.nextInt(16);
+            r=r*16+temp;
+            temp=random.nextInt(16);
+            g=g*16+temp;
+            temp=random.nextInt(16);
+            b=b*16+temp;
+        }
+        return Color.rgb(r,g,b);
+    }
+
+    /**
+     * 随机从固定的颜色组中获取颜色
+     * @return
+     */
+    public static int getRandSomeColor() {
+        Random random=new Random();
+        int[] color={R.color.colorPrimary,
+                android.R.color.holo_green_light,
+                android.R.color.holo_red_light,
+                android.R.color.holo_blue_light,
+                android.R.color.holo_orange_light};
+        int temp=random.nextInt(5);
+        return color[temp];
     }
 }

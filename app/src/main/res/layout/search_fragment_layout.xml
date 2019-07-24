@@ -9,6 +9,87 @@
     <include
         layout="@layout/common_bar"/>
 
+    <android.support.v4.widget.NestedScrollView
+        android:id="@+id/nested_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <TextView
+                android:id="@+id/tv_search_history"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/search_history"
+                android:fontFamily="@font/calibri"
+                android:textSize="@dimen/sp_16"
+                android:textStyle="bold"
+                android:visibility="gone"
+                android:layout_margin="@dimen/dp_8"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                />
+            <mao.com.flexibleflowlayout.TagFlowLayout
+                android:id="@+id/flow_layout_search_history"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="@dimen/dp_8"
+                android:paddingStart="@dimen/dp_8"
+                android:visibility="gone"
+                app:layout_constraintTop_toBottomOf="@id/tv_search_history"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                />
+            <LinearLayout
+                android:id="@+id/ll_clear_history"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:visibility="gone"
+                app:layout_constraintTop_toBottomOf="@id/flow_layout_search_history"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                >
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_trash"
+                    android:layout_gravity="center_vertical"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/dp_8"
+                    android:fontFamily="@font/calibri"
+                    android:text="@string/clear_search_history"
+                    android:textSize="@dimen/sp_14"
+                    />
+            </LinearLayout>
+            <TextView
+                android:id="@+id/tv_hot_key"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/hot_key_title"
+                android:fontFamily="@font/calibri"
+                android:textSize="@dimen/sp_16"
+                android:textStyle="bold"
+                android:layout_margin="@dimen/dp_8"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/ll_clear_history"
+                />
+            <mao.com.flexibleflowlayout.TagFlowLayout
+                android:id="@+id/flow_layout_hot_key"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="@dimen/dp_8"
+                android:paddingStart="@dimen/dp_8"
+                app:layout_constraintTop_toBottomOf="@id/tv_hot_key"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                />
+        </android.support.constraint.ConstraintLayout>
+    </android.support.v4.widget.NestedScrollView>
+
     <com.scwang.smartrefresh.layout.SmartRefreshLayout
         android:id="@+id/search_smart_refresh_layout"
         android:layout_width="match_parent"
@@ -16,11 +97,10 @@
         app:srlAccentColor="@color/colorPrimaryDark"
         app:srlPrimaryColor="@color/colorPrimary"
         app:srlEnableLoadMoreWhenContentNotFull="false"
-        android:visibility="gone"
+        android:visibility="visible"
         app:srlEnableAutoLoadMore="true">
         <android.support.v7.widget.RecyclerView
             android:id="@+id/search_result_recyclerview"
-            android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
         </android.support.v7.widget.RecyclerView>

@@ -9,6 +9,7 @@ import io.reactivex.Observable;
 import mao.com.mao_wanandroid_client.R;
 import mao.com.mao_wanandroid_client.application.MyApplication;
 import mao.com.mao_wanandroid_client.base.presenter.RxBasePresenter;
+import mao.com.mao_wanandroid_client.core.dao.SearchHistoryData;
 import mao.com.mao_wanandroid_client.core.http.DataClient;
 import mao.com.mao_wanandroid_client.core.http.control.BaseObserver;
 import mao.com.mao_wanandroid_client.core.http.control.RxSchedulers;
@@ -77,6 +78,7 @@ public class SearchPagePresenter extends RxBasePresenter<SearchPageContract.Sear
     //公众号号搜索
     @Override
     public void getWxArticleHistoryByKey(int id, String keyWord) {
+        //mDataClient.addSearchHistoryData();
         getWxArticleSearchData(id,keyWord,1,false);
     }
 
@@ -99,7 +101,7 @@ public class SearchPagePresenter extends RxBasePresenter<SearchPageContract.Sear
                               .subscribe(new BaseObserver<List<HotKeyData>>() {
                                   @Override
                                   public void onSuccess(List<HotKeyData> result) {
-
+                                       mView.showHotKeyListData(result);
                                   }
 
                                   @Override
@@ -107,6 +109,19 @@ public class SearchPagePresenter extends RxBasePresenter<SearchPageContract.Sear
 
                                   }
                               });
+    }
+    //获取搜索历史记录
+    @Override
+    public void getSearchHistoryData() {
+        List<SearchHistoryData> searchHistoryData = mDataClient.loadAllSearchHistoryData();
+        if(searchHistoryData.size()!=0){
+            mView.showSearchHistoryListData(searchHistoryData);
+        }
+    }
+    //清理历史记录
+    @Override
+    public void getClearAllSearchHistoryData() {
+        mDataClient.clearAllSearchHistoryData();
     }
 
     /**

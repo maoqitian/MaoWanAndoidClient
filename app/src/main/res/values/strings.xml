@@ -47,4 +47,7 @@
     <string name="not_load_more_msg">Brother, this time is really gone!</string>
 
     <string name="search_key">search keyword</string>
+    <string name="hot_key_title">HotKey</string>
+    <string name="search_history">Search History</string>
+    <string name="clear_search_history">clear search history</string>
 </resources>

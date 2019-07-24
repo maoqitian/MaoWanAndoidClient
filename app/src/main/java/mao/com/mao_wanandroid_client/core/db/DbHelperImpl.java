@@ -17,6 +17,7 @@ import mao.com.mao_wanandroid_client.core.dao.SearchHistoryDataDao;
  */
 public class DbHelperImpl implements DbHelper {
 
+    //最多保存10条历史数据
     private static final int SEARCH_HISTORY_LIST_SIZE = 10;
 
     private DaoSession daoSession;
@@ -33,8 +34,8 @@ public class DbHelperImpl implements DbHelper {
     @Override
     public List<SearchHistoryData> addSearchHistoryData(String data) {
         this.data=data;
-        mSearchHistoryDataList=getSearchHistoryDataList();
-        mSearchHistoryData=createSearchHistoryData(data);
+        mSearchHistoryDataList = getSearchHistoryDataList();
+        mSearchHistoryData = createSearchHistoryData(data);
         if(historyDataForward()){
             return mSearchHistoryDataList;
         }
