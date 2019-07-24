@@ -147,6 +147,7 @@ public class SearchFragment extends BaseDialogFragment<SearchPagePresenter> impl
         mCancelSearch.setVisibility(View.VISIBLE);
         mCancelSearch.setOnClickListener(this);
         mSearchClear.setOnClickListener(this);
+        mLlClearHistory.setOnClickListener(this);
         //禁止下拉刷新
         mSmartRefreshLayout.setEnableRefresh(false);
         getIntentData();
@@ -155,6 +156,8 @@ public class SearchFragment extends BaseDialogFragment<SearchPagePresenter> impl
         }
         initSearchResultRecycleView();
         setSmartRefreshLayoutListener();
+        mPresenter.getSearchHistoryData();
+        mPresenter.getHotKeyData();
     }
 
     private void setSmartRefreshLayoutListener() {
@@ -268,6 +271,9 @@ public class SearchFragment extends BaseDialogFragment<SearchPagePresenter> impl
                 //清除搜索结果
                 clearSearchResult();
                 break;
+            case R.id.ll_clear_history:
+                Toast.makeText(getContext(),"点击清除搜索历史记录",Toast.LENGTH_SHORT).show();
+                break;
         }
     }
     //显示搜索结果
@@ -277,6 +283,8 @@ public class SearchFragment extends BaseDialogFragment<SearchPagePresenter> impl
             mSearchResultRecyclerView.setVisibility(View.VISIBLE);
             mHomeArticleDataList.clear();
         }
+        //隐藏搜索界面
+        mSearchContainer.setVisibility(View.GONE);
     }
 
     //清除搜索结果
@@ -286,7 +294,8 @@ public class SearchFragment extends BaseDialogFragment<SearchPagePresenter> impl
             mSearchResultRecyclerView.setVisibility(View.GONE);
             mHomeArticleDataList.clear();
         }
-
+        //显示搜索界面
+        mSearchContainer.setVisibility(View.VISIBLE);
     }
 
     @Override
@@ -345,7 +354,40 @@ public class SearchFragment extends BaseDialogFragment<SearchPagePresenter> impl
 
     @Override
     public void showSearchHistoryListData(List<SearchHistoryData> searchHistoryData) {
+          mTvshTitle.setVisibility(View.VISIBLE);
+          mfwSearchHistory.setVisibility(View.VISIBLE);
+          mLlClearHistory.setVisibility(View.VISIBLE);
+          mSearchHistoryDataList.clear();
+          mSearchHistoryDataList.addAll(searchHistoryData);
+          mfwSearchHistory.onDataChanged();
+          mfwSearchHistory.setAdapter(new TagAdapter() {
+            @Override
+            public int getItemCount() {
+                return mSearchHistoryDataList.size();
+            }
 
+            @Override
+            public View createView(LayoutInflater inflater, ViewGroup parent, int position) {
+                return inflater.inflate(R.layout.flow_text_hot_search_layout,parent,false);
+            }
+
+            @Override
+            public void bindView(View view, int position) {
+                TextView textView = view.findViewById(R.id.text_tag_hot_search);
+                GradientDrawable gradientDrawable = new GradientDrawable();
+                gradientDrawable.setShape(GradientDrawable.RECTANGLE);//形状
+                gradientDrawable.setCornerRadius(10f);//设置圆角Radius
+                gradientDrawable.setColor(ToolsUtils.getRandSomeColor());//颜色
+                view.setBackground(gradientDrawable);
+                textView.setText(mSearchHistoryDataList.get(position).getData());
+            }
+
+            @Override
+            public void onTagItemViewClick(View v, int position) {
+                String keyword = mSearchHistoryDataList.get(position).getData();
+                getSearchData(keyword);
+            }
+        });
     }
     
     @Override

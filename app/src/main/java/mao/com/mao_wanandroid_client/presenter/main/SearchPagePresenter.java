@@ -45,6 +45,8 @@ public class SearchPagePresenter extends RxBasePresenter<SearchPageContract.Sear
     //普通搜索
     @Override
     public void getSearchKeyWordData(String keyWord) {
+           //存储搜索历史数据
+           mDataClient.addSearchHistoryData(keyWord);
            getSearchData(keyWord,0,false);
     }
 
@@ -78,7 +80,8 @@ public class SearchPagePresenter extends RxBasePresenter<SearchPageContract.Sear
     //公众号号搜索
     @Override
     public void getWxArticleHistoryByKey(int id, String keyWord) {
-        //mDataClient.addSearchHistoryData();
+        //存储搜索历史数据
+        mDataClient.addSearchHistoryData(keyWord);
         getWxArticleSearchData(id,keyWord,1,false);
     }
 
