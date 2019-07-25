@@ -156,8 +156,8 @@ public class SearchFragment extends BaseDialogFragment<SearchPagePresenter> impl
         }
         initSearchResultRecycleView();
         setSmartRefreshLayoutListener();
-        mPresenter.getSearchHistoryData();
-        mPresenter.getHotKeyData();
+
+        getSearchHistoryAndHotKeyData();
     }
 
     private void setSmartRefreshLayoutListener() {
@@ -205,11 +205,6 @@ public class SearchFragment extends BaseDialogFragment<SearchPagePresenter> impl
                         String keyword = "";
                         if(!TextUtils.isEmpty(mEditTextSearch.getText())) {
                             keyword = mEditTextSearch.getText().toString().trim();
-                            //关闭软键盘
-                            ToolsUtils.hideSoftInput(mEditTextSearch);
-                            showSearchResult();
-                            //去除焦点
-                            mEditTextSearch.clearFocus();
                             getSearchData(keyword);
                         } else {
                             Toast.makeText(getContext(),"请输入搜索的关键字"+keyword,Toast.LENGTH_SHORT).show();
@@ -246,7 +241,7 @@ public class SearchFragment extends BaseDialogFragment<SearchPagePresenter> impl
     public void onResume() {
         super.onResume();
         //设置焦点并弹出键盘
-        if(mSmartRefreshLayout!=null && View.GONE ==  mSmartRefreshLayout.getVisibility()){
+        if(mSmartRefreshLayout != null && View.GONE ==  mSmartRefreshLayout.getVisibility()){
             //防止浏览完搜索内容返回搜索界面弹出小键盘
             Log.e("毛麒添","弹出小键盘" );
             ToolsUtils.showSoftInput2(mEditTextSearch);
@@ -268,15 +263,26 @@ public class SearchFragment extends BaseDialogFragment<SearchPagePresenter> impl
                 mEditTextSearch.setText("");
                 //弹出软键盘
                 ToolsUtils.showSoftInput2(mEditTextSearch);
-                //清除搜索结果
+                if(mSmartRefreshLayout!=null && View.VISIBLE ==  mSmartRefreshLayout.getVisibility()){
+                    //重新加载搜索界面数据
+                    getSearchHistoryAndHotKeyData();
+                }
+                //隐藏搜索结果
                 clearSearchResult();
                 break;
             case R.id.ll_clear_history:
                 Toast.makeText(getContext(),"点击清除搜索历史记录",Toast.LENGTH_SHORT).show();
+
                 break;
         }
     }
-    //显示搜索结果
+    //获取搜索界面数据
+    private void getSearchHistoryAndHotKeyData() {
+        mPresenter.getSearchHistoryData();
+        mPresenter.getHotKeyData();
+    }
+
+    //显示搜索结果 隐藏搜索界面
     private void showSearchResult(){
         if(mSmartRefreshLayout!= null && mSearchResultRecyclerView!= null){
             mSmartRefreshLayout.setVisibility(View.VISIBLE);
@@ -287,7 +293,7 @@ public class SearchFragment extends BaseDialogFragment<SearchPagePresenter> impl
         mSearchContainer.setVisibility(View.GONE);
     }
 
-    //清除搜索结果
+    //隐藏搜索结果，显示搜索界面
     private void clearSearchResult() {
         if(mSmartRefreshLayout!= null && mSearchResultRecyclerView!= null){
             mSmartRefreshLayout.setVisibility(View.GONE);
@@ -339,7 +345,7 @@ public class SearchFragment extends BaseDialogFragment<SearchPagePresenter> impl
                  GradientDrawable gradientDrawable = new GradientDrawable();
                  gradientDrawable.setShape(GradientDrawable.RECTANGLE);//形状
                  gradientDrawable.setCornerRadius(10f);//设置圆角Radius
-                 gradientDrawable.setColor(ToolsUtils.getRandSomeColor());//颜色
+                 gradientDrawable.setColor(ToolsUtils.getRandSomeColor(getContext()));//颜色
                  view.setBackground(gradientDrawable);
                  textView.setText(mHotKeyDataList.get(position).getName());
              }
@@ -350,8 +356,9 @@ public class SearchFragment extends BaseDialogFragment<SearchPagePresenter> impl
                  getSearchData(keyword);
              }
          });
+         mfwHotKey.onDataChanged();
     }
-
+    //搜索历史
     @Override
     public void showSearchHistoryListData(List<SearchHistoryData> searchHistoryData) {
           mTvshTitle.setVisibility(View.VISIBLE);
@@ -359,7 +366,6 @@ public class SearchFragment extends BaseDialogFragment<SearchPagePresenter> impl
           mLlClearHistory.setVisibility(View.VISIBLE);
           mSearchHistoryDataList.clear();
           mSearchHistoryDataList.addAll(searchHistoryData);
-          mfwSearchHistory.onDataChanged();
           mfwSearchHistory.setAdapter(new TagAdapter() {
             @Override
             public int getItemCount() {
@@ -377,7 +383,7 @@ public class SearchFragment extends BaseDialogFragment<SearchPagePresenter> impl
                 GradientDrawable gradientDrawable = new GradientDrawable();
                 gradientDrawable.setShape(GradientDrawable.RECTANGLE);//形状
                 gradientDrawable.setCornerRadius(10f);//设置圆角Radius
-                gradientDrawable.setColor(ToolsUtils.getRandSomeColor());//颜色
+                gradientDrawable.setColor(ToolsUtils.getRandSomeColor(getContext()));//颜色
                 view.setBackground(gradientDrawable);
                 textView.setText(mSearchHistoryDataList.get(position).getData());
             }
@@ -388,15 +394,21 @@ public class SearchFragment extends BaseDialogFragment<SearchPagePresenter> impl
                 getSearchData(keyword);
             }
         });
+        mfwSearchHistory.onDataChanged();
     }
     
     @Override
     public void showClearAllSearchHistoryEvent() {
+        mTvshTitle.setVisibility(View.GONE);
+        mfwSearchHistory.setVisibility(View.GONE);
+        mLlClearHistory.setVisibility(View.GONE);
+        mSearchHistoryDataList.clear();
 
     }
 
     //开始搜索
     private void getSearchData(String keyword) {
+        mEditTextSearch.setText(keyword);
         if (Constants.RESULT_CODE_OFFICIAL_ACCOUNTS_PAGE.equals(pageType)) {
             //公众号搜索搜索
             mPresenter.getWxArticleHistoryByKey(wxid, keyword);
@@ -404,6 +416,11 @@ public class SearchFragment extends BaseDialogFragment<SearchPagePresenter> impl
             //普通搜索
             mPresenter.getSearchKeyWordData(keyword);
         }
+        //关闭软键盘
+        ToolsUtils.hideSoftInput(mEditTextSearch);
+        //EditText失去焦点
+        mEditTextSearch.clearFocus();
+        showSearchResult();
     }
     //搜索结果 item 点击
     @Override

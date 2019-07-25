@@ -9,6 +9,7 @@ import android.net.ConnectivityManager;
 import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.design.widget.TabLayout;
+import android.support.v4.content.ContextCompat;
 import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -123,6 +124,8 @@ public class ToolsUtils {
     public static void showSoftInput2(EditText etInput) {
         InputMethodManager imm = (InputMethodManager) etInput.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
         assert imm != null;
+        //获取焦点
+        etInput.requestFocus();
         imm.showSoftInput(etInput, InputMethodManager.RESULT_SHOWN);
         imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, InputMethodManager.HIDE_IMPLICIT_ONLY);
     }
@@ -200,7 +203,7 @@ public class ToolsUtils {
      * 随机从固定的颜色组中获取颜色
      * @return
      */
-    public static int getRandSomeColor() {
+    public static int getRandSomeColor(Context context) {
         Random random=new Random();
         int[] color={R.color.colorPrimary,
                 android.R.color.holo_green_light,
@@ -208,6 +211,6 @@ public class ToolsUtils {
                 android.R.color.holo_blue_light,
                 android.R.color.holo_orange_light};
         int temp=random.nextInt(5);
-        return color[temp];
+        return  ContextCompat.getColor(context, color[temp]);
     }
 }

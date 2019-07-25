@@ -36,12 +36,18 @@ public abstract class BaseDialogFragment<T extends AbstractBasePresenter> extend
     }
 
     @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        //在onCreate 关联  mView ,防止 mView空指针
         if(mPresenter != null){
             Log.e("毛麒添","BaseDialogFragment  mPresenter 不为空" + mPresenter.getClass());
             mPresenter.attachView(this);
         }
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
     }
 
     @Override
