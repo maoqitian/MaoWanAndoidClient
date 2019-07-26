@@ -24,7 +24,7 @@ import mao.com.mao_wanandroid_client.R;
 /**
  * Created by Jaeger on 16/2/14.
  * https://github.com/laobie/StatusBarUtil
- * 加入了一些状态栏 效果组合
+ * 沉浸式 状态栏 加入了一些状态栏 效果组合
  */
 public class StatusBarUtil {
 

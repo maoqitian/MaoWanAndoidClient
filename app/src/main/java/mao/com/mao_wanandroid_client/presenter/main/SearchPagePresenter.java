@@ -117,7 +117,7 @@ public class SearchPagePresenter extends RxBasePresenter<SearchPageContract.Sear
     @Override
     public void getSearchHistoryData() {
         List<SearchHistoryData> searchHistoryData = mDataClient.loadAllSearchHistoryData();
-        if(searchHistoryData.size()!=0){
+        if(searchHistoryData.size() > 0){
             mView.showSearchHistoryListData(searchHistoryData);
         }
     }
@@ -125,6 +125,7 @@ public class SearchPagePresenter extends RxBasePresenter<SearchPageContract.Sear
     @Override
     public void getClearAllSearchHistoryData() {
         mDataClient.clearAllSearchHistoryData();
+        mView.showClearAllSearchHistoryEvent();
     }
 
     /**

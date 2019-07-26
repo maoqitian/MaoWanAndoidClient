@@ -11,13 +11,13 @@
             android:icon="@drawable/ic_home_normal_24dp"
             android:title="@string/page_home" />
         <item
-            android:id="@+id/nav_settings"
-            android:icon="@drawable/ic_settings_24dp"
-            android:title="@string/nav_settings" />
+            android:id="@+id/common_website"
+            android:icon="@drawable/ic_common_website"
+            android:title="@string/common_web" />
         <item
             android:id="@+id/nav_collect"
-            android:icon="@drawable/ic_favorite_collect_24dp"
-            android:title="@string/nav_collect" />
+            android:icon="@drawable/ic_own_collection"
+            android:title="@string/own_collect" />
         <!--<item
             android:id="@+id/nav_slideshow"
             android:icon="@drawable/ic_menu_slideshow"
@@ -27,15 +27,10 @@
             android:icon="@drawable/ic_menu_manage"
             android:title="Tools" />-->
     </group>
-
     <item
-        android:id="@+id/nav_share"
-        android:icon="@drawable/ic_clock_date"
-        android:title="Share" />
-    <item
-        android:id="@+id/nav_send"
-        android:icon="@drawable/ic_comments_solid"
-        android:title="Send" />
+        android:id="@+id/nav_settings"
+        android:icon="@drawable/ic_settings_24dp"
+        android:title="@string/nav_settings" />
 
     <item
         android:id="@+id/nav_sign_out"

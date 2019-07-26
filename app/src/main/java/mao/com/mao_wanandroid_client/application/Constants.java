@@ -30,74 +30,8 @@ public class Constants {
     public static final String PATH_NET_CACHE = PATH_DATA + "/netCache";
 
     /**
-     * Tag fragment classify
+     * 搜索历史数据库名称
      */
-    public static final int TYPE_MAIN_PAGER = 0;
-
-    public static final int TYPE_KNOWLEDGE = 1;
-
-    public static final int TYPE_NAVIGATION = 2;
-
-    public static final int TYPE_PROJECT = 3;
-
-    public static final int TYPE_COLLECT = 4;
-
-    public static final int TYPE_SETTING = 5;
-
-
-    /**
-     * Bottom Navigation tab classify
-     */
-    public static final int TAB_ONE = 0;
-
-    /**
-     * Intent params
-     */
-    public static final String ARG_PARAM1 = "param1";
-
-    public static final String ARG_PARAM2 = "param2";
-
-    /**
-     * Phone MANUFACTURER
-     */
-    public static final String SAMSUNG = "samsung";
-
-    /**
-     * Tab colors
-     */
-    public static final int[] TAB_COLORS = new int[]{
-            Color.parseColor("#90C5F0"),
-            Color.parseColor("#91CED5"),
-            Color.parseColor("#F88F55"),
-            Color.parseColor("#C0AFD0"),
-            Color.parseColor("#E78F8F"),
-            Color.parseColor("#67CCB7"),
-            Color.parseColor("#F6BC7E")
-    };
-
-
-    /**
-     * Main Pager
-     */
-    public static final String SEARCH_TEXT = "search_text";
-
-    public static final String MENU_BUILDER = "MenuBuilder";
-
-    public static final String LOGIN_DATA = "login_data";
-
-    public static final String BANNER_DATA = "banner_data";
-
-    public static final String ARTICLE_DATA = "article_data";
-
-
-    /**
-     * Avoid double click time area
-     */
-    public static final long CLICK_TIME_AREA = 1000;
-
-    public static final long DOUBLE_INTERVAL_TIME = 2000;
-
-
     public static final String DB_NAME = "mao_wanandroid.db";
 
 

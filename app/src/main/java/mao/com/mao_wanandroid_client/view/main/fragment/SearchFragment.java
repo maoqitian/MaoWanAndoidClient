@@ -1,5 +1,6 @@
 package mao.com.mao_wanandroid_client.view.main.fragment;
 
+import android.content.DialogInterface;
 import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -43,6 +44,7 @@ import mao.com.mao_wanandroid_client.model.home.HomeArticleData;
 import mao.com.mao_wanandroid_client.model.search.HotKeyData;
 import mao.com.mao_wanandroid_client.presenter.main.SearchPageContract;
 import mao.com.mao_wanandroid_client.presenter.main.SearchPagePresenter;
+import mao.com.mao_wanandroid_client.utils.NormalAlertDialog;
 import mao.com.mao_wanandroid_client.utils.StartDetailPage;
 import mao.com.mao_wanandroid_client.utils.ToolsUtils;
 import mao.com.mao_wanandroid_client.view.main.adapter.HomePageAdapter;
@@ -271,8 +273,10 @@ public class SearchFragment extends BaseDialogFragment<SearchPagePresenter> impl
                 clearSearchResult();
                 break;
             case R.id.ll_clear_history:
-                Toast.makeText(getContext(),"点击清除搜索历史记录",Toast.LENGTH_SHORT).show();
-
+                //点击清除搜索历史记录
+                NormalAlertDialog.getInstance().showAlertDialog(getContext(), getString(R.string.confirm_clera_search_history),
+                        getString(R.string.confirm_text), getString(R.string.cancel_text),
+                        (dialog, which) -> mPresenter.getClearAllSearchHistoryData(), (dialog, which) -> dialog.dismiss());
                 break;
         }
     }
@@ -403,7 +407,6 @@ public class SearchFragment extends BaseDialogFragment<SearchPagePresenter> impl
         mfwSearchHistory.setVisibility(View.GONE);
         mLlClearHistory.setVisibility(View.GONE);
         mSearchHistoryDataList.clear();
-
     }
 
     //开始搜索

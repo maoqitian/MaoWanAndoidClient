@@ -204,34 +204,37 @@ public class MainActivity extends BaseActivity<MainPresenter>
                 //Toast.makeText(this,"点击了主页",Toast.LENGTH_SHORT).show();
                 break;
             case R.id.nav_collect:
-                Toast.makeText(this,"点击了收藏",Toast.LENGTH_SHORT).show();
+                //收藏
                 break;
             case R.id.nav_settings:
-                Toast.makeText(this,"点击了设置",Toast.LENGTH_SHORT).show();
+                //设置
                 break;
             case R.id.nav_sign_out:
-                Toast.makeText(this,"点击退出登录",Toast.LENGTH_SHORT).show();
+                //退出登录
                 mPresenter.getSingOut();
             case R.id.tab_main:
+                //主页
                 initPage(getString(R.string.page_home));
-                //Toast.makeText(this,"点击了主页",Toast.LENGTH_SHORT).show();
                 break;
             case R.id.tab_knowledge_hierarchy:
+                //知识体系
                 initPage(getString(R.string.knowledge_hierarchy));
-                Toast.makeText(this,"点击了知识体系",Toast.LENGTH_SHORT).show();
-
                 break;
             case R.id.tab_official_accounts:
+                //公众号
                 initPage(getString(R.string.official_accounts));
-                Toast.makeText(this,"点击了公众号",Toast.LENGTH_SHORT).show();
                 break;
             case R.id.tab_navigation:
+                //导航
                 initPage(getString(R.string.navigation));
-                Toast.makeText(this,"点击了导航",Toast.LENGTH_SHORT).show();
                 break;
             case R.id.tab_project:
+                //项目
                 initPage(getString(R.string.project));
-                Toast.makeText(this,"点击了项目",Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.common_website:
+                //常用网站
+
                 break;
                 default:
                     break;
@@ -261,8 +264,6 @@ public class MainActivity extends BaseActivity<MainPresenter>
     public void onClick(View view) {
          switch (view.getId()){
              case R.id.fab:
-                 /*Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();*/
                  //Toast.makeText(MainActivity.this,"点击了回到顶部",Toast.LENGTH_SHORT).show();
                  break;
              case R.id.imageView_user_icon: //用户个人头像点击
