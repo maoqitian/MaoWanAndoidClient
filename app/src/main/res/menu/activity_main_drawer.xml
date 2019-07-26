@@ -15,7 +15,7 @@
             android:icon="@drawable/ic_common_website"
             android:title="@string/common_web" />
         <item
-            android:id="@+id/nav_collect"
+            android:id="@+id/collect_page"
             android:icon="@drawable/ic_own_collection"
             android:title="@string/own_collect" />
         <!--<item

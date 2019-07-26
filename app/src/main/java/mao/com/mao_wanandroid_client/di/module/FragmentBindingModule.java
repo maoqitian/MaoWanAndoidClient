@@ -3,6 +3,9 @@ package mao.com.mao_wanandroid_client.di.module;
 import dagger.Module;
 import dagger.android.ContributesAndroidInjector;
 import mao.com.mao_wanandroid_client.di.scope.FragmentScope;
+import mao.com.mao_wanandroid_client.view.drawer.fragment.CollectionFragment;
+import mao.com.mao_wanandroid_client.view.drawer.fragment.CommonWebFragment;
+import mao.com.mao_wanandroid_client.view.drawer.fragment.SettingsFragment;
 import mao.com.mao_wanandroid_client.view.main.fragment.HomeFirstTabFragment;
 import mao.com.mao_wanandroid_client.view.main.fragment.HomePageFragment;
 import mao.com.mao_wanandroid_client.view.main.fragment.HomeSecondTabFragment;
@@ -56,5 +59,17 @@ public abstract class FragmentBindingModule {
     @FragmentScope
     @ContributesAndroidInjector(modules = SearchFragmentModule.class)
     abstract SearchFragment contributeSearchFragment();
+
+    @FragmentScope
+    @ContributesAndroidInjector(modules = CollectionFragmentModule.class)
+    abstract CollectionFragment contributeCollectionFragment();
+
+    @FragmentScope
+    @ContributesAndroidInjector(modules = SettingsFragmentModule.class)
+    abstract SettingsFragment contributeSettingsFragment();
+
+    @FragmentScope
+    @ContributesAndroidInjector(modules = CommonWebFragmentModule.class)
+    abstract CommonWebFragment contributeCommonWebFragment();
 
 }

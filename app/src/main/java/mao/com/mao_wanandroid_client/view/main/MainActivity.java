@@ -35,6 +35,7 @@ import mao.com.mao_wanandroid_client.presenter.main.MainPresenter;
 import mao.com.mao_wanandroid_client.utils.NavHelper;
 import mao.com.mao_wanandroid_client.utils.StartDetailPage;
 import mao.com.mao_wanandroid_client.utils.StatusBarUtil;
+import mao.com.mao_wanandroid_client.view.drawer.fragment.CollectionFragment;
 import mao.com.mao_wanandroid_client.view.main.fragment.HomePageFragment;
 import mao.com.mao_wanandroid_client.view.main.fragment.KnowledgeHierarchyPageFragment;
 import mao.com.mao_wanandroid_client.view.main.fragment.NavigationFragment;
@@ -118,13 +119,13 @@ public class MainActivity extends BaseActivity<MainPresenter>
             //loadMultipleRootFragment();
         }*/
        mNavHelper =new NavHelper<String>(this,R.id.page_fragment_container,getSupportFragmentManager(),this)
-       .add(R.id.tab_main,new NavHelper.Tab<String>(HomePageFragment.class,getString(R.string.page_home)))
-       .add(R.id.tab_knowledge_hierarchy,new NavHelper.Tab<String>(KnowledgeHierarchyPageFragment.class,getString(R.string.knowledge_hierarchy)))
-       .add(R.id.tab_official_accounts,new NavHelper.Tab<String>(OfficialAccountsPageFragment.class,getString(R.string.official_accounts)))
-       .add(R.id.tab_navigation,new NavHelper.Tab<String>(NavigationFragment.class,getString(R.string.navigation)))
-       .add(R.id.tab_project,new NavHelper.Tab<String>(ProjectFragment.class,getString(R.string.project)));
-
-
+               .add(R.id.tab_main,new NavHelper.Tab<String>(HomePageFragment.class,getString(R.string.page_home)))
+               .add(R.id.nav_home,new NavHelper.Tab<String>(HomePageFragment.class,getString(R.string.page_home)))
+               .add(R.id.tab_knowledge_hierarchy,new NavHelper.Tab<String>(KnowledgeHierarchyPageFragment.class,getString(R.string.knowledge_hierarchy)))
+               .add(R.id.tab_official_accounts,new NavHelper.Tab<String>(OfficialAccountsPageFragment.class,getString(R.string.official_accounts)))
+               .add(R.id.tab_navigation,new NavHelper.Tab<String>(NavigationFragment.class,getString(R.string.navigation)))
+               .add(R.id.tab_project,new NavHelper.Tab<String>(ProjectFragment.class,getString(R.string.project)))
+               .add(R.id.collect_page,new NavHelper.Tab<String>(CollectionFragment.class,getString(R.string.nav_collect)));
     }
 
     private void initView() {
@@ -200,11 +201,9 @@ public class MainActivity extends BaseActivity<MainPresenter>
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
         int id = menuItem.getItemId();
         switch (id){
-            case R.id.nav_home:
-                //Toast.makeText(this,"点击了主页",Toast.LENGTH_SHORT).show();
-                break;
-            case R.id.nav_collect:
+            case R.id.collect_page:
                 //收藏
+                initPage(getString(R.string.nav_collect));
                 break;
             case R.id.nav_settings:
                 //设置
@@ -212,6 +211,8 @@ public class MainActivity extends BaseActivity<MainPresenter>
             case R.id.nav_sign_out:
                 //退出登录
                 mPresenter.getSingOut();
+                break;
+            case R.id.nav_home:
             case R.id.tab_main:
                 //主页
                 initPage(getString(R.string.page_home));
@@ -271,7 +272,7 @@ public class MainActivity extends BaseActivity<MainPresenter>
                      //进入登录界面
                      StartDetailPage.start(MainActivity.this,null, Constants.PAGE_LOGIN,Constants.ACTION_LOGIN_ACTIVITY);
                  }else {
-                     //进入个人中心
+                     //TODO 进入个人中心 暂未实现
                      Toast.makeText(MainActivity.this,"进入个人中心",Toast.LENGTH_SHORT).show();
                  }
                  break;
