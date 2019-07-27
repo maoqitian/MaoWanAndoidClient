@@ -32,7 +32,8 @@ import mao.com.mao_wanandroid_client.model.login.LoginData;
 public class HomeFirstTabPresenter extends RxBasePresenter<HomePageFirstTabContract.HomePageFirstTabView> implements HomePageFirstTabContract.HomeFirstTabFragmentPresenter {
 
     private DataClient mDataClient;
-    private int curPage = 0;//当前页码 实际下拉加载更多获取数据 填入该页面即可
+    //当前页码 实际下拉加载更多获取数据 填入该页面即可
+    private int curPage = 0;
     @Inject
     public HomeFirstTabPresenter(DataClient dataClient) {
         super(dataClient);

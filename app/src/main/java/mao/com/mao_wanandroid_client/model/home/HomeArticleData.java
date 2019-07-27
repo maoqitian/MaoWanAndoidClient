@@ -11,6 +11,7 @@ import java.util.List;
 public class HomeArticleData implements Serializable {
 
 
+    private static final long serialVersionUID = 733426978477467897L;
     /**
      * apkLink :
      * author : 小编

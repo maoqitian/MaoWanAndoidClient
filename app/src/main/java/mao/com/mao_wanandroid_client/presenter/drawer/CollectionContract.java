@@ -1,7 +1,10 @@
 package mao.com.mao_wanandroid_client.presenter.drawer;
 
+import java.util.List;
+
 import mao.com.mao_wanandroid_client.base.BaseView;
 import mao.com.mao_wanandroid_client.base.presenter.AbstractBasePresenter;
+import mao.com.mao_wanandroid_client.model.collect.CollectData;
 
 /**
  * @author maoqitian
@@ -11,12 +14,12 @@ import mao.com.mao_wanandroid_client.base.presenter.AbstractBasePresenter;
 public interface CollectionContract {
 
     interface CollectionView extends BaseView{
-
+        void showCollectListData(List<CollectData> collectDataList);
     }
 
 
-    interface  CollectionFragmentPresenter extends AbstractBasePresenter<CollectionView>{
-
+    interface CollectionFragmentPresenter extends AbstractBasePresenter<CollectionView>{
+        void getCollectListData();
     }
 
 }

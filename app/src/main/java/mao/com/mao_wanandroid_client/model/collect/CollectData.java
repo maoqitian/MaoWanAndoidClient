@@ -1,11 +1,14 @@
 package mao.com.mao_wanandroid_client.model.collect;
 
+import java.io.Serializable;
+
 /**
  * @author maoqitian
  * @Description  收藏 文章 data
  * @Time 2019/6/23 0023 16:00
  */
-public class CollectData {
+public class CollectData implements Serializable {
+    private static final long serialVersionUID = 6781573425639756995L;
     /**
      * author : mao
      * chapterId : 0

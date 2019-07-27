@@ -1,8 +1,11 @@
 package mao.com.mao_wanandroid_client.view.drawer.fragment;
 
+import java.util.List;
+
 import mao.com.mao_wanandroid_client.R;
 import mao.com.mao_wanandroid_client.base.BaseView;
 import mao.com.mao_wanandroid_client.base.fragment.BaseFragment;
+import mao.com.mao_wanandroid_client.model.collect.CollectData;
 import mao.com.mao_wanandroid_client.presenter.drawer.CollectionContract;
 import mao.com.mao_wanandroid_client.presenter.drawer.CollectionPresenter;
 
@@ -19,5 +22,10 @@ public class CollectionFragment extends BaseFragment<CollectionPresenter> implem
     @Override
     protected int getLayoutId() {
         return R.layout.collection_fragment_layout;
+    }
+
+    @Override
+    public void showCollectListData(List<CollectData> collectDataList) {
+
     }
 }
