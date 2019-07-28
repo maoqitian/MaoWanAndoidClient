@@ -203,7 +203,13 @@ public class MainActivity extends BaseActivity<MainPresenter>
         switch (id){
             case R.id.collect_page:
                 //收藏
+                if(!mPresenter.getLoginStatus()){
+                    //是否已经登录
+                    StartDetailPage.start(this,null, Constants.PAGE_LOGIN,Constants.ACTION_LOGIN_ACTIVITY);
+                    return false;
+                }
                 initPage(getString(R.string.nav_collect));
+                bottomNavigationView.setVisibility(View.GONE);
                 break;
             case R.id.nav_settings:
                 //设置
@@ -216,6 +222,7 @@ public class MainActivity extends BaseActivity<MainPresenter>
             case R.id.tab_main:
                 //主页
                 initPage(getString(R.string.page_home));
+                bottomNavigationView.setVisibility(View.VISIBLE);
                 break;
             case R.id.tab_knowledge_hierarchy:
                 //知识体系

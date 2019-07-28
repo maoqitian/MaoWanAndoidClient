@@ -3,6 +3,8 @@ package mao.com.mao_wanandroid_client.presenter.drawer;
 import javax.inject.Inject;
 
 import io.reactivex.Observable;
+import mao.com.mao_wanandroid_client.R;
+import mao.com.mao_wanandroid_client.application.MyApplication;
 import mao.com.mao_wanandroid_client.base.presenter.RxBasePresenter;
 import mao.com.mao_wanandroid_client.core.http.DataClient;
 import mao.com.mao_wanandroid_client.core.http.control.BaseObserver;
@@ -33,17 +35,28 @@ public class CollectionPresenter extends RxBasePresenter<CollectionContract.Coll
 
     @Override
     public void getCollectListData() {
-        getCollectList(0);
+        getCollectList(0,false);
     }
 
-    private void getCollectList(int pageNum) {
+    @Override
+    public void getLoadCollectListData() {
+        getCollectList(curPage,true);
+    }
+
+    private void getCollectList(int pageNum,boolean isRefresh) {
         Observable<ResponseBody<CollectListData>> collectListData = mDataClient.getCollectListData(pageNum);
         collectListData.compose(RxSchedulers.observableIO2Main())
                        .subscribe(new BaseObserver<CollectListData>() {
                            @Override
                            public void onSuccess(CollectListData result) {
-                               curPage = result.getCurPage();
-                               mView.showCollectListData(result.getDatas());
+                               if(result.getDatas().size() != 0){
+                                   curPage = result.getCurPage();
+                                   mView.showCollectListData(result.getDatas(),isRefresh);
+                               }else {
+                                   //哥这回真没了
+                                   mView.showLoadDataMessage(MyApplication.getInstance().getString(R.string.not_load_more_msg));
+
+                               }
                            }
 
                            @Override

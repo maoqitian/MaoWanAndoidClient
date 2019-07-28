@@ -14,6 +14,7 @@
     <color name="triangle" >#FFC107</color>
     <color name="font_hint" >#9B9999</color>
     <color name="gray" >#dcdcdc</color>
+    <color name="icon_gray" >#A7A5A5</color>
     <color name="ic_gray" >#96ffffff</color>
     <color name="ic_drawable_dark">#FF424242</color>
     <color name="textInputLayout">#96ffffff</color>

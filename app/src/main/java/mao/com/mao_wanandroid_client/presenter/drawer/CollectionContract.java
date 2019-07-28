@@ -14,12 +14,14 @@ import mao.com.mao_wanandroid_client.model.collect.CollectData;
 public interface CollectionContract {
 
     interface CollectionView extends BaseView{
-        void showCollectListData(List<CollectData> collectDataList);
+        void showCollectListData(List<CollectData> collectDataList,boolean isRefresh);
+        void showLoadDataMessage(String msg);
     }
 
 
     interface CollectionFragmentPresenter extends AbstractBasePresenter<CollectionView>{
         void getCollectListData();
+        void getLoadCollectListData();
     }
 
 }
