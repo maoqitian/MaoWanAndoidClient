@@ -156,7 +156,7 @@ public class HomeFirstTabPresenter extends RxBasePresenter<HomePageFirstTabContr
                 });
     }*/
 
-    @Override
+    /*@Override
     public void addArticleCollect(int position,HomeArticleData homeArticleData) {
         Observable<ResponseBody<String>> responseBodyObservable = mDataClient.addCollectInsideListData(homeArticleData.getId());
         responseBodyObservable.compose(RxSchedulers.observableIO2Main())
@@ -191,7 +191,7 @@ public class HomeFirstTabPresenter extends RxBasePresenter<HomePageFirstTabContr
                                   }
                               });
 
-    }
+    }*/
 
     //下拉刷新
     @Override

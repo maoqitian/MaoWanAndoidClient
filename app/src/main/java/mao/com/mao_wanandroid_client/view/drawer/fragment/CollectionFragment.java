@@ -23,6 +23,7 @@ import mao.com.mao_wanandroid_client.model.collect.CollectData;
 import mao.com.mao_wanandroid_client.model.home.HomeArticleData;
 import mao.com.mao_wanandroid_client.presenter.drawer.CollectionContract;
 import mao.com.mao_wanandroid_client.presenter.drawer.CollectionPresenter;
+import mao.com.mao_wanandroid_client.utils.NormalAlertDialog;
 import mao.com.mao_wanandroid_client.utils.StartDetailPage;
 import mao.com.mao_wanandroid_client.view.drawer.adapter.CollectionAdapter;
 
@@ -74,13 +75,25 @@ public class CollectionFragment extends BaseFragment<CollectionPresenter>
             switch (view.getId()){
                 case R.id.more_collect: //点击收藏
                     Log.e("毛麒添","点击收藏");
-                    /*if(homeArticleData!=null){
-                        addOrCancelCollect(position,homeArticleData);
-                    }*/
+                    NormalAlertDialog.getInstance().showBottomAlertDialog(_mActivity, v -> {
+                        if (collectData != null){
+                            mPresenter.getCancelCollectArticleData(_mActivity,collectData.getId(),collectData.getOriginId(),position);
+                        }else {
+                            Toast.makeText(_mActivity,"取消收藏数据为空",Toast.LENGTH_SHORT).show();
+                        }
+                        NormalAlertDialog.getInstance().cancelBottomDialog();
+                    });
                     break;
                 case R.id.collection_super_chapterName:
                     //点击 收藏tag
-                    //StartDetailPage.start(_mActivity,homeArticleData,Constants.RESULT_CODE_HOME_PAGE,Constants.ACTION_KNOWLEDGE_LEVEL2_ACTIVITY);
+                    //暂不 实现 没必要
+                   /* HomeArticleData homeArticleData = new HomeArticleData();
+                    homeArticleData.setTitle(collectData.getTitle());
+                    homeArticleData.setLink(collectData.getLink());
+                    homeArticleData.setChapterId(collectData.getChapterId());
+                    homeArticleData.setChapterName(collectData.getChapterName());
+                    homeArticleData.setSuperChapterId(collectData.getChapterId());
+                    StartDetailPage.start(_mActivity,homeArticleData,Constants.RESULT_CODE_HOME_PAGE,Constants.ACTION_KNOWLEDGE_LEVEL2_ACTIVITY);*/
                     break;
             }
         });
@@ -131,6 +144,18 @@ public class CollectionFragment extends BaseFragment<CollectionPresenter>
     public void showLoadDataMessage(String msg) {
         Toast.makeText(_mActivity,msg,Toast.LENGTH_SHORT).show();
         mSmartRefreshLayout.finishLoadMore();
+    }
+
+    @Override
+    public void showCancelCollectArticleSuccess(int position, String msg) {
+        Toast.makeText(_mActivity,msg,Toast.LENGTH_SHORT).show();
+        mAdapter.remove(position);
+        //mAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void showCancelCollectArticleFail(String msg) {
+        Toast.makeText(_mActivity,msg,Toast.LENGTH_SHORT).show();
     }
 
     @Override

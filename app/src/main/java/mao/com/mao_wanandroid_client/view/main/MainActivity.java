@@ -161,7 +161,7 @@ public class MainActivity extends BaseActivity<MainPresenter>
         super.initEventAndData();
     }
 
-    @Override
+   /* @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
 
         if (keyCode == KeyEvent.KEYCODE_BACK) {
@@ -174,7 +174,7 @@ public class MainActivity extends BaseActivity<MainPresenter>
             }
         }
         return false;
-    }
+    }*/
 
     private static Boolean mIsExit = false;
 

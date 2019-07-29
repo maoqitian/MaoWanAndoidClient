@@ -1,5 +1,7 @@
 package mao.com.mao_wanandroid_client.presenter.drawer;
 
+import android.content.Context;
+
 import javax.inject.Inject;
 
 import io.reactivex.Observable;
@@ -8,6 +10,7 @@ import mao.com.mao_wanandroid_client.application.MyApplication;
 import mao.com.mao_wanandroid_client.base.presenter.RxBasePresenter;
 import mao.com.mao_wanandroid_client.core.http.DataClient;
 import mao.com.mao_wanandroid_client.core.http.control.BaseObserver;
+import mao.com.mao_wanandroid_client.core.http.control.ProgressObserver;
 import mao.com.mao_wanandroid_client.core.http.control.RxSchedulers;
 import mao.com.mao_wanandroid_client.model.ResponseBody;
 import mao.com.mao_wanandroid_client.model.collect.CollectListData;
@@ -43,6 +46,24 @@ public class CollectionPresenter extends RxBasePresenter<CollectionContract.Coll
         getCollectList(curPage,true);
     }
 
+    //收藏页面取消收藏
+    @Override
+    public void getCancelCollectArticleData(Context context,int articleId, int originId,int position) {
+        Observable<ResponseBody<String>> responseBodyObservable = mDataClient.cancelCollectArticlePageData(articleId, originId);
+        responseBodyObservable.compose(RxSchedulers.observableIO2Main())
+                              .subscribe(new ProgressObserver<String>(context, context.getString(R.string.delete_collection_text)) {
+                                  @Override
+                                  public void onSuccess(String result) {
+                                      mView.showCancelCollectArticleSuccess(position,context.getString(R.string.cancle_collection_success));
+                                  }
+
+                                  @Override
+                                  public void onFailure(Throwable e, String errorMsg) {
+                                      mView.showCancelCollectArticleFail(context.getString(R.string.cancle_collection_fail));
+                                  }
+                              });
+    }
+
     private void getCollectList(int pageNum,boolean isRefresh) {
         Observable<ResponseBody<CollectListData>> collectListData = mDataClient.getCollectListData(pageNum);
         collectListData.compose(RxSchedulers.observableIO2Main())
@@ -65,6 +86,8 @@ public class CollectionPresenter extends RxBasePresenter<CollectionContract.Coll
                            }
                        });
     }
+
+
 
 
 }

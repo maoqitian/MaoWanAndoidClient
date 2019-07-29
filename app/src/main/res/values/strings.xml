@@ -51,7 +51,9 @@
     <string name="search_history">Search History</string>
     <string name="clear_search_history">clear search history</string>
     <string name="confirm_clera_search_history">Confirm clear all history?</string>
+    <string name="cancel_collection_text">Cancel Collection</string>
     <string name="cancel_text">cancel</string>
+    <string name="delete_collection_text">Deleting collection</string>
     <string name="confirm_text">confirm</string>
     <string name="own_collect">my collect</string>
     <string name="common_web">common_web</string>

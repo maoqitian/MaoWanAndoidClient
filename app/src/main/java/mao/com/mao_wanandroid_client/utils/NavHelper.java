@@ -4,7 +4,10 @@ import android.content.Context;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.util.SparseArray;
+
+import mao.com.mao_wanandroid_client.R;
 
 /**
  * @author maoqitian
@@ -52,13 +55,25 @@ public class NavHelper<T> {
 
     /**
      * 执行点击菜单的操作
-     *
+     * 如果点击了 nav_home 并且当前显示的是首页模块 则不切换
+     * 如果是当前 收藏 点击了nav_home 切换到 home
      * @param menuId
      * @return
      */
     public boolean performClickMenu(int menuId) {
         Tab<T> tab = tabs.get(menuId);
-        if (tab != null) {
+        if(R.id.nav_home == menuId && currentTab!=null){
+            String name = (String) currentTab.extra;
+            if("首页".equals(name) || "知识体系".equals(name) || "公众号".equals(name) || "导航".equals(name) || "项目".equals(name)){
+                //如果点击了 nav_home 并且当前显示的是首页模块 则不切换
+                return true;
+            }else if("收藏".equals(name) && tab != null){
+                //如果是当前是收藏 设置 常用网站 等  点击了nav_home 切换到 home
+                doSelect(tab);
+                return true;
+            }
+        } else if (tab != null) {
+            //正常切换逻辑
             doSelect(tab);
             return true;
         }
@@ -79,6 +94,7 @@ public class NavHelper<T> {
                 return;
             }
         }
+
         currentTab = tab;
         doTabChanged(currentTab,oldTab);
     }
@@ -138,10 +154,19 @@ public class NavHelper<T> {
             this.extra = extra;
         }
 
-        Class<?> clx;
+        public Class<?> clx;
         public T extra;
         //内部缓存对应的Fragment
         private Fragment fragment;
+
+        @Override
+        public String toString() {
+            return "Tab{" +
+                    "clx=" + clx +
+                    ", extra=" + extra +
+                    ", fragment=" + fragment +
+                    '}';
+        }
     }
 
     /**

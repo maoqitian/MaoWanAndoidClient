@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/colorBackground"
+    android:orientation="vertical"
+    >
+
+    <LinearLayout
+        android:id="@+id/ll_cancel_collection"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="horizontal"
+        >
+        <ImageView
+            android:id="@+id/iv_start_collection"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/dp_20"
+            app:srcCompat = "@drawable/ic_start_collection"
+            android:tint="@color/colorPrimary"
+            />
+        <TextView
+            android:id="@+id/tv_cancel_collection"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/dp_5"
+            android:text="@string/cancel_collection_text"
+            android:textColor="@android:color/black"
+            android:layout_gravity="center_vertical"
+            />
+    </LinearLayout>
+    <TextView
+        android:id="@+id/tv_cancel_dialog"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_50"
+        android:gravity="center"
+        android:background="@color/white"
+        android:text="@string/cancel_text"
+        android:layout_marginTop="@dimen/dp_10"
+        android:textColor="@android:color/black"
+        />
+</LinearLayout>
