@@ -123,6 +123,8 @@ public class NavHelper<T> {
             }else {
                 ft.attach(newTab.fragment);
             }
+            /*Log.e("毛麒添","newTab.clx.getName() : "+newTab.clx.getName());
+            ft.addToBackStack(newTab.mTag);*/
         }
         ft.commit();
         notifySelect(newTab,oldTab);
@@ -149,24 +151,18 @@ public class NavHelper<T> {
      * @param <T>
      */
     public static class Tab<T> {
-        public Tab(Class<?> clx, T extra) {
+        public Tab(Class<?> clx, T extra,String tag) {
             this.clx = clx;
             this.extra = extra;
+            this.mTag = tag;
         }
 
         public Class<?> clx;
         public T extra;
+        String mTag;
         //内部缓存对应的Fragment
         private Fragment fragment;
 
-        @Override
-        public String toString() {
-            return "Tab{" +
-                    "clx=" + clx +
-                    ", extra=" + extra +
-                    ", fragment=" + fragment +
-                    '}';
-        }
     }
 
     /**

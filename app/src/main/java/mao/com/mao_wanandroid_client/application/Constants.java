@@ -1,12 +1,5 @@
 package mao.com.mao_wanandroid_client.application;
-
-import android.graphics.Color;
-
 import java.io.File;
-
-import mao.com.mao_wanandroid_client.R;
-import mao.com.mao_wanandroid_client.model.home.HomeArticleData;
-
 /**
  * @author maoqitian
  * @Description 常量类
@@ -34,8 +27,15 @@ public class Constants {
      */
     public static final String DB_NAME = "mao_wanandroid.db";
 
-
-
+    /**
+     * fragment tag
+     */
+    public static final String TAG_HOME = "HomePageFragment";
+    public static final String TAG_KNOWLEGER = "KnowledgeHierarchyPageFragment";
+    public static final String TAG_OFFICIAL = "OfficialAccountsPageFragment";
+    public static final String TAG_PROJECT = "ProjectFragment";
+    public static final String TAG_NAVIGATION = "NavigationFragment";
+    public static final String TAG_COLLECTION = "CollectionFragment";
     /**
      * SharedPreferences
      */
@@ -105,6 +105,7 @@ public class Constants {
     //微信公众号详情页 跳转
     public static final String RESULT_CODE_OFFICIAL_ACCOUNTS_PAGE = "official_accounts_detail_page";
 
+    public static final String TAG_TAB_NAME = "tabName";
 
     //Bundle 数据 tag
     //首页文章数据 常量

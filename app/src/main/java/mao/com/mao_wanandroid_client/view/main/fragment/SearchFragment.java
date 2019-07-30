@@ -144,6 +144,7 @@ public class SearchFragment extends BaseDialogFragment<SearchPagePresenter> impl
     }
 
     private void initView() {
+        //置空editText
         mEditTextSearch.setText("");
         mSearchLayout.setVisibility(View.VISIBLE);
         mCancelSearch.setVisibility(View.VISIBLE);

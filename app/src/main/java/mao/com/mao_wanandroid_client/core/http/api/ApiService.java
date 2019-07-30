@@ -7,7 +7,7 @@ import mao.com.mao_wanandroid_client.model.ResponseBody;
 import mao.com.mao_wanandroid_client.model.banner.HomePageBannerModel;
 import mao.com.mao_wanandroid_client.model.collect.CollectData;
 import mao.com.mao_wanandroid_client.model.collect.CollectListData;
-import mao.com.mao_wanandroid_client.model.frienduser.FriendUseWebData;
+import mao.com.mao_wanandroid_client.model.frienduser.CommonWebData;
 import mao.com.mao_wanandroid_client.model.home.HomeArticleData;
 import mao.com.mao_wanandroid_client.model.home.HomeArticleListData;
 import mao.com.mao_wanandroid_client.model.login.LoginData;
@@ -62,7 +62,7 @@ public interface ApiService {
      * @return
      */
     @GET("/friend/json")
-    Observable<ResponseBody<List<FriendUseWebData>>>GetFriendUseWebData();
+    Observable<ResponseBody<List<CommonWebData>>>GetFriendUseWebData();
 
     /**
      * 置顶文章

@@ -1,7 +1,10 @@
 package mao.com.mao_wanandroid_client.presenter.drawer;
 
+import java.util.List;
+
 import mao.com.mao_wanandroid_client.base.BaseView;
 import mao.com.mao_wanandroid_client.base.presenter.AbstractBasePresenter;
+import mao.com.mao_wanandroid_client.model.frienduser.CommonWebData;
 
 /**
  * @author maoqitian
@@ -11,13 +14,12 @@ import mao.com.mao_wanandroid_client.base.presenter.AbstractBasePresenter;
 public interface CommonWebContract {
 
     interface CommonWebView extends BaseView{
-
+        void showCommonWebData(List<CommonWebData> commonWebDataList);
     }
     
 
     interface  CommonFragmentPresenter extends AbstractBasePresenter<CommonWebView>{
-
+         void getCommonWebData();
     }
-
 }
 

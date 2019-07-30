@@ -85,7 +85,7 @@ public class HomeFirstTabFragment extends RootBaseFragment<HomeFirstTabPresenter
 
     public static HomeFirstTabFragment newInstance(String tabName) {
         Bundle args = new Bundle();
-        args.putString("tabName",tabName);
+        args.putString(Constants.TAG_TAB_NAME,tabName);
         HomeFirstTabFragment fragment = new HomeFirstTabFragment();
         fragment.setArguments(args);
         return fragment;
@@ -95,7 +95,7 @@ public class HomeFirstTabFragment extends RootBaseFragment<HomeFirstTabPresenter
     protected void initEventAndData() {
         super.initEventAndData();
         if (getArguments() != null) {
-            mTabTitle = getArguments().getString("tabName");
+            mTabTitle = getArguments().getString(Constants.TAG_TAB_NAME);
             Log.e("毛麒添","首页mTabTitle "+mTabTitle);
         }
 

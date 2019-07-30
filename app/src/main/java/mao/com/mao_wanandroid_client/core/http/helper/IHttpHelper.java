@@ -7,7 +7,7 @@ import mao.com.mao_wanandroid_client.model.ResponseBody;
 import mao.com.mao_wanandroid_client.model.banner.HomePageBannerModel;
 import mao.com.mao_wanandroid_client.model.collect.CollectData;
 import mao.com.mao_wanandroid_client.model.collect.CollectListData;
-import mao.com.mao_wanandroid_client.model.frienduser.FriendUseWebData;
+import mao.com.mao_wanandroid_client.model.frienduser.CommonWebData;
 import mao.com.mao_wanandroid_client.model.home.HomeArticleData;
 import mao.com.mao_wanandroid_client.model.home.HomeArticleListData;
 import mao.com.mao_wanandroid_client.model.login.LoginData;
@@ -17,10 +17,6 @@ import mao.com.mao_wanandroid_client.model.project.ProjectListData;
 import mao.com.mao_wanandroid_client.model.search.HotKeyData;
 import mao.com.mao_wanandroid_client.model.knowlegetree.KnowledgeHierarchyData;
 import mao.com.mao_wanandroid_client.model.webmark.webBookMark;
-import retrofit2.http.Field;
-import retrofit2.http.FormUrlEncoded;
-import retrofit2.http.GET;
-import retrofit2.http.Path;
 
 
 /**
@@ -51,7 +47,7 @@ public interface IHttpHelper {
      * 获取常用网站数据
      * @return
      */
-    Observable<ResponseBody<List<FriendUseWebData>>>GetFriendUseWebData();
+    Observable<ResponseBody<List<CommonWebData>>>GetFriendUseWebData();
     /**
      * 搜索热词
      * @return

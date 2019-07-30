@@ -14,6 +14,7 @@ import java.util.TimerTask;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
+import mao.com.mao_wanandroid_client.R;
 import me.yokeyword.fragmentation.SupportFragment;
 
 /**
@@ -67,20 +68,20 @@ public abstract class SimpleFragment extends SupportFragment {
      */
     @Override
     public boolean onBackPressedSupport() {
-        Log.e("毛麒添","onBackPressedSupport 调用");
-        if (getChildFragmentManager().getBackStackEntryCount() > 1) {
+        Log.e("毛麒添","onBackPressedSupport SimpleFragment  调用");
+       /* if (getChildFragmentManager().getBackStackEntryCount() > 1) {
             popChild();
         }else {
             doubleClickExit();
-        }
-        return true;
+        }*/
+        return super.onBackPressedSupport();
     }
     private static Boolean mIsExit = false;
     private void doubleClickExit() {
         Timer exitTimer = null;
         if (!mIsExit) {
             mIsExit = true;
-            Toast.makeText(_mActivity,"再点一次退出应用",Toast.LENGTH_SHORT).show();
+            Toast.makeText(_mActivity,_mActivity.getString(R.string.exit_again),Toast.LENGTH_SHORT).show();
             exitTimer = new Timer();
             exitTimer.schedule(new TimerTask() {
                 @Override

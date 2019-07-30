@@ -11,7 +11,7 @@ import mao.com.mao_wanandroid_client.model.ResponseBody;
 import mao.com.mao_wanandroid_client.model.banner.HomePageBannerModel;
 import mao.com.mao_wanandroid_client.model.collect.CollectData;
 import mao.com.mao_wanandroid_client.model.collect.CollectListData;
-import mao.com.mao_wanandroid_client.model.frienduser.FriendUseWebData;
+import mao.com.mao_wanandroid_client.model.frienduser.CommonWebData;
 import mao.com.mao_wanandroid_client.model.home.HomeArticleData;
 import mao.com.mao_wanandroid_client.model.home.HomeArticleListData;
 import mao.com.mao_wanandroid_client.model.login.LoginData;
@@ -77,7 +77,7 @@ public class IHttpHelperImpl implements IHttpHelper{
      * @return
      */
     @Override
-    public Observable<ResponseBody<List<FriendUseWebData>>> GetFriendUseWebData() {
+    public Observable<ResponseBody<List<CommonWebData>>> GetFriendUseWebData() {
         return getApiServiceGson().GetFriendUseWebData();
     }
 

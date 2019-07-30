@@ -59,4 +59,5 @@
     <string name="confirm_text">确认</string>
     <string name="own_collect">我的收藏</string>
     <string name="common_web">常用网站</string>
+    <string name="exit_again">再点一次退出应用</string>
 </resources>

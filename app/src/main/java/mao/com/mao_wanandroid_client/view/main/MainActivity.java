@@ -12,7 +12,6 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -30,12 +29,14 @@ import mao.com.mao_wanandroid_client.base.activity.BaseActivity;
 import mao.com.mao_wanandroid_client.compoent.RxBus;
 import mao.com.mao_wanandroid_client.compoent.event.LoginStatusEvent;
 import mao.com.mao_wanandroid_client.core.http.cookie.CookieManager;
+import mao.com.mao_wanandroid_client.presenter.drawer.CommonWebPresenter;
 import mao.com.mao_wanandroid_client.presenter.main.MainContract;
 import mao.com.mao_wanandroid_client.presenter.main.MainPresenter;
 import mao.com.mao_wanandroid_client.utils.NavHelper;
 import mao.com.mao_wanandroid_client.utils.StartDetailPage;
 import mao.com.mao_wanandroid_client.utils.StatusBarUtil;
 import mao.com.mao_wanandroid_client.view.drawer.fragment.CollectionFragment;
+import mao.com.mao_wanandroid_client.view.drawer.fragment.CommonWebFragment;
 import mao.com.mao_wanandroid_client.view.main.fragment.HomePageFragment;
 import mao.com.mao_wanandroid_client.view.main.fragment.KnowledgeHierarchyPageFragment;
 import mao.com.mao_wanandroid_client.view.main.fragment.NavigationFragment;
@@ -75,27 +76,11 @@ public class MainActivity extends BaseActivity<MainPresenter>
     private NavHelper mNavHelper;
 
     SearchFragment mSearchFragment;
+    CommonWebFragment mCommonWebFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //setContentView(R.layout.activity_main);
-        //测试网络模块。获取首页Banner数据
-       /* NetworkUtils.getInstance().getApiService(ApiService.class,ApiService.HOST,true).
-                GetHomePageBannerData()
-                .compose(RxSchedulers.<ResponseBody<List<HomePageBannerModel>>>observableIO2Main(this))
-                .subscribe(new ProgressObserver<List<HomePageBannerModel>>(this,"正在加载首页Banner数据") {
-                    @Override
-                    public void onSuccess(List<HomePageBannerModel> result) {
-                        Log.e("mao",result.toString());
-                    }
-
-                    @Override
-                    public void onFailure(Throwable e, String errorMsg) {
-                        Log.e("mao",e.getMessage()+errorMsg);
-                    }
-                });*/
-
     }
 
     @Override
@@ -119,13 +104,13 @@ public class MainActivity extends BaseActivity<MainPresenter>
             //loadMultipleRootFragment();
         }*/
        mNavHelper =new NavHelper<String>(this,R.id.page_fragment_container,getSupportFragmentManager(),this)
-               .add(R.id.tab_main,new NavHelper.Tab<String>(HomePageFragment.class,getString(R.string.page_home)))
-               .add(R.id.nav_home,new NavHelper.Tab<String>(HomePageFragment.class,getString(R.string.page_home)))
-               .add(R.id.tab_knowledge_hierarchy,new NavHelper.Tab<String>(KnowledgeHierarchyPageFragment.class,getString(R.string.knowledge_hierarchy)))
-               .add(R.id.tab_official_accounts,new NavHelper.Tab<String>(OfficialAccountsPageFragment.class,getString(R.string.official_accounts)))
-               .add(R.id.tab_navigation,new NavHelper.Tab<String>(NavigationFragment.class,getString(R.string.navigation)))
-               .add(R.id.tab_project,new NavHelper.Tab<String>(ProjectFragment.class,getString(R.string.project)))
-               .add(R.id.collect_page,new NavHelper.Tab<String>(CollectionFragment.class,getString(R.string.nav_collect)));
+               .add(R.id.tab_main,new NavHelper.Tab<String>(HomePageFragment.class,getString(R.string.page_home),Constants.TAG_HOME))
+               .add(R.id.nav_home,new NavHelper.Tab<String>(HomePageFragment.class,getString(R.string.page_home),Constants.TAG_HOME))
+               .add(R.id.tab_knowledge_hierarchy,new NavHelper.Tab<String>(KnowledgeHierarchyPageFragment.class,getString(R.string.knowledge_hierarchy),Constants.TAG_KNOWLEGER))
+               .add(R.id.tab_official_accounts,new NavHelper.Tab<String>(OfficialAccountsPageFragment.class,getString(R.string.official_accounts),Constants.TAG_OFFICIAL))
+               .add(R.id.tab_navigation,new NavHelper.Tab<String>(NavigationFragment.class,getString(R.string.navigation),Constants.TAG_NAVIGATION))
+               .add(R.id.tab_project,new NavHelper.Tab<String>(ProjectFragment.class,getString(R.string.project),Constants.TAG_PROJECT))
+               .add(R.id.collect_page,new NavHelper.Tab<String>(CollectionFragment.class,getString(R.string.nav_collect),Constants.TAG_COLLECTION));
     }
 
     private void initView() {
@@ -159,42 +144,6 @@ public class MainActivity extends BaseActivity<MainPresenter>
     @Override
     protected void initEventAndData() {
         super.initEventAndData();
-    }
-
-   /* @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
-
-        if (keyCode == KeyEvent.KEYCODE_BACK) {
-            //如果侧边栏打开，则先关闭侧边栏
-            if (drawer.isDrawerOpen(GravityCompat.START)) {
-                drawer.closeDrawer(GravityCompat.START);
-            }else {
-                //再点一次退出程序
-                doubleClickExit();
-            }
-        }
-        return false;
-    }*/
-
-    private static Boolean mIsExit = false;
-
-    //再点一次退出程序
-    private void doubleClickExit() {
-        Timer exitTimer = null;
-        if (!mIsExit) {
-            mIsExit = true;
-            Toast.makeText(getApplicationContext(),"再点一次退出应用",Toast.LENGTH_SHORT).show();
-            exitTimer = new Timer();
-            exitTimer.schedule(new TimerTask() {
-                @Override
-                public void run() {
-                    mIsExit = false;
-                }
-            }, 2000);
-        } else {
-            finish();
-            System.exit(0);
-        }
     }
     //左侧导航栏、底部导航栏 点击事件
     @Override
@@ -242,7 +191,13 @@ public class MainActivity extends BaseActivity<MainPresenter>
                 break;
             case R.id.common_website:
                 //常用网站
-
+                if (mCommonWebFragment == null) {
+                    mCommonWebFragment = CommonWebFragment.newInstance(getString(R.string.common_web));
+                }
+                if (!isDestroyed() && mCommonWebFragment.isAdded()) {
+                    mCommonWebFragment.dismiss();
+                }
+                mCommonWebFragment.show(getSupportFragmentManager(),"showCommonWeb");
                 break;
                 default:
                     break;
@@ -340,5 +295,37 @@ public class MainActivity extends BaseActivity<MainPresenter>
     @Override
     public void showSingOutFail(String errorMsg) {
         Toast.makeText(this,errorMsg,Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onBackPressedSupport() {
+        Log.e("毛麒添","onBackPressedSupport MainActivity 调用");
+            if (drawer.isDrawerOpen(GravityCompat.START)) {
+                drawer.closeDrawer(GravityCompat.START);
+            }else {
+                //再点一次退出程序
+                doubleClickExit();
+            }
+
+    }
+    private static Boolean mIsExit = false;
+
+    //再点一次退出程序
+    private void doubleClickExit() {
+        Timer exitTimer = null;
+        if (!mIsExit) {
+            mIsExit = true;
+            Toast.makeText(getApplicationContext(),getString(R.string.exit_again),Toast.LENGTH_SHORT).show();
+            exitTimer = new Timer();
+            exitTimer.schedule(new TimerTask() {
+                @Override
+                public void run() {
+                    mIsExit = false;
+                }
+            }, 2000);
+        } else {
+            finish();
+            System.exit(0);
+        }
     }
 }

@@ -59,7 +59,7 @@ public class HomeSecondTabFragment extends RootBaseFragment<HomeSecondTabPresent
      */
     public static Fragment newInstance(String tabName,int id) {
         Bundle args = new Bundle();
-        args.putString("tabName",tabName);
+        args.putString(Constants.TAG_TAB_NAME,tabName);
         args.putInt(Constants.BUNDLE_PROJECT_ID,id);
         HomeSecondTabFragment fragment = new HomeSecondTabFragment();
         fragment.setArguments(args);
@@ -154,7 +154,7 @@ public class HomeSecondTabFragment extends RootBaseFragment<HomeSecondTabPresent
     protected void initEventAndData() {
         super.initEventAndData();
         if (getArguments() != null) {
-            mTabTitle = getArguments().getString("tabName");
+            mTabTitle = getArguments().getString(Constants.TAG_TAB_NAME);
             projectId = getArguments().getInt(Constants.BUNDLE_PROJECT_ID);
             Log.e("毛麒添","首页mTabTitle "+mTabTitle);
         }

@@ -5,7 +5,7 @@ package mao.com.mao_wanandroid_client.model.frienduser;
  * @Description 常用网站数据
  * @Time 2018/9/6 0006 23:00
  */
-public class FriendUseWebData {
+public class CommonWebData {
     /**
      * icon :
      * id : 17
@@ -72,7 +72,7 @@ public class FriendUseWebData {
 
     @Override
     public String toString() {
-        return "FriendUseWebData{" +
+        return "CommonWebData{" +
                 "icon='" + icon + '\'' +
                 ", id=" + id +
                 ", link='" + link + '\'' +
