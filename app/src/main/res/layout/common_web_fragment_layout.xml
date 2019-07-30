@@ -19,7 +19,6 @@
             android:layout_height="wrap_content"
             android:paddingBottom="@dimen/dp_10"
             android:paddingStart="@dimen/dp_10"
-            android:visibility="gone"
             app:layout_constraintTop_toBottomOf="@id/tv_search_history"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"

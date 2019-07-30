@@ -83,7 +83,7 @@ public class DataClient implements IHttpHelper,SharedPreferenceHelper,DbHelper {
 
     @Override
     public Observable<ResponseBody<List<CommonWebData>>> GetFriendUseWebData() {
-        return null;
+        return mIHttpHelper.GetFriendUseWebData();
     }
 
     @Override
