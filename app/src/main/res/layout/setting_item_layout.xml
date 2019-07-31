@@ -2,7 +2,8 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/dp_40"
+    android:layout_height="@dimen/dp_50"
+    android:background="@color/color_white"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <TextView
@@ -40,11 +41,12 @@
         app:layout_constraintRight_toRightOf="parent"
         android:layout_marginTop="@dimen/dp_10"
         android:layout_marginEnd="@dimen/dp_10"
+        android:visibility="gone"
         android:layout_centerVertical="true"
         />
 
     <Switch
-        android:id="@+id/switch1"
+        android:id="@+id/setting_switch"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent"

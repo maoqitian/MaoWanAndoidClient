@@ -13,6 +13,7 @@
         android:id="@+id/settings_recycleview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_10"
         >
     </android.support.v7.widget.RecyclerView>
 
