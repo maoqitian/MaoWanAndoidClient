@@ -35,8 +35,6 @@ import mao.com.mao_wanandroid_client.utils.ToolsUtils;
  */
 public class CommonWebFragment extends BaseDialogFragment<CommonWebPresenter> implements CommonWebContract.CommonWebView {
 
-
-
     @BindView(R.id.flow_layout_common_web)
     TagFlowLayout mTagFlowLayout;
     @BindView(R.id.toolbar)
@@ -92,12 +90,12 @@ public class CommonWebFragment extends BaseDialogFragment<CommonWebPresenter> im
 
             @Override
             public View createView(LayoutInflater inflater, ViewGroup parent, int position) {
-                return inflater.inflate(R.layout.flow_text_hot_search_layout,parent,false);
+                return inflater.inflate(R.layout.flow_text_common_web_layout,parent,false);
             }
 
             @Override
             public void bindView(View view, int position) {
-                TextView textView = view.findViewById(R.id.text_tag_hot_search);
+                TextView textView = view.findViewById(R.id.text_tag_common_web);
                 GradientDrawable gradientDrawable = new GradientDrawable();
                 gradientDrawable.setShape(GradientDrawable.RECTANGLE);//形状
                 gradientDrawable.setCornerRadius(10f);//设置圆角Radius

@@ -37,6 +37,7 @@ import mao.com.mao_wanandroid_client.utils.StartDetailPage;
 import mao.com.mao_wanandroid_client.utils.StatusBarUtil;
 import mao.com.mao_wanandroid_client.view.drawer.fragment.CollectionFragment;
 import mao.com.mao_wanandroid_client.view.drawer.fragment.CommonWebFragment;
+import mao.com.mao_wanandroid_client.view.drawer.fragment.SettingsFragment;
 import mao.com.mao_wanandroid_client.view.main.fragment.HomePageFragment;
 import mao.com.mao_wanandroid_client.view.main.fragment.KnowledgeHierarchyPageFragment;
 import mao.com.mao_wanandroid_client.view.main.fragment.NavigationFragment;
@@ -77,6 +78,7 @@ public class MainActivity extends BaseActivity<MainPresenter>
 
     SearchFragment mSearchFragment;
     CommonWebFragment mCommonWebFragment;
+    SettingsFragment mSettingsFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -162,6 +164,13 @@ public class MainActivity extends BaseActivity<MainPresenter>
                 break;
             case R.id.nav_settings:
                 //设置
+                if (mSettingsFragment == null) {
+                    mSettingsFragment = SettingsFragment.newInstance();
+                }
+                if (!isDestroyed() && mSettingsFragment.isAdded()) {
+                    mSettingsFragment.dismiss();
+                }
+                mSettingsFragment.show(getSupportFragmentManager(),"showSettings");
                 break;
             case R.id.nav_sign_out:
                 //退出登录
@@ -209,7 +218,11 @@ public class MainActivity extends BaseActivity<MainPresenter>
         }*/
         //DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         //点击之后关闭DrawerLayout
-        navigationView.setCheckedItem(id);
+        if(R.id.common_website != id ){
+            //如果是设置 常用网站则不改变选中状态
+            //navigationView 选中
+            navigationView.setCheckedItem(id);
+        }
         drawer.closeDrawer(GravityCompat.START);
         return mNavHelper.performClickMenu(id);
     }

@@ -19,5 +19,7 @@
     <color name="ic_drawable_dark">#FF424242</color>
     <color name="textInputLayout">#96ffffff</color>
     <color name="light_blue" >#00BCD4</color>
+    <color name="item_divider_color">#FFEDEDED</color>
+    <color name="item_title_text_color">#FF434343</color>
 
 </resources>
