@@ -1,7 +1,10 @@
 package mao.com.mao_wanandroid_client.presenter.drawer;
 
+import java.util.List;
+
 import mao.com.mao_wanandroid_client.base.BaseView;
 import mao.com.mao_wanandroid_client.base.presenter.AbstractBasePresenter;
+import mao.com.mao_wanandroid_client.model.setting.SettingData;
 
 /**
  * @author maoqitian
@@ -11,12 +14,18 @@ import mao.com.mao_wanandroid_client.base.presenter.AbstractBasePresenter;
 public interface SettingsContract {
 
     interface SettingsView extends BaseView{
+        void showSettingsItemData(List<SettingData> settingDataList);
+        void showSingOutSuccess();
 
+        void showSingOutFail(String errorMsg);
     }
     
 
     interface  SettingsFragmentPresenter extends AbstractBasePresenter<SettingsView>{
 
+        void getSettingsItemData();
+
+        void getSingOut();
     }
 
 }

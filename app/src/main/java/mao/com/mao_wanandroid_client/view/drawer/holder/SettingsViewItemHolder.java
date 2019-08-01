@@ -26,6 +26,8 @@ public class SettingsViewItemHolder extends BaseViewHolder {
     ImageView mChevronRight;
     @BindView(R.id.setting_switch)
     Switch mSettingSwitch;
+    @BindView(R.id.tv_version_Name)
+    TextView mVersionName;
 
     public SettingsViewItemHolder(View view) {
         super(view);

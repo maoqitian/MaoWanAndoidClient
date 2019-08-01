@@ -7,7 +7,9 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 import java.util.List;
 
 import mao.com.mao_wanandroid_client.R;
+import mao.com.mao_wanandroid_client.application.Constants;
 import mao.com.mao_wanandroid_client.model.setting.SettingData;
+import mao.com.mao_wanandroid_client.utils.ToolsUtils;
 import mao.com.mao_wanandroid_client.view.drawer.holder.SettingsViewItemHolder;
 
 /**
@@ -35,6 +37,10 @@ public class SettingsPageAdapter extends BaseQuickAdapter<SettingData, SettingsV
            helper.setVisible(R.id.setting_switch,true);
         }else {
             helper.setVisible(R.id.iv_chevron_right,true);
+        }
+        if(Constants.SETTINGS_VERSION_TYPE.equals(item.getType())){
+            helper.setVisible(R.id.tv_version_Name,true);
+            helper.setText(R.id.tv_version_Name,ToolsUtils.getVersion(mContext));
         }
     }
 }

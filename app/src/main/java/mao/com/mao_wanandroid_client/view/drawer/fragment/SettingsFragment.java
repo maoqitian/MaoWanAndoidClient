@@ -8,18 +8,25 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
 import mao.com.mao_wanandroid_client.R;
+import mao.com.mao_wanandroid_client.application.Constants;
 import mao.com.mao_wanandroid_client.base.fragment.BaseDialogFragment;
+import mao.com.mao_wanandroid_client.compoent.RxBus;
+import mao.com.mao_wanandroid_client.compoent.event.LoginStatusEvent;
 import mao.com.mao_wanandroid_client.model.setting.SettingData;
 import mao.com.mao_wanandroid_client.presenter.drawer.SettingsContract;
 import mao.com.mao_wanandroid_client.presenter.drawer.SettingsPresenter;
+import mao.com.mao_wanandroid_client.utils.CacheManager;
+import mao.com.mao_wanandroid_client.utils.NormalAlertDialog;
 import mao.com.mao_wanandroid_client.view.drawer.adapter.SettingsPageAdapter;
 
 /**
@@ -30,23 +37,25 @@ import mao.com.mao_wanandroid_client.view.drawer.adapter.SettingsPageAdapter;
 public class SettingsFragment extends BaseDialogFragment<SettingsPresenter> implements
         SettingsContract.SettingsView, View.OnClickListener, BaseQuickAdapter.OnItemClickListener {
 
-
-
     @BindView(R.id.toolbar)
     Toolbar mToolbar;
     @BindView(R.id.tv_page_title)
     TextView mPageTitle;
     @BindView(R.id.settings_recycleview)
     RecyclerView mRecyclerView;
-
-    private RecyclerView.LayoutManager layoutManager;
-
-    SettingsPageAdapter mAdapter;
-
     @BindView(R.id.tv_quit_login)
     TextView mQuitLogin;
 
+    private RecyclerView.LayoutManager layoutManager;
+    SettingsPageAdapter mAdapter;
+
     List<SettingData> mSettingDataList;
+
+    //缓存文件
+    private File cacheFile;
+    //缓存文件大小
+    private String cacheSize;
+
 
     public static SettingsFragment newInstance() {
 
@@ -75,8 +84,23 @@ public class SettingsFragment extends BaseDialogFragment<SettingsPresenter> impl
         mToolbar.setNavigationIcon(R.drawable.ic_arrow_back_24dp);
         mToolbar.setNavigationOnClickListener(v -> dismiss());
         mPageTitle.setText(getString(R.string.nav_settings));
-
+        mQuitLogin.setOnClickListener(this);
         initRecyclerView();
+        getCacheSize();
+        //获取设置数据
+        mPresenter.getSettingsItemData();
+        if(mPresenter.getLoginStatus()){
+            mQuitLogin.setVisibility(View.VISIBLE);
+        }
+    }
+
+    private void getCacheSize() {
+        try {
+            cacheFile = new File(Constants.PATH_CACHE_DATA);
+            cacheSize = CacheManager.getCacheSize(cacheFile);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     private void initRecyclerView() {
@@ -87,21 +111,64 @@ public class SettingsFragment extends BaseDialogFragment<SettingsPresenter> impl
         mAdapter = new SettingsPageAdapter(R.layout.setting_item_layout);
         mAdapter.setOnItemClickListener(this);
         mRecyclerView.setAdapter(mAdapter);
-        mSettingDataList.clear();
-        mSettingDataList.add(new SettingData("清除缓存",false));
-        mSettingDataList.add(new SettingData("夜间模式",true));
-
-        mAdapter.addData(mSettingDataList);
-
     }
 
     @Override
     public void onClick(View view) {
-
+        switch (view.getId()){
+            case R.id.tv_quit_login:
+                //退出登录
+                NormalAlertDialog.getInstance().showAlertDialog(getActivity(), getString(R.string.login_out_text),
+                        getString(R.string.login_out_positive_text), getString(R.string.login_out_negative_text), (dialog, which) -> {
+                            mPresenter.getSingOut();
+                        }, (dialog, which) -> dialog.dismiss());
+                break;
+        }
     }
 
     @Override
     public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+        SettingData settingData = (SettingData) adapter.getItem(position);
+        assert settingData != null;
+        switch (settingData.getType()){
+            case Constants.SETTINGS_CLEAR_CACHE_TYPE:
+                //清除缓存
+                NormalAlertDialog.getInstance().showAlertDialog(getActivity(), getString(R.string.confirm_clear_cache_text),
+                        getString(R.string.confirm_text), getString(R.string.cancel_text), (dialog, which) -> {
+                            CacheManager.deleteFolderFile(cacheFile, true);
+                            Toast.makeText(getActivity(),getString(R.string.finish_clear_cache_text),Toast.LENGTH_SHORT).show();
+                        }, (dialog, which) -> dialog.dismiss());
+                break;
+            case Constants.SETTINGS_NIGHT_MODE_TYPE:
+                //夜间模式
 
+                break;
+            case Constants.SETTINGS_VERSION_TYPE:
+                //版本
+
+                break;
+              default:
+                  break;
+        }
+    }
+
+    @Override
+    public void showSettingsItemData(List<SettingData> settingDataList) {
+        mSettingDataList.clear();
+        mSettingDataList.addAll(settingDataList);
+        mAdapter.addData(mSettingDataList);
+    }
+
+    @Override
+    public void showSingOutSuccess() {
+        //退出登录成功
+        RxBus.getDefault().post(new LoginStatusEvent(false,true));
+        //隐藏退出登录按钮
+        mQuitLogin.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void showSingOutFail(String errorMsg) {
+        Toast.makeText(getActivity(),errorMsg,Toast.LENGTH_SHORT).show();
     }
 }

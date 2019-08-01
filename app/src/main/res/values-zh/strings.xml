@@ -35,6 +35,9 @@
     <string name="repassword">确认密码</string>
     <string name="login_success">登陆成功</string>
     <string name="login_fail">登陆失败！！！</string>
+    <string name="login_out_positive_text">注销</string>
+    <string name="login_out_negative_text">我手滑了</string>
+    <string name="login_out_text">乃确定不是手滑了么？</string>
 
     <string name="passwordInconsistency">两次密码输入不一致！</string>
 
@@ -57,6 +60,8 @@
     <string name="cancel_collection_text">取消收藏</string>
     <string name="delete_collection_text">正在删除收藏</string>
     <string name="confirm_text">确认</string>
+    <string name="confirm_clear_cache_text">确定清除缓存？</string>
+    <string name="finish_clear_cache_text">清除缓存完毕</string>
     <string name="own_collect">我的收藏</string>
     <string name="common_web">常用网站</string>
     <string name="exit_again">再点一次退出应用</string>

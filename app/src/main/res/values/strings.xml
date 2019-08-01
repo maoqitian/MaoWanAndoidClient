@@ -36,6 +36,9 @@
     <string name="repassword">Confirm Password</string>
     <string name="login_success">login success!</string>
     <string name="login_fail">login fail！！！</string>
+    <string name="login_out_positive_text">Logout</string>
+    <string name="login_out_negative_text">Cancel</string>
+    <string name="login_out_text">Is it sure that it is not slippery?</string>
 
     <string name="passwordInconsistency">Two password inconsistency！</string>
 
@@ -54,6 +57,8 @@
     <string name="cancel_collection_text">Cancel Collection</string>
     <string name="cancel_text">cancel</string>
     <string name="delete_collection_text">Deleting collection</string>
+    <string name="confirm_clear_cache_text">Determine to clear the cache?</string>
+    <string name="finish_clear_cache_text">Clear cache completed</string>
     <string name="confirm_text">confirm</string>
     <string name="own_collect">my collect</string>
     <string name="common_web">common_web</string>

@@ -23,6 +23,11 @@ public class Constants {
     public static final String PATH_NET_CACHE = PATH_DATA + "/netCache";
 
     /**
+     * 应用缓存路径
+     */
+    public static final String PATH_CACHE_DATA = MyApplication.getInstance().getCacheDir().getAbsolutePath();
+
+    /**
      * 搜索历史数据库名称
      */
     public static final String DB_NAME = "mao_wanandroid.db";
@@ -124,4 +129,12 @@ public class Constants {
     public static final String BUNDLE_TAG_SUPER_CID = "super_chapter_cid";
     //获取项目模块 项目列表数据 id
     public static final String BUNDLE_PROJECT_ID = "projectId";
+
+    //设置 item type
+    // 清除缓存
+    public static final String SETTINGS_CLEAR_CACHE_TYPE = "SETTINGS_CLEAR_CACHE_TYPE";
+    // 夜间模式
+    public static final String SETTINGS_NIGHT_MODE_TYPE = "SETTINGS_NIGHT_MODE_TYPE";
+    // 版本
+    public static final String SETTINGS_VERSION_TYPE = "SETTINGS_VERSION_TYPE";
 }

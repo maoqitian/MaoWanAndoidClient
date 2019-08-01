@@ -10,9 +10,12 @@ public class SettingData {
     String mName;
     boolean mIsSwitch;
 
-    public SettingData (String name,boolean isSwitch){
+    String mSettingType;
+
+    public SettingData (String name,boolean isSwitch,String type){
         this.mName = name;
         this.mIsSwitch = isSwitch;
+        this.mSettingType = type;
     }
 
     public String getmName() {
@@ -29,5 +32,13 @@ public class SettingData {
 
     public void setmIsSwitch(boolean mIsSwitch) {
         this.mIsSwitch = mIsSwitch;
+    }
+
+    public String getType() {
+        return mSettingType;
+    }
+
+    public void setType(String type) {
+        this.mSettingType = type;
     }
 }

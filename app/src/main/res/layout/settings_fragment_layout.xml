@@ -20,9 +20,10 @@
     <TextView
         android:id="@+id/tv_quit_login"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dp_35"
+        android:layout_height="@dimen/dp_45"
         android:gravity="center"
         android:text="@string/sign_out"
+        android:visibility="gone"
         android:textColor="@color/colorPrimary"
         android:background="@color/white"
         android:textSize="@dimen/sp_15"

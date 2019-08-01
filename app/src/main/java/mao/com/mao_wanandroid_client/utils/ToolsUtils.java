@@ -3,6 +3,8 @@ package mao.com.mao_wanandroid_client.utils;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Context;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.graphics.Rect;
 import android.net.ConnectivityManager;
@@ -212,5 +214,16 @@ public class ToolsUtils {
                 android.R.color.holo_orange_light};
         int temp=random.nextInt(5);
         return  ContextCompat.getColor(context, color[temp]);
+    }
+
+    public static String getVersion(Context context) {
+        try {
+            PackageManager manager = context.getPackageManager();
+            PackageInfo info = manager.getPackageInfo(context.getPackageName(), 0);
+            return info.versionName;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "null";
+        }
     }
 }
