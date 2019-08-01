@@ -5,6 +5,9 @@
     <color name="colorAccent">#FFC107</color>
     <color name="colorAccent_gray">#7BFFC107</color>
     <color name="colorBackground">#EEEEEE</color>
+    <color name="textColorPrimary">#616161</color>
+    <color name="textColorPress">#2A2929</color>
+    <color name="viewBackground">@android:color/white</color>
     <color name="color_white" >#FFFFFF</color>
     <color name="color_green" >#3fc75f</color>
     <color name="color_red" >#f9382a</color>

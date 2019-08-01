@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#35464e</color>
+    <color name="colorPrimaryDark">#212a2f</color>
+    <color name="colorAccent">#212a2f</color>
+    <color name="textColorPrimary">#616161</color>
+    <color name="colorBackground">#212a2f</color>
+    <color name="viewBackground">#2B3539</color>
+    <color name="item_divider_color">#2B2A2A</color>
+    <color name="textColorPress">#2A2929</color>
+</resources>

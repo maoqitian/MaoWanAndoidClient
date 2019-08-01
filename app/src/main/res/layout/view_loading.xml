@@ -4,6 +4,7 @@
     android:id="@+id/loading_view_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/viewBackground"
     >
     <mao.com.mao_wanandroid_client.widget.LoadingView
         android:id="@+id/view_loading"

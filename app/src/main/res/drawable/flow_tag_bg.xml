@@ -3,7 +3,7 @@
     >
     <item android:state_selected="true">
         <shape >
-            <solid android:color="#eee"/>
+            <solid android:color="@color/colorBackground"/>
             <corners android:radius="9999px"/>
             <stroke android:width="@dimen/dp_1" android:color="@color/colorPrimaryDark"/>
         </shape>
@@ -11,7 +11,7 @@
 
     <item android:state_selected="false">
         <shape >
-            <solid android:color="#eee"/>
+            <solid android:color="@color/colorBackground"/>
             <corners android:radius="9999px"/>
         </shape>
     </item>

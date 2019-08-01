@@ -3,13 +3,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorBackground"
     android:orientation="horizontal">
 
     <q.rorbin.verticaltablayout.VerticalTabLayout
         android:id="@+id/vertical_tab"
         android:layout_width="@dimen/dp_100"
         android:layout_height="match_parent"
-        android:background="@color/gray"
+        android:background="@color/viewBackground"
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
         app:indicator_corners="20dp"

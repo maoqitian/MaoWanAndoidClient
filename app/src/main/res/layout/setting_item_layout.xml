@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="@dimen/dp_50"
-    android:background="@color/color_white">
+    android:background="@color/viewBackground">
 
     <TextView
         android:id="@+id/tv_setting_item_title"

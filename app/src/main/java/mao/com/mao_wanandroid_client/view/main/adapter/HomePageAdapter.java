@@ -57,7 +57,7 @@ public class HomePageAdapter extends BaseQuickAdapter<HomeArticleData, HomePageV
          if(item.isFresh()){
              helper.getView(R.id.tv_artical_new_tag).setVisibility(View.VISIBLE);
              helper.setText(R.id.tv_artical_new_tag,mContext.getString(R.string.new_tag));
-             helper.setTextColor(R.id.tv_artical_new_tag, ContextCompat.getColor(mContext, R.color.colorPrimaryDark));
+             helper.setTextColor(R.id.tv_artical_new_tag, ContextCompat.getColor(mContext, android.R.color.holo_red_light));
              helper.setBackgroundRes(R.id.tv_artical_new_tag,R.drawable.tag_red_background);
          }else {
              helper.getView(R.id.tv_artical_new_tag).setVisibility(View.GONE);

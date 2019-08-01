@@ -240,7 +240,7 @@ public class NavigationFragment  extends BaseFragment<NavigationPresenter> imple
             public ITabView.TabTitle getTitle(int position) {
                 return new ITabView.TabTitle.Builder()
                         .setContent(mNavigationListData.get(position).getName())
-                        .setTextColor(ContextCompat.getColor(_mActivity,R.color.colorPrimaryDark), ContextCompat.getColor(_mActivity,R.color.color_white))
+                        .setTextColor(ContextCompat.getColor(_mActivity,R.color.textColorPress), ContextCompat.getColor(_mActivity,R.color.textColorPrimary))
                         .build();
             }
 

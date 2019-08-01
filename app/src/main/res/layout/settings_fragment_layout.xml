@@ -25,7 +25,7 @@
         android:text="@string/sign_out"
         android:visibility="gone"
         android:textColor="@color/colorPrimary"
-        android:background="@color/white"
+        android:background="@color/viewBackground"
         android:textSize="@dimen/sp_15"
         android:layout_marginTop="@dimen/dp_10"
         />
