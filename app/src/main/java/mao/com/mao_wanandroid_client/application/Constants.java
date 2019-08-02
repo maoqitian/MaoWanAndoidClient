@@ -9,11 +9,6 @@ public class Constants {
 
 
     /**
-     * 登录获取的 Cookie
-     */
-    public static final String COOKIE = "Cookie";
-
-    /**
      * Path 路径
      */
     public static final String PATH_DATA = MyApplication.getInstance().getCacheDir().getAbsolutePath() + File.separator + "data";
