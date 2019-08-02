@@ -43,21 +43,6 @@ public interface SharedPreferenceHelper {
     boolean getLoginStatus();
 
     /**
-     * 保存 cookie
-     *
-     * @param domain Domain
-     * @param cookie Cookie
-     */
-    void setCookie(String domain, String cookie);
-
-    /**
-     * 获取保存的 cookie
-     * @param domain
-     * @return cookie
-     */
-    String getCookie(String domain);
-
-    /**
      * 保存当前 page
      *
      * @param position
@@ -97,13 +82,13 @@ public interface SharedPreferenceHelper {
      * 获取夜间模式状态
      * @return
      */
-    boolean getNightModeState();
+    int getNightMode();
 
     /**
      * 保存夜间模式状态
      * @return
      */
-    void setNightModeState(boolean b);
+    void setNightMode(int mode);
 
 
     void setNoImageState(boolean b);

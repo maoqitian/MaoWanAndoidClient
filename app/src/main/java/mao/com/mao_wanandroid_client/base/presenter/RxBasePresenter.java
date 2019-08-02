@@ -58,9 +58,15 @@ public class RxBasePresenter<T extends BaseView> implements AbstractBasePresente
     }
 
     @Override
-    public boolean getNightModeState() {
-        return mDataClient.getNightModeState();
+    public int getThemeMode() {
+        return mDataClient.getNightMode();
     }
+
+    @Override
+    public void setThemeMode(int mode) {
+        mDataClient.setNightMode(mode);
+    }
+
 
     @Override
     public void setLoginStatus(boolean loginStatus) {

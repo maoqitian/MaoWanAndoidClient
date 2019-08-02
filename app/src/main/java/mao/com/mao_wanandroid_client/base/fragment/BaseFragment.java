@@ -86,7 +86,7 @@ public abstract class BaseFragment <T extends AbstractBasePresenter> extends Sim
     }
 
     @Override
-    public void useNightMode(boolean isNightMode) {
+    public void useThemeMode(int mode) {
 
     }
 
@@ -100,15 +100,6 @@ public abstract class BaseFragment <T extends AbstractBasePresenter> extends Sim
 
     }
 
-    @Override
-    public void showCollectSuccess() {
-
-    }
-
-    @Override
-    public void showCancelCollectSuccess() {
-
-    }
 
     @Override
     public void showToast(String message) {

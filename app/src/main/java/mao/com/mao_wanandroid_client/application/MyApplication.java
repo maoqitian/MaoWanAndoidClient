@@ -3,6 +3,7 @@ package mao.com.mao_wanandroid_client.application;
 import android.app.Activity;
 import android.app.Application;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatDelegate;
@@ -23,6 +24,7 @@ import dagger.android.HasActivityInjector;
 import mao.com.mao_wanandroid_client.R;
 import mao.com.mao_wanandroid_client.core.dao.DaoMaster;
 import mao.com.mao_wanandroid_client.core.dao.DaoSession;
+import mao.com.mao_wanandroid_client.core.sp.SharedPreferenceHelperImpl;
 import mao.com.mao_wanandroid_client.di.component.DaggerAppComponent;
 import mao.com.mao_wanandroid_client.di.module.MyAppModule;
 
@@ -37,8 +39,6 @@ public class MyApplication extends DaggerApplication {
     DispatchingAndroidInjector<Activity> mAndroidInjector;*/
 
     static {//使用static代码段可以防止内存泄漏
-
-        //AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
 
         //设置全局默认配置（优先级最低，会被其他设置覆盖）
         SmartRefreshLayout.setDefaultRefreshInitializer(new DefaultRefreshInitializer() {
@@ -56,6 +56,7 @@ public class MyApplication extends DaggerApplication {
     private static  MyApplication mInstance;
     private DaoSession mDaoSession;
 
+    SharedPreferences mSharedPreferences;
 
 
     public static synchronized MyApplication getInstance() {
@@ -77,6 +78,10 @@ public class MyApplication extends DaggerApplication {
         /*DaggerAppComponent.builder().
                 myAppModule(new MyAppModule(this))
                 .build();*/
+        //设置主题样式
+        mSharedPreferences=MyApplication.getInstance().getSharedPreferences(Constants.SHAREDPREFERENCES_NAME,Context.MODE_PRIVATE);
+        int nightMode = mSharedPreferences.getInt(Constants.SP_NIGHT_MODE,1);
+        AppCompatDelegate.setDefaultNightMode(nightMode);
     }
 
 

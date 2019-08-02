@@ -231,15 +231,6 @@ public class DataClient implements IHttpHelper,SharedPreferenceHelper,DbHelper {
         return mSharedPreferenceHelper.getLoginStatus();
     }
 
-    @Override
-    public void setCookie(String domain, String cookie) {
-
-    }
-
-    @Override
-    public String getCookie(String domain) {
-        return null;
-    }
 
     @Override
     public void setCurrentPage(int position) {
@@ -272,13 +263,13 @@ public class DataClient implements IHttpHelper,SharedPreferenceHelper,DbHelper {
     }
 
     @Override
-    public boolean getNightModeState() {
-        return false;
+    public int getNightMode() {
+        return mSharedPreferenceHelper.getNightMode();
     }
 
     @Override
-    public void setNightModeState(boolean b) {
-
+    public void setNightMode(int mode) {
+        mSharedPreferenceHelper.setNightMode(mode);
     }
 
     @Override

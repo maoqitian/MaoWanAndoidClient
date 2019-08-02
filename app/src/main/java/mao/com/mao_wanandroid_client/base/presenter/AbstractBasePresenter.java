@@ -31,11 +31,14 @@ public interface AbstractBasePresenter<T extends BaseView> {
     void addRxBindingSubscribe(Disposable disposable);
 
     /**
-     * 是否使用夜间模式
-     *
-     * @return if is night mode
+     * 获取当前主题 模式
      */
-    boolean getNightModeState();
+    public int getThemeMode();
+
+    /**
+     * 保存主题 模式
+     */
+    public void setThemeMode(int mode);
 
     /**
      * 设置登录状态

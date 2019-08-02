@@ -94,7 +94,7 @@ public class MainActivity extends BaseActivity<MainPresenter>
         supportActionBar.setDisplayShowTitleEnabled(false);
         pageTitle.setText(getString(R.string.page_home));
         //沉浸式状态栏
-        StatusBarUtil.setColorNoTranslucentForDrawerLayoutLightMode(this,drawer,ContextCompat.getColor(this,R.color.colorPrimary));
+        StatusBarUtil.setColorNoTranslucentForDrawerLayout(this,drawer,ContextCompat.getColor(this,R.color.colorPrimary));
         initFragment();
         initView();
     }

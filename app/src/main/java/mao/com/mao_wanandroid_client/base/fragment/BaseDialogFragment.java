@@ -67,6 +67,11 @@ public abstract class BaseDialogFragment<T extends AbstractBasePresenter> extend
     }
 
     @Override
+    public void useThemeMode(int mode) {
+
+    }
+
+    @Override
     public void showNormal() {
 
     }
@@ -91,10 +96,6 @@ public abstract class BaseDialogFragment<T extends AbstractBasePresenter> extend
 
     }
 
-    @Override
-    public void useNightMode(boolean isNightMode) {
-
-    }
 
     @Override
     public void showLoginView() {
@@ -106,15 +107,6 @@ public abstract class BaseDialogFragment<T extends AbstractBasePresenter> extend
 
     }
 
-    @Override
-    public void showCollectSuccess() {
-
-    }
-
-    @Override
-    public void showCancelCollectSuccess() {
-
-    }
 
     @Override
     public void showToast(String message) {

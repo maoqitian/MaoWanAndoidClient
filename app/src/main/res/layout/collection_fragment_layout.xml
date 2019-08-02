@@ -7,7 +7,9 @@
     app:srlAccentColor="@color/colorPrimaryDark"
     app:srlPrimaryColor="@color/colorPrimary"
     app:srlEnableLoadMoreWhenContentNotFull="false"
-    app:srlEnableAutoLoadMore="true">
+    app:srlEnableAutoLoadMore="true"
+    android:background="@color/colorBackground"
+    >
     <com.scwang.smartrefresh.header.MaterialHeader
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>

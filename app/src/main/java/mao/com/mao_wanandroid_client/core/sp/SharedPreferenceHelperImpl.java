@@ -51,15 +51,6 @@ public class SharedPreferenceHelperImpl implements SharedPreferenceHelper {
         return mSharedPreferences.getBoolean(Constants.SP_LOGIN_STATUS,false);
     }
 
-    @Override
-    public void setCookie(String domain, String cookie) {
-        mSharedPreferences.edit().putString(Constants.COOKIE,cookie).apply();
-    }
-
-    @Override
-    public String getCookie(String domain) {
-        return mSharedPreferences.getString(Constants.COOKIE,"");
-    }
 
     @Override
     public void setCurrentPage(int position) {
@@ -101,13 +92,17 @@ public class SharedPreferenceHelperImpl implements SharedPreferenceHelper {
         return mSharedPreferences.getBoolean(Constants.SP_NO_IMAGE,false);
     }
 
+    /**
+     * 跟随系统，默认值 通常为 MODE_NIGHT_NO = 1，所以 defValue 为 1
+     * @return
+     */
     @Override
-    public void setNightModeState(boolean nightState) {
-        mSharedPreferences.edit().putBoolean(Constants.SP_NIGHT_MODE,nightState).apply();
+    public int getNightMode() {
+        return  mSharedPreferences.getInt(Constants.SP_NIGHT_MODE,1);
     }
 
     @Override
-    public boolean getNightModeState() {
-        return mSharedPreferences.getBoolean(Constants.SP_NIGHT_MODE,false);
+    public void setNightMode(int mode) {
+        mSharedPreferences.edit().putInt(Constants.SP_NIGHT_MODE,mode).apply();
     }
 }

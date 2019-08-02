@@ -1,5 +1,7 @@
 package mao.com.mao_wanandroid_client.presenter.main;
 
+import android.util.Log;
+
 import javax.inject.Inject;
 
 import io.reactivex.Observable;
@@ -10,6 +12,7 @@ import mao.com.mao_wanandroid_client.base.presenter.RxBasePresenter;
 import mao.com.mao_wanandroid_client.compoent.RxBus;
 import mao.com.mao_wanandroid_client.compoent.event.AutoLoginStatusEvent;
 import mao.com.mao_wanandroid_client.compoent.event.LoginStatusEvent;
+import mao.com.mao_wanandroid_client.compoent.event.ThemeModeEvent;
 import mao.com.mao_wanandroid_client.core.http.DataClient;
 import mao.com.mao_wanandroid_client.core.http.control.BaseObserver;
 import mao.com.mao_wanandroid_client.core.http.control.RxSchedulers;
@@ -56,7 +59,11 @@ public class MainPresenter extends RxBasePresenter<MainContract.MainView> implem
                         mView.showLogoutView();
                     }
                 }));
-
+        //主题状态修改之后 事件处理
+        addEventSubscribe(RxBus.getDefault().toFlowable(ThemeModeEvent.class).subscribe(themeModeEvent -> {
+            Log.e("毛麒添","收到主题切换事件");
+            mView.useThemeMode(themeModeEvent.getMode());
+        }));
     }
     //退出登录
     @Override

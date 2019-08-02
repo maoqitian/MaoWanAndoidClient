@@ -1,9 +1,11 @@
 package mao.com.mao_wanandroid_client.base.activity;
 
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AppCompatDelegate;
 import android.util.Log;
 import android.view.View;
 
@@ -86,8 +88,11 @@ public abstract class  BaseActivity <T extends AbstractBasePresenter> extends Ab
     }
 
     @Override
-    public void useNightMode(boolean isNightMode) {
-
+    public void useThemeMode(int mode) {
+        //设置当前主题模式
+        AppCompatDelegate.setDefaultNightMode(mode);
+        mPresenter.setThemeMode(mode);
+        recreate();
     }
 
     @Override
@@ -100,15 +105,6 @@ public abstract class  BaseActivity <T extends AbstractBasePresenter> extends Ab
 
     }
 
-    @Override
-    public void showCollectSuccess() {
-
-    }
-
-    @Override
-    public void showCancelCollectSuccess() {
-
-    }
 
     @Override
     public void showToast(String message) {

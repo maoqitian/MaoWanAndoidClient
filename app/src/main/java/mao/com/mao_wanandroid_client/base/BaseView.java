@@ -44,10 +44,10 @@ public interface BaseView {
     void showErrorMsg(String errorMsg);
 
     /**
-     * 使用夜间模式
-     * @param isNightMode 是否为夜间模式
+     * 使用主题模式
+     * @param mode 主题模式
      */
-    void useNightMode(boolean isNightMode);
+    void useThemeMode(int mode);
 
     /**
      * 显示登录页面
@@ -58,16 +58,6 @@ public interface BaseView {
      * 显示登出页面
      */
     void showLogoutView();
-
-    /**
-     * 显示收藏成功
-     */
-    void showCollectSuccess();
-
-    /**
-     * 显示取消收藏成功
-     */
-    void showCancelCollectSuccess();
 
     /**
      * Show toast

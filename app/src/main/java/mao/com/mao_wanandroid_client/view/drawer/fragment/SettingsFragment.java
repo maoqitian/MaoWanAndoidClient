@@ -1,12 +1,15 @@
 package mao.com.mao_wanandroid_client.view.drawer.fragment;
 
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
+import android.support.v7.app.AppCompatDelegate;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,6 +25,7 @@ import mao.com.mao_wanandroid_client.application.Constants;
 import mao.com.mao_wanandroid_client.base.fragment.BaseDialogFragment;
 import mao.com.mao_wanandroid_client.compoent.RxBus;
 import mao.com.mao_wanandroid_client.compoent.event.LoginStatusEvent;
+import mao.com.mao_wanandroid_client.compoent.event.ThemeModeEvent;
 import mao.com.mao_wanandroid_client.model.setting.SettingData;
 import mao.com.mao_wanandroid_client.presenter.drawer.SettingsContract;
 import mao.com.mao_wanandroid_client.presenter.drawer.SettingsPresenter;
@@ -92,6 +96,8 @@ public class SettingsFragment extends BaseDialogFragment<SettingsPresenter> impl
         if(mPresenter.getLoginStatus()){
             mQuitLogin.setVisibility(View.VISIBLE);
         }
+        //设置 switch 状态
+        mAdapter.setMode(mPresenter.getThemeMode());
     }
 
     private void getCacheSize() {
@@ -140,15 +146,28 @@ public class SettingsFragment extends BaseDialogFragment<SettingsPresenter> impl
                         }, (dialog, which) -> dialog.dismiss());
                 break;
             case Constants.SETTINGS_NIGHT_MODE_TYPE:
-                //夜间模式
-
+                //夜间切换操作模式
+                ChangeThemeMode();
+                Switch switchView = view.findViewById(R.id.setting_switch);
+                switchView.setChecked(!switchView.isChecked());
                 break;
             case Constants.SETTINGS_VERSION_TYPE:
-                //版本
-
+                //版本 关于我们
                 break;
               default:
                   break;
+        }
+    }
+    //切换日常模式与 夜间模式
+    private void ChangeThemeMode() {
+        int mode = getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK;
+        if(mode == Configuration.UI_MODE_NIGHT_YES) {
+            RxBus.getDefault().post(new ThemeModeEvent(AppCompatDelegate.MODE_NIGHT_NO));
+        } else if(mode == Configuration.UI_MODE_NIGHT_NO) {
+            RxBus.getDefault().post(new ThemeModeEvent(AppCompatDelegate.MODE_NIGHT_YES));
+        }else {
+            //否则保持亮色主题
+            RxBus.getDefault().post(new ThemeModeEvent(AppCompatDelegate.MODE_NIGHT_NO));
         }
     }
 

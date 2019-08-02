@@ -44,7 +44,7 @@ public class Constants {
     /**
      * SharedPreferences
      */
-    public static final String  SHAREDPREFERENCES_NAME= "sharepreference_name";
+    public static final String  SHAREDPREFERENCES_NAME= "mao_wanandroid_sharepreference";
 
     public static final String SP_USER_NAME = "user_name";
 

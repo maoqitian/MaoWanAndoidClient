@@ -7,5 +7,6 @@
     <color name="colorBackground">#212a2f</color>
     <color name="viewBackground">#2B3539</color>
     <color name="item_divider_color">#2B2A2A</color>
-    <color name="textColorPress">#2A2929</color>
+    <!--verticalLayout 选中字体颜色-->
+    <color name="textColorPress">#616161</color>
 </resources>
