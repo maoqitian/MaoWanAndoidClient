@@ -26,12 +26,12 @@ public abstract class SimpleFragment extends SupportFragment {
 
     //ButterKnife
     private Unbinder mUnbinder;
-
+    View view;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(getLayoutId(), container, false);
+        view = inflater.inflate(getLayoutId(), container, false);
         mUnbinder=ButterKnife.bind(this,view);
         initView();
         return view;

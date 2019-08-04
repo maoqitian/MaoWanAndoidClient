@@ -12,5 +12,19 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
     </mao.com.mao_wanandroid_client.widget.LoadingView>
+    <FrameLayout
+        android:id="@+id/view_error"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/tv_reload"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/reload_text"
+            android:layout_gravity="center" />
+
+    </FrameLayout>
 </RelativeLayout>
 

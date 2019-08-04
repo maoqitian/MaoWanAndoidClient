@@ -26,7 +26,7 @@ import mao.com.mao_wanandroid_client.view.main.adapter.OfficialAccountsAdapter;
  * @Description 微信公众号 page
  * @Time 2019/5/8 0008 23:19
  */
-public class OfficialAccountsPageFragment extends BaseFragment<OfficialAccountsPresenter>
+public class OfficialAccountsPageFragment extends RootBaseFragment<OfficialAccountsPresenter>
         implements OfficialAccountsContract.OfficialAccountsView,
         BaseQuickAdapter.OnItemClickListener {
 
@@ -59,6 +59,7 @@ public class OfficialAccountsPageFragment extends BaseFragment<OfficialAccountsP
     protected void initEventAndData() {
         super.initEventAndData();
         //Log.e("毛麒添","当前页面状态"+currentState);
+        showLoading();
         mPresenter.getOfficialAccountsListData();
     }
 
@@ -68,11 +69,17 @@ public class OfficialAccountsPageFragment extends BaseFragment<OfficialAccountsP
         if (mOfficialAccountsListData.size() > 0){
             mAdapter.replaceData(mOfficialAccountsListData);
         }
+        showNormal();
     }
 
     @Override
     public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
         KnowledgeHierarchyData knowledgeHierarchyData = (KnowledgeHierarchyData) adapter.getItem(position);
         StartDetailPage.start2(_mActivity,knowledgeHierarchyData, Constants.PAGE_OFFICIAL_ACCOUNTS_DETAIL,Constants.ACTION_OFFICIAL_ACCOUNTS_ACTIVITY);
+    }
+
+    @Override
+    public void showErrorMsg(String errorMsg) {
+        showError();
     }
 }

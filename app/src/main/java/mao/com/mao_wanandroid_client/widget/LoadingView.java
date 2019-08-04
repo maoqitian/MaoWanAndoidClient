@@ -57,12 +57,12 @@ public class LoadingView extends LinearLayout {
         shapeView =  findViewById(R.id.shape_view);
         mShadowView = findViewById(R.id.shadow_view);
 
-        // onResume 之后View绘制流程执行完毕之后（View的绘制流程源码分析那一章）
-        post(this::startFallAnimator);
+        // onResume 之后View绘制流程执行完毕之后
+        //post(this::startFallAnimator);
 
     }
     // 开始下落动画
-    private void startFallAnimator() {
+    public void startFallAnimator() {
         if (mIsStopAnimator) {
             return;
         }

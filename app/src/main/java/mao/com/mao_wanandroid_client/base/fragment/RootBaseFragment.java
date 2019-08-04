@@ -26,6 +26,8 @@ public abstract class RootBaseFragment <T extends AbstractBasePresenter>extends 
     private View errorView;
     //重复加载
     private TextView tvReload;
+
+    View inflateLoadView;
     
     @Override
     protected void initEventAndData() {
@@ -43,12 +45,13 @@ public abstract class RootBaseFragment <T extends AbstractBasePresenter>extends 
                     "normalView's ParentView should be a ViewGroup.");
         }
         mBaseView = (ViewGroup) normalView.getParent();
-        View.inflate(_mActivity,R.layout.view_loading,mBaseView);
-        View.inflate(_mActivity,R.layout.view_error,mBaseView);
-        loadingView = mBaseView.findViewById(R.id.loading_view_container);
-        mLoadingView = loadingView.findViewById(R.id.view_loading);
-        errorView = mBaseView.findViewById(R.id.view_error);
-        tvReload = errorView.findViewById(R.id.tv_reload);
+        if(inflateLoadView==null){
+            inflateLoadView = View.inflate(_mActivity, R.layout.view_loading, mBaseView);
+            loadingView = mBaseView.findViewById(R.id.loading_view_container);
+            mLoadingView = loadingView.findViewById(R.id.view_loading);
+            errorView = loadingView.findViewById(R.id.view_error);
+            tvReload = loadingView.findViewById(R.id.tv_reload);
+        }
         tvReload.setOnClickListener(this);
         loadingView.setVisibility(View.GONE);
         errorView.setVisibility(View.GONE);
@@ -70,6 +73,7 @@ public abstract class RootBaseFragment <T extends AbstractBasePresenter>extends 
         hideCurrentView();
         currentState = STATE_LOADING;
         loadingView.setVisibility(View.VISIBLE);
+        mLoadingView.startFallAnimator();
     }
 
     @Override
@@ -86,20 +90,20 @@ public abstract class RootBaseFragment <T extends AbstractBasePresenter>extends 
     private void hideCurrentView() {
         switch (currentState){
             case STATE_NORMAL:
-                if(loadingView != null){
                     normalView.setVisibility(View.GONE);
-                }
                 break;
             case STATE_LOADING:
-                if(loadingView != null){
+                    if(loadingView!=null){
+                    mLoadingView.setVisibility(View.INVISIBLE);
                     loadingView.setVisibility(View.GONE);
-                    mLoadingView.setVisibility(View.GONE);
-                }
+                    }
                 break;
             case STATE_ERROR:
-                if(errorView != null){
-                    errorView.setVisibility(View.GONE);
-                }
+                    if(loadingView!=null){
+                        mLoadingView.setVisibility(View.INVISIBLE);
+                        loadingView.setVisibility(View.GONE);
+                        errorView.setVisibility(View.GONE);
+                    }
                 break;
         }
     }
