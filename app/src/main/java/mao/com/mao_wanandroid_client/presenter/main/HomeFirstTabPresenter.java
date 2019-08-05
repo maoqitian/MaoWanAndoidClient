@@ -97,7 +97,7 @@ public class HomeFirstTabPresenter extends RxBasePresenter<HomePageFirstTabContr
 
                     @Override
                     public void onFailure(Throwable e, String errorMsg) {
-
+                        mView.showError();
                     }
                 });
 
@@ -112,7 +112,7 @@ public class HomeFirstTabPresenter extends RxBasePresenter<HomePageFirstTabContr
 
                                         @Override
                                         public void onFailure(Throwable e, String errorMsg) {
-
+                                            mView.showError();
                                         }
                                     });
 

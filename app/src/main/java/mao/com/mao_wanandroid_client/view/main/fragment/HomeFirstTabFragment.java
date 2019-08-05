@@ -94,12 +94,11 @@ public class HomeFirstTabFragment extends RootBaseFragment<HomeFirstTabPresenter
     @Override
     protected void initEventAndData() {
         super.initEventAndData();
+        showLoading();
         if (getArguments() != null) {
             mTabTitle = getArguments().getString(Constants.TAG_TAB_NAME);
             Log.e("毛麒添","首页mTabTitle "+mTabTitle);
         }
-
-        showLoading();
         mPresenter.getHomeFirstPageData(false);
         /*if(getString(R.string.page_home_recommend).equals(mTabTitle)){
             //获取 首页第一个tab 数据

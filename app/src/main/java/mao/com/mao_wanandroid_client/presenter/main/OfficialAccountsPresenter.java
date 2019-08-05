@@ -45,7 +45,7 @@ public class OfficialAccountsPresenter extends
 
                      @Override
                      public void onFailure(Throwable e, String errorMsg) {
-                           mView.showErrorMsg(errorMsg);
+                           mView.showError();
                      }
                  });
     }

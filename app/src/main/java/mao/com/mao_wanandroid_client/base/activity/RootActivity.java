@@ -49,7 +49,7 @@ public abstract class RootActivity<T extends RxBasePresenter> extends BaseActivi
         mLoadingView = loadingView.findViewById(R.id.view_loading);
         errorView = mBaseView.findViewById(R.id.view_error);
         tvReload = errorView.findViewById(R.id.tv_reload);
-        tvReload.setOnClickListener(this);
+        tvReload.setOnClickListener(v -> reload());
         loadingView.setVisibility(View.GONE);
         errorView.setVisibility(View.GONE);
         normalView.setVisibility(View.VISIBLE);

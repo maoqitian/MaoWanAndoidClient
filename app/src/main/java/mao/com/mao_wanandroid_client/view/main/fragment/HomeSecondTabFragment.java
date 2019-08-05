@@ -153,12 +153,12 @@ public class HomeSecondTabFragment extends RootBaseFragment<HomeSecondTabPresent
     @Override
     protected void initEventAndData() {
         super.initEventAndData();
+        showLoading();
         if (getArguments() != null) {
             mTabTitle = getArguments().getString(Constants.TAG_TAB_NAME);
             projectId = getArguments().getInt(Constants.BUNDLE_PROJECT_ID);
             Log.e("毛麒添","首页mTabTitle "+mTabTitle);
         }
-        showLoading();
         mPresenter.getProjectListDate(false,projectId);
         if(-1 != projectId){
             //项目模块不显示tag

@@ -147,21 +147,24 @@ public class LoadingView extends LinearLayout {
         rotationAnimator.setInterpolator(new DecelerateInterpolator());
         rotationAnimator.start();
     }
-
-
     @Override
     public void setVisibility(int visibility) {
-        super.setVisibility(INVISIBLE);// 不要再去排放和计算，少走一些系统的源码（View的绘制流程）
-        // 清理动画
-        shapeView.clearAnimation();
-        mShadowView.clearAnimation();
-        // 把LoadingView从父布局移除
-        ViewGroup parent = (ViewGroup) getParent();
-        if (parent != null) {
-            parent.removeView(this);// 从父布局移除
-            removeAllViews();// 移除自己所有的View
+        // 不要再去排放和计算，少走一些系统的源码
+        super.setVisibility(visibility);
+        if(visibility == GONE){
+            // 清理动画
+            shapeView.clearAnimation();
+            mShadowView.clearAnimation();
+            // 把LoadingView从父布局移除
+            /*ViewGroup parent = (ViewGroup) getParent();
+            if (parent != null) {
+                parent.removeView(this);// 从父布局移除
+                removeAllViews();// 移除自己所有的View
+            }*/
+            mIsStopAnimator = true;
+        }else if(visibility == VISIBLE){
+            mIsStopAnimator = false;
         }
-        mIsStopAnimator = true;
     }
 
     private int dip2px(int dip) {
