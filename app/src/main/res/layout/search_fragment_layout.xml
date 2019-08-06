@@ -10,7 +10,7 @@
         layout="@layout/common_bar"/>
 
     <android.support.v4.widget.NestedScrollView
-        android:id="@+id/nested_view"
+        android:id="@+id/inflate_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <android.support.constraint.ConstraintLayout
@@ -74,6 +74,7 @@
                 android:fontFamily="@font/calibri"
                 android:textSize="@dimen/sp_13"
                 android:textStyle="bold"
+                android:visibility="gone"
                 android:layout_margin="@dimen/dp_10"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/ll_clear_history"

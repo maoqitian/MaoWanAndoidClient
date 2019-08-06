@@ -67,7 +67,7 @@
     <string name="exit_again">再点一次退出应用</string>
 
     <string name="loading">Loading…</string>
-    <string name="load_failed">Load failed. click to retry!</string>
+    <string name="load_failed">加载失败了\(╯-╰)/</string>
     <string name="load_failed_no_network">Oops, network is lost!  click to retry</string>
     <string name="empty">Empty!</string>
     <string name="str_none" />

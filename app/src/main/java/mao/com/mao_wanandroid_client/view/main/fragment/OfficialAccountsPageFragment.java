@@ -58,7 +58,6 @@ public class OfficialAccountsPageFragment extends RootBaseFragment<OfficialAccou
     @Override
     protected void initEventAndData() {
         super.initEventAndData();
-        //Log.e("毛麒添","当前页面状态"+currentState);
         showLoading();
         mPresenter.getOfficialAccountsListData();
     }
@@ -79,7 +78,8 @@ public class OfficialAccountsPageFragment extends RootBaseFragment<OfficialAccou
     }
 
     @Override
-    public void showErrorMsg(String errorMsg) {
-        showError();
+    public void reload() {
+        showLoading();
+        mPresenter.getOfficialAccountsListData();
     }
 }

@@ -46,6 +46,12 @@ public abstract class SimpleDialogFragment extends DialogFragment {
     }
 
     @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        initLoadingView();
+    }
+
+    @Override
     public void show(FragmentManager manager, String tag) {
         try {
             manager.beginTransaction().remove(this).commit();
@@ -62,6 +68,12 @@ public abstract class SimpleDialogFragment extends DialogFragment {
 
     }
 
+    /**
+     * 初始 laoding view
+     */
+    protected void initLoadingView(){
+
+    }
 
     @Override
     public void onDestroyView() {

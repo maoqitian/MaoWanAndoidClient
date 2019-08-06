@@ -35,7 +35,7 @@ public class KnowledgeLevel2PageFragment extends RootBaseFragment<Level2PagePres
         BaseQuickAdapter.OnItemClickListener {
 
 
-    @BindView(R.id.view_base_normal)
+    @BindView(R.id.inflate_view)
     SmartRefreshLayout smartRefreshLayout;
 
     @BindView(R.id.level2_page_recyclerview)

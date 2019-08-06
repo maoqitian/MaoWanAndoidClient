@@ -37,7 +37,7 @@ import mao.com.mao_wanandroid_client.view.main.adapter.HomeLatestProjectAdapter;
 public class HomeSecondTabFragment extends RootBaseFragment<HomeSecondTabPresenter>
         implements HomePageSecondTabContract.HomePageSecondTabView, BaseQuickAdapter.OnItemClickListener {
 
-    @BindView(R.id.view_base_normal)
+    @BindView(R.id.inflate_view)
     SmartRefreshLayout mSmartRefreshLayout;
     @BindView(R.id.home_page_recyclerview)
     RecyclerView mRecyclerView;
@@ -204,5 +204,11 @@ public class HomeSecondTabFragment extends RootBaseFragment<HomeSecondTabPresent
             mLatestProjectAdapter.setData(position,homeArticleData);
         }
         Toast.makeText(_mActivity,msg,Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void reload() {
+        showLoading();
+        mPresenter.getProjectListDate(false,projectId);
     }
 }

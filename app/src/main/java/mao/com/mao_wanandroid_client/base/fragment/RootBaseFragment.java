@@ -12,7 +12,7 @@ import mao.com.mao_wanandroid_client.widget.LoadingView;
 
 /**
  * @author maoqitian
- * @Description 每個Fragment 的基类
+ * @Description Fragment 的基类,让其具有 loading error 功能
  * @Time 2018/12/14 0014 22:48
  */
 public abstract class RootBaseFragment <T extends AbstractBasePresenter>extends BaseFragment <T> {
@@ -23,7 +23,7 @@ public abstract class RootBaseFragment <T extends AbstractBasePresenter>extends 
     private LoadingView mLoadingView;
 
     private ViewGroup mBaseView;
-    private ViewGroup normalView;
+    private ViewGroup inflateView;
     private View loadingView;
     private View errorView;
     //重复加载
@@ -35,43 +35,58 @@ public abstract class RootBaseFragment <T extends AbstractBasePresenter>extends 
             //如果root view 不存在
             return;
         }
-        normalView = getView().findViewById(R.id.view_base_normal);
-        if (normalView == null) {
+        inflateView = getView().findViewById(R.id.inflate_view);
+        if (inflateView == null) {
             throw new IllegalStateException(
-                    "The subclass of RootActivity must contain a View named 'normalView'.");
+                    "The subclass of RootBaseFragment must contain a View named 'inflateView'.");
         }
-        if (!(normalView.getParent() instanceof ViewGroup)) {
+        if (!(inflateView.getParent() instanceof ViewGroup)) {
             throw new IllegalStateException(
-                    "normalView's ParentView should be a ViewGroup.");
+                    "inflateView's ParentView should be a ViewGroup.");
         }
-        mBaseView = (ViewGroup) normalView.getParent();
-        LayoutInflater.from(_mActivity).inflate(R.layout.view_loading, mBaseView,false);
-        LayoutInflater.from(_mActivity).inflate(R.layout.view_error,mBaseView,false);
-        /*View.inflate(_mActivity, R.layout.view_loading, mBaseView);
-        View.inflate(_mActivity,R.layout.view_error,mBaseView);*/
+        mBaseView = (ViewGroup) inflateView.getParent();
+       /* LayoutInflater.from(_mActivity).inflate(R.layout.view_loading, mBaseView,true);
+        LayoutInflater.from(_mActivity).inflate(R.layout.view_error,mBaseView,true);
+        *//*View.inflate(_mActivity, R.layout.view_loading, mBaseView);
+        View.inflate(_mActivity,R.layout.view_error,mBaseView);*//*
         loadingView = mBaseView.findViewById(R.id.loading_view_container);
         mLoadingView = loadingView.findViewById(R.id.view_loading);
         errorView = mBaseView.findViewById(R.id.view_error);
         tvReload = errorView.findViewById(R.id.tv_reload);
         tvReload.setOnClickListener(v -> reload());
         loadingView.setVisibility(View.GONE);
-        errorView.setVisibility(View.GONE);
-        normalView.setVisibility(View.VISIBLE);
+        errorView.setVisibility(View.GONE);*/
+        inflateView.setVisibility(View.VISIBLE);
     }
 
+    public void addLoadingView(){
+        //加入errorView 到 mBaseView 并返回 root 布局为 mBaseView
+        LayoutInflater.from(_mActivity).inflate(R.layout.view_loading, mBaseView,true);
+        loadingView = mBaseView.findViewById(R.id.loading_view_container);
+        mLoadingView = loadingView.findViewById(R.id.view_loading);
+    }
+
+    public void addErrorView(){
+        //加入loadingView 到 mBaseView 并返回 root 布局为 mBaseView
+        LayoutInflater.from(_mActivity).inflate(R.layout.view_error,mBaseView,true);
+        errorView = mBaseView.findViewById(R.id.view_error);
+        tvReload = errorView.findViewById(R.id.tv_reload);
+        tvReload.setOnClickListener(v -> reload());
+    }
 
     @Override
     public void showNormal() {
         if(currentState == STATE_NORMAL) return;
         hideCurrentView();
         currentState = STATE_NORMAL;
-        normalView.setVisibility(View.VISIBLE);
+        inflateView.setVisibility(View.VISIBLE);
         Log.e("毛麒添","调用showNormal");
     }
 
     @Override
     public void showLoading() {
         if(currentState == STATE_LOADING) return;
+        addLoadingView();
         hideCurrentView();
         loadingView.setVisibility(View.VISIBLE);
         mLoadingView.setVisibility(View.VISIBLE);
@@ -83,6 +98,7 @@ public abstract class RootBaseFragment <T extends AbstractBasePresenter>extends 
     @Override
     public void showError() {
         if(currentState == STATE_ERROR) return;
+        addErrorView();
         hideCurrentView();
         errorView.setVisibility(View.VISIBLE);
         currentState = STATE_ERROR;
@@ -95,7 +111,7 @@ public abstract class RootBaseFragment <T extends AbstractBasePresenter>extends 
     private void hideCurrentView() {
         switch (currentState){
             case STATE_NORMAL:
-                    normalView.setVisibility(View.GONE);
+                    inflateView.setVisibility(View.GONE);
                 break;
             case STATE_LOADING:
                     if(loadingView!=null){
@@ -107,8 +123,10 @@ public abstract class RootBaseFragment <T extends AbstractBasePresenter>extends 
                     }
                 break;
             case STATE_ERROR:
-                    errorView.setVisibility(View.GONE);
-                    //mBaseView.removeView(errorView);
+                    if (errorView!=null){
+                        errorView.setVisibility(View.GONE);
+                        mBaseView.removeView(errorView);
+                    }
                 break;
         }
     }

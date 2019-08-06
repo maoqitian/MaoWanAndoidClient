@@ -57,7 +57,7 @@ public class HomeFirstTabFragment extends RootBaseFragment<HomeFirstTabPresenter
         implements HomePageFirstTabContract.HomePageFirstTabView,
         OnItemClickListener, BaseQuickAdapter.OnItemClickListener {
 
-    @BindView(R.id.view_base_normal)
+    @BindView(R.id.inflate_view)
     SmartRefreshLayout mSmartRefreshLayout;
     @BindView(R.id.home_page_recyclerview)
     RecyclerView mRecyclerView;
@@ -312,6 +312,8 @@ public class HomeFirstTabFragment extends RootBaseFragment<HomeFirstTabPresenter
 
     @Override
     public void reload() {
-        super.reload();
+        //从新加载页面
+        showLoading();
+        mPresenter.getHomeFirstPageData(false);
     }
 }

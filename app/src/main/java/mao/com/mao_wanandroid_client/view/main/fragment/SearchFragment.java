@@ -1,6 +1,5 @@
 package mao.com.mao_wanandroid_client.view.main.fragment;
 
-import android.content.DialogInterface;
 import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -39,6 +38,7 @@ import mao.com.flexibleflowlayout.TagFlowLayout;
 import mao.com.mao_wanandroid_client.R;
 import mao.com.mao_wanandroid_client.application.Constants;
 import mao.com.mao_wanandroid_client.base.fragment.BaseDialogFragment;
+import mao.com.mao_wanandroid_client.base.fragment.RootDialogFragment;
 import mao.com.mao_wanandroid_client.core.dao.SearchHistoryData;
 import mao.com.mao_wanandroid_client.model.home.HomeArticleData;
 import mao.com.mao_wanandroid_client.model.search.HotKeyData;
@@ -54,7 +54,7 @@ import mao.com.mao_wanandroid_client.view.main.adapter.HomePageAdapter;
  * @Description: 搜索 Fragment
  * @date 2019/7/17 0017 11:21
  */
-public class SearchFragment extends BaseDialogFragment<SearchPagePresenter> implements
+public class SearchFragment extends RootDialogFragment<SearchPagePresenter> implements
         SearchPageContract.SearchPageView, View.OnClickListener, BaseQuickAdapter.OnItemClickListener {
 
     @BindView(R.id.iv_search_clear)
@@ -67,10 +67,12 @@ public class SearchFragment extends BaseDialogFragment<SearchPagePresenter> impl
     LinearLayout mSearchLayout;
 
     //搜索界面
-    @BindView(R.id.nested_view)
+    @BindView(R.id.inflate_view)
     NestedScrollView mSearchContainer;
     @BindView(R.id.tv_search_history)
     TextView mTvshTitle;
+    @BindView(R.id.tv_hot_key)
+    TextView tvHotKeyTitle;
     @BindView(R.id.flow_layout_search_history)
     TagFlowLayout mfwSearchHistory;
     //清除历史记录
@@ -319,6 +321,7 @@ public class SearchFragment extends BaseDialogFragment<SearchPagePresenter> impl
             mHomeArticleDataList.clear();
             mHomeArticleDataList.addAll(homeArticleDataList);
             mSearchResultAdapter.replaceData(mHomeArticleDataList);
+            showNormal();
         }
 
     }
@@ -333,6 +336,7 @@ public class SearchFragment extends BaseDialogFragment<SearchPagePresenter> impl
     public void showHotKeyListData(List<HotKeyData> hotKeyDataList) {
          mHotKeyDataList.clear();
          mHotKeyDataList.addAll(hotKeyDataList);
+         tvHotKeyTitle.setVisibility(View.VISIBLE);
          mfwHotKey.setAdapter(new TagAdapter() {
              @Override
              public int getItemCount() {
@@ -412,6 +416,7 @@ public class SearchFragment extends BaseDialogFragment<SearchPagePresenter> impl
 
     //开始搜索
     private void getSearchData(String keyword) {
+        showLoading();
         mEditTextSearch.setText(keyword);
         if (Constants.RESULT_CODE_OFFICIAL_ACCOUNTS_PAGE.equals(pageType)) {
             //公众号搜索搜索

@@ -1,6 +1,7 @@
 package mao.com.mao_wanandroid_client.presenter.main;
 
 import java.security.Key;
+import java.util.Collections;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -72,7 +73,7 @@ public class SearchPagePresenter extends RxBasePresenter<SearchPageContract.Sear
 
                              @Override
                              public void onFailure(Throwable e, String errorMsg) {
-
+                                     mView.showError();
                              }
                          });
     }
@@ -118,6 +119,8 @@ public class SearchPagePresenter extends RxBasePresenter<SearchPageContract.Sear
     public void getSearchHistoryData() {
         List<SearchHistoryData> searchHistoryData = mDataClient.loadAllSearchHistoryData();
         if(searchHistoryData.size() > 0){
+            //倒序排列返回历史数据
+            Collections.reverse(searchHistoryData);
             mView.showSearchHistoryListData(searchHistoryData);
         }
     }
@@ -151,7 +154,7 @@ public class SearchPagePresenter extends RxBasePresenter<SearchPageContract.Sear
 
                                  @Override
                                  public void onFailure(Throwable e, String errorMsg) {
-
+                                         mView.showError();
                                  }
                              });
     }
