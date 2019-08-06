@@ -63,7 +63,6 @@ public abstract class RootActivity<T extends RxBasePresenter> extends BaseActivi
         LayoutInflater.from(this).inflate(R.layout.view_loading, mBaseView,true);
         loadingView = mBaseView.findViewById(R.id.loading_view_container);
         mLoadingView = loadingView.findViewById(R.id.view_loading);
-        loadingView.setVisibility(View.GONE);
     }
 
     public void addErrorView(){
@@ -72,7 +71,6 @@ public abstract class RootActivity<T extends RxBasePresenter> extends BaseActivi
         errorView = mBaseView.findViewById(R.id.view_error);
         tvReload = errorView.findViewById(R.id.tv_reload);
         tvReload.setOnClickListener(v -> reload());
-        errorView.setVisibility(View.GONE);
     }
 
 

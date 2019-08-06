@@ -51,19 +51,17 @@ public abstract class RootDialogFragment <T extends AbstractBasePresenter>extend
 
     public void addLoadingView(){
         //加入errorView 到 mBaseView 并返回 root 布局为 mBaseView
-        LayoutInflater.from(getActivity()).inflate(R.layout.view_loading, mBaseView);
+        LayoutInflater.from(getActivity()).inflate(R.layout.view_loading, mBaseView,true);
         loadingView = mBaseView.findViewById(R.id.loading_view_container);
         mLoadingView = loadingView.findViewById(R.id.view_loading);
-        loadingView.setVisibility(View.GONE);
     }
 
     public void addErrorView(){
         //加入loadingView 到 mBaseView 并返回 root 布局为 mBaseView
-        LayoutInflater.from(getActivity()).inflate(R.layout.view_error,mBaseView);
+        LayoutInflater.from(getActivity()).inflate(R.layout.view_error,mBaseView,true);
         errorView = mBaseView.findViewById(R.id.view_error);
         tvReload = errorView.findViewById(R.id.tv_reload);
         tvReload.setOnClickListener(v -> reload());
-        errorView.setVisibility(View.GONE);
     }
 
     @Override
