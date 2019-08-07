@@ -46,7 +46,7 @@ public class NavigationPresenter
 
                               @Override
                               public void onFailure(Throwable e, String errorMsg) {
-
+                                  mView.showError();
                               }
                           });
     }

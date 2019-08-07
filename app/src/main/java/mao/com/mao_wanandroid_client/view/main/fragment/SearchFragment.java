@@ -4,6 +4,7 @@ import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.constraint.ConstraintLayout;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.widget.NestedScrollView;
 import android.support.v7.widget.LinearLayoutManager;
@@ -38,7 +39,6 @@ import mao.com.flexibleflowlayout.TagFlowLayout;
 import mao.com.mao_wanandroid_client.R;
 import mao.com.mao_wanandroid_client.application.Constants;
 import mao.com.mao_wanandroid_client.base.fragment.BaseDialogFragment;
-import mao.com.mao_wanandroid_client.base.fragment.RootDialogFragment;
 import mao.com.mao_wanandroid_client.core.dao.SearchHistoryData;
 import mao.com.mao_wanandroid_client.model.home.HomeArticleData;
 import mao.com.mao_wanandroid_client.model.search.HotKeyData;
@@ -48,13 +48,14 @@ import mao.com.mao_wanandroid_client.utils.NormalAlertDialog;
 import mao.com.mao_wanandroid_client.utils.StartDetailPage;
 import mao.com.mao_wanandroid_client.utils.ToolsUtils;
 import mao.com.mao_wanandroid_client.view.main.adapter.HomePageAdapter;
+import mao.com.mao_wanandroid_client.widget.LoadingView;
 
 /**
  * @author maoqitian
  * @Description: 搜索 Fragment
  * @date 2019/7/17 0017 11:21
  */
-public class SearchFragment extends RootDialogFragment<SearchPagePresenter> implements
+public class SearchFragment extends BaseDialogFragment<SearchPagePresenter> implements
         SearchPageContract.SearchPageView, View.OnClickListener, BaseQuickAdapter.OnItemClickListener {
 
     @BindView(R.id.iv_search_clear)
@@ -65,6 +66,13 @@ public class SearchFragment extends RootDialogFragment<SearchPagePresenter> impl
     EditText mEditTextSearch;
     @BindView(R.id.ll_search_layout)
     LinearLayout mSearchLayout;
+    //搜索 loading
+    @BindView(R.id.search_view_loading)
+    LoadingView mLoadingView;
+
+    //搜索失败 结果为空
+    @BindView(R.id.view_error_container)
+    ConstraintLayout mErrorContainer;
 
     //搜索界面
     @BindView(R.id.inflate_view)
@@ -268,10 +276,8 @@ public class SearchFragment extends RootDialogFragment<SearchPagePresenter> impl
                 mEditTextSearch.setText("");
                 //弹出软键盘
                 ToolsUtils.showSoftInput2(mEditTextSearch);
-                if(mSmartRefreshLayout!=null && View.VISIBLE ==  mSmartRefreshLayout.getVisibility()){
-                    //重新加载搜索界面数据
-                    getSearchHistoryAndHotKeyData();
-                }
+                //重新加载搜索界面数据
+                getSearchHistoryAndHotKeyData();
                 //隐藏搜索结果
                 clearSearchResult();
                 break;
@@ -291,28 +297,39 @@ public class SearchFragment extends RootDialogFragment<SearchPagePresenter> impl
 
     //显示搜索结果 隐藏搜索界面
     private void showSearchResult(){
-        if(mSmartRefreshLayout!= null && mSearchResultRecyclerView!= null){
-            mSmartRefreshLayout.setVisibility(View.VISIBLE);
-            mSearchResultRecyclerView.setVisibility(View.VISIBLE);
-            mHomeArticleDataList.clear();
-        }
         //隐藏搜索界面
         mSearchContainer.setVisibility(View.GONE);
+        //显示加载 loading
+        mLoadingView.setVisibility(View.VISIBLE);
+        mLoadingView.startFallAnimator();
     }
+    //显示或者隐藏搜索界面
+    private void showOrGoneSearchResult(int visibility){
+        if(mSmartRefreshLayout!= null && mSearchResultRecyclerView!= null){
+            mSmartRefreshLayout.setVisibility(visibility);
+            mSearchResultRecyclerView.setVisibility(visibility);
+            mHomeArticleDataList.clear();
+        }
 
+    }
     //隐藏搜索结果，显示搜索界面
     private void clearSearchResult() {
-        if(mSmartRefreshLayout!= null && mSearchResultRecyclerView!= null){
+        /*if(mSmartRefreshLayout!= null && mSearchResultRecyclerView!= null){
             mSmartRefreshLayout.setVisibility(View.GONE);
             mSearchResultRecyclerView.setVisibility(View.GONE);
             mHomeArticleDataList.clear();
-        }
+        }*/
+        showOrGoneSearchResult(View.GONE);
+        mErrorContainer.setVisibility(View.GONE);
         //显示搜索界面
         mSearchContainer.setVisibility(View.VISIBLE);
     }
 
     @Override
     public void showSearchArticleList(List<HomeArticleData> homeArticleDataList,boolean isLoadMore) {
+        //隐藏加载 loading
+        mLoadingView.setVisibility(View.GONE);
+        showOrGoneSearchResult(View.VISIBLE);
         if(isLoadMore){
             mSearchResultAdapter.addData(homeArticleDataList);
             mSmartRefreshLayout.finishLoadMore();
@@ -323,7 +340,6 @@ public class SearchFragment extends RootDialogFragment<SearchPagePresenter> impl
             mSearchResultAdapter.replaceData(mHomeArticleDataList);
             showNormal();
         }
-
     }
 
     @Override
@@ -416,7 +432,7 @@ public class SearchFragment extends RootDialogFragment<SearchPagePresenter> impl
 
     //开始搜索
     private void getSearchData(String keyword) {
-        showLoading();
+        //showLoading();
         mEditTextSearch.setText(keyword);
         if (Constants.RESULT_CODE_OFFICIAL_ACCOUNTS_PAGE.equals(pageType)) {
             //公众号搜索搜索
@@ -453,5 +469,12 @@ public class SearchFragment extends RootDialogFragment<SearchPagePresenter> impl
     @Override
     public void showCancelArticleCollectStatus(int position, HomeArticleData homeArticleData,String msg) {
         showCollectStatus(position,homeArticleData,msg);
+    }
+
+    //搜索失败
+    @Override
+    public void showError() {
+        mLoadingView.setVisibility(View.GONE);
+        mErrorContainer.setVisibility(View.VISIBLE);
     }
 }

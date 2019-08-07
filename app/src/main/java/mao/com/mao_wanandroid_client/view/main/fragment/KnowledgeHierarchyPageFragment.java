@@ -18,6 +18,7 @@ import butterknife.BindView;
 import mao.com.mao_wanandroid_client.R;
 import mao.com.mao_wanandroid_client.application.Constants;
 import mao.com.mao_wanandroid_client.base.fragment.BaseFragment;
+import mao.com.mao_wanandroid_client.base.fragment.RootBaseFragment;
 import mao.com.mao_wanandroid_client.model.knowlegetree.KnowledgeHierarchyData;
 import mao.com.mao_wanandroid_client.presenter.main.KnowledgeHierarchyContract;
 import mao.com.mao_wanandroid_client.presenter.main.KnowledgeHierarchyPresenter;
@@ -29,7 +30,7 @@ import mao.com.mao_wanandroid_client.view.main.adapter.KnowledgeHierarchyAdapter
  * @Description: 知识体系 Fragment
  * @date 2019/5/7 0007 11:43
  */
-public class KnowledgeHierarchyPageFragment extends BaseFragment<KnowledgeHierarchyPresenter>
+public class KnowledgeHierarchyPageFragment extends RootBaseFragment<KnowledgeHierarchyPresenter>
         implements KnowledgeHierarchyContract.KnowledgeHierarchyView,
         BaseQuickAdapter.OnItemClickListener {
 
@@ -73,7 +74,7 @@ public class KnowledgeHierarchyPageFragment extends BaseFragment<KnowledgeHierar
     protected void initEventAndData() {
         super.initEventAndData();
         //Log.e("毛麒添","当前页面状态"+currentState);
-        smartRefreshLayout.autoRefresh();
+        showLoading();
         mPresenter.getKnowledgeHierarchyData();
     }
 
@@ -94,5 +95,10 @@ public class KnowledgeHierarchyPageFragment extends BaseFragment<KnowledgeHierar
         intent.putExtra(Constants.KNOWLEDGE_DATA, knowledgeHierarchyData);
         intent.putExtra(Constants.PAGE_TYPE, Constants.RESULT_CODE_KNOWLEDGE_PAGE);
         _mActivity.startActivity(intent);*/
+    }
+    @Override
+    public void reload() {
+        showLoading();
+        mPresenter.getKnowledgeHierarchyData();
     }
 }

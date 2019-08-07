@@ -44,15 +44,6 @@ public abstract class RootActivity<T extends RxBasePresenter> extends BaseActivi
                     "inflateView's ParentView should be a ViewGroup.");
         }
         mBaseView = (ViewGroup) inflateView.getParent();
-        /*View.inflate(this,R.layout.view_loading,mBaseView);
-        View.inflate(this,R.layout.view_error,mBaseView);
-        loadingView = mBaseView.findViewById(R.id.loading_view_container);
-        mLoadingView = loadingView.findViewById(R.id.view_loading);
-        errorView = mBaseView.findViewById(R.id.view_error);
-        tvReload = errorView.findViewById(R.id.tv_reload);
-        tvReload.setOnClickListener(v -> reload());
-        loadingView.setVisibility(View.GONE);
-        errorView.setVisibility(View.GONE);*/
         inflateView.setVisibility(View.VISIBLE);
 
     }
@@ -85,8 +76,8 @@ public abstract class RootActivity<T extends RxBasePresenter> extends BaseActivi
     @Override
     public void showLoading() {
         if(currentState == STATE_LOADING) return;
-        addLoadingView();
         hideCurrentView();
+        addLoadingView();
         loadingView.setVisibility(View.VISIBLE);
         mLoadingView.setVisibility(View.VISIBLE);
         mLoadingView.startFallAnimator();
@@ -97,8 +88,8 @@ public abstract class RootActivity<T extends RxBasePresenter> extends BaseActivi
     @Override
     public void showError() {
         if(currentState == STATE_ERROR) return;
-        addErrorView();
         hideCurrentView();
+        addErrorView();
         errorView.setVisibility(View.VISIBLE);
         currentState = STATE_ERROR;
     }

@@ -1,9 +1,12 @@
 package mao.com.mao_wanandroid_client.view.main.fragment;
 
+import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
+import android.view.View;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,7 +22,7 @@ import mao.com.mao_wanandroid_client.view.main.adapter.HomeTabPageAdapter;
 
 /**
  * @author maoqitian
- * @Description 项目
+ * @Description 项目 (加载失败页面特殊处理)
  * @Time 2019/5/8 0008 23:39
  */
 public class ProjectFragment extends BaseFragment<ProjectPresenter> implements ProjectContract.ProjectView {
@@ -29,6 +32,11 @@ public class ProjectFragment extends BaseFragment<ProjectPresenter> implements P
     @BindView(R.id.view_pager_project)
     ViewPager mProjectVP;
 
+    @BindView(R.id.view_error)
+    ConstraintLayout mErrorView;
+    @BindView(R.id.tv_reload)
+    TextView mTvReload;
+
     List<ProjectClassifyData> mProjectClassifyDataList;
     List<Fragment> mProjectFragmentsList;
     List<String> mTitle;
@@ -37,6 +45,8 @@ public class ProjectFragment extends BaseFragment<ProjectPresenter> implements P
         mProjectClassifyDataList = new ArrayList<>();
         mProjectFragmentsList = new ArrayList<>();
         mTitle = new ArrayList<>();
+        mErrorView.setVisibility(View.GONE);
+        mTvReload.setOnClickListener(v -> mPresenter.getProjectClassifyData());
     }
     @Override
     protected int getLayoutId() {
@@ -50,6 +60,9 @@ public class ProjectFragment extends BaseFragment<ProjectPresenter> implements P
 
     @Override
     public void showProjectClassifyData(List<ProjectClassifyData> projectClassifyDataList) {
+        mProjectTb.setVisibility(View.VISIBLE);
+        mProjectVP.setVisibility(View.VISIBLE);
+        mErrorView.setVisibility(View.GONE);
         mProjectClassifyDataList.clear();
         mProjectClassifyDataList.addAll(projectClassifyDataList);
         for (ProjectClassifyData projectClassifyData:mProjectClassifyDataList) {
@@ -58,5 +71,13 @@ public class ProjectFragment extends BaseFragment<ProjectPresenter> implements P
         }
         mProjectVP.setAdapter(new HomeTabPageAdapter(getChildFragmentManager(),mTitle,mProjectFragmentsList));
         mProjectTb.setupWithViewPager(mProjectVP);
+    }
+
+    @Override
+    public void showErrorMsg(String errorMsg) {
+        super.showErrorMsg(errorMsg);
+        mProjectTb.setVisibility(View.GONE);
+        mProjectVP.setVisibility(View.GONE);
+        mErrorView.setVisibility(View.VISIBLE);
     }
 }

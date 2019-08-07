@@ -38,7 +38,7 @@ import q.rorbin.verticaltablayout.widget.TabView;
  * 2、tablayout各标签点击，recyclerView可滑动到对应区域
  * @Time 2019/5/8 0008 23:33
  */
-public class NavigationFragment  extends BaseFragment<NavigationPresenter> implements NavigationContract.NavigationView {
+public class NavigationFragment extends RootBaseFragment<NavigationPresenter> implements NavigationContract.NavigationView {
 
 
     @BindView(R.id.vertical_tab)
@@ -210,13 +210,14 @@ public class NavigationFragment  extends BaseFragment<NavigationPresenter> imple
     protected void initEventAndData() {
         super.initEventAndData();
         //Log.e("毛麒添","当前页面状态"+currentState);
-        mSmartRefreshLayout.autoRefresh();
+        showLoading();
         mPresenter.getNavigationData();
     }
 
 
     @Override
     public void showNavigationListData(List<NavigationListData> navigationListData) {
+        showNormal();
         mSmartRefreshLayout.finishRefresh();
         mNavigationListData.clear();
         mNavigationListData.addAll(navigationListData);
@@ -253,5 +254,9 @@ public class NavigationFragment  extends BaseFragment<NavigationPresenter> imple
         VerticalTabLayoutWithRecyclerView();
     }
 
-
+    @Override
+    public void reload() {
+        showLoading();
+        mPresenter.getNavigationData();
+    }
 }

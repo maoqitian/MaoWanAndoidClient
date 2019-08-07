@@ -12,7 +12,7 @@ import mao.com.mao_wanandroid_client.widget.LoadingView;
 
 /**
  * @author maoqitian
- * @Description: DialogFragment 的基类,让其具有 loading error 功能
+ * @Description: DialogFragment 的基类,让其具有 loading error 功能(在 DialogFragment 中不生效 有待研究)
  * @date 2019/8/6 0006 15:41
  */
 public abstract class RootDialogFragment <T extends AbstractBasePresenter>extends BaseDialogFragment <T>{
@@ -51,6 +51,9 @@ public abstract class RootDialogFragment <T extends AbstractBasePresenter>extend
 
     public void addLoadingView(){
         //加入errorView 到 mBaseView 并返回 root 布局为 mBaseView
+        if(loadingView!=null){
+            mBaseView.removeView(loadingView);
+        }
         LayoutInflater.from(getActivity()).inflate(R.layout.view_loading, mBaseView,true);
         loadingView = mBaseView.findViewById(R.id.loading_view_container);
         mLoadingView = loadingView.findViewById(R.id.view_loading);
@@ -58,6 +61,9 @@ public abstract class RootDialogFragment <T extends AbstractBasePresenter>extend
 
     public void addErrorView(){
         //加入loadingView 到 mBaseView 并返回 root 布局为 mBaseView
+        if(errorView!=null){
+            mBaseView.removeView(errorView);
+        }
         LayoutInflater.from(getActivity()).inflate(R.layout.view_error,mBaseView,true);
         errorView = mBaseView.findViewById(R.id.view_error);
         tvReload = errorView.findViewById(R.id.tv_reload);

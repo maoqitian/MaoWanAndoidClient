@@ -50,10 +50,9 @@
     <string name="not_load_more_msg">哥，这回真没了！</string>
 
     <string name="search_key">搜索关键词</string>
-
     <string name="hot_key_title">大家都在搜</string>
-
     <string name="search_history">搜索历史</string>
+    <string name="search_result_failed">搜索失败 \(╯-╰)/</string>
     <string name="clear_search_history">清空搜索历史</string>
     <string name="confirm_clera_search_history">确认清除全部历史记录吗？</string>
     <string name="cancel_text">取消</string>

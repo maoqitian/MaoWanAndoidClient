@@ -5,7 +5,6 @@ import android.support.annotation.Nullable;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
-import mao.com.mao_wanandroid_client.compoent.ActivitySet;
 import me.yokeyword.fragmentation.SupportActivity;
 
 /**
@@ -26,7 +25,6 @@ public abstract class AbstractSimpleActivity extends SupportActivity{
         setContentView(getLayout());
         mUnbinder= ButterKnife.bind(this);
         mContext=this;
-        ActivitySet.getInstance().addActivity(this);
         onViewCreated();
         initToolbar();
         initEventAndData();
@@ -37,7 +35,6 @@ public abstract class AbstractSimpleActivity extends SupportActivity{
         super.onDestroy();
         mUnbinder.unbind();
         mUnbinder=null;
-        ActivitySet.getInstance().removeActivity(this);
     }
 
 

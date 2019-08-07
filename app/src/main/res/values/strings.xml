@@ -52,6 +52,7 @@
     <string name="search_key">search keyword</string>
     <string name="hot_key_title">HotKey</string>
     <string name="search_history">Search History</string>
+    <string name="search_result_failed">Search failed \(╯-╰)/</string>
     <string name="clear_search_history">clear search history</string>
     <string name="confirm_clera_search_history">Confirm clear all history?</string>
     <string name="cancel_collection_text">Cancel Collection</string>
