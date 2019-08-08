@@ -70,4 +70,10 @@
     <string name="load_failed_no_network">Oops, network is lost!  click to retry</string>
     <string name="empty">Empty!</string>
     <string name="str_none" />
+
+    <string name="actionbar_webview_share">分享到</string>
+    <string name="actionbar_webview_copy">复制链接</string>
+    <string name="actionbar_webview_open">浏览器打开</string>
+    <string name="actionbar_webview_refresh">刷新页面</string>
+    <string name="action_share">分享</string>
 </resources>

@@ -11,11 +11,44 @@
     <style name="AppTheme.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
+        <item name="toolbarStyle">@style/NoSpaceActionBarTheme</item>
     </style>
 
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <!--Toolbar的Theme的设置，都是针对popup的设置-->
+    <style name="ToolbarTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:colorBackground">@color/colorPrimary</item><!--设置背景颜色的-->
+        <item name="android:textColorPrimary">@android:color/white</item><!--设置文字颜色的-->
+        <item name="android:textSize">@dimen/sp_15</item><!--设置文字大小的-->
+        <item name="actionOverflowMenuStyle">@style/OverflowMenuTheme</item><!--设置弹出位置的主题-->
+
+    </style>
+    <!--PageDetailWebView主题-->
+    <style name="PageDetailWebViewTheme" parent="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="toolbarStyle">@style/NoSpaceActionBarTheme</item>
+        <item name="android:textColorSecondary">@color/white</item> <!--toolbar 溢出菜单的颜色-->
+    </style>
+
+    <!--navigationIcon和Title的距离问题-->
+    <style name="NoSpaceActionBarTheme" parent="Base.Widget.AppCompat.Toolbar">
+        <item name="contentInsetStart">0dp</item>
+        <item name="contentInsetStartWithNavigation">0dp</item>
+    </style>
+
+
+    <!--Toolbar弹出popup主题的设置-->
+    <style name="OverflowMenuTheme" parent="Widget.AppCompat.Light.PopupMenu.Overflow">
+        <item name="overlapAnchor">false</item><!--这个属性设置为false，就能使得popup在Toolbar的下面显示-->
+    </style>
+
 
     <!--闪屏页冷启动画面-->
     <style name="AppTheme.Launcher" parent="Theme.AppCompat.NoActionBar">

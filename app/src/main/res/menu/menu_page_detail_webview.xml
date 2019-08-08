@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/webview_actionbar_share"
+        android:orderInCategory="100"
+        android:icon="@drawable/ic_share_24dp"
+        android:title="@string/actionbar_webview_share"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/webview_actionbar_copy"
+        android:orderInCategory="100"
+        android:icon="@drawable/ic_content_copy_24dp"
+        android:title="@string/actionbar_webview_copy"
+        app:showAsAction="never" />
+
+
+    <item
+        android:id="@+id/webview_actionbar_webview_refresh"
+        android:orderInCategory="100"
+        android:icon="@drawable/ic_refresh_24dp"
+        android:title="@string/actionbar_webview_refresh"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/webview_actionbar_open"
+        android:orderInCategory="100"
+        android:icon="@drawable/ic_open_in_browser_24dp"
+        android:title="@string/actionbar_webview_open"
+        app:showAsAction="never" />
+
+</menu>

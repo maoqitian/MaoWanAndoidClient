@@ -15,6 +15,21 @@
          android:layout_height="match_parent"
          android:background="@color/viewBackground"
         >
+        <WebView
+            android:id="@+id/webview_detail"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scrollbarSize="@dimen/dp_3" />
+
+        <ProgressBar
+            android:id="@+id/pb_progress"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_3"
+            android:max="100"
+            android:progress="0"
+            android:progressDrawable="@drawable/progress_bg"
+            android:visibility="gone" />
     </FrameLayout>
 
 </LinearLayout>

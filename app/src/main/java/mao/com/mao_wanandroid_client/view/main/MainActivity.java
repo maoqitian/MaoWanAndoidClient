@@ -1,5 +1,7 @@
 package mao.com.mao_wanandroid_client.view.main;
 
+import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.FloatingActionButton;
@@ -44,6 +46,7 @@ import mao.com.mao_wanandroid_client.view.main.fragment.NavigationFragment;
 import mao.com.mao_wanandroid_client.view.main.fragment.OfficialAccountsPageFragment;
 import mao.com.mao_wanandroid_client.view.main.fragment.ProjectFragment;
 import mao.com.mao_wanandroid_client.view.main.fragment.SearchFragment;
+import mao.com.mao_wanandroid_client.view.pagedetail.PageDetailActivity;
 import mao.com.mao_wanandroid_client.widget.CircleImageView;
 
 
@@ -80,9 +83,17 @@ public class MainActivity extends BaseActivity<MainPresenter>
     CommonWebFragment mCommonWebFragment;
     SettingsFragment mSettingsFragment;
 
+    // 是否开启了主页，没有开启则会返回主页
+    public static boolean isLaunch = false;
+
+    public static void start(Context context) {
+        context.startActivity(new Intent(context, MainActivity.class));
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        isLaunch = true;
     }
 
     @Override
@@ -340,5 +351,11 @@ public class MainActivity extends BaseActivity<MainPresenter>
             finish();
             System.exit(0);
         }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        isLaunch = false;
     }
 }

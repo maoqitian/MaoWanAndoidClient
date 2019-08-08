@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="mao.com.mao_wanandroid_client">
 
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
@@ -34,10 +35,16 @@
             </intent-filter>
         </activity>
         <activity android:name=".view.pagedetail.PageDetailActivity"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:configChanges="orientation|screenSize"
+            android:hardwareAccelerated="true"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/PageDetailWebViewTheme">
+            <!--需要添加下面的intent-filter配置-->
             <intent-filter>
                 <action android:name="com.mao.mao_wanandroid.action.PAGE_DETAIL_ACTIVITY" />
                 <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
             </intent-filter>
         </activity>
 
