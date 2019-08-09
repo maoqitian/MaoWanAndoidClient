@@ -4,7 +4,6 @@ import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
-import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
@@ -14,8 +13,7 @@ import java.util.List;
 import butterknife.BindView;
 import mao.com.mao_wanandroid_client.R;
 import mao.com.mao_wanandroid_client.base.fragment.BaseFragment;
-import mao.com.mao_wanandroid_client.base.fragment.RootBaseFragment;
-import mao.com.mao_wanandroid_client.model.project.ProjectClassifyData;
+import mao.com.mao_wanandroid_client.model.modelbean.project.ProjectClassifyData;
 import mao.com.mao_wanandroid_client.presenter.main.ProjectContract;
 import mao.com.mao_wanandroid_client.presenter.main.ProjectPresenter;
 import mao.com.mao_wanandroid_client.view.main.adapter.HomeTabPageAdapter;

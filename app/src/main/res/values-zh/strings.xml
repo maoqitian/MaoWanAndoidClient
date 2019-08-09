@@ -76,4 +76,6 @@
     <string name="actionbar_webview_open">浏览器打开</string>
     <string name="actionbar_webview_refresh">刷新页面</string>
     <string name="action_share">分享</string>
+
+    <string name="todo_text">TODO</string>
 </resources>

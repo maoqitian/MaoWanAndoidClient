@@ -4,13 +4,11 @@ import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
-import mao.com.mao_wanandroid_client.application.MyApplication;
-import mao.com.mao_wanandroid_client.core.db.DbHelperImpl;
-import mao.com.mao_wanandroid_client.core.http.DataClient;
-import mao.com.mao_wanandroid_client.core.http.helper.IHttpHelperImpl;
-import mao.com.mao_wanandroid_client.core.http.tools.NetworkUtils;
-import mao.com.mao_wanandroid_client.core.sp.SharedPreferenceHelperImpl;
-import mao.com.mao_wanandroid_client.di.scope.ActivityScope;
+import mao.com.mao_wanandroid_client.model.db.DbHelperImpl;
+import mao.com.mao_wanandroid_client.model.http.DataClient;
+import mao.com.mao_wanandroid_client.model.http.helper.IHttpHelperImpl;
+import mao.com.mao_wanandroid_client.model.http.tools.NetworkUtils;
+import mao.com.mao_wanandroid_client.model.sp.SharedPreferenceHelperImpl;
 
 /**
  * @author maoqitian

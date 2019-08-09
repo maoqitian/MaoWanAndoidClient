@@ -5,9 +5,8 @@ import android.content.Intent;
 import android.widget.Toast;
 
 import mao.com.mao_wanandroid_client.application.Constants;
-import mao.com.mao_wanandroid_client.model.ResponseBody;
-import mao.com.mao_wanandroid_client.model.home.HomeArticleData;
-import mao.com.mao_wanandroid_client.model.knowlegetree.KnowledgeHierarchyData;
+import mao.com.mao_wanandroid_client.model.modelbean.home.HomeArticleData;
+import mao.com.mao_wanandroid_client.model.modelbean.knowlegetree.KnowledgeHierarchyData;
 
 /**
  * @author maoqitian

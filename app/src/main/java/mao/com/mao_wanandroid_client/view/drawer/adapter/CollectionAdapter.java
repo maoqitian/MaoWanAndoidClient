@@ -7,7 +7,7 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 import java.util.List;
 
 import mao.com.mao_wanandroid_client.R;
-import mao.com.mao_wanandroid_client.model.collect.CollectData;
+import mao.com.mao_wanandroid_client.model.modelbean.collect.CollectData;
 import mao.com.mao_wanandroid_client.view.drawer.holder.CollectionViewItemHolder;
 
 /**

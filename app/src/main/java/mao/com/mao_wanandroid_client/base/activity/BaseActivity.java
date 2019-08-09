@@ -1,13 +1,10 @@
 package mao.com.mao_wanandroid_client.base.activity;
 
-import android.content.res.Configuration;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatDelegate;
 import android.util.Log;
-import android.view.View;
 
 import javax.inject.Inject;
 
@@ -15,12 +12,11 @@ import dagger.android.AndroidInjection;
 import dagger.android.AndroidInjector;
 import dagger.android.DispatchingAndroidInjector;
 import dagger.android.HasFragmentInjector;
-import dagger.android.support.DaggerAppCompatActivity;
 import dagger.android.support.HasSupportFragmentInjector;
 import mao.com.mao_wanandroid_client.application.Constants;
 import mao.com.mao_wanandroid_client.base.BaseView;
 import mao.com.mao_wanandroid_client.base.presenter.AbstractBasePresenter;
-import mao.com.mao_wanandroid_client.model.home.HomeArticleData;
+import mao.com.mao_wanandroid_client.model.modelbean.home.HomeArticleData;
 import mao.com.mao_wanandroid_client.utils.StartDetailPage;
 
 /**

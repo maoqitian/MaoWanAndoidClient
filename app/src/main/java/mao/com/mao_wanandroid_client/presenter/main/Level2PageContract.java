@@ -2,8 +2,8 @@ package mao.com.mao_wanandroid_client.presenter.main;
 
 import mao.com.mao_wanandroid_client.base.BaseView;
 import mao.com.mao_wanandroid_client.base.presenter.AbstractBasePresenter;
-import mao.com.mao_wanandroid_client.model.home.HomeArticleData;
-import mao.com.mao_wanandroid_client.model.home.HomeArticleListData;
+import mao.com.mao_wanandroid_client.model.modelbean.home.HomeArticleData;
+import mao.com.mao_wanandroid_client.model.modelbean.home.HomeArticleListData;
 
 /**
  * @author maoqitian

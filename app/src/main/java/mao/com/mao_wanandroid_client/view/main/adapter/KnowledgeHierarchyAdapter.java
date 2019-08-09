@@ -13,7 +13,7 @@ import java.util.List;
 import mao.com.flexibleflowlayout.TagAdapter;
 import mao.com.flexibleflowlayout.TagFlowLayout;
 import mao.com.mao_wanandroid_client.R;
-import mao.com.mao_wanandroid_client.model.knowlegetree.KnowledgeHierarchyData;
+import mao.com.mao_wanandroid_client.model.modelbean.knowlegetree.KnowledgeHierarchyData;
 import mao.com.mao_wanandroid_client.view.main.hloder.KnowledgeHolderView;
 
 /**

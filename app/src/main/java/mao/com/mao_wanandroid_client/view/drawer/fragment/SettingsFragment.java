@@ -26,7 +26,7 @@ import mao.com.mao_wanandroid_client.base.fragment.BaseDialogFragment;
 import mao.com.mao_wanandroid_client.compoent.RxBus;
 import mao.com.mao_wanandroid_client.compoent.event.LoginStatusEvent;
 import mao.com.mao_wanandroid_client.compoent.event.ThemeModeEvent;
-import mao.com.mao_wanandroid_client.model.setting.SettingData;
+import mao.com.mao_wanandroid_client.model.modelbean.setting.SettingData;
 import mao.com.mao_wanandroid_client.presenter.drawer.SettingsContract;
 import mao.com.mao_wanandroid_client.presenter.drawer.SettingsPresenter;
 import mao.com.mao_wanandroid_client.utils.CacheManager;

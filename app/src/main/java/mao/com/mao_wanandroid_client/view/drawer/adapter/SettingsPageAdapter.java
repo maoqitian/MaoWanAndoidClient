@@ -9,7 +9,7 @@ import java.util.List;
 
 import mao.com.mao_wanandroid_client.R;
 import mao.com.mao_wanandroid_client.application.Constants;
-import mao.com.mao_wanandroid_client.model.setting.SettingData;
+import mao.com.mao_wanandroid_client.model.modelbean.setting.SettingData;
 import mao.com.mao_wanandroid_client.utils.ToolsUtils;
 import mao.com.mao_wanandroid_client.view.drawer.holder.SettingsViewItemHolder;
 

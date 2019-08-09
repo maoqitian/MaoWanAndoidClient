@@ -2,18 +2,15 @@ package mao.com.mao_wanandroid_client.view.main.fragment;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
 
-import com.airbnb.lottie.LottieAnimationView;
 import com.bigkoo.convenientbanner.ConvenientBanner;
 import com.bigkoo.convenientbanner.holder.CBViewHolderCreator;
 import com.bigkoo.convenientbanner.holder.Holder;
@@ -21,9 +18,6 @@ import com.bigkoo.convenientbanner.listener.OnItemClickListener;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
-import com.scwang.smartrefresh.layout.constant.SpinnerStyle;
-import com.scwang.smartrefresh.layout.footer.BallPulseFooter;
-import com.scwang.smartrefresh.layout.header.BezierRadarHeader;
 import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 
@@ -37,14 +31,12 @@ import mao.com.mao_wanandroid_client.base.fragment.RootBaseFragment;
 import mao.com.mao_wanandroid_client.compoent.RxBus;
 import mao.com.mao_wanandroid_client.compoent.event.AutoLoginStatusEvent;
 import mao.com.mao_wanandroid_client.compoent.event.LoginStatusEvent;
-import mao.com.mao_wanandroid_client.model.banner.HomePageBannerModel;
-import mao.com.mao_wanandroid_client.model.home.HomeArticleData;
-import mao.com.mao_wanandroid_client.model.home.HomeArticleListData;
+import mao.com.mao_wanandroid_client.model.modelbean.banner.HomePageBannerModel;
+import mao.com.mao_wanandroid_client.model.modelbean.home.HomeArticleData;
+import mao.com.mao_wanandroid_client.model.modelbean.home.HomeArticleListData;
 import mao.com.mao_wanandroid_client.presenter.main.HomeFirstTabPresenter;
 import mao.com.mao_wanandroid_client.presenter.main.HomePageFirstTabContract;
 import mao.com.mao_wanandroid_client.utils.StartDetailPage;
-import mao.com.mao_wanandroid_client.view.main.MainActivity;
-import mao.com.mao_wanandroid_client.view.main.adapter.HomeLatestProjectAdapter;
 import mao.com.mao_wanandroid_client.view.main.adapter.HomePageAdapter;
 import mao.com.mao_wanandroid_client.view.main.hloder.BannerHolderView;
 

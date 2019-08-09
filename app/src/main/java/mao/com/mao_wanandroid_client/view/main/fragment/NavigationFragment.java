@@ -1,14 +1,9 @@
 package mao.com.mao_wanandroid_client.view.main.fragment;
 
-import android.annotation.SuppressLint;
-import android.content.ContextWrapper;
 import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
-import android.view.MotionEvent;
-import android.view.View;
 
 import com.scwang.smartrefresh.header.MaterialHeader;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
@@ -20,9 +15,8 @@ import java.util.List;
 
 import butterknife.BindView;
 import mao.com.mao_wanandroid_client.R;
-import mao.com.mao_wanandroid_client.base.fragment.BaseFragment;
 import mao.com.mao_wanandroid_client.base.fragment.RootBaseFragment;
-import mao.com.mao_wanandroid_client.model.navigation.NavigationListData;
+import mao.com.mao_wanandroid_client.model.modelbean.navigation.NavigationListData;
 import mao.com.mao_wanandroid_client.presenter.main.NavigationContract;
 import mao.com.mao_wanandroid_client.presenter.main.NavigationPresenter;
 import mao.com.mao_wanandroid_client.view.main.adapter.NavigationViewAdapter;

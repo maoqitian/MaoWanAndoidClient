@@ -1,6 +1,6 @@
 package mao.com.mao_wanandroid_client.base;
 
-import mao.com.mao_wanandroid_client.model.home.HomeArticleData;
+import mao.com.mao_wanandroid_client.model.modelbean.home.HomeArticleData;
 
 /**
  * @author maoqitian

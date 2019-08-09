@@ -6,7 +6,7 @@ import java.util.List;
 
 import mao.com.mao_wanandroid_client.base.BaseView;
 import mao.com.mao_wanandroid_client.base.presenter.AbstractBasePresenter;
-import mao.com.mao_wanandroid_client.model.collect.CollectData;
+import mao.com.mao_wanandroid_client.model.modelbean.collect.CollectData;
 
 /**
  * @author maoqitian

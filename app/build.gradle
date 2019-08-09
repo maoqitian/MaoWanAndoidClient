@@ -39,7 +39,7 @@ greendao{
     //生成源地址
     targetGenDir 'src/main/java'
     //dao 类存放路径
-    daoPackage 'mao.com.mao_wanandroid_client.core.dao'
+    daoPackage 'mao.com.mao_wanandroid_client.model.dao'
 }
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])

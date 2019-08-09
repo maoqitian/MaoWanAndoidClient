@@ -14,7 +14,7 @@ import mao.com.flexibleflowlayout.TagAdapter;
 import mao.com.flexibleflowlayout.TagFlowLayout;
 import mao.com.mao_wanandroid_client.R;
 import mao.com.mao_wanandroid_client.application.Constants;
-import mao.com.mao_wanandroid_client.model.navigation.NavigationListData;
+import mao.com.mao_wanandroid_client.model.modelbean.navigation.NavigationListData;
 import mao.com.mao_wanandroid_client.utils.StartDetailPage;
 import mao.com.mao_wanandroid_client.view.main.hloder.NavigationHolderView;
 

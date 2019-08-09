@@ -7,12 +7,11 @@ import io.reactivex.Observable;
 import mao.com.mao_wanandroid_client.R;
 import mao.com.mao_wanandroid_client.application.MyApplication;
 import mao.com.mao_wanandroid_client.base.presenter.RxBasePresenter;
-import mao.com.mao_wanandroid_client.core.http.DataClient;
-import mao.com.mao_wanandroid_client.core.http.control.BaseObserver;
-import mao.com.mao_wanandroid_client.core.http.control.RxSchedulers;
-import mao.com.mao_wanandroid_client.model.ResponseBody;
-import mao.com.mao_wanandroid_client.model.home.HomeArticleData;
-import mao.com.mao_wanandroid_client.model.home.HomeArticleListData;
+import mao.com.mao_wanandroid_client.model.http.DataClient;
+import mao.com.mao_wanandroid_client.model.http.control.BaseObserver;
+import mao.com.mao_wanandroid_client.model.http.control.RxSchedulers;
+import mao.com.mao_wanandroid_client.model.modelbean.ResponseBody;
+import mao.com.mao_wanandroid_client.model.modelbean.home.HomeArticleListData;
 
 /**
  * @author maoqitian

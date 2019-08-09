@@ -2,7 +2,7 @@ package mao.com.mao_wanandroid_client.base.presenter;
 
 import io.reactivex.disposables.Disposable;
 import mao.com.mao_wanandroid_client.base.BaseView;
-import mao.com.mao_wanandroid_client.model.home.HomeArticleData;
+import mao.com.mao_wanandroid_client.model.modelbean.home.HomeArticleData;
 
 /**
  * @author maoqitian

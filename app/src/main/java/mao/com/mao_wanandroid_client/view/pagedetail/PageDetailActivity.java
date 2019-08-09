@@ -22,17 +22,16 @@ import android.view.ViewGroup;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.widget.FrameLayout;
-import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
-import com.just.agentweb.AgentWeb;
+import java.lang.reflect.Method;
 
 import butterknife.BindView;
 import mao.com.mao_wanandroid_client.R;
 import mao.com.mao_wanandroid_client.application.Constants;
 import mao.com.mao_wanandroid_client.base.activity.BaseActivity;
-import mao.com.mao_wanandroid_client.model.home.HomeArticleData;
+import mao.com.mao_wanandroid_client.model.modelbean.home.HomeArticleData;
 import mao.com.mao_wanandroid_client.presenter.pagedetail.PageDetailContract;
 import mao.com.mao_wanandroid_client.presenter.pagedetail.PageDetailPresenter;
 import mao.com.mao_wanandroid_client.utils.StatusBarUtil;
@@ -273,6 +272,23 @@ public class PageDetailActivity extends BaseActivity<PageDetailPresenter> implem
                 break;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    // 让菜单同时显示图标和文字
+    @Override
+    public boolean onMenuOpened(int featureId, Menu menu) {
+        if (menu != null) {
+            if (menu.getClass().getSimpleName().equalsIgnoreCase("MenuBuilder")) {
+                try {
+                    Method method = menu.getClass().getDeclaredMethod("setOptionalIconsVisible", Boolean.TYPE);
+                    method.setAccessible(true);
+                    method.invoke(menu, true);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return super.onMenuOpened(featureId, menu);
     }
 
     @Override

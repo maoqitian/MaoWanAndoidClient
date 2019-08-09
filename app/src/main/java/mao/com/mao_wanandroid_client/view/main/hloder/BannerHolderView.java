@@ -8,7 +8,7 @@ import android.widget.TextView;
 import com.bigkoo.convenientbanner.holder.Holder;
 
 import mao.com.mao_wanandroid_client.R;
-import mao.com.mao_wanandroid_client.model.banner.HomePageBannerModel;
+import mao.com.mao_wanandroid_client.model.modelbean.banner.HomePageBannerModel;
 import mao.com.mao_wanandroid_client.utils.GlideUtils;
 
 /**

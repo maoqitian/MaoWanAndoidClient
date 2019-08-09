@@ -2,21 +2,8 @@ package mao.com.mao_wanandroid_client.view.main.fragment;
 
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.widget.LinearLayout;
-import android.widget.Toast;
-
-import com.bigkoo.convenientbanner.ConvenientBanner;
-import com.bigkoo.convenientbanner.holder.CBViewHolderCreator;
-import com.bigkoo.convenientbanner.holder.Holder;
-import com.bigkoo.convenientbanner.listener.OnItemClickListener;
-import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,16 +11,10 @@ import java.util.List;
 import butterknife.BindView;
 import mao.com.mao_wanandroid_client.R;
 import mao.com.mao_wanandroid_client.base.fragment.BaseFragment;
-import mao.com.mao_wanandroid_client.base.fragment.RootBaseFragment;
-import mao.com.mao_wanandroid_client.model.banner.HomePageBannerModel;
 import mao.com.mao_wanandroid_client.presenter.main.HomePageContract;
 import mao.com.mao_wanandroid_client.presenter.main.HomePagePresenter;
-import mao.com.mao_wanandroid_client.presenter.main.HomeSecondTabPresenter;
 import mao.com.mao_wanandroid_client.utils.ToolsUtils;
-import mao.com.mao_wanandroid_client.view.main.adapter.HomePageAdapter;
 import mao.com.mao_wanandroid_client.view.main.adapter.HomeTabPageAdapter;
-import mao.com.mao_wanandroid_client.view.main.hloder.BannerHolderView;
-import mao.com.mao_wanandroid_client.widget.EnhanceTabLayout;
 
 
 /**

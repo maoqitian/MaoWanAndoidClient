@@ -10,12 +10,11 @@ import android.widget.Toast;
 
 import javax.inject.Inject;
 
-import dagger.android.AndroidInjection;
 import dagger.android.support.AndroidSupportInjection;
 import mao.com.mao_wanandroid_client.application.Constants;
 import mao.com.mao_wanandroid_client.base.BaseView;
 import mao.com.mao_wanandroid_client.base.presenter.AbstractBasePresenter;
-import mao.com.mao_wanandroid_client.model.home.HomeArticleData;
+import mao.com.mao_wanandroid_client.model.modelbean.home.HomeArticleData;
 import mao.com.mao_wanandroid_client.utils.StartDetailPage;
 
 /**

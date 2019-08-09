@@ -76,4 +76,6 @@
     <string name="actionbar_webview_open">open web browser</string>
     <string name="actionbar_webview_refresh">refresh</string>
     <string name="action_share">share</string>
+
+    <string name="todo_text">TODO</string>
 </resources>

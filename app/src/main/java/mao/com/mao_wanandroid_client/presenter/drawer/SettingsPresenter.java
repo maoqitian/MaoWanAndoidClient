@@ -8,11 +8,11 @@ import javax.inject.Inject;
 import io.reactivex.Observable;
 import mao.com.mao_wanandroid_client.application.Constants;
 import mao.com.mao_wanandroid_client.base.presenter.RxBasePresenter;
-import mao.com.mao_wanandroid_client.core.http.DataClient;
-import mao.com.mao_wanandroid_client.core.http.control.BaseObserver;
-import mao.com.mao_wanandroid_client.core.http.control.RxSchedulers;
-import mao.com.mao_wanandroid_client.model.ResponseBody;
-import mao.com.mao_wanandroid_client.model.setting.SettingData;
+import mao.com.mao_wanandroid_client.model.http.DataClient;
+import mao.com.mao_wanandroid_client.model.http.control.BaseObserver;
+import mao.com.mao_wanandroid_client.model.http.control.RxSchedulers;
+import mao.com.mao_wanandroid_client.model.modelbean.ResponseBody;
+import mao.com.mao_wanandroid_client.model.modelbean.setting.SettingData;
 
 /**
  * @author maoqitian

@@ -30,8 +30,7 @@ import mao.com.mao_wanandroid_client.application.Constants;
 import mao.com.mao_wanandroid_client.base.activity.BaseActivity;
 import mao.com.mao_wanandroid_client.compoent.RxBus;
 import mao.com.mao_wanandroid_client.compoent.event.LoginStatusEvent;
-import mao.com.mao_wanandroid_client.core.http.cookie.CookieManager;
-import mao.com.mao_wanandroid_client.presenter.drawer.CommonWebPresenter;
+import mao.com.mao_wanandroid_client.model.http.cookie.CookieManager;
 import mao.com.mao_wanandroid_client.presenter.main.MainContract;
 import mao.com.mao_wanandroid_client.presenter.main.MainPresenter;
 import mao.com.mao_wanandroid_client.utils.NavHelper;
@@ -46,7 +45,6 @@ import mao.com.mao_wanandroid_client.view.main.fragment.NavigationFragment;
 import mao.com.mao_wanandroid_client.view.main.fragment.OfficialAccountsPageFragment;
 import mao.com.mao_wanandroid_client.view.main.fragment.ProjectFragment;
 import mao.com.mao_wanandroid_client.view.main.fragment.SearchFragment;
-import mao.com.mao_wanandroid_client.view.pagedetail.PageDetailActivity;
 import mao.com.mao_wanandroid_client.widget.CircleImageView;
 
 
@@ -170,7 +168,7 @@ public class MainActivity extends BaseActivity<MainPresenter>
                     StartDetailPage.start(this,null, Constants.PAGE_LOGIN,Constants.ACTION_LOGIN_ACTIVITY);
                     return false;
                 }
-                initPage(getString(R.string.nav_collect));
+                initPageTitle(getString(R.string.nav_collect));
                 bottomNavigationView.setVisibility(View.GONE);
                 break;
             case R.id.nav_settings:
@@ -183,31 +181,31 @@ public class MainActivity extends BaseActivity<MainPresenter>
                 }
                 mSettingsFragment.show(getSupportFragmentManager(),"showSettings");
                 break;
-            case R.id.nav_sign_out:
-                //退出登录
-                mPresenter.getSingOut();
+            case R.id.nav_todo:
+                //TODO
+                Toast.makeText(this,"暂未实现",Toast.LENGTH_SHORT).show();
                 break;
             case R.id.nav_home:
             case R.id.tab_main:
                 //主页
-                initPage(getString(R.string.page_home));
+                initPageTitle(getString(R.string.page_home));
                 bottomNavigationView.setVisibility(View.VISIBLE);
                 break;
             case R.id.tab_knowledge_hierarchy:
                 //知识体系
-                initPage(getString(R.string.knowledge_hierarchy));
+                initPageTitle(getString(R.string.knowledge_hierarchy));
                 break;
             case R.id.tab_official_accounts:
                 //公众号
-                initPage(getString(R.string.official_accounts));
+                initPageTitle(getString(R.string.official_accounts));
                 break;
             case R.id.tab_navigation:
                 //导航
-                initPage(getString(R.string.navigation));
+                initPageTitle(getString(R.string.navigation));
                 break;
             case R.id.tab_project:
                 //项目
-                initPage(getString(R.string.project));
+                initPageTitle(getString(R.string.project));
                 break;
             case R.id.common_website:
                 //常用网站
@@ -241,7 +239,7 @@ public class MainActivity extends BaseActivity<MainPresenter>
     /**
      * 加载对应的页面
      */
-    private void initPage(String pagetitle) {
+    private void initPageTitle(String pagetitle) {
        pageTitle.setText(pagetitle);
 
     }
@@ -259,7 +257,7 @@ public class MainActivity extends BaseActivity<MainPresenter>
                      StartDetailPage.start(MainActivity.this,null, Constants.PAGE_LOGIN,Constants.ACTION_LOGIN_ACTIVITY);
                  }else {
                      //TODO 进入个人中心 暂未实现
-                     Toast.makeText(MainActivity.this,"进入个人中心",Toast.LENGTH_SHORT).show();
+                     Toast.makeText(MainActivity.this,"进入个人中心暂未实现",Toast.LENGTH_SHORT).show();
                  }
                  break;
              case R.id.iv_search:
@@ -355,7 +353,7 @@ public class MainActivity extends BaseActivity<MainPresenter>
 
     @Override
     protected void onDestroy() {
-        super.onDestroy();
         isLaunch = false;
+        super.onDestroy();
     }
 }

@@ -2,7 +2,6 @@ package mao.com.mao_wanandroid_client.view.main.fragment;
 
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
@@ -13,9 +12,8 @@ import java.util.List;
 import butterknife.BindView;
 import mao.com.mao_wanandroid_client.R;
 import mao.com.mao_wanandroid_client.application.Constants;
-import mao.com.mao_wanandroid_client.base.fragment.BaseFragment;
 import mao.com.mao_wanandroid_client.base.fragment.RootBaseFragment;
-import mao.com.mao_wanandroid_client.model.knowlegetree.KnowledgeHierarchyData;
+import mao.com.mao_wanandroid_client.model.modelbean.knowlegetree.KnowledgeHierarchyData;
 import mao.com.mao_wanandroid_client.presenter.main.OfficialAccountsContract;
 import mao.com.mao_wanandroid_client.presenter.main.OfficialAccountsPresenter;
 import mao.com.mao_wanandroid_client.utils.StartDetailPage;

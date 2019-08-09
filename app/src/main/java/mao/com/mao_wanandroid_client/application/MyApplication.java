@@ -1,32 +1,21 @@
 package mao.com.mao_wanandroid_client.application;
 
-import android.app.Activity;
-import android.app.Application;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatDelegate;
 
-import com.scwang.smartrefresh.header.MaterialHeader;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
-import com.scwang.smartrefresh.layout.api.DefaultRefreshHeaderCreator;
 import com.scwang.smartrefresh.layout.api.DefaultRefreshInitializer;
-import com.scwang.smartrefresh.layout.api.RefreshHeader;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
-
-import javax.inject.Inject;
 
 import dagger.android.AndroidInjector;
 import dagger.android.DaggerApplication;
-import dagger.android.DispatchingAndroidInjector;
-import dagger.android.HasActivityInjector;
 import mao.com.mao_wanandroid_client.R;
-import mao.com.mao_wanandroid_client.core.dao.DaoMaster;
-import mao.com.mao_wanandroid_client.core.dao.DaoSession;
-import mao.com.mao_wanandroid_client.core.sp.SharedPreferenceHelperImpl;
+import mao.com.mao_wanandroid_client.model.dao.DaoMaster;
+import mao.com.mao_wanandroid_client.model.dao.DaoSession;
 import mao.com.mao_wanandroid_client.di.component.DaggerAppComponent;
-import mao.com.mao_wanandroid_client.di.module.MyAppModule;
 
 /**
  * @author maoqitian

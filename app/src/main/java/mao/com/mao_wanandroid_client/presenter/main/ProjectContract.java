@@ -4,7 +4,7 @@ import java.util.List;
 
 import mao.com.mao_wanandroid_client.base.BaseView;
 import mao.com.mao_wanandroid_client.base.presenter.AbstractBasePresenter;
-import mao.com.mao_wanandroid_client.model.project.ProjectClassifyData;
+import mao.com.mao_wanandroid_client.model.modelbean.project.ProjectClassifyData;
 
 /**
  * @author maoqitian

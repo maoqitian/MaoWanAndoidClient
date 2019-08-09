@@ -9,12 +9,11 @@ import mao.com.mao_wanandroid_client.R;
 import mao.com.mao_wanandroid_client.base.presenter.RxBasePresenter;
 import mao.com.mao_wanandroid_client.compoent.RxBus;
 import mao.com.mao_wanandroid_client.compoent.event.LoginStatusEvent;
-import mao.com.mao_wanandroid_client.core.http.DataClient;
-import mao.com.mao_wanandroid_client.core.http.control.ProgressObserver;
-import mao.com.mao_wanandroid_client.core.http.control.RxSchedulers;
-import mao.com.mao_wanandroid_client.model.ResponseBody;
-import mao.com.mao_wanandroid_client.model.login.LoginData;
-import mao.com.mao_wanandroid_client.utils.MD5Utils;
+import mao.com.mao_wanandroid_client.model.http.DataClient;
+import mao.com.mao_wanandroid_client.model.http.control.ProgressObserver;
+import mao.com.mao_wanandroid_client.model.http.control.RxSchedulers;
+import mao.com.mao_wanandroid_client.model.modelbean.ResponseBody;
+import mao.com.mao_wanandroid_client.model.modelbean.login.LoginData;
 
 /**
  * @author maoqitian

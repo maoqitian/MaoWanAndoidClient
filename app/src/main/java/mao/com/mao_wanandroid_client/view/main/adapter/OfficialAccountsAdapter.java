@@ -7,8 +7,7 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 import java.util.List;
 
 import mao.com.mao_wanandroid_client.R;
-import mao.com.mao_wanandroid_client.model.knowlegetree.KnowledgeHierarchyData;
-import mao.com.mao_wanandroid_client.model.navigation.NavigationListData;
+import mao.com.mao_wanandroid_client.model.modelbean.knowlegetree.KnowledgeHierarchyData;
 import mao.com.mao_wanandroid_client.view.main.hloder.OfficialAccountsViewHolder;
 
 /**

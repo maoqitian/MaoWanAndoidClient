@@ -19,14 +19,6 @@
             android:id="@+id/collect_page"
             android:icon="@drawable/ic_own_collection"
             android:title="@string/own_collect" />
-        <!--<item
-            android:id="@+id/nav_slideshow"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="Slideshow" />
-        <item
-            android:id="@+id/nav_manage"
-            android:icon="@drawable/ic_menu_manage"
-            android:title="Tools" />-->
     </group>
     <item
         android:id="@+id/nav_settings"
@@ -34,9 +26,9 @@
         android:title="@string/nav_settings" />
 
     <item
-        android:id="@+id/nav_sign_out"
-        android:icon="@drawable/ic_power_off_solid"
-        android:title="@string/sign_out" />
+        android:id="@+id/nav_todo"
+        android:icon="@drawable/ic_todo"
+        android:title="@string/todo_text" />
     <!--<item android:title="Communicate">
         <menu>
             <item

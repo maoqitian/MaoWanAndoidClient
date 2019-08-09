@@ -1,15 +1,12 @@
 package mao.com.mao_wanandroid_client.view.main;
 
 import android.graphics.Color;
-import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
 import android.widget.TextView;
-
-import com.just.agentweb.AgentWeb;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,8 +16,8 @@ import butterknife.BindView;
 import mao.com.mao_wanandroid_client.R;
 import mao.com.mao_wanandroid_client.application.Constants;
 import mao.com.mao_wanandroid_client.base.activity.BaseActivity;
-import mao.com.mao_wanandroid_client.model.home.HomeArticleData;
-import mao.com.mao_wanandroid_client.model.knowlegetree.KnowledgeHierarchyData;
+import mao.com.mao_wanandroid_client.model.modelbean.home.HomeArticleData;
+import mao.com.mao_wanandroid_client.model.modelbean.knowlegetree.KnowledgeHierarchyData;
 import mao.com.mao_wanandroid_client.presenter.main.KnowledgeLevel2PageContract;
 import mao.com.mao_wanandroid_client.presenter.main.KnowledgeLevel2PagePresenter;
 import mao.com.mao_wanandroid_client.utils.StatusBarUtil;

@@ -5,13 +5,12 @@ import java.util.List;
 import javax.inject.Inject;
 
 import io.reactivex.Observable;
-import io.reactivex.internal.observers.BlockingBaseObserver;
 import mao.com.mao_wanandroid_client.base.presenter.RxBasePresenter;
-import mao.com.mao_wanandroid_client.core.http.DataClient;
-import mao.com.mao_wanandroid_client.core.http.control.BaseObserver;
-import mao.com.mao_wanandroid_client.core.http.control.RxSchedulers;
-import mao.com.mao_wanandroid_client.model.ResponseBody;
-import mao.com.mao_wanandroid_client.model.frienduser.CommonWebData;
+import mao.com.mao_wanandroid_client.model.http.DataClient;
+import mao.com.mao_wanandroid_client.model.http.control.BaseObserver;
+import mao.com.mao_wanandroid_client.model.http.control.RxSchedulers;
+import mao.com.mao_wanandroid_client.model.modelbean.ResponseBody;
+import mao.com.mao_wanandroid_client.model.modelbean.frienduser.CommonWebData;
 
 /**
  * @author maoqitian

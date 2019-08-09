@@ -9,19 +9,17 @@ import javax.inject.Inject;
 
 import io.reactivex.Observable;
 import io.reactivex.functions.Consumer;
-import mao.com.mao_wanandroid_client.R;
-import mao.com.mao_wanandroid_client.application.MyApplication;
 import mao.com.mao_wanandroid_client.base.presenter.RxBasePresenter;
 import mao.com.mao_wanandroid_client.compoent.RxBus;
 import mao.com.mao_wanandroid_client.compoent.event.LoginStatusEvent;
-import mao.com.mao_wanandroid_client.core.http.DataClient;
-import mao.com.mao_wanandroid_client.core.http.control.BaseObserver;
-import mao.com.mao_wanandroid_client.core.http.control.RxSchedulers;
-import mao.com.mao_wanandroid_client.model.ResponseBody;
-import mao.com.mao_wanandroid_client.model.banner.HomePageBannerModel;
-import mao.com.mao_wanandroid_client.model.home.HomeArticleData;
-import mao.com.mao_wanandroid_client.model.home.HomeArticleListData;
-import mao.com.mao_wanandroid_client.model.login.LoginData;
+import mao.com.mao_wanandroid_client.model.http.DataClient;
+import mao.com.mao_wanandroid_client.model.http.control.BaseObserver;
+import mao.com.mao_wanandroid_client.model.http.control.RxSchedulers;
+import mao.com.mao_wanandroid_client.model.modelbean.ResponseBody;
+import mao.com.mao_wanandroid_client.model.modelbean.banner.HomePageBannerModel;
+import mao.com.mao_wanandroid_client.model.modelbean.home.HomeArticleData;
+import mao.com.mao_wanandroid_client.model.modelbean.home.HomeArticleListData;
+import mao.com.mao_wanandroid_client.model.modelbean.login.LoginData;
 
 
 /**
