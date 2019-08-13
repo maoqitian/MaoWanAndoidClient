@@ -114,8 +114,10 @@ public class HomeFirstTabPresenter extends RxBasePresenter<HomePageFirstTabContr
                                         }
                                     });
 
+        //Observable.zip()
 
         getHomeArticleListData(0,isRefreshData);
+
     }
 
     private void getHomeArticleListData(int pageNum,boolean isRefreshData) {
