@@ -34,7 +34,7 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="toolbarStyle">@style/NoSpaceActionBarTheme</item>
-        <item name="android:textColorSecondary">@color/white</item> <!--toolbar 溢出菜单的颜色-->
+        <item name="android:textColorSecondary">@android:color/white</item> <!--toolbar 溢出菜单的颜色-->
     </style>
 
     <!--navigationIcon和Title的距离问题-->

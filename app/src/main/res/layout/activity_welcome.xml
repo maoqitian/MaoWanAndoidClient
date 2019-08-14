@@ -11,7 +11,7 @@
         android:layout_height="40dp"
         android:gravity="center"
         android:textSize="12sp"
-        android:textColor="@color/white"
+        android:textColor="@android:color/white"
         android:visibility="invisible"
         android:background="@drawable/btn_splash_shape"
         app:layout_constraintEnd_toEndOf="parent"

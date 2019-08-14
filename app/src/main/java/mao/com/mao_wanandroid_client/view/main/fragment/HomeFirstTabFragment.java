@@ -303,6 +303,13 @@ public class HomeFirstTabFragment extends RootBaseFragment<HomeFirstTabPresenter
     }
 
     @Override
+    public void showError() {
+        super.showError();
+        mSmartRefreshLayout.finishRefresh();
+        mSmartRefreshLayout.finishLoadMore();
+    }
+
+    @Override
     public void reload() {
         //从新加载页面
         showLoading();

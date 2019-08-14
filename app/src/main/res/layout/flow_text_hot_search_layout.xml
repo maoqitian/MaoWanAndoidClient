@@ -7,7 +7,7 @@
     tools:text="dadafaf"
     android:lines="1"
     android:ellipsize="end"
-    android:textColor="@color/white"
+    android:textColor="@android:color/white"
     android:layout_marginTop="@dimen/dp_8"
     android:layout_marginEnd="@dimen/dp_8"
     android:paddingStart="@dimen/dp_8"

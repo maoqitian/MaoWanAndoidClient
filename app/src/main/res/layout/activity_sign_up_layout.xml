@@ -96,7 +96,7 @@
         android:text="@string/signin_now"
         android:textAllCaps="false"
         android:layout_marginEnd="@dimen/dp_32"
-        android:textColor="@color/white"
+        android:textColor="@android:color/white"
         android:textSize="@dimen/sp_16"
         android:textStyle="bold"
         android:layout_marginStart="@dimen/dp_32"

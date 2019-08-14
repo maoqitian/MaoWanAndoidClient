@@ -91,7 +91,7 @@
             android:id="@+id/tv_cancel_search"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/white"
+            android:textColor="@android:color/white"
             android:textSize="@dimen/sp_16"
             android:padding="@dimen/dp_10"
             android:text="取消"

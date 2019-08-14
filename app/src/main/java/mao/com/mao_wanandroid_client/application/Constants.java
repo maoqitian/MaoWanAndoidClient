@@ -132,4 +132,11 @@ public class Constants {
     public static final String SETTINGS_NIGHT_MODE_TYPE = "SETTINGS_NIGHT_MODE_TYPE";
     // 版本
     public static final String SETTINGS_VERSION_TYPE = "SETTINGS_VERSION_TYPE";
+
+    /**
+     * 首页多个请求响应 type
+     */
+    public static final String RESPONSE_BANNER_TYPE = "homePageBannerObservable";
+    public static final String RESPONSE_TOP_ARTICLE_TYPE = "homeTopArticleDataObservable";
+    public static final String RESPONSE_ARTICLE_TYPE = "homeArticleListDataObservable";
 }

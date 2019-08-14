@@ -25,7 +25,7 @@
         android:text="@string/reload_text"
         android:fontFamily="@font/calibri"
         android:textAllCaps="false"
-        android:textColor="@color/white"
+        android:textColor="@android:color/white"
         android:textSize="@dimen/sp_16"
         android:gravity="center"
         android:background="@drawable/bt_login_bg"

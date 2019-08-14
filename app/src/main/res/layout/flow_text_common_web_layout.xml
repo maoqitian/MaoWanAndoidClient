@@ -9,7 +9,7 @@
     android:ellipsize="end"
     android:textSize="@dimen/sp_18"
     android:fontFamily="@font/calibri"
-    android:textColor="@color/white"
+    android:textColor="@android:color/white"
     android:layout_marginTop="@dimen/dp_8"
     android:layout_marginEnd="@dimen/dp_8"
     android:paddingStart="@dimen/dp_8"

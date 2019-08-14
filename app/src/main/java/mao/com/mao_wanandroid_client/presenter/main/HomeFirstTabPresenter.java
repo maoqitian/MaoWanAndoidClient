@@ -3,12 +3,16 @@ package mao.com.mao_wanandroid_client.presenter.main;
 
 import android.util.Log;
 
+import java.util.HashMap;
 import java.util.List;
 
 import javax.inject.Inject;
 
 import io.reactivex.Observable;
 import io.reactivex.functions.Consumer;
+import io.reactivex.functions.Function3;
+import io.reactivex.internal.observers.BlockingBaseObserver;
+import mao.com.mao_wanandroid_client.application.Constants;
 import mao.com.mao_wanandroid_client.base.presenter.RxBasePresenter;
 import mao.com.mao_wanandroid_client.compoent.RxBus;
 import mao.com.mao_wanandroid_client.compoent.event.LoginStatusEvent;
@@ -47,11 +51,14 @@ public class HomeFirstTabPresenter extends RxBasePresenter<HomePageFirstTabContr
                 // 登录成功 重新加载数据
                 Log.e("毛麒添","登录事件");
                 if(loginStatusEvent.isLogin()){ //登录
-                    getAllHomePageData(loginStatusEvent.isLogin());
+                    getHomeFirstPageData(loginStatusEvent.isLogin());
+                    //getAllHomePageData(loginStatusEvent.isLogin());
                 }else if(!loginStatusEvent.isLogin() && loginStatusEvent.isSignOut()){ //退出登录
-                    getAllHomePageData(loginStatusEvent.isSignOut());
+                    //getAllHomePageData(loginStatusEvent.isSignOut());
+                    getHomeFirstPageData(loginStatusEvent.isSignOut());
                 }else {
-                    getAllHomePageData(false);
+                    getHomeFirstPageData(false);
+                    //getAllHomePageData(false);
                 }
             }
         }));
@@ -60,9 +67,59 @@ public class HomeFirstTabPresenter extends RxBasePresenter<HomePageFirstTabContr
 
     @Override
     public void getHomeFirstPageData(boolean isRefreshData) {
+        Observable<ResponseBody<List<HomePageBannerModel>>> homePageBannerObservable = mDataClient.GetHomePageBannerData();
+        Observable<ResponseBody<List<HomeArticleData>>> homeTopArticleDataObservable = mDataClient.HomeTopArticleData();
+        Observable<ResponseBody<HomeArticleListData>> homeArticleListDataObservable = mDataClient.HomeArticleListData(0);
+        //通过 Observable.zip组合首页 加载的各种数据
+            addEventSubscribe(Observable.zip(homePageBannerObservable, homeTopArticleDataObservable, homeArticleListDataObservable,
+                    new Function3<ResponseBody<List<HomePageBannerModel>>, ResponseBody<List<HomeArticleData>>, ResponseBody<HomeArticleListData>, HashMap<String, Object>>() {
+                        @Override
+                        public HashMap<String, Object> apply( ResponseBody<List<HomePageBannerModel>> homePageBannerResponseBody, ResponseBody<List<HomeArticleData>> homeTopArticleResponseBody, ResponseBody<HomeArticleListData> homeArticleListResponseBody) throws Exception {
+                            //组合数据
+                            return makeResponseDataMap(homePageBannerResponseBody,homeTopArticleResponseBody,homeArticleListResponseBody);
+                        }
+                    }).compose(RxSchedulers.observableIO2Main())
+                    .subscribeWith(new BlockingBaseObserver<HashMap<String, Object>>() {
+                        @Override
+                        public void onNext(HashMap<String, Object> responseBodyHashMap) {
+                            ResponseBody<List<HomePageBannerModel>> homePageBannerResponseBody = (ResponseBody<List<HomePageBannerModel>>) responseBodyHashMap.get(Constants.RESPONSE_BANNER_TYPE);
+                            ResponseBody<List<HomeArticleData>> homeTopArticleResponseBody = (ResponseBody<List<HomeArticleData>>) responseBodyHashMap.get(Constants.RESPONSE_TOP_ARTICLE_TYPE);
+                            ResponseBody<HomeArticleListData> homeArticleListResponseBody = (ResponseBody<HomeArticleListData>) responseBodyHashMap.get(Constants.RESPONSE_ARTICLE_TYPE);
+                            if(homePageBannerResponseBody!=null){
+                                mView.showHomePageBanner(isRefreshData,homePageBannerResponseBody.getData());
+                            }
+                            if(homeTopArticleResponseBody!=null){
+                                mView.showTopArticleList(homeTopArticleResponseBody.getData());
+                            }
+                            if(homeArticleListResponseBody!=null){
+                                curPage = homeArticleListResponseBody.getData().getCurPage();
+                                mView.showHomeArticleList(isRefreshData,homeArticleListResponseBody.getData());
+                            }
+                        }
+                        @Override
+                        public void onError(Throwable e) {
+                            mView.showError();
+                        }
+                    }));
+
+    }
+
+    private HashMap<String, Object> makeResponseDataMap(ResponseBody<List<HomePageBannerModel>> homePageBannerData,
+                                                        ResponseBody<List<HomeArticleData>> homeTopArticleData,
+                                                        ResponseBody<HomeArticleListData> homeArticleListData){
+        HashMap<String, Object> responseMap= new HashMap<>();
+        responseMap.put(Constants.RESPONSE_BANNER_TYPE,homePageBannerData);
+        responseMap.put(Constants.RESPONSE_TOP_ARTICLE_TYPE,homeTopArticleData);
+        responseMap.put(Constants.RESPONSE_ARTICLE_TYPE,homeArticleListData);
+        return responseMap;
+
+    }
+
+    /*@Override
+    public void getHomeFirstPageData(boolean isRefreshData) {
         if(mDataClient.getLoginStatus()){
             //已经登录过，自动登录
-            Log.e("毛麒添","自动登录密码 ：" + mDataClient.getLoginPassword());
+            //Log.e("毛麒添","自动登录密码 ：" + mDataClient.getLoginPassword());
             Observable<ResponseBody<LoginData>> loginDataObservable = mDataClient.postLoginData(mDataClient.getLoginUserName(),mDataClient.getLoginPassword());
             loginDataObservable.compose(RxSchedulers.observableIO2Main())
                     .subscribe(new BaseObserver<LoginData>() {
@@ -80,13 +137,13 @@ public class HomeFirstTabPresenter extends RxBasePresenter<HomePageFirstTabContr
                     });
         }
         getAllHomePageData(isRefreshData);
-    }
+    }*/
 
-    private void getAllHomePageData(boolean isRefreshData) {
+    /*private void getAllHomePageData(boolean isRefreshData) {
         //首页第一个 tab  banner
-        Observable<ResponseBody<List<HomePageBannerModel>>> responseBodyObservable = mDataClient.GetHomePageBannerData();
+        Observable<ResponseBody<List<HomePageBannerModel>>> homePageBannerObservable = mDataClient.GetHomePageBannerData();
         //获取 首页Banner 数据
-        responseBodyObservable.compose(RxSchedulers.observableIO2Main())
+        homePageBannerObservable.compose(RxSchedulers.observableIO2Main())
                 .subscribe(new BaseObserver<List<HomePageBannerModel>>() {
                     @Override
                     public void onSuccess(List<HomePageBannerModel> result) {
@@ -114,11 +171,10 @@ public class HomeFirstTabPresenter extends RxBasePresenter<HomePageFirstTabContr
                                         }
                                     });
 
-        //Observable.zip()
 
         getHomeArticleListData(0,isRefreshData);
 
-    }
+    }*/
 
     private void getHomeArticleListData(int pageNum,boolean isRefreshData) {
         //首页第一个 tab  文章
@@ -137,24 +193,6 @@ public class HomeFirstTabPresenter extends RxBasePresenter<HomePageFirstTabContr
                     }
                 });
     }
-
-    //首页第二个 tab
-   /* @Override
-    public void getHomeLatestProjectListDate() {
-        Observable<ResponseBody<HomeArticleListData>> responseBodyObservable = mDataClient.HomeArticleListProjectData(0);
-        responseBodyObservable.compose(RxSchedulers.observableIO2Main())
-                .subscribe(new BaseObserver<HomeArticleListData>() {
-                    @Override
-                    public void onSuccess(HomeArticleListData result) {
-                        mView.showHomeLatestProjectList(result);
-                    }
-
-                    @Override
-                    public void onFailure(Throwable e, String errorMsg) {
-
-                    }
-                });
-    }*/
 
     /*@Override
     public void addArticleCollect(int position,HomeArticleData homeArticleData) {
@@ -196,7 +234,8 @@ public class HomeFirstTabPresenter extends RxBasePresenter<HomePageFirstTabContr
     //下拉刷新
     @Override
     public void getRefreshPage() {
-        getAllHomePageData(true);
+        getHomeFirstPageData(true);
+        //getAllHomePageData(true);
     }
     //上拉加载更多
     @Override
