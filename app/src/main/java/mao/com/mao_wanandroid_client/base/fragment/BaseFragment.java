@@ -76,11 +76,6 @@ public abstract class BaseFragment <T extends AbstractBasePresenter> extends Sim
     }
 
     @Override
-    public void showReload() {
-
-    }
-
-    @Override
     public void showErrorMsg(String errorMsg) {
         Toast.makeText(getContext(),errorMsg,Toast.LENGTH_SHORT).show();
     }
@@ -97,17 +92,6 @@ public abstract class BaseFragment <T extends AbstractBasePresenter> extends Sim
 
     @Override
     public void showLogoutView() {
-
-    }
-
-
-    @Override
-    public void showToast(String message) {
-
-    }
-
-    @Override
-    public void showSnackBar(String message) {
 
     }
 

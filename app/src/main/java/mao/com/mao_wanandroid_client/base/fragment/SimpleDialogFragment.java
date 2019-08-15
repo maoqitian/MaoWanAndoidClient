@@ -17,7 +17,7 @@ import me.yokeyword.fragmentation.SupportFragment;
 
 /**
  * @author maoqitian
- * @Description 无 MVP Fragment 基类  DialogFragment （fragmentation）
+ * @Description  Fragment 基类  DialogFragment （fragmentation）
  * @Time 2018/12/14 0014 22:43
  */
 public abstract class SimpleDialogFragment extends DialogFragment {
@@ -29,7 +29,7 @@ public abstract class SimpleDialogFragment extends DialogFragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        //该方式有边距
+        //该方式 DialogFragment 有边距
         /*//去掉dialog的标题，需要在setContentView()之前
         this.getDialog().requestWindowFeature(Window.FEATURE_NO_TITLE);
         Window window = this.getDialog().getWindow();

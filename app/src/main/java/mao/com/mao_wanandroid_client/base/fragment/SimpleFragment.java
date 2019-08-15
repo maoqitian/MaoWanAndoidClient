@@ -19,7 +19,7 @@ import me.yokeyword.fragmentation.SupportFragment;
 
 /**
  * @author maoqitian
- * @Description 无 MVP Fragment 基类  继承SupportFragment （fragmentation）
+ * @Description  Fragment 基类  继承SupportFragment （fragmentation）
  * @Time 2018/12/14 0014 22:43
  */
 public abstract class SimpleFragment extends SupportFragment {

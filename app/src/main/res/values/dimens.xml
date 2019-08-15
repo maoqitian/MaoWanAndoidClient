@@ -11,6 +11,7 @@
     <dimen name="dp_5">5dp</dimen>
     <dimen name="dp_7">7dp</dimen>
     <dimen name="dp_8">8dp</dimen>
+    <dimen name="dp_9">9dp</dimen>
     <dimen name="dp_10">10dp</dimen>
     <dimen name="dp_12">12dp</dimen>
     <dimen name="dp_15">15dp</dimen>
@@ -30,7 +31,9 @@
     <dimen name="dp_96">96dp</dimen>
     <dimen name="dp_100">100dp</dimen>
     <dimen name="dp_120">120dp</dimen>
+    <dimen name="dp_135">135dp</dimen>
     <dimen name="dp_150">150dp</dimen>
+    <dimen name="dp_220">220dp</dimen>
     <dimen name="dp_250">250dp</dimen>
     <dimen name="dp_350">350dp</dimen>
     <!--sp 尺寸-->

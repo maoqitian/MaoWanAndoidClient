@@ -85,10 +85,6 @@ public abstract class BaseDialogFragment<T extends AbstractBasePresenter> extend
 
     }
 
-    @Override
-    public void showReload() {
-
-    }
 
     @Override
     public void showErrorMsg(String errorMsg) {
@@ -103,17 +99,6 @@ public abstract class BaseDialogFragment<T extends AbstractBasePresenter> extend
 
     @Override
     public void showLogoutView() {
-
-    }
-
-
-    @Override
-    public void showToast(String message) {
-
-    }
-
-    @Override
-    public void showSnackBar(String message) {
 
     }
 

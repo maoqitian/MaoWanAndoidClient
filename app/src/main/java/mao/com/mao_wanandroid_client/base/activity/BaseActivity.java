@@ -73,10 +73,6 @@ public abstract class  BaseActivity <T extends AbstractBasePresenter> extends Ab
 
     }
 
-    @Override
-    public void showReload() {
-
-    }
 
     @Override
     public void showErrorMsg(String errorMsg) {
@@ -101,16 +97,6 @@ public abstract class  BaseActivity <T extends AbstractBasePresenter> extends Ab
 
     }
 
-
-    @Override
-    public void showToast(String message) {
-
-    }
-
-    @Override
-    public void showSnackBar(String message) {
-
-    }
 
     @Override
     protected void initToolbar() {

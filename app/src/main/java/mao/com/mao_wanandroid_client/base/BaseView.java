@@ -9,14 +9,14 @@ import mao.com.mao_wanandroid_client.model.modelbean.home.HomeArticleData;
  */
 public interface BaseView {
 
-    //頁面状态
+    /**
+     * 页面状态
+     */
     static final int STATE_NORMAL = 0x00;
     static final int STATE_LOADING = 0x01;
     static final int STATE_ERROR = 0x02;
 
-    /**
-     * 页面状态
-     */
+
     /**
      * 正常显示
      */
@@ -32,10 +32,6 @@ public interface BaseView {
      */
     void showLoading();
 
-    /**
-     * 重新加载
-     */
-    void showReload();
 
     /**
      * 显示错误信息
@@ -58,20 +54,6 @@ public interface BaseView {
      * 显示登出页面
      */
     void showLogoutView();
-
-    /**
-     * Show toast
-     *
-     * @param message Message
-     */
-    void showToast(String message);
-
-    /**
-     * Show snackBar
-     *
-     * @param message Message
-     */
-    void showSnackBar(String message);
 
     /**
      * 页面重新加载
