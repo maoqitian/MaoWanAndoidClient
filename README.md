@@ -8,30 +8,11 @@
 ## API
 [**玩Android开放API**](https://www.wanandroid.com/blog/show/2)
 ## 项目gif、截图展示
-<img src="https://github.com/maoqitian/MaoWanAndoidClient/raw/master/preview/show.gif"  height="300" width="170">
-<img src="https://github.com/maoqitian/MaoWanAndoidClient/raw/master/preview/homePage.jpg"  height="300" width="170"> 
-<img src="https://github.com/maoqitian/MaoWanAndoidClient/raw/master/preview/knowledge.jpg"  height="300" width="170">
-<img src="https://github.com/maoqitian/MaoWanAndoidClient/raw/master/preview/search.jpg"  height="300" width="170">
-<img src="https://github.com/maoqitian/MaoMdPhoto/raw/master/WanAndroid/navigation.jpg"  height="300" width="170">
+<img src="https://github.com/maoqitian/MaoWanAndoidClient/raw/master/preview/show.gif"  height="300" width="170"><img src="https://github.com/maoqitian/MaoWanAndoidClient/raw/master/preview/homePage.jpg"  height="300" width="170"> <img src="https://github.com/maoqitian/MaoWanAndoidClient/raw/master/preview/knowledge.jpg"  height="300" width="170"><img src="https://github.com/maoqitian/MaoWanAndoidClient/raw/master/preview/search.jpg"  height="300" width="170"><img src="https://github.com/maoqitian/MaoMdPhoto/raw/master/WanAndroid/navigation.jpg"  height="300" width="170">
+<img src="https://github.com/maoqitian/MaoWanAndoidClient/raw/master/preview/project.jpg"  height="300" width="170"><img src="https://github.com/maoqitian/MaoWanAndoidClient/raw/master/preview/setting.jpg"  height="300" width="170"><img src="https://github.com/maoqitian/MaoWanAndoidClient/raw/master/preview/officialA.jpg"  height="300" width="170"><img src="https://github.com/maoqitian/MaoWanAndoidClient/raw/master/preview/commonWeb.jpg"  height="300" width="170"><img src="https://github.com/maoqitian/MaoWanAndoidClient/raw/master/preview/collect.jpg"  height="300" width="170">
+<img src="https://github.com/maoqitian/MaoWanAndoidClient/raw/master/preview/drawer.jpg"  height="300" width="170"><img src="https://github.com/maoqitian/MaoWanAndoidClient/raw/master/preview/login.jpg"  height="300" width="170"><img src="https://github.com/maoqitian/MaoWanAndoidClient/raw/master/preview/loginout.jpg"  height="300" width="170"><img src="https://github.com/maoqitian/MaoWanAndoidClient/raw/master/preview/webviewPage.jpg"  height="300" width="170"><img src="https://github.com/maoqitian/MaoWanAndoidClient/raw/master/preview/homeDark.jpg"  height="300" width="170">
+<img src="https://github.com/maoqitian/MaoWanAndoidClient/raw/master/preview/projectDark.jpg"  height="300" width="170"><img src="https://github.com/maoqitian/MaoWanAndoidClient/raw/master/preview/searchDark.jpg"  height="300" width="170"><img src="https://github.com/maoqitian/MaoWanAndoidClient/raw/master/preview/knowledgeDark.jpg"  height="300" width="170">
 
-<img src="https://github.com/maoqitian/MaoWanAndoidClient/raw/master/preview/project.jpg"  height="300" width="170">
-<img src="https://github.com/maoqitian/MaoWanAndoidClient/raw/master/preview/setting.jpg"  height="300" width="170">
-<img src="https://github.com/maoqitian/MaoWanAndoidClient/raw/master/preview/officialA.jpg"  height="300" width="170">
-<img src="https://github.com/maoqitian/MaoWanAndoidClient/raw/master/preview/commonWeb.jpg"  height="300" width="170">
-<img src="https://github.com/maoqitian/MaoWanAndoidClient/raw/master/preview/collect.jpg"  height="300" width="170">
-
-<img src="https://github.com/maoqitian/MaoWanAndoidClient/raw/master/preview/drawer.jpg"  height="300" width="170">
-<img src="https://github.com/maoqitian/MaoWanAndoidClient/raw/master/preview/login.jpg"  height="300" width="170">
-<img src="https://github.com/maoqitian/MaoWanAndoidClient/raw/master/preview/loginout.jpg"  height="300" width="170">
-<img src="https://github.com/maoqitian/MaoWanAndoidClient/raw/master/preview/webviewPage.jpg"  height="300" width="170">
-<img src="https://github.com/maoqitian/MaoWanAndoidClient/raw/master/preview/homeDark.jpg"  height="300" width="170">
-
-
-<img src="https://github.com/maoqitian/MaoWanAndoidClient/raw/master/preview/projectDark.jpg"  height="300" width="170">
-<img src="https://github.com/maoqitian/MaoWanAndoidClient/raw/master/preview/searchDark.jpg"  height="300" width="170">
-<img src="https://github.com/maoqitian/MaoWanAndoidClient/raw/master/preview/knowledgeDark.jpg"  height="300" width="170">
-
-![webviewPage](https://note.youdao.com/favicon.ico)
 ## 项目功能
 ### 首页
 - 首页文章列表
@@ -74,11 +55,8 @@
 - 版本信息
 - 退出登录
 
-## 版本
-
-
-
 # Thanks
+- 感谢所有优秀的开源项目
 ## 参考项目
 - [GeekNews](https://github.com/codeestX/GeekNews)
 
