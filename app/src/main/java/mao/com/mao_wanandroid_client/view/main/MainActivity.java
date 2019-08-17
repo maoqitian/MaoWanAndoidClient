@@ -139,7 +139,6 @@ public class MainActivity extends BaseActivity<MainPresenter>
         View headerView = navigationView.inflateHeaderView(R.layout.nav_header_main);
         userImageIcon = headerView.findViewById(R.id.imageView_user_icon);
         userImageIcon.setOnClickListener(this);
-        bottomNavigationView.setItemIconSize(70);
         bottomNavigationView.setOnNavigationItemSelectedListener(this);
 
         Menu menu = bottomNavigationView.getMenu();
