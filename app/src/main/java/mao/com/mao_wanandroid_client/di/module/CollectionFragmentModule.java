@@ -11,7 +11,7 @@ import mao.com.mao_wanandroid_client.presenter.drawer.CollectionPresenter;
 
 /**
  * @author maoqitian
- * @Description SettingsFragment 可以提供的注入对象Module
+ * @Description CollectionFragment 可以提供的注入对象Module
  * @Time 2019/3/27 0027 23:59
  */
 @Module

@@ -27,7 +27,7 @@ import mao.com.mao_wanandroid_client.view.drawer.adapter.CollectionAdapter;
 
 /**
  * @author maoqitian
- * @Description: 收藏 Fragment
+ * @Description: 收藏文章 Fragment
  * @date 2019/7/26 0026 15:50
  */
 public class CollectionFragment extends BaseFragment<CollectionPresenter>

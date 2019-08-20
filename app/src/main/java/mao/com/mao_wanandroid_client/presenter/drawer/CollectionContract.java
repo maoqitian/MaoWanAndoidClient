@@ -10,7 +10,7 @@ import mao.com.mao_wanandroid_client.model.modelbean.collect.CollectData;
 
 /**
  * @author maoqitian
- * @Description:
+ * @Description: 收藏文章
  * @date 2019/7/26 0026 16:04
  */
 public interface CollectionContract {

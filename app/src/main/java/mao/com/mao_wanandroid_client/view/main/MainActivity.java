@@ -37,6 +37,7 @@ import mao.com.mao_wanandroid_client.utils.NavHelper;
 import mao.com.mao_wanandroid_client.utils.StartDetailPage;
 import mao.com.mao_wanandroid_client.utils.StatusBarUtil;
 import mao.com.mao_wanandroid_client.view.drawer.fragment.CollectionFragment;
+import mao.com.mao_wanandroid_client.view.drawer.fragment.CollectionPageFragment;
 import mao.com.mao_wanandroid_client.view.drawer.fragment.CommonWebFragment;
 import mao.com.mao_wanandroid_client.view.drawer.fragment.SettingsFragment;
 import mao.com.mao_wanandroid_client.view.main.fragment.HomePageFragment;
@@ -121,7 +122,7 @@ public class MainActivity extends BaseActivity<MainPresenter>
                .add(R.id.tab_official_accounts,new NavHelper.Tab<String>(OfficialAccountsPageFragment.class,getString(R.string.official_accounts),Constants.TAG_OFFICIAL))
                .add(R.id.tab_navigation,new NavHelper.Tab<String>(NavigationFragment.class,getString(R.string.navigation),Constants.TAG_NAVIGATION))
                .add(R.id.tab_project,new NavHelper.Tab<String>(ProjectFragment.class,getString(R.string.project),Constants.TAG_PROJECT))
-               .add(R.id.collect_page,new NavHelper.Tab<String>(CollectionFragment.class,getString(R.string.nav_collect),Constants.TAG_COLLECTION));
+               .add(R.id.collect_page,new NavHelper.Tab<String>(CollectionPageFragment.class,getString(R.string.nav_collect),Constants.TAG_COLLECTION));
     }
 
     private void initView() {
