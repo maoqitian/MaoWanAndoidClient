@@ -12,25 +12,23 @@ import mao.com.mao_wanandroid_client.R;
 
 /**
  * @author maoqitian
- * @Description 收藏文章 列表 item Holder
+ * @Description 收藏 网站 item Holder
  * @Time 2019/5/19 0019 18:13
  */
-public class CollectionViewItemHolder extends BaseViewHolder {
+public class CollectionWebItemHolder extends BaseViewHolder {
 
-    @BindView(R.id.collection_author_icon)
+    @BindView(R.id.collection_web_author_icon)
     ImageView mImageAuthor;
-    @BindView(R.id.more_collect)
-    ImageView mImageCollect;
-    @BindView(R.id.tv_collection_author_name)
+   /* @BindView(R.id.more_collect)
+    ImageView mImageCollect;*/
+    @BindView(R.id.tv_collection_web_author_name)
     TextView mArticalAuthor;
-    @BindView(R.id.tv_collection_article_title)
+    @BindView(R.id.tv_collection_web_article_title)
     TextView mArticalTitle;
-    @BindView(R.id.collection_super_chapterName)
-    TextView mSuperChapterName;
-    @BindView(R.id.tv_collection_date)
-    TextView mArticalDate;
+   /* @BindView(R.id.collection_super_chapterName)
+    TextView mSuperChapterName;*/
 
-    public CollectionViewItemHolder(View view) {
+    public CollectionWebItemHolder(View view) {
         super(view);
         ButterKnife.bind(this,view);
     }

@@ -2,7 +2,7 @@ package mao.com.mao_wanandroid_client.model.modelbean.webmark;
 
 /**
  * @author maoqitian
- * @Description 常用网站
+ * @Description 常用网站 收藏网站
  * @Time 2018/9/27 0027 23:54
  */
 public class webBookMark {

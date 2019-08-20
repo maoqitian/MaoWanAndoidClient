@@ -69,6 +69,7 @@ public class HomePageFragment extends BaseFragment<HomePagePresenter>
         }*/
         mFragments.add(HomeFirstTabFragment.newInstance(mTitle.get(0)));
         mFragments.add(HomeSecondTabFragment.newInstance(mTitle.get(1),-1));
+        //下划线间距
         ToolsUtils.setIndicatorWidth(mHomeTab,getResources().getDimensionPixelSize(R.dimen.dp_30));
        /* mEhomeTab.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override

@@ -11,7 +11,6 @@ import mao.com.mao_wanandroid_client.base.presenter.AbstractBasePresenter;
 public interface CollectionPageContract {
 
     interface CollectionPageView extends BaseView{
-
     }
     
 

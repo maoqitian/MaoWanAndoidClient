@@ -1,5 +1,6 @@
 package mao.com.mao_wanandroid_client.view.drawer.fragment;
 
+import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -33,7 +34,7 @@ import mao.com.mao_wanandroid_client.view.drawer.adapter.CollectionAdapter;
 public class CollectionFragment extends BaseFragment<CollectionPresenter>
         implements CollectionContract.CollectionView, BaseQuickAdapter.OnItemClickListener {
 
-    //收藏数据
+    //收藏文章数据
     List<CollectData> mCollectDataList;
 
     @BindView(R.id.collection_recyclerview)
@@ -46,6 +47,14 @@ public class CollectionFragment extends BaseFragment<CollectionPresenter>
 
     //下拉刷新头部
     private MaterialHeader mMaterialHeader;
+
+    public static CollectionFragment newInstance() {
+
+        Bundle args = new Bundle();
+        CollectionFragment fragment = new CollectionFragment();
+        fragment.setArguments(args);
+        return fragment;
+    }
 
     @Override
     protected void initView() {

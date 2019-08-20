@@ -64,7 +64,8 @@
     <string name="own_collect">my collect</string>
     <string name="common_web">common_web</string>
     <string name="exit_again">Exit the app again</string>
-
+    <string name="collection_article" >Collection Article</string>
+    <string name="collection_web" >Collection Web</string>
     <string name="loading">Loading…</string>
     <string name="load_failed">Load failed. click to retry!</string>
     <string name="load_failed_no_network">Oops, network is lost!  click to retry</string>

@@ -12,7 +12,7 @@ import mao.com.mao_wanandroid_client.view.drawer.holder.CollectionViewItemHolder
 
 /**
  * @author maoqitian
- * @Description
+ * @Description 收藏文章 Adapter
  * @Time 2019/7/28 0028 17:14
  */
 public class CollectionAdapter extends BaseQuickAdapter<CollectData,CollectionViewItemHolder> {
@@ -32,7 +32,7 @@ public class CollectionAdapter extends BaseQuickAdapter<CollectData,CollectionVi
     @Override
     protected void convert(CollectionViewItemHolder helper, CollectData item) {
         helper.setText(R.id.tv_collection_author_name,item.getAuthor())
-                .setText(R.id.tv_collection_artical_title,item.getTitle())
+                .setText(R.id.tv_collection_article_title,item.getTitle())
                 .setText(R.id.collection_super_chapterName,item.getChapterName())
                 .setText(R.id.tv_collection_date,item.getNiceDate())
                 .addOnClickListener(R.id.more_collect)

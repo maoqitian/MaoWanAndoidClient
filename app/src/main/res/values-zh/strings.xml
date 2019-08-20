@@ -64,7 +64,8 @@
     <string name="own_collect">我的收藏</string>
     <string name="common_web">常用网站</string>
     <string name="exit_again">再点一次退出应用</string>
-
+    <string name="collection_article" >收藏文章</string>
+    <string name="collection_web" >收藏网站</string>
     <string name="loading">Loading…</string>
     <string name="load_failed">加载失败了\(╯-╰)/</string>
     <string name="load_failed_no_network">Oops, network is lost!  click to retry</string>
