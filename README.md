@@ -2,9 +2,10 @@
 [![License](https://img.shields.io/badge/license-Apache%202-green.svg)](https://www.apache.org/licenses/LICENSE-2.0)
 <img src="https://img.shields.io/badge/Android-1.0.0-blue.svg" align=left />
 ## 项目简介
-首先感谢[**鸿洋**](https://github.com/hongyangAndroid)大佬提供的[玩Android开放API](https://www.wanandroid.com/blog/show/2)，这是一款Android原生的开源**玩Android**客户端App，提供更丰富的功能，更好体验，旨在更好的浏览[https://www.wanandroid.com/](https://www.wanandroid.com/)网站内容，更好的在手机上进行学习。项目使用**Retrofit2 + RxJava2 + Dagger2 +MVP+RxBus**架构，尽量使用**Material Design**控件进行开发。如果觉得本项目对你有帮助，希望您给我一个点一个**Star**. 
+- 首先感谢[**鸿洋**](https://github.com/hongyangAndroid)大佬提供的[玩Android开放API](https://www.wanandroid.com/blog/show/2)，这是一款Android原生的开源**玩Android**客户端App，提供更丰富的功能，更好体验，旨在更好的浏览[https://www.wanandroid.com/](https://www.wanandroid.com/)网站内容，更好的在手机上进行学习。项目使用**Retrofit2 + RxJava2 + Dagger2 +MVP+RxBus**架构，尽量使用**Material Design**控件进行开发。如果觉得本项目对你有帮助，希望您给我一个点一个**Star**. 
+- clone clone 本项目之后需编译生成dagger对应文件。
 ## 项目基本架构
-![MVP-WanAndroid-Architecture](https://github.com/maoqitian/MaoMdPhoto/raw/master/WanAndroid/MVP-WanAndroid-Architecture.jpg)
+![MVP-WanAndroid-Architecture](https://github.com/maoqitian/MaoMdPhoto/raw/master/WanAndroid/MVP-WanAndroid-Architecture1.jpg)
 ## API
 [**玩Android开放API**](https://www.wanandroid.com/blog/show/2)
 ## 项目gif、截图展示
