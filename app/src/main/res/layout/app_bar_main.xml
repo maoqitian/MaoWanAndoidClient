@@ -49,7 +49,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
         android:background="@color/viewBackground"
-        app:menu="@menu/main_bottom_navigation"
+        app:menu="@menu/menu_main_bottom_navigation"
         app:itemHorizontalTranslationEnabled="false"
         app:labelVisibilityMode="labeled"
         >
