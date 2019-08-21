@@ -10,6 +10,7 @@ import mao.com.mao_wanandroid_client.model.http.DataClient;
 import mao.com.mao_wanandroid_client.model.http.control.BaseObserver;
 import mao.com.mao_wanandroid_client.model.http.control.RxSchedulers;
 import mao.com.mao_wanandroid_client.model.modelbean.ResponseBody;
+import mao.com.mao_wanandroid_client.model.modelbean.webmark.webBookMark;
 
 /**
  * @author maoqitian
@@ -33,6 +34,18 @@ public class CollectionWebPresenter extends RxBasePresenter<CollectionWebContrac
 
     @Override
     public void getCollectWebData() {
+        Observable<ResponseBody<List<webBookMark>>> webBookMark = mDataClient.getWebBookMark();
+        webBookMark.compose(RxSchedulers.observableIO2Main())
+                   .subscribe(new BaseObserver<List<webBookMark>>() {
+                       @Override
+                       public void onSuccess(List<webBookMark> result) {
+                           mView.showCollectionWebData(result);
+                       }
 
+                       @Override
+                       public void onFailure(Throwable e, String errorMsg) {
+
+                       }
+                   });
     }
 }

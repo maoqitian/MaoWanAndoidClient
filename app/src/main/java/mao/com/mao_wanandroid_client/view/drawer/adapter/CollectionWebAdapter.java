@@ -6,6 +6,7 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 
 import java.util.List;
 
+import mao.com.mao_wanandroid_client.R;
 import mao.com.mao_wanandroid_client.model.modelbean.webmark.webBookMark;
 import mao.com.mao_wanandroid_client.view.drawer.holder.CollectionWebItemHolder;
 
@@ -31,6 +32,6 @@ public class CollectionWebAdapter extends BaseQuickAdapter<webBookMark, Collecti
 
     @Override
     protected void convert(CollectionWebItemHolder helper, webBookMark item) {
-
+          helper.setText(R.id.tv_collection_web_article_title,item.getName());
     }
 }

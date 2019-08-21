@@ -16,7 +16,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <ImageView
+        <!--<ImageView
             android:id="@+id/collection_web_author_icon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -27,9 +27,9 @@
             app:layout_constraintRight_toLeftOf="@id/tv_collection_web_author_name"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:ignore="MissingConstraints" />
+            tools:ignore="MissingConstraints" />-->
 
-        <TextView
+       <!-- <TextView
             android:id="@+id/tv_collection_web_author_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -41,26 +41,26 @@
             app:layout_constraintLeft_toRightOf="@+id/collection_web_author_icon"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.0"
-            tools:ignore="MissingConstraints" />
+            tools:ignore="MissingConstraints" />-->
 
-        <!--<ImageView
-            android:id="@+id/more_collect"
+        <ImageView
+            android:id="@+id/iv_delete_web"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dp_5"
+            android:padding="@dimen/dp_5"
+            android:layout_marginTop="@dimen/dp_10"
             android:layout_marginEnd="@dimen/dp_10"
             android:layout_marginBottom="@dimen/dp_5"
-            android:src="@drawable/ic_more_vert_24dp"
+            android:src="@drawable/ic_trash"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            tools:ignore="MissingConstraints" />-->
+            tools:ignore="MissingConstraints" />
 
         <TextView
             android:id="@+id/tv_collection_web_article_title"
             android:layout_width="0dp"
             android:layout_height="@dimen/dp_45"
             android:layout_marginStart="@dimen/dp_16"
-            android:layout_marginTop="@dimen/dp_10"
             android:layout_marginEnd="@dimen/dp_16"
             android:layout_marginBottom="@dimen/dp_30"
             android:ellipsize="end"
@@ -68,10 +68,23 @@
             android:text="物品(尤指整套中的一件)，每日一问 View的onAttachedToWindow ,onDetachedFromWindow 调用时机，使用场景是什么？"
             android:textSize="@dimen/sp_16"
             android:textStyle="bold"
+            app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/collection_author_icon"
+            tools:ignore="MissingConstraints" />
+
+        <ImageView
+            android:id="@+id/iv_web_edit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp_13"
+            android:layout_marginEnd="@dimen/dp_10"
+            android:layout_marginBottom="@dimen/dp_5"
+            android:padding="@dimen/dp_5"
+            android:src="@drawable/ic_edit"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             tools:ignore="MissingConstraints" />
 
        <!-- <TextView

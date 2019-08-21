@@ -17,16 +17,16 @@ import mao.com.mao_wanandroid_client.R;
  */
 public class CollectionWebItemHolder extends BaseViewHolder {
 
-    @BindView(R.id.collection_web_author_icon)
+    /*@BindView(R.id.collection_web_author_icon)
     ImageView mImageAuthor;
-   /* @BindView(R.id.more_collect)
-    ImageView mImageCollect;*/
     @BindView(R.id.tv_collection_web_author_name)
-    TextView mArticalAuthor;
+    TextView mArticalAuthor;*/
     @BindView(R.id.tv_collection_web_article_title)
     TextView mArticalTitle;
-   /* @BindView(R.id.collection_super_chapterName)
-    TextView mSuperChapterName;*/
+    @BindView(R.id.iv_delete_web)
+    ImageView mImageDeleteWeb;
+    @BindView(R.id.iv_web_edit)
+    ImageView mImageWebEdit;
 
     public CollectionWebItemHolder(View view) {
         super(view);
