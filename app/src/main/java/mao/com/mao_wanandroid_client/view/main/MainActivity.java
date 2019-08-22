@@ -232,10 +232,10 @@ public class MainActivity extends BaseActivity<MainPresenter>
             //navigationView 选中
             navigationView.setCheckedItem(id);
         }
-        if(R.id.nav_settings == id){
+        /*if(R.id.nav_settings == id){
             //如果是设置 让其选中首页状态
             navigationView.setCheckedItem(R.id.nav_home);
-        }
+        }*/
         drawer.closeDrawer(GravityCompat.START);
         return mNavHelper.performClickMenu(id);
     }

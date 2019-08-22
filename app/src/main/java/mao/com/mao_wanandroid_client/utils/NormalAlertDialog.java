@@ -99,6 +99,36 @@ public class NormalAlertDialog {
     }
 
 
+    public void showAddCollectionDialog(Context context, View.OnClickListener cancelCollectionOnClick){
+        if (context == null) {
+            return;
+        }
+        if (bottomDialog == null) {
+            bottomDialog = new Dialog(context, R.style.BottomDialog);
+        }
+        View contentView = LayoutInflater.from(context).inflate(R.layout.bottom_alert_dialog, null);
+        bottomDialog.setContentView(contentView);
+        ViewGroup.LayoutParams layoutParams = contentView.getLayoutParams();
+        layoutParams.width = context.getResources().getDisplayMetrics().widthPixels;
+        contentView.setLayoutParams(layoutParams);
+        Window window = bottomDialog.getWindow();
+        if(window!=null){
+            window.setGravity(Gravity.CENTER);
+            window.setWindowAnimations(R.style.BottomInAndOutStyle);
+        }
+        LinearLayout cancelCollection = contentView.findViewById(R.id.ll_cancel_collection);
+        TextView tvCancelCancelDialog = contentView.findViewById(R.id.tv_cancel_dialog);
+        tvCancelCancelDialog.setOnClickListener(v -> {
+            if (bottomDialog != null) {
+                bottomDialog.cancel();
+                bottomDialog = null;
+            }
+        });
+        cancelCollection.setOnClickListener(cancelCollectionOnClick);
+        bottomDialog.show();
+    }
+
+
 
     public void cancelBottomDialog(){
         if (bottomDialog != null) {

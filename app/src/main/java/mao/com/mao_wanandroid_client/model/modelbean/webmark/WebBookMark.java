@@ -5,7 +5,7 @@ package mao.com.mao_wanandroid_client.model.modelbean.webmark;
  * @Description 常用网站 收藏网站
  * @Time 2018/9/27 0027 23:54
  */
-public class webBookMark {
+public class WebBookMark {
 
     /**
      * desc :
@@ -93,7 +93,7 @@ public class webBookMark {
 
     @Override
     public String toString() {
-        return "webBookMark{" +
+        return "WebBookMark{" +
                 "desc='" + desc + '\'' +
                 ", icon='" + icon + '\'' +
                 ", id=" + id +

@@ -7,7 +7,7 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 import java.util.List;
 
 import mao.com.mao_wanandroid_client.R;
-import mao.com.mao_wanandroid_client.model.modelbean.webmark.webBookMark;
+import mao.com.mao_wanandroid_client.model.modelbean.webmark.WebBookMark;
 import mao.com.mao_wanandroid_client.view.drawer.holder.CollectionWebItemHolder;
 
 /**
@@ -15,14 +15,14 @@ import mao.com.mao_wanandroid_client.view.drawer.holder.CollectionWebItemHolder;
  * @Description 收藏网站 Adapter
  * @Time 2019/8/20 0020 23:29
  */
-public class CollectionWebAdapter extends BaseQuickAdapter<webBookMark, CollectionWebItemHolder> {
+public class CollectionWebAdapter extends BaseQuickAdapter<WebBookMark, CollectionWebItemHolder> {
 
 
-    public CollectionWebAdapter(int layoutResId, @Nullable List<webBookMark> data) {
+    public CollectionWebAdapter(int layoutResId, @Nullable List<WebBookMark> data) {
         super(layoutResId, data);
     }
 
-    public CollectionWebAdapter(@Nullable List<webBookMark> data) {
+    public CollectionWebAdapter(@Nullable List<WebBookMark> data) {
         super(data);
     }
 
@@ -31,7 +31,9 @@ public class CollectionWebAdapter extends BaseQuickAdapter<webBookMark, Collecti
     }
 
     @Override
-    protected void convert(CollectionWebItemHolder helper, webBookMark item) {
-          helper.setText(R.id.tv_collection_web_article_title,item.getName());
+    protected void convert(CollectionWebItemHolder helper, WebBookMark item) {
+          helper.setText(R.id.tv_collection_web_article_title,item.getName())
+          .addOnClickListener(R.id.webview_detail)
+          .addOnClickListener(R.id.iv_web_edit);
     }
 }

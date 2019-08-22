@@ -20,7 +20,7 @@ import mao.com.mao_wanandroid_client.model.modelbean.project.ProjectClassifyData
 import mao.com.mao_wanandroid_client.model.modelbean.project.ProjectListData;
 import mao.com.mao_wanandroid_client.model.modelbean.search.HotKeyData;
 import mao.com.mao_wanandroid_client.model.modelbean.knowlegetree.KnowledgeHierarchyData;
-import mao.com.mao_wanandroid_client.model.modelbean.webmark.webBookMark;
+import mao.com.mao_wanandroid_client.model.modelbean.webmark.WebBookMark;
 
 
 /**
@@ -226,7 +226,7 @@ public class IHttpHelperImpl implements IHttpHelper{
      * 获取收藏网站列表
      */
     @Override
-    public Observable<ResponseBody<List<webBookMark>>> getWebBookMark() {
+    public Observable<ResponseBody<List<WebBookMark>>> getWebBookMark() {
         return getApiServiceGson().getWebBookMark();
     }
     /**
@@ -236,7 +236,7 @@ public class IHttpHelperImpl implements IHttpHelper{
      * @return
      */
     @Override
-    public Observable<ResponseBody<webBookMark>> addWebBookMark(String name, String link) {
+    public Observable<ResponseBody<WebBookMark>> addWebBookMark(String name, String link) {
         return getApiServiceGson().addWebBookMark(name,link);
     }
     /**
@@ -247,7 +247,7 @@ public class IHttpHelperImpl implements IHttpHelper{
      * @return
      */
     @Override
-    public Observable<ResponseBody<webBookMark>> updateWebBookMark(String id, String name, String link) {
+    public Observable<ResponseBody<WebBookMark>> updateWebBookMark(int id, String name, String link) {
         return getApiServiceGson().updateWebBookMark(id,name,link);
     }
     /**
@@ -256,7 +256,7 @@ public class IHttpHelperImpl implements IHttpHelper{
      * @return
      */
     @Override
-    public Observable<ResponseBody> deleteWebBookMark(String id) {
+    public Observable<ResponseBody<String>> deleteWebBookMark(int id) {
         return getApiServiceGson().deleteWebBookMark(id);
     }
     /**

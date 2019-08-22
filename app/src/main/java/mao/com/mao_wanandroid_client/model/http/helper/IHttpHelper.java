@@ -16,7 +16,7 @@ import mao.com.mao_wanandroid_client.model.modelbean.project.ProjectClassifyData
 import mao.com.mao_wanandroid_client.model.modelbean.project.ProjectListData;
 import mao.com.mao_wanandroid_client.model.modelbean.search.HotKeyData;
 import mao.com.mao_wanandroid_client.model.modelbean.knowlegetree.KnowledgeHierarchyData;
-import mao.com.mao_wanandroid_client.model.modelbean.webmark.webBookMark;
+import mao.com.mao_wanandroid_client.model.modelbean.webmark.WebBookMark;
 
 
 /**
@@ -153,14 +153,14 @@ public interface IHttpHelper {
     /**
      * 获取收藏网站列表
      */
-    Observable<ResponseBody<List<webBookMark>>> getWebBookMark();
+    Observable<ResponseBody<List<WebBookMark>>> getWebBookMark();
     /**
      * 添加收藏网址
      * @param name 网站名称
      * @param link 网站链接
      * @return
      */
-    Observable<ResponseBody<webBookMark>> addWebBookMark(
+    Observable<ResponseBody<WebBookMark>> addWebBookMark(
             String name, String link);
     /**
      * 编辑收藏网站
@@ -169,16 +169,16 @@ public interface IHttpHelper {
      * @param link 网站链接
      * @return
      */
-    Observable<ResponseBody<webBookMark>> updateWebBookMark(
-            String id, String name, String link);
+    Observable<ResponseBody<WebBookMark>> updateWebBookMark(
+            int id, String name, String link);
 
     /**
      * 删除收藏网站
      * @param id 收藏网站 id
      * @return
      */
-    Observable<ResponseBody> deleteWebBookMark(
-            String id);
+    Observable<ResponseBody<String>> deleteWebBookMark(
+            int id);
     /**
      * 搜索
      * @param pageNum 页码：拼接在链接上，从0开始

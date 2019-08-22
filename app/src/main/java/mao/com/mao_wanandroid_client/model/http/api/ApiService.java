@@ -16,7 +16,7 @@ import mao.com.mao_wanandroid_client.model.modelbean.project.ProjectClassifyData
 import mao.com.mao_wanandroid_client.model.modelbean.project.ProjectListData;
 import mao.com.mao_wanandroid_client.model.modelbean.search.HotKeyData;
 import mao.com.mao_wanandroid_client.model.modelbean.knowlegetree.KnowledgeHierarchyData;
-import mao.com.mao_wanandroid_client.model.modelbean.webmark.webBookMark;
+import mao.com.mao_wanandroid_client.model.modelbean.webmark.WebBookMark;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
@@ -230,7 +230,7 @@ public interface ApiService {
      * 获取收藏网站列表
      */
     @GET("/lg/collect/usertools/json")
-    Observable<ResponseBody<List<webBookMark>>> getWebBookMark();
+    Observable<ResponseBody<List<WebBookMark>>> getWebBookMark();
 
     /**
      * 添加收藏网址
@@ -240,7 +240,7 @@ public interface ApiService {
      */
     @POST("/lg/collect/addtool/json")
     @FormUrlEncoded
-    Observable<ResponseBody<webBookMark>> addWebBookMark(
+    Observable<ResponseBody<WebBookMark>> addWebBookMark(
             @Field("name")String name,
             @Field("link")String link
     );
@@ -254,8 +254,8 @@ public interface ApiService {
      */
     @POST("/lg/collect/updatetool/json")
     @FormUrlEncoded
-    Observable<ResponseBody<webBookMark>> updateWebBookMark(
-            @Field("id")String id,
+    Observable<ResponseBody<WebBookMark>> updateWebBookMark(
+            @Field("id")int id,
             @Field("name")String name,
             @Field("link")String link
     );
@@ -267,8 +267,8 @@ public interface ApiService {
      */
     @POST("/lg/collect/deletetool/json")
     @FormUrlEncoded
-    Observable<ResponseBody> deleteWebBookMark(
-            @Field("id")String id
+    Observable<ResponseBody<String>> deleteWebBookMark(
+            @Field("id")int id
     );
 
     /**

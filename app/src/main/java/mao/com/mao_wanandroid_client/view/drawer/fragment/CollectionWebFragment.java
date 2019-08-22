@@ -13,10 +13,13 @@ import java.util.List;
 
 import butterknife.BindView;
 import mao.com.mao_wanandroid_client.R;
+import mao.com.mao_wanandroid_client.application.Constants;
 import mao.com.mao_wanandroid_client.base.fragment.BaseFragment;
-import mao.com.mao_wanandroid_client.model.modelbean.webmark.webBookMark;
+import mao.com.mao_wanandroid_client.model.modelbean.home.HomeArticleData;
+import mao.com.mao_wanandroid_client.model.modelbean.webmark.WebBookMark;
 import mao.com.mao_wanandroid_client.presenter.drawer.CollectionWebContract;
 import mao.com.mao_wanandroid_client.presenter.drawer.CollectionWebPresenter;
+import mao.com.mao_wanandroid_client.utils.StartDetailPage;
 import mao.com.mao_wanandroid_client.view.drawer.adapter.CollectionWebAdapter;
 
 /**
@@ -27,7 +30,7 @@ import mao.com.mao_wanandroid_client.view.drawer.adapter.CollectionWebAdapter;
 public class CollectionWebFragment extends BaseFragment<CollectionWebPresenter>
         implements CollectionWebContract.CollectionWeb, BaseQuickAdapter.OnItemClickListener {
 
-    List<webBookMark> mCollectionWebDataList;
+    List<WebBookMark> mCollectionWebDataList;
 
     @BindView(R.id.collection_recyclerview)
     RecyclerView mRecyclerView;
@@ -64,7 +67,7 @@ public class CollectionWebFragment extends BaseFragment<CollectionWebPresenter>
         mAdapter.setOnItemClickListener(this);
         mRecyclerView.setAdapter(mAdapter);
         mAdapter.setOnItemChildClickListener((adapter, view, position) -> {
-            webBookMark collectData = (webBookMark) adapter.getItem(position);
+            WebBookMark webBookMark = (WebBookMark) adapter.getItem(position);
             //点击收藏
             switch (view.getId()){
                 case R.id.iv_delete_web: //点击删除
@@ -98,14 +101,58 @@ public class CollectionWebFragment extends BaseFragment<CollectionWebPresenter>
     }
 
     @Override
-    public void showCollectionWebData(List<webBookMark> collectionWebDataList) {
+    public void showCollectionWebData(List<WebBookMark> collectionWebDataList) {
         mCollectionWebDataList.clear();
         mCollectionWebDataList.addAll(collectionWebDataList);
         mAdapter.replaceData(mCollectionWebDataList);
     }
 
+    /**
+     * 添加网站收藏成功
+     * @param webBookMark
+     * @param msg
+     */
+    @Override
+    public void showAddCollectWebSuccess(WebBookMark webBookMark, String msg) {
+
+    }
+
+    @Override
+    public void showAddCollectWebFail(String msg) {
+
+    }
+    /**
+     * 更新网站收藏成功
+     */
+    @Override
+    public void showUpdateCollectWebSuccess(int position, WebBookMark webBookMark, String msg) {
+
+    }
+
+    @Override
+    public void showUpdateCollectWebFail(String msg) {
+
+    }
+    /**
+     * 删除网站收藏成功
+     */
+    @Override
+    public void showDeleteCollectWebSuccess(int position, String msg) {
+
+    }
+
+    @Override
+    public void showDeleteCollectWebFail(String msg) {
+
+    }
+
     @Override
     public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-
+        WebBookMark webBookMark = (WebBookMark) adapter.getItem(position);
+        HomeArticleData homeArticleData = new HomeArticleData();
+        assert webBookMark != null;
+        homeArticleData.setTitle(webBookMark.getName());
+        homeArticleData.setLink(webBookMark.getLink());
+        StartDetailPage.start(_mActivity,homeArticleData, Constants.PAGE_WEB_NOT_COLLECT,Constants.ACTION_PAGE_DETAIL_ACTIVITY);
     }
 }

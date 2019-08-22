@@ -6,6 +6,7 @@ import io.reactivex.Observable;
 import mao.com.mao_wanandroid_client.model.dao.SearchHistoryData;
 import mao.com.mao_wanandroid_client.model.db.DbHelper;
 import mao.com.mao_wanandroid_client.model.http.helper.IHttpHelper;
+import mao.com.mao_wanandroid_client.model.modelbean.webmark.WebBookMark;
 import mao.com.mao_wanandroid_client.model.sp.SharedPreferenceHelper;
 import mao.com.mao_wanandroid_client.model.modelbean.ResponseBody;
 import mao.com.mao_wanandroid_client.model.modelbean.banner.HomePageBannerModel;
@@ -20,7 +21,6 @@ import mao.com.mao_wanandroid_client.model.modelbean.project.ProjectClassifyData
 import mao.com.mao_wanandroid_client.model.modelbean.project.ProjectListData;
 import mao.com.mao_wanandroid_client.model.modelbean.search.HotKeyData;
 import mao.com.mao_wanandroid_client.model.modelbean.knowlegetree.KnowledgeHierarchyData;
-import mao.com.mao_wanandroid_client.model.modelbean.webmark.webBookMark;
 
 /**
  * @author maoqitian
@@ -162,22 +162,22 @@ public class DataClient implements IHttpHelper,SharedPreferenceHelper,DbHelper {
     }
 
     @Override
-    public Observable<ResponseBody<List<webBookMark>>> getWebBookMark() {
+    public Observable<ResponseBody<List<WebBookMark>>> getWebBookMark() {
         return mIHttpHelper.getWebBookMark();
     }
 
     @Override
-    public Observable<ResponseBody<webBookMark>> addWebBookMark(String name, String link) {
+    public Observable<ResponseBody<WebBookMark>> addWebBookMark(String name, String link) {
         return mIHttpHelper.addWebBookMark(name,link);
     }
 
     @Override
-    public Observable<ResponseBody<webBookMark>> updateWebBookMark(String id, String name, String link) {
+    public Observable<ResponseBody<WebBookMark>> updateWebBookMark(int id, String name, String link) {
         return mIHttpHelper.updateWebBookMark(id,name,link);
     }
 
     @Override
-    public Observable<ResponseBody> deleteWebBookMark(String id) {
+    public Observable<ResponseBody<String>> deleteWebBookMark(int id) {
         return mIHttpHelper.deleteWebBookMark(id);
     }
 
