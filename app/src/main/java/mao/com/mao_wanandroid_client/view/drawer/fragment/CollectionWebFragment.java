@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.Toast;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
@@ -19,6 +20,7 @@ import mao.com.mao_wanandroid_client.model.modelbean.home.HomeArticleData;
 import mao.com.mao_wanandroid_client.model.modelbean.webmark.WebBookMark;
 import mao.com.mao_wanandroid_client.presenter.drawer.CollectionWebContract;
 import mao.com.mao_wanandroid_client.presenter.drawer.CollectionWebPresenter;
+import mao.com.mao_wanandroid_client.utils.NormalAlertDialog;
 import mao.com.mao_wanandroid_client.utils.StartDetailPage;
 import mao.com.mao_wanandroid_client.view.drawer.adapter.CollectionWebAdapter;
 
@@ -28,7 +30,8 @@ import mao.com.mao_wanandroid_client.view.drawer.adapter.CollectionWebAdapter;
  * @date 2019/8/20 0020 17:03
  */
 public class CollectionWebFragment extends BaseFragment<CollectionWebPresenter>
-        implements CollectionWebContract.CollectionWeb, BaseQuickAdapter.OnItemClickListener {
+        implements CollectionWebContract.CollectionWeb,
+        BaseQuickAdapter.OnItemClickListener, NormalAlertDialog.OnClickAddCollectionListener {
 
     List<WebBookMark> mCollectionWebDataList;
 
@@ -74,15 +77,7 @@ public class CollectionWebFragment extends BaseFragment<CollectionWebPresenter>
 
                     break;
                 case R.id.iv_web_edit: //编辑
-                    //点击 收藏tag
-                    //暂不 实现 没必要
-                   /* HomeArticleData homeArticleData = new HomeArticleData();
-                    homeArticleData.setTitle(collectData.getTitle());
-                    homeArticleData.setLink(collectData.getLink());
-                    homeArticleData.setChapterId(collectData.getChapterId());
-                    homeArticleData.setChapterName(collectData.getChapterName());
-                    homeArticleData.setSuperChapterId(collectData.getChapterId());
-                    StartDetailPage.start(_mActivity,homeArticleData,Constants.RESULT_CODE_HOME_PAGE,Constants.ACTION_KNOWLEDGE_LEVEL2_ACTIVITY);*/
+                    NormalAlertDialog.getInstance().showAddCollectionDialog(getActivity(),this);
                     break;
             }
         });
@@ -154,5 +149,11 @@ public class CollectionWebFragment extends BaseFragment<CollectionWebPresenter>
         homeArticleData.setTitle(webBookMark.getName());
         homeArticleData.setLink(webBookMark.getLink());
         StartDetailPage.start(_mActivity,homeArticleData, Constants.PAGE_WEB_NOT_COLLECT,Constants.ACTION_PAGE_DETAIL_ACTIVITY);
+    }
+
+    //添加网页收藏
+    @Override
+    public void addCollection(String edCollectionTitle, String edCollectionAuthorName, String edCollectionLink) {
+        Toast.makeText(getActivity(),"获取数据"+edCollectionTitle+edCollectionAuthorName+edCollectionLink,Toast.LENGTH_SHORT).show();
     }
 }

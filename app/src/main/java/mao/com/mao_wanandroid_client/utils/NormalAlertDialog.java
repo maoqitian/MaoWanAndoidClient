@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -99,32 +100,43 @@ public class NormalAlertDialog {
     }
 
 
-    public void showAddCollectionDialog(Context context, View.OnClickListener cancelCollectionOnClick){
+    public void showAddCollectionDialog(Context context,OnClickAddCollectionListener listener){
         if (context == null) {
             return;
         }
         if (bottomDialog == null) {
             bottomDialog = new Dialog(context, R.style.BottomDialog);
         }
-        View contentView = LayoutInflater.from(context).inflate(R.layout.bottom_alert_dialog, null);
+        View contentView = LayoutInflater.from(context).inflate(R.layout.add_collection_dialog, null);
         bottomDialog.setContentView(contentView);
         ViewGroup.LayoutParams layoutParams = contentView.getLayoutParams();
-        layoutParams.width = context.getResources().getDisplayMetrics().widthPixels;
+        layoutParams.width = context.getResources().getDisplayMetrics().widthPixels-100;
         contentView.setLayoutParams(layoutParams);
         Window window = bottomDialog.getWindow();
         if(window!=null){
             window.setGravity(Gravity.CENTER);
             window.setWindowAnimations(R.style.BottomInAndOutStyle);
         }
-        LinearLayout cancelCollection = contentView.findViewById(R.id.ll_cancel_collection);
-        TextView tvCancelCancelDialog = contentView.findViewById(R.id.tv_cancel_dialog);
+        TextView confirmCollection = contentView.findViewById(R.id.tv_confirm);
+        TextView tvCancelCancelDialog = contentView.findViewById(R.id.tv_cancel_close);
+        TextView dialogTitle = contentView.findViewById(R.id.tv_dialog_title);
+        EditText edCollectionTitle = contentView.findViewById(R.id.collection_title);
+        EditText edCollectionAuthorName = contentView.findViewById(R.id.collection_author_name);
+        EditText edCollectionLink = contentView.findViewById(R.id.collection_link);
         tvCancelCancelDialog.setOnClickListener(v -> {
             if (bottomDialog != null) {
                 bottomDialog.cancel();
                 bottomDialog = null;
             }
         });
-        cancelCollection.setOnClickListener(cancelCollectionOnClick);
+        confirmCollection.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                listener.addCollection(edCollectionTitle.getText().toString().trim(),
+                        edCollectionAuthorName.getText().toString().trim(),
+                        edCollectionLink.getText().toString().trim());
+            }
+        });
         bottomDialog.show();
     }
 
@@ -136,4 +148,20 @@ public class NormalAlertDialog {
             bottomDialog = null;
         }
     }
+
+
+    /**
+     * 接口回调的方式通知 对应界面获取对应数据进行收藏数据逻辑
+     */
+    private OnClickAddCollectionListener mListener;
+
+    public void setOnClickAddCollectionListener(OnClickAddCollectionListener listener){
+        this.mListener = listener;
+    }
+    public interface OnClickAddCollectionListener{
+        void addCollection(String edCollectionTitle,String edCollectionAuthorName,String edCollectionLink);
+    }
+
+
+
 }

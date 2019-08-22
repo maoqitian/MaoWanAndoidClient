@@ -1,10 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="@dimen/dp_12"
+    android:layout_marginTop="@dimen/dp_4"
+    android:layout_marginEnd="@dimen/dp_12"
+    android:layout_marginBottom="@dimen/dp_4"
+    app:cardBackgroundColor="@color/viewBackground"
+    app:cardCornerRadius="@dimen/dp_8"
+    app:cardElevation="@dimen/dp_3">
+<android.support.constraint.ConstraintLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:padding="@dimen/dp_10"
     >
-
     <TextView
         android:id="@+id/tv_dialog_title"
         android:layout_width="wrap_content"
@@ -37,7 +48,7 @@
         app:layout_constraintTop_toBottomOf="@id/collection_title"
         />
     <EditText
-        android:id="@+id/collect_link"
+        android:id="@+id/collection_link"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/dp_16"
@@ -64,10 +75,9 @@
         android:gravity="center"
         android:background="@drawable/bt_login_bg"
         android:layout_marginEnd="@dimen/dp_5"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toLeftOf="@id/tv_confirm"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/collection_link" />
 
     <TextView
         android:id="@+id/tv_confirm"
@@ -83,9 +93,9 @@
         android:background="@drawable/bt_login_bg"
         android:gravity="center"
         android:layout_marginStart="@dimen/dp_5"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toRightOf="@id/tv_cancel_close"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/collection_link" />
 
 </android.support.constraint.ConstraintLayout>
+</android.support.v7.widget.CardView>
