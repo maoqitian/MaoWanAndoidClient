@@ -1,5 +1,6 @@
 package mao.com.mao_wanandroid_client.view.drawer.fragment;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -74,10 +75,16 @@ public class CollectionWebFragment extends BaseFragment<CollectionWebPresenter>
             //点击收藏
             switch (view.getId()){
                 case R.id.iv_delete_web: //点击删除
-
+                    assert webBookMark != null;
+                    NormalAlertDialog.getInstance().showAlertDialog(
+                            getActivity(), "确定删除" + webBookMark.getName() + "?",
+                            getString(R.string.confirm_text), getString(R.string.cancel_text),
+                            (dialog, which) -> mPresenter.getDeleteCollectWebData(getActivity(),webBookMark.getId(),position),
+                            (dialog, which) -> dialog.dismiss());
                     break;
                 case R.id.iv_web_edit: //编辑
-                    NormalAlertDialog.getInstance().showAddCollectionDialog(getActivity(),this);
+                    NormalAlertDialog.getInstance().showAddCollectionDialog(getActivity(),position,
+                            Constants.COLLECTION_WEB_TYPE,false,webBookMark,getString(R.string.update_collection_web),this);
                     break;
             }
         });
@@ -109,6 +116,7 @@ public class CollectionWebFragment extends BaseFragment<CollectionWebPresenter>
      */
     @Override
     public void showAddCollectWebSuccess(WebBookMark webBookMark, String msg) {
+          mAdapter.addData(webBookMark);
 
     }
 
@@ -121,7 +129,7 @@ public class CollectionWebFragment extends BaseFragment<CollectionWebPresenter>
      */
     @Override
     public void showUpdateCollectWebSuccess(int position, WebBookMark webBookMark, String msg) {
-
+        mAdapter.setData(position,webBookMark);
     }
 
     @Override
@@ -133,7 +141,7 @@ public class CollectionWebFragment extends BaseFragment<CollectionWebPresenter>
      */
     @Override
     public void showDeleteCollectWebSuccess(int position, String msg) {
-
+           mAdapter.remove(position);
     }
 
     @Override
@@ -153,7 +161,17 @@ public class CollectionWebFragment extends BaseFragment<CollectionWebPresenter>
 
     //添加网页收藏
     @Override
-    public void addCollection(String edCollectionTitle, String edCollectionAuthorName, String edCollectionLink) {
-        Toast.makeText(getActivity(),"获取数据"+edCollectionTitle+edCollectionAuthorName+edCollectionLink,Toast.LENGTH_SHORT).show();
+    public void addCollection(int id,String edCollectionTitle, String edCollectionAuthorName, String edCollectionLink) {
+        //Toast.makeText(getActivity(),"获取数据"+edCollectionTitle+edCollectionAuthorName+edCollectionLink,Toast.LENGTH_SHORT).show();
+        mPresenter.getAddCollectWebData(getActivity(),edCollectionTitle,edCollectionLink);
     }
+
+    @Override
+    public void updateCollection(int id,int position, String edCollectionTitle, String edCollectionAuthorName, String edCollectionLink) {
+        WebBookMark webBookMark =new WebBookMark();
+        webBookMark.setName(edCollectionTitle);
+        webBookMark.setLink(edCollectionLink);
+        mPresenter.getUpdateCollectWebData(getActivity(),webBookMark,position);
+    }
+
 }

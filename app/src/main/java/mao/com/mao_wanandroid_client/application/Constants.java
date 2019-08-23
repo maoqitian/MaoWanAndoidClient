@@ -127,11 +127,11 @@ public class Constants {
 
     //设置 item type
     // 清除缓存
-    public static final String SETTINGS_CLEAR_CACHE_TYPE = "SETTINGS_CLEAR_CACHE_TYPE";
+    public static final String SETTINGS_CLEAR_CACHE_TYPE = "settings_clear_cache_type";
     // 夜间模式
-    public static final String SETTINGS_NIGHT_MODE_TYPE = "SETTINGS_NIGHT_MODE_TYPE";
+    public static final String SETTINGS_NIGHT_MODE_TYPE = "settings_night_mode_type";
     // 版本
-    public static final String SETTINGS_VERSION_TYPE = "SETTINGS_VERSION_TYPE";
+    public static final String SETTINGS_VERSION_TYPE = "settings_version_type";
 
     /**
      * 首页多个请求响应 type
@@ -139,4 +139,8 @@ public class Constants {
     public static final String RESPONSE_BANNER_TYPE = "homePageBannerObservable";
     public static final String RESPONSE_TOP_ARTICLE_TYPE = "homeTopArticleDataObservable";
     public static final String RESPONSE_ARTICLE_TYPE = "homeArticleListDataObservable";
+
+    //Dialog
+    public static final String COLLECTION_WEB_TYPE = "collection_web_type";
+    public static final String COLLECTION_ARTICLE_TYPE = "collection_article_type";
 }

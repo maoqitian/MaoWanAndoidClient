@@ -11,15 +11,18 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import mao.com.mao_wanandroid_client.R;
+import mao.com.mao_wanandroid_client.application.Constants;
+import mao.com.mao_wanandroid_client.model.modelbean.webmark.WebBookMark;
 
 /**
  * @author maoqitian
- * @Description: AlertDialog
+ * @Description: AlertDialog Dialog
  * @date 2019/7/26 0026 10:16
  */
 public class NormalAlertDialog {
@@ -99,14 +102,26 @@ public class NormalAlertDialog {
             bottomDialog.show();
     }
 
-
-    public void showAddCollectionDialog(Context context,OnClickAddCollectionListener listener){
+    /**
+     * 特殊定制 显示收藏模块 添加收藏 dialog
+     * @param context 上下文
+     * @param dialogType 网站收藏 文章收藏 类型
+     * @param position item 位置
+     * @param isAdd  是否是添加（true）  Update为更新(false 只针对网站收藏有效)
+     * @param webBookMark
+     * @param dialogTitle dialog 标题
+     * @param listener 传递editText数据监听回调
+     */
+    public void showAddCollectionDialog(Context context,int position, String dialogType, boolean isAdd, WebBookMark webBookMark, String dialogTitle, OnClickAddCollectionListener listener){
         if (context == null) {
             return;
         }
         if (bottomDialog == null) {
             bottomDialog = new Dialog(context, R.style.BottomDialog);
         }
+        //webBookMark id
+        int id = 0;
+
         View contentView = LayoutInflater.from(context).inflate(R.layout.add_collection_dialog, null);
         bottomDialog.setContentView(contentView);
         ViewGroup.LayoutParams layoutParams = contentView.getLayoutParams();
@@ -117,24 +132,49 @@ public class NormalAlertDialog {
             window.setGravity(Gravity.CENTER);
             window.setWindowAnimations(R.style.BottomInAndOutStyle);
         }
-        TextView confirmCollection = contentView.findViewById(R.id.tv_confirm);
-        TextView tvCancelCancelDialog = contentView.findViewById(R.id.tv_cancel_close);
-        TextView dialogTitle = contentView.findViewById(R.id.tv_dialog_title);
+        Button confirmCollection = contentView.findViewById(R.id.tv_confirm);
+        Button tvCancelCancelDialog = contentView.findViewById(R.id.tv_cancel_close);
+        TextView tvDialogTitle = contentView.findViewById(R.id.tv_dialog_title);
         EditText edCollectionTitle = contentView.findViewById(R.id.collection_title);
         EditText edCollectionAuthorName = contentView.findViewById(R.id.collection_author_name);
         EditText edCollectionLink = contentView.findViewById(R.id.collection_link);
-        tvCancelCancelDialog.setOnClickListener(v -> {
-            if (bottomDialog != null) {
-                bottomDialog.cancel();
-                bottomDialog = null;
+        confirmCollection.setEnabled(false);
+        tvDialogTitle.setText(dialogTitle);
+        //设置焦点并弹出键盘
+        ToolsUtils.showSoftInput(edCollectionTitle);
+        //editText 监听
+        EditTextUtils.textChangeListener textChangeListener = new EditTextUtils.textChangeListener(confirmCollection);
+        if (Constants.COLLECTION_WEB_TYPE.equals(dialogType)){
+            //收藏网站
+            textChangeListener.addAllEditText(edCollectionTitle,edCollectionLink);
+            edCollectionAuthorName.setVisibility(View.GONE);
+            if(!isAdd){
+                //更新则设置好原始数据
+                edCollectionTitle.setText(webBookMark.getName());
+                edCollectionLink.setText(webBookMark.getLink());
+                id = webBookMark.getId();
             }
-        });
+        }else if(Constants.COLLECTION_ARTICLE_TYPE.equals(dialogType)){
+            //收藏文章（主动）
+            textChangeListener.addAllEditText(edCollectionTitle,edCollectionAuthorName,edCollectionLink);
+        }
+        tvCancelCancelDialog.setOnClickListener(v -> cancelBottomDialog());
+
+        int finalId = id;
         confirmCollection.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                listener.addCollection(edCollectionTitle.getText().toString().trim(),
-                        edCollectionAuthorName.getText().toString().trim(),
-                        edCollectionLink.getText().toString().trim());
+                if(Constants.COLLECTION_WEB_TYPE.equals(dialogType)&&!isAdd){
+                    listener.updateCollection(finalId,position,edCollectionTitle.getText().toString().trim(),
+                            edCollectionAuthorName.getText().toString().trim(),
+                            edCollectionLink.getText().toString().trim());
+                }else {
+                    listener.addCollection(finalId,edCollectionTitle.getText().toString().trim(),
+                            edCollectionAuthorName.getText().toString().trim(),
+                            edCollectionLink.getText().toString().trim());
+                }
+
+                cancelBottomDialog();
             }
         });
         bottomDialog.show();
@@ -159,7 +199,8 @@ public class NormalAlertDialog {
         this.mListener = listener;
     }
     public interface OnClickAddCollectionListener{
-        void addCollection(String edCollectionTitle,String edCollectionAuthorName,String edCollectionLink);
+        void addCollection(int id,String edCollectionTitle,String edCollectionAuthorName,String edCollectionLink);
+        void updateCollection(int id,int position,String edCollectionTitle,String edCollectionAuthorName,String edCollectionLink);
     }
 
 

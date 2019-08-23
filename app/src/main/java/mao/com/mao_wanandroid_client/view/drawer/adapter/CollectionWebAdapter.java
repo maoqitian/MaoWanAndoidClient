@@ -33,7 +33,7 @@ public class CollectionWebAdapter extends BaseQuickAdapter<WebBookMark, Collecti
     @Override
     protected void convert(CollectionWebItemHolder helper, WebBookMark item) {
           helper.setText(R.id.tv_collection_web_article_title,item.getName())
-          .addOnClickListener(R.id.webview_detail)
+          .addOnClickListener(R.id.iv_delete_web)
           .addOnClickListener(R.id.iv_web_edit);
     }
 }
