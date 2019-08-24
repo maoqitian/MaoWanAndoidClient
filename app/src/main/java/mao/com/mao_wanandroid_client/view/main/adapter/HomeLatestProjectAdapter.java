@@ -11,7 +11,7 @@ import java.util.List;
 import mao.com.mao_wanandroid_client.R;
 import mao.com.mao_wanandroid_client.model.modelbean.home.HomeArticleData;
 import mao.com.mao_wanandroid_client.utils.GlideUtils;
-import mao.com.mao_wanandroid_client.view.main.hloder.HomeLatestProjectHolder;
+import mao.com.mao_wanandroid_client.view.main.holder.HomeLatestProjectHolder;
 
 /**
  * @author maoqitian

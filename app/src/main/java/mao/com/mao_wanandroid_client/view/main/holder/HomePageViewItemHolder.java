@@ -1,10 +1,9 @@
-package mao.com.mao_wanandroid_client.view.main.hloder;
+package mao.com.mao_wanandroid_client.view.main.holder;
 
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.airbnb.lottie.LottieAnimationView;
 import com.chad.library.adapter.base.BaseViewHolder;
 
 import butterknife.BindView;

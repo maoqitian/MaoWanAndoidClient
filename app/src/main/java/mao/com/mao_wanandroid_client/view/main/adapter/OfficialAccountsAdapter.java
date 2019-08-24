@@ -8,7 +8,7 @@ import java.util.List;
 
 import mao.com.mao_wanandroid_client.R;
 import mao.com.mao_wanandroid_client.model.modelbean.knowlegetree.KnowledgeHierarchyData;
-import mao.com.mao_wanandroid_client.view.main.hloder.OfficialAccountsViewHolder;
+import mao.com.mao_wanandroid_client.view.main.holder.OfficialAccountsViewHolder;
 
 /**
  * @author maoqitian

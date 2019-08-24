@@ -16,7 +16,7 @@ import mao.com.mao_wanandroid_client.R;
 import mao.com.mao_wanandroid_client.application.Constants;
 import mao.com.mao_wanandroid_client.model.modelbean.navigation.NavigationListData;
 import mao.com.mao_wanandroid_client.utils.StartDetailPage;
-import mao.com.mao_wanandroid_client.view.main.hloder.NavigationHolderView;
+import mao.com.mao_wanandroid_client.view.main.holder.NavigationHolderView;
 
 /**
  * @author maoqitian

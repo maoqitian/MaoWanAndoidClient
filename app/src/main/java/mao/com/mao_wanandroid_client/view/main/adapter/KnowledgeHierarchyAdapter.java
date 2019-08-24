@@ -14,7 +14,7 @@ import mao.com.flexibleflowlayout.TagAdapter;
 import mao.com.flexibleflowlayout.TagFlowLayout;
 import mao.com.mao_wanandroid_client.R;
 import mao.com.mao_wanandroid_client.model.modelbean.knowlegetree.KnowledgeHierarchyData;
-import mao.com.mao_wanandroid_client.view.main.hloder.KnowledgeHolderView;
+import mao.com.mao_wanandroid_client.view.main.holder.KnowledgeHolderView;
 
 /**
  * @author maoqitian

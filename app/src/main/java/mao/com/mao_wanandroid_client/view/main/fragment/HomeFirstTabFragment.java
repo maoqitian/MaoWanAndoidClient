@@ -38,7 +38,7 @@ import mao.com.mao_wanandroid_client.presenter.main.HomeFirstTabPresenter;
 import mao.com.mao_wanandroid_client.presenter.main.HomePageFirstTabContract;
 import mao.com.mao_wanandroid_client.utils.StartDetailPage;
 import mao.com.mao_wanandroid_client.view.main.adapter.HomePageAdapter;
-import mao.com.mao_wanandroid_client.view.main.hloder.BannerHolderView;
+import mao.com.mao_wanandroid_client.view.main.holder.BannerHolderView;
 
 /**
  * @author maoqitian

@@ -1,4 +1,4 @@
-package mao.com.mao_wanandroid_client.view.main.hloder;
+package mao.com.mao_wanandroid_client.view.main.holder;
 
 import android.view.View;
 import android.widget.TextView;
