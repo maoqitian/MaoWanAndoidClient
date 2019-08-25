@@ -1,12 +1,15 @@
 package mao.com.mao_wanandroid_client.model.modelbean.webmark;
 
+import java.io.Serializable;
+
 /**
  * @author maoqitian
  * @Description 常用网站 收藏网站
  * @Time 2018/9/27 0027 23:54
  */
-public class WebBookMark {
+public class WebBookMark implements Serializable {
 
+    private static final long serialVersionUID = -4853818540891801685L;
     /**
      * desc :
      * icon :

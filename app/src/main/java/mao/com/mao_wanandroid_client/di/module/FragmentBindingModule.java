@@ -3,6 +3,7 @@ package mao.com.mao_wanandroid_client.di.module;
 import dagger.Module;
 import dagger.android.ContributesAndroidInjector;
 import mao.com.mao_wanandroid_client.di.scope.FragmentScope;
+import mao.com.mao_wanandroid_client.view.drawer.fragment.CollectionDialogFragment;
 import mao.com.mao_wanandroid_client.view.drawer.fragment.CollectionFragment;
 import mao.com.mao_wanandroid_client.view.drawer.fragment.CollectionPageFragment;
 import mao.com.mao_wanandroid_client.view.drawer.fragment.CollectionWebFragment;
@@ -81,5 +82,9 @@ public abstract class FragmentBindingModule {
     @FragmentScope
     @ContributesAndroidInjector(modules = CommonWebFragmentModule.class)
     abstract CommonWebFragment contributeCommonWebFragment();
+
+    @FragmentScope
+    @ContributesAndroidInjector(modules = CollectionDialogFragmentModule.class)
+    abstract CollectionDialogFragment contributeCollectionDialogFragment();
 
 }

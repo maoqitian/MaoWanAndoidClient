@@ -25,7 +25,7 @@ public abstract class SimpleDialogFragment extends DialogFragment {
     //ButterKnife
     private Unbinder mUnbinder;
 
-
+    protected View view;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -39,7 +39,7 @@ public abstract class SimpleDialogFragment extends DialogFragment {
         lp.width = WindowManager.LayoutParams.MATCH_PARENT;
         lp.height = WindowManager.LayoutParams.MATCH_PARENT;
         window.setAttributes(lp);*/
-        View view = inflater.inflate(getLayoutId(), container, false);
+        view = inflater.inflate(getLayoutId(), container, false);
         mUnbinder=ButterKnife.bind(this,view);
         initViewAndData();
         return view;

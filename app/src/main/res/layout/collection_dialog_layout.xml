@@ -14,6 +14,7 @@
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:focusableInTouchMode="true"
         android:padding="@dimen/dp_10">
     <TextView
         android:id="@+id/tv_dialog_title"
@@ -29,7 +30,7 @@
         />
 
     <EditText
-        android:id="@+id/collection_title"
+        android:id="@+id/et_collection_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/dp_16"
@@ -39,17 +40,17 @@
         app:layout_constraintTop_toBottomOf="@id/tv_dialog_title"
         />
     <EditText
-        android:id="@+id/collection_author_name"
+        android:id="@+id/et_collection_author_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/dp_16"
         android:layout_marginEnd="@dimen/dp_16"
         android:layout_marginTop="@dimen/dp_10"
         android:hint="请输入作者"
-        app:layout_constraintTop_toBottomOf="@id/collection_title"
+        app:layout_constraintTop_toBottomOf="@id/et_collection_title"
         />
     <EditText
-        android:id="@+id/collection_link"
+        android:id="@+id/et_collection_link"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/dp_16"
@@ -59,11 +60,11 @@
         android:maxHeight="300dp"
         android:minHeight="173dp"
         android:hint="请输入网站地址"
-        app:layout_constraintTop_toBottomOf="@id/collection_author_name"
+        app:layout_constraintTop_toBottomOf="@id/et_collection_author_name"
         />
 
     <Button
-        android:id="@+id/tv_cancel_close"
+        android:id="@+id/btn_cancel_close"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:padding="@dimen/dp_10"
@@ -77,11 +78,11 @@
         android:background="@drawable/bt_login_bg"
         android:layout_marginEnd="@dimen/dp_5"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toLeftOf="@id/tv_confirm"
-        app:layout_constraintTop_toBottomOf="@id/collection_link" />
+        app:layout_constraintRight_toLeftOf="@id/btn_confirm"
+        app:layout_constraintTop_toBottomOf="@id/et_collection_link" />
 
     <Button
-        android:id="@+id/tv_confirm"
+        android:id="@+id/btn_confirm"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:padding="@dimen/dp_10"
@@ -94,8 +95,8 @@
         android:background="@drawable/bt_login_bg"
         android:gravity="center"
         android:layout_marginStart="@dimen/dp_5"
-        app:layout_constraintLeft_toRightOf="@id/tv_cancel_close"
+        app:layout_constraintLeft_toRightOf="@id/btn_cancel_close"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/collection_link" />
+        app:layout_constraintTop_toBottomOf="@id/et_collection_link" />
     </android.support.constraint.ConstraintLayout>
 </android.support.v7.widget.CardView>

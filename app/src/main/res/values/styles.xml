@@ -98,4 +98,8 @@
         <item name="android:windowExitAnimation">@anim/out_bottom</item>
     </style>
 
+    <style name="dialog_soft_input" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="android:windowSoftInputMode">stateVisible|adjustPan</item>
+    </style>
+
 </resources>

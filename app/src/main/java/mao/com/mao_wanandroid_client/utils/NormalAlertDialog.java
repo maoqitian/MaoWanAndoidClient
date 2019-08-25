@@ -10,7 +10,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -93,10 +92,7 @@ public class NormalAlertDialog {
             LinearLayout cancelCollection = contentView.findViewById(R.id.ll_cancel_collection);
             TextView tvCancelCancelDialog = contentView.findViewById(R.id.tv_cancel_dialog);
             tvCancelCancelDialog.setOnClickListener(v -> {
-                if (bottomDialog != null) {
-                    bottomDialog.cancel();
-                    bottomDialog = null;
-                }
+                cancelBottomDialog();
             });
             cancelCollection.setOnClickListener(cancelCollectionOnClick);
             bottomDialog.show();
@@ -113,7 +109,7 @@ public class NormalAlertDialog {
      * @param listener 传递editText数据监听回调
      */
     public void showAddCollectionDialog(Context context,int position, String dialogType, boolean isAdd, WebBookMark webBookMark, String dialogTitle, OnClickAddCollectionListener listener){
-        if (context == null) {
+        /*if (context == null) {
             return;
         }
         if (bottomDialog == null) {
@@ -122,7 +118,7 @@ public class NormalAlertDialog {
         //webBookMark id
         int id = 0;
 
-        View contentView = LayoutInflater.from(context).inflate(R.layout.add_collection_dialog, null);
+        View contentView = LayoutInflater.from(context).inflate(R.layout.collection_dialog_layout, null);
         bottomDialog.setContentView(contentView);
         ViewGroup.LayoutParams layoutParams = contentView.getLayoutParams();
         layoutParams.width = context.getResources().getDisplayMetrics().widthPixels-100;
@@ -135,7 +131,7 @@ public class NormalAlertDialog {
         Button confirmCollection = contentView.findViewById(R.id.tv_confirm);
         Button tvCancelCancelDialog = contentView.findViewById(R.id.tv_cancel_close);
         TextView tvDialogTitle = contentView.findViewById(R.id.tv_dialog_title);
-        EditText edCollectionTitle = contentView.findViewById(R.id.collection_title);
+        EditText edCollectionTitle = contentView.findViewById(R.id.et_collection_title);
         EditText edCollectionAuthorName = contentView.findViewById(R.id.collection_author_name);
         EditText edCollectionLink = contentView.findViewById(R.id.collection_link);
         confirmCollection.setEnabled(false);
@@ -177,7 +173,7 @@ public class NormalAlertDialog {
                 cancelBottomDialog();
             }
         });
-        bottomDialog.show();
+        bottomDialog.show();*/
     }
 
 

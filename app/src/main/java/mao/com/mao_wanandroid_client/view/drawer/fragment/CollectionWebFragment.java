@@ -1,9 +1,9 @@
 package mao.com.mao_wanandroid_client.view.drawer.fragment;
 
-import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -12,6 +12,7 @@ import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import butterknife.BindView;
 import mao.com.mao_wanandroid_client.R;
@@ -32,7 +33,7 @@ import mao.com.mao_wanandroid_client.view.drawer.adapter.CollectionWebAdapter;
  */
 public class CollectionWebFragment extends BaseFragment<CollectionWebPresenter>
         implements CollectionWebContract.CollectionWeb,
-        BaseQuickAdapter.OnItemClickListener, NormalAlertDialog.OnClickAddCollectionListener {
+        BaseQuickAdapter.OnItemClickListener{
 
     List<WebBookMark> mCollectionWebDataList;
 
@@ -44,6 +45,8 @@ public class CollectionWebFragment extends BaseFragment<CollectionWebPresenter>
     private RecyclerView.LayoutManager layoutManager;
 
     CollectionWebAdapter mAdapter;
+
+    CollectionDialogFragment collectionDialogFragment;
 
     public static CollectionWebFragment newInstance() {
 
@@ -83,8 +86,13 @@ public class CollectionWebFragment extends BaseFragment<CollectionWebPresenter>
                             (dialog, which) -> dialog.dismiss());
                     break;
                 case R.id.iv_web_edit: //编辑
-                    NormalAlertDialog.getInstance().showAddCollectionDialog(getActivity(),position,
-                            Constants.COLLECTION_WEB_TYPE,false,webBookMark,getString(R.string.update_collection_web),this);
+                    if (collectionDialogFragment == null) {
+                        collectionDialogFragment = CollectionDialogFragment.newInstance(Constants.COLLECTION_WEB_TYPE, false, webBookMark,position);
+                    }
+                    if (!getActivity().isDestroyed() && collectionDialogFragment.isAdded()) {
+                        collectionDialogFragment.dismiss();
+                    }
+                    collectionDialogFragment.show(getChildFragmentManager(),"showCollectionDialog");
                     break;
             }
         });
@@ -116,37 +124,32 @@ public class CollectionWebFragment extends BaseFragment<CollectionWebPresenter>
      */
     @Override
     public void showAddCollectWebSuccess(WebBookMark webBookMark, String msg) {
-          mAdapter.addData(webBookMark);
-
+        mAdapter.addData(webBookMark);
+        Toast.makeText(getActivity(),msg,Toast.LENGTH_SHORT).show();
     }
 
-    @Override
-    public void showAddCollectWebFail(String msg) {
-
-    }
     /**
      * 更新网站收藏成功
      */
     @Override
     public void showUpdateCollectWebSuccess(int position, WebBookMark webBookMark, String msg) {
         mAdapter.setData(position,webBookMark);
+        Toast.makeText(getActivity(),msg,Toast.LENGTH_SHORT).show();
     }
 
-    @Override
-    public void showUpdateCollectWebFail(String msg) {
 
-    }
     /**
      * 删除网站收藏成功
      */
     @Override
     public void showDeleteCollectWebSuccess(int position, String msg) {
            mAdapter.remove(position);
+        Toast.makeText(getActivity(),msg,Toast.LENGTH_SHORT).show();
     }
 
     @Override
-    public void showDeleteCollectWebFail(String msg) {
-
+    public void showCollectionWebFailStatus(String msg) {
+        Toast.makeText(getActivity(),msg,Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -160,18 +163,18 @@ public class CollectionWebFragment extends BaseFragment<CollectionWebPresenter>
     }
 
     //添加网页收藏
-    @Override
+    /*@Override
     public void addCollection(int id,String edCollectionTitle, String edCollectionAuthorName, String edCollectionLink) {
         //Toast.makeText(getActivity(),"获取数据"+edCollectionTitle+edCollectionAuthorName+edCollectionLink,Toast.LENGTH_SHORT).show();
-        mPresenter.getAddCollectWebData(getActivity(),edCollectionTitle,edCollectionLink);
-    }
+        //mPresenter.getAddCollectWebData(getActivity(),edCollectionTitle,edCollectionLink);
+    }*/
 
-    @Override
+    /*@Override
     public void updateCollection(int id,int position, String edCollectionTitle, String edCollectionAuthorName, String edCollectionLink) {
         WebBookMark webBookMark =new WebBookMark();
         webBookMark.setName(edCollectionTitle);
         webBookMark.setLink(edCollectionLink);
-        mPresenter.getUpdateCollectWebData(getActivity(),webBookMark,position);
-    }
+        //mPresenter.getUpdateCollectWebData(getActivity(),webBookMark,position);
+    }*/
 
 }

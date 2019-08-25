@@ -7,8 +7,12 @@ import java.util.List;
 import javax.inject.Inject;
 
 import io.reactivex.Observable;
+import io.reactivex.functions.Consumer;
 import mao.com.mao_wanandroid_client.R;
+import mao.com.mao_wanandroid_client.application.MyApplication;
 import mao.com.mao_wanandroid_client.base.presenter.RxBasePresenter;
+import mao.com.mao_wanandroid_client.compoent.RxBus;
+import mao.com.mao_wanandroid_client.compoent.event.CollectionWebArticleEvent;
 import mao.com.mao_wanandroid_client.model.http.DataClient;
 import mao.com.mao_wanandroid_client.model.http.control.BaseObserver;
 import mao.com.mao_wanandroid_client.model.http.control.ProgressObserver;
@@ -34,6 +38,24 @@ public class CollectionWebPresenter extends RxBasePresenter<CollectionWebContrac
     @Override
     public void attachView(CollectionWebContract.CollectionWeb view) {
         super.attachView(view);
+        //网站收藏结果订阅
+        addEventSubscribe(RxBus.getDefault().toFlowable(CollectionWebArticleEvent.class).subscribe(new Consumer<CollectionWebArticleEvent>() {
+            @Override
+            public void accept(CollectionWebArticleEvent collectionWebArticleEvent) throws Exception {
+                   if(collectionWebArticleEvent.getErrorCode() == 0){
+                       if(collectionWebArticleEvent.isAdd()){
+                           mView.showAddCollectWebSuccess(collectionWebArticleEvent.getWebBookMark(),
+                                   MyApplication.getInstance().getString(R.string.collection_web_success));
+                       }else {
+                           mView.showUpdateCollectWebSuccess(collectionWebArticleEvent.getPosition(),
+                                   collectionWebArticleEvent.getWebBookMark(),
+                                   MyApplication.getInstance().getString(R.string.update_collection_web_success));
+                       }
+                   }else {
+                       mView.showCollectionWebFailStatus(collectionWebArticleEvent.getmMsg());
+                   }
+            }
+        }));
     }
 
     @Override
@@ -54,46 +76,6 @@ public class CollectionWebPresenter extends RxBasePresenter<CollectionWebContrac
     }
 
     /**
-     * 添加收藏 web
-     */
-    @Override
-    public void getAddCollectWebData(Context context, String name, String link) {
-        Observable<ResponseBody<WebBookMark>> responseBodyObservable = mDataClient.addWebBookMark(name, link);
-        responseBodyObservable.compose(RxSchedulers.observableIO2Main(context))
-                              .subscribe(new ProgressObserver<WebBookMark>(context,context.getString(R.string.collection_web)){
-                                  @Override
-                                  public void onSuccess(WebBookMark result) {
-                                        mView.showAddCollectWebSuccess(result,context.getString(R.string.collection_web));
-                                  }
-
-                                  @Override
-                                  public void onFailure(Throwable e, String errorMsg) {
-                                      mView.showAddCollectWebFail(errorMsg);
-                                  }
-                              });
-    }
-
-    /**
-     * 更新收藏 web
-     */
-    @Override
-    public void getUpdateCollectWebData(Context context, WebBookMark webBookMark, int position) {
-        Observable<ResponseBody<WebBookMark>> responseBodyObservable = mDataClient.updateWebBookMark(webBookMark.getId(), webBookMark.getName(), webBookMark.getLink());
-        responseBodyObservable.compose(RxSchedulers.observableIO2Main(context))
-                              .subscribe(new ProgressObserver<WebBookMark>(context, context.getString(R.string.update_collection_web)) {
-                                  @Override
-                                  public void onSuccess(WebBookMark result) {
-                                       mView.showUpdateCollectWebSuccess(position,result,context.getString(R.string.update_collection_web));
-                                  }
-
-                                  @Override
-                                  public void onFailure(Throwable e, String errorMsg) {
-                                       mView.showUpdateCollectWebFail(errorMsg);
-                                  }
-                              });
-    }
-
-    /**
      * 删除收藏 web
      */
     @Override
@@ -108,7 +90,7 @@ public class CollectionWebPresenter extends RxBasePresenter<CollectionWebContrac
 
                                   @Override
                                   public void onFailure(Throwable e, String errorMsg) {
-                                      mView.showDeleteCollectWebFail(errorMsg);
+                                      mView.showCollectionWebFailStatus(errorMsg);
                                   }
                               });
     }

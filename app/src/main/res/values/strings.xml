@@ -69,7 +69,7 @@
     <string name="update_collection_web" >Update Collection Web</string>
     <string name="delete_collection_web" >Delete Collection Web</string>
     <string name="collection_web_success" >Collection Web Success!</string>
-
+    <string name="update_collection_web_success" >Update Collection Web Success!</string>
     <string name="loading">Loading…</string>
     <string name="load_failed">Load failed. click to retry!</string>
     <string name="load_failed_no_network">Oops, network is lost!  click to retry</string>

@@ -27,11 +27,13 @@ public abstract class BaseDialogFragment<T extends AbstractBasePresenter> extend
     @Inject
     protected T mPresenter;
 
+    protected Context mContext;
 
     @Override
     public void onAttach(Context context) {
         AndroidSupportInjection.inject(this);
         super.onAttach(context);
+        this.mContext = context;
     }
 
     @Override
