@@ -1,10 +1,11 @@
 package mao.com.mao_wanandroid_client.view.drawer.fragment;
 
 import android.os.Bundle;
+import android.support.constraint.ConstraintLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
@@ -12,7 +13,6 @@ import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 import butterknife.BindView;
 import mao.com.mao_wanandroid_client.R;
@@ -42,6 +42,11 @@ public class CollectionWebFragment extends BaseFragment<CollectionWebPresenter>
     @BindView(R.id.collection_smartrefreshlayout)
     SmartRefreshLayout mSmartRefreshLayout;
 
+    @BindView(R.id.cl_collection_empty)
+    ConstraintLayout mClEmpty;
+    @BindView(R.id.tv_add_collection)
+    TextView tvAddFavorites;
+
     private RecyclerView.LayoutManager layoutManager;
 
     CollectionWebAdapter mAdapter;
@@ -61,6 +66,19 @@ public class CollectionWebFragment extends BaseFragment<CollectionWebPresenter>
     protected void initView() {
         mCollectionWebDataList = new ArrayList<>();
         initRecyclerView();
+        //添加收藏网站监听
+        tvAddFavorites.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (collectionDialogFragment == null) {
+                    collectionDialogFragment = CollectionDialogFragment.newInstance(Constants.COLLECTION_WEB_TYPE, false, null,-1);
+                }
+                if (!getActivity().isDestroyed() && collectionDialogFragment.isAdded()) {
+                    collectionDialogFragment.dismiss();
+                }
+                collectionDialogFragment.show(getChildFragmentManager(),"showCollectionDialog");
+            }
+        });
     }
 
     private void initRecyclerView() {
@@ -112,9 +130,16 @@ public class CollectionWebFragment extends BaseFragment<CollectionWebPresenter>
 
     @Override
     public void showCollectionWebData(List<WebBookMark> collectionWebDataList) {
-        mCollectionWebDataList.clear();
-        mCollectionWebDataList.addAll(collectionWebDataList);
-        mAdapter.replaceData(mCollectionWebDataList);
+        if(collectionWebDataList.size() == 0){
+            mClEmpty.setVisibility(View.VISIBLE);
+            mSmartRefreshLayout.setVisibility(View.GONE);
+        }else {
+            mClEmpty.setVisibility(View.GONE);
+            mSmartRefreshLayout.setVisibility(View.VISIBLE);
+            mCollectionWebDataList.clear();
+            mCollectionWebDataList.addAll(collectionWebDataList);
+            mAdapter.replaceData(mCollectionWebDataList);
+        }
     }
 
     /**

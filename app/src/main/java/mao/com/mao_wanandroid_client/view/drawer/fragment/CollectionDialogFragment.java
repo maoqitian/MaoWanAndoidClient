@@ -18,6 +18,7 @@ import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.Objects;
@@ -53,6 +54,8 @@ public class CollectionDialogFragment extends BaseDialogFragment<CollectionDialo
     EditText edCollectionAuthorName;
     @BindView(R.id.et_collection_link)
     EditText edCollectionLink ;
+    @BindView(R.id.iv_close_dialog)
+    ImageView ivCloseDialog;
 
     private String dialogType;
     //默认 add
@@ -115,17 +118,21 @@ public class CollectionDialogFragment extends BaseDialogFragment<CollectionDialo
             //收藏网站
             textChangeListener.addAllEditText(edCollectionTitle,edCollectionLink);
             edCollectionAuthorName.setVisibility(View.GONE);
+            tvDialogTitle.setText(R.string.add_collection_web);
             if(!isAdd && webBookMark!=null){
                 //更新则设置好原始数据
+                tvDialogTitle.setText(R.string.update_collection_web);
                 edCollectionTitle.setText(webBookMark.getName());
                 edCollectionLink.setText(webBookMark.getLink());
             }
         }else if(Constants.COLLECTION_ARTICLE_TYPE.equals(dialogType)){
             //收藏文章（主动）
+            tvDialogTitle.setText(R.string.add_collection_article);
             textChangeListener.addAllEditText(edCollectionTitle,edCollectionAuthorName,edCollectionLink);
         }
         btnConfirmCollection.setOnClickListener(this);
         btnCancelCancelDialog.setOnClickListener(this);
+        ivCloseDialog.setOnClickListener(this);
     }
 
     private void getIntentData() {
@@ -178,6 +185,9 @@ public class CollectionDialogFragment extends BaseDialogFragment<CollectionDialo
                 dismiss();
                 break;
             case R.id.btn_cancel_close:
+                dismiss();
+                break;
+            case R.id.iv_close_dialog:
                 dismiss();
                 break;
         }

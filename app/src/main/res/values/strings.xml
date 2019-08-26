@@ -70,6 +70,13 @@
     <string name="delete_collection_web" >Delete Collection Web</string>
     <string name="collection_web_success" >Collection Web Success!</string>
     <string name="update_collection_web_success" >Update Collection Web Success!</string>
+    <string name="add_collection" >Add Favorites</string>
+    <string name="add_collection_web" >Add Collection Web</string>
+    <string name="add_collection_article" >Add Collection Article</string>
+    <string name="collection_name_hint" >Please enter a title</string>
+    <string name="collection_author_hint" >Please enter the author</string>
+    <string name="collection_link_address_hint" >Please enter the link address</string>
+    <string name="collection_empty">Haven not added a collection yet，come and add one</string>
     <string name="loading">Loading…</string>
     <string name="load_failed">Load failed. click to retry!</string>
     <string name="load_failed_no_network">Oops, network is lost!  click to retry</string>

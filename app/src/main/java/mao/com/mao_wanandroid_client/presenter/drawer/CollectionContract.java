@@ -19,6 +19,7 @@ public interface CollectionContract {
         void showCollectListData(List<CollectData> collectDataList,boolean isRefresh);
         void showLoadDataMessage(String msg);
 
+        void showAddCollectData(CollectData collectData);
         /**
          * 取消收藏成功
          * @param position

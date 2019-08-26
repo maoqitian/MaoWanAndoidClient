@@ -1,10 +1,12 @@
 package mao.com.mao_wanandroid_client.view.drawer.fragment;
 
 import android.os.Bundle;
+import android.support.constraint.ConstraintLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
@@ -41,9 +43,15 @@ public class CollectionFragment extends BaseFragment<CollectionPresenter>
     RecyclerView mRecyclerView;
     @BindView(R.id.collection_smartrefreshlayout)
     SmartRefreshLayout mSmartRefreshLayout;
+    @BindView(R.id.cl_collection_empty)
+    ConstraintLayout mClEmpty;
+    @BindView(R.id.tv_add_collection)
+    TextView tvAddFavorites;
 
     private RecyclerView.LayoutManager layoutManager;
     CollectionAdapter mAdapter;
+    // 添加收藏 dialog
+    CollectionDialogFragment collectionDialogFragment;
 
     //下拉刷新头部
     private MaterialHeader mMaterialHeader;
@@ -64,6 +72,19 @@ public class CollectionFragment extends BaseFragment<CollectionPresenter>
         mSmartRefreshLayout.setEnableHeaderTranslationContent(false);
         mMaterialHeader.setColorSchemeResources(R.color.colorPrimary,android.R.color.holo_green_light,android.R.color.holo_red_light,android.R.color.holo_blue_light);
         initRecyclerView();
+        //添加收藏站外文章监听
+        tvAddFavorites.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (collectionDialogFragment == null) {
+                    collectionDialogFragment = CollectionDialogFragment.newInstance(Constants.COLLECTION_ARTICLE_TYPE, false, null,-1);
+                }
+                if (!getActivity().isDestroyed() && collectionDialogFragment.isAdded()) {
+                    collectionDialogFragment.dismiss();
+                }
+                collectionDialogFragment.show(getChildFragmentManager(),"showCollectionDialog");
+            }
+        });
     }
 
     private void initRecyclerView() {
@@ -136,6 +157,13 @@ public class CollectionFragment extends BaseFragment<CollectionPresenter>
 
     @Override
     public void showCollectListData(List<CollectData> collectDataList,boolean isRefresh) {
+        if(collectDataList.size() == 0){
+            mClEmpty.setVisibility(View.VISIBLE);
+            mSmartRefreshLayout.setVisibility(View.GONE);
+        }else {
+            mClEmpty.setVisibility(View.GONE);
+            mSmartRefreshLayout.setVisibility(View.VISIBLE);
+        }
         if(isRefresh){ //加载更多
             mAdapter.addData(collectDataList);
         }else {
@@ -151,6 +179,11 @@ public class CollectionFragment extends BaseFragment<CollectionPresenter>
     public void showLoadDataMessage(String msg) {
         Toast.makeText(_mActivity,msg,Toast.LENGTH_SHORT).show();
         mSmartRefreshLayout.finishLoadMore();
+    }
+
+    @Override
+    public void showAddCollectData(CollectData collectData) {
+        mAdapter.addData(collectData);
     }
 
     @Override

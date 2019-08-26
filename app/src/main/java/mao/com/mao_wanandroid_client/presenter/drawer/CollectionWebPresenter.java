@@ -9,6 +9,7 @@ import javax.inject.Inject;
 import io.reactivex.Observable;
 import io.reactivex.functions.Consumer;
 import mao.com.mao_wanandroid_client.R;
+import mao.com.mao_wanandroid_client.application.Constants;
 import mao.com.mao_wanandroid_client.application.MyApplication;
 import mao.com.mao_wanandroid_client.base.presenter.RxBasePresenter;
 import mao.com.mao_wanandroid_client.compoent.RxBus;
@@ -42,18 +43,20 @@ public class CollectionWebPresenter extends RxBasePresenter<CollectionWebContrac
         addEventSubscribe(RxBus.getDefault().toFlowable(CollectionWebArticleEvent.class).subscribe(new Consumer<CollectionWebArticleEvent>() {
             @Override
             public void accept(CollectionWebArticleEvent collectionWebArticleEvent) throws Exception {
-                   if(collectionWebArticleEvent.getErrorCode() == 0){
-                       if(collectionWebArticleEvent.isAdd()){
-                           mView.showAddCollectWebSuccess(collectionWebArticleEvent.getWebBookMark(),
-                                   MyApplication.getInstance().getString(R.string.collection_web_success));
-                       }else {
-                           mView.showUpdateCollectWebSuccess(collectionWebArticleEvent.getPosition(),
-                                   collectionWebArticleEvent.getWebBookMark(),
-                                   MyApplication.getInstance().getString(R.string.update_collection_web_success));
-                       }
-                   }else {
-                       mView.showCollectionWebFailStatus(collectionWebArticleEvent.getmMsg());
-                   }
+                 if(Constants.COLLECTION_WEB_TYPE.equals(collectionWebArticleEvent.getDialogType())){
+                     if(collectionWebArticleEvent.getErrorCode() == 0){
+                         if(collectionWebArticleEvent.isAdd()){
+                             mView.showAddCollectWebSuccess(collectionWebArticleEvent.getWebBookMark(),
+                                     MyApplication.getInstance().getString(R.string.collection_web_success));
+                         }else {
+                             mView.showUpdateCollectWebSuccess(collectionWebArticleEvent.getPosition(),
+                                     collectionWebArticleEvent.getWebBookMark(),
+                                     MyApplication.getInstance().getString(R.string.update_collection_web_success));
+                         }
+                     }else {
+                         mView.showCollectionWebFailStatus(collectionWebArticleEvent.getmMsg());
+                     }
+                 }
             }
         }));
     }

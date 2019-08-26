@@ -21,7 +21,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="添加收藏网站"
-        android:textSize="@dimen/dp_16"
+        android:textSize="@dimen/sp_16"
         android:textStyle="bold"
         android:layout_marginTop="@dimen/dp_10"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -36,7 +36,7 @@
         android:layout_marginStart="@dimen/dp_16"
         android:layout_marginEnd="@dimen/dp_16"
         android:layout_marginTop="@dimen/dp_10"
-        android:hint="请输入网站名称"
+        android:hint="@string/collection_name_hint"
         app:layout_constraintTop_toBottomOf="@id/tv_dialog_title"
         />
     <EditText
@@ -46,7 +46,7 @@
         android:layout_marginStart="@dimen/dp_16"
         android:layout_marginEnd="@dimen/dp_16"
         android:layout_marginTop="@dimen/dp_10"
-        android:hint="请输入作者"
+        android:hint="@string/collection_author_hint"
         app:layout_constraintTop_toBottomOf="@id/et_collection_title"
         />
     <EditText
@@ -59,7 +59,7 @@
         android:gravity="left|top"
         android:maxHeight="300dp"
         android:minHeight="173dp"
-        android:hint="请输入网站地址"
+        android:hint="@string/collection_link_address_hint"
         app:layout_constraintTop_toBottomOf="@id/et_collection_author_name"
         />
 
@@ -98,5 +98,15 @@
         app:layout_constraintLeft_toRightOf="@id/btn_cancel_close"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/et_collection_link" />
+    <ImageView
+        android:id="@+id/iv_close_dialog"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/dp_5"
+        app:srcCompat = "@drawable/ic_close_clear"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        />
+
     </android.support.constraint.ConstraintLayout>
 </android.support.v7.widget.CardView>
