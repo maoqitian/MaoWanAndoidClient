@@ -2,6 +2,7 @@ package mao.com.mao_wanandroid_client.view.drawer.fragment;
 
 import android.os.Bundle;
 import android.support.constraint.ConstraintLayout;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -20,6 +21,7 @@ import butterknife.BindView;
 import mao.com.mao_wanandroid_client.R;
 import mao.com.mao_wanandroid_client.application.Constants;
 import mao.com.mao_wanandroid_client.base.fragment.BaseFragment;
+import mao.com.mao_wanandroid_client.base.fragment.RootBaseFragment;
 import mao.com.mao_wanandroid_client.model.modelbean.collect.CollectData;
 import mao.com.mao_wanandroid_client.model.modelbean.home.HomeArticleData;
 import mao.com.mao_wanandroid_client.presenter.drawer.CollectionContract;
@@ -33,8 +35,8 @@ import mao.com.mao_wanandroid_client.view.drawer.adapter.CollectionAdapter;
  * @Description: 收藏文章 Fragment
  * @date 2019/7/26 0026 15:50
  */
-public class CollectionFragment extends BaseFragment<CollectionPresenter>
-        implements CollectionContract.CollectionView, BaseQuickAdapter.OnItemClickListener {
+public class CollectionFragment extends RootBaseFragment<CollectionPresenter>
+        implements CollectionContract.CollectionView, BaseQuickAdapter.OnItemClickListener, View.OnClickListener {
 
     //收藏文章数据
     List<CollectData> mCollectDataList;
@@ -47,6 +49,8 @@ public class CollectionFragment extends BaseFragment<CollectionPresenter>
     ConstraintLayout mClEmpty;
     @BindView(R.id.tv_add_collection)
     TextView tvAddFavorites;
+    @BindView(R.id.fab_add)
+    FloatingActionButton mFabAdd;
 
     private RecyclerView.LayoutManager layoutManager;
     CollectionAdapter mAdapter;
@@ -73,18 +77,8 @@ public class CollectionFragment extends BaseFragment<CollectionPresenter>
         mMaterialHeader.setColorSchemeResources(R.color.colorPrimary,android.R.color.holo_green_light,android.R.color.holo_red_light,android.R.color.holo_blue_light);
         initRecyclerView();
         //添加收藏站外文章监听
-        tvAddFavorites.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (collectionDialogFragment == null) {
-                    collectionDialogFragment = CollectionDialogFragment.newInstance(Constants.COLLECTION_ARTICLE_TYPE, false, null,-1);
-                }
-                if (!getActivity().isDestroyed() && collectionDialogFragment.isAdded()) {
-                    collectionDialogFragment.dismiss();
-                }
-                collectionDialogFragment.show(getChildFragmentManager(),"showCollectionDialog");
-            }
-        });
+        tvAddFavorites.setOnClickListener(this);
+        mFabAdd.setOnClickListener(this);
     }
 
     private void initRecyclerView() {
@@ -146,8 +140,10 @@ public class CollectionFragment extends BaseFragment<CollectionPresenter>
 
     @Override
     protected void initEventAndData() {
+        super.initEventAndData();
+        showLoading();
         mPresenter.getCollectListData();
-        mSmartRefreshLayout.autoRefresh();
+        //mSmartRefreshLayout.autoRefresh();
     }
 
     @Override
@@ -157,13 +153,6 @@ public class CollectionFragment extends BaseFragment<CollectionPresenter>
 
     @Override
     public void showCollectListData(List<CollectData> collectDataList,boolean isRefresh) {
-        if(collectDataList.size() == 0){
-            mClEmpty.setVisibility(View.VISIBLE);
-            mSmartRefreshLayout.setVisibility(View.GONE);
-        }else {
-            mClEmpty.setVisibility(View.GONE);
-            mSmartRefreshLayout.setVisibility(View.VISIBLE);
-        }
         if(isRefresh){ //加载更多
             mAdapter.addData(collectDataList);
         }else {
@@ -171,8 +160,10 @@ public class CollectionFragment extends BaseFragment<CollectionPresenter>
             mCollectDataList.addAll(collectDataList);
             mAdapter.replaceData(mCollectDataList);
         }
+        showCollectionDataChange();
         mSmartRefreshLayout.finishRefresh();
         mSmartRefreshLayout.finishLoadMore();
+        showNormal();
     }
 
     @Override
@@ -184,13 +175,27 @@ public class CollectionFragment extends BaseFragment<CollectionPresenter>
     @Override
     public void showAddCollectData(CollectData collectData) {
         mAdapter.addData(collectData);
+        showCollectionDataChange();
     }
 
     @Override
     public void showCancelCollectArticleSuccess(int position, String msg) {
         Toast.makeText(_mActivity,msg,Toast.LENGTH_SHORT).show();
         mAdapter.remove(position);
+        showCollectionDataChange();
         //mAdapter.notifyDataSetChanged();
+    }
+
+    //是否显示空白添加新数据
+    private void showCollectionDataChange() {
+        List<CollectData> data = mAdapter.getData();
+        if(data.size() == 0){
+            mClEmpty.setVisibility(View.VISIBLE);
+            mSmartRefreshLayout.setVisibility(View.GONE);
+        }else {
+            mClEmpty.setVisibility(View.GONE);
+            mSmartRefreshLayout.setVisibility(View.VISIBLE);
+        }
     }
 
     @Override
@@ -205,5 +210,35 @@ public class CollectionFragment extends BaseFragment<CollectionPresenter>
         homeArticleData.setTitle(collectData.getTitle());
         homeArticleData.setLink(collectData.getLink());
         StartDetailPage.start(_mActivity,homeArticleData, Constants.PAGE_WEB_NOT_COLLECT,Constants.ACTION_PAGE_DETAIL_ACTIVITY);
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            //添加收藏
+            case R.id.fab_add :
+            case R.id.tv_add_collection :
+                if (collectionDialogFragment == null) {
+                    collectionDialogFragment = CollectionDialogFragment.newInstance(Constants.COLLECTION_ARTICLE_TYPE, false, null,-1);
+                }
+                if (!getActivity().isDestroyed() && collectionDialogFragment.isAdded()) {
+                    collectionDialogFragment.dismiss();
+                }
+                collectionDialogFragment.show(getChildFragmentManager(),"showCollectionDialog");
+                break;
+        }
+    }
+
+    @Override
+    public void showError() {
+        super.showError();
+        mSmartRefreshLayout.finishRefresh();
+        mSmartRefreshLayout.finishLoadMore();
+    }
+
+    @Override
+    public void reload() {
+        showLoading();
+        mPresenter.getCollectListData();
     }
 }

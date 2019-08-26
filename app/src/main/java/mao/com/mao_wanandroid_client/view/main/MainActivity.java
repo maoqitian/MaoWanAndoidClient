@@ -1,5 +1,6 @@
 package mao.com.mao_wanandroid_client.view.main;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
@@ -157,6 +158,7 @@ public class MainActivity extends BaseActivity<MainPresenter>
         super.initEventAndData();
     }
     //左侧导航栏、底部导航栏 点击事件
+    @SuppressLint("RestrictedApi")
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
         int id = menuItem.getItemId();
@@ -170,6 +172,7 @@ public class MainActivity extends BaseActivity<MainPresenter>
                 }
                 initPageTitle(getString(R.string.nav_collect));
                 bottomNavigationView.setVisibility(View.GONE);
+                fab.setVisibility(View.GONE);
                 break;
             case R.id.nav_settings:
                 //设置

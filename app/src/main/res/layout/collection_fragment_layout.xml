@@ -1,6 +1,7 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/inflate_view"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     >
@@ -30,7 +31,7 @@
         android:id="@+id/cl_collection_empty"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/viewBackground"
+        android:background="@color/colorBackground"
         android:visibility="gone"
         >
         <TextView
@@ -61,4 +62,16 @@
             app:layout_constraintTop_toTopOf="parent" />
 
     </android.support.constraint.ConstraintLayout>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab_add"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="@dimen/dp_70"
+        android:layout_marginEnd="@dimen/dp_16"
+        android:visibility="visible"
+        app:srcCompat="@drawable/ic_add_24dp" />
+
 </RelativeLayout>

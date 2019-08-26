@@ -171,9 +171,11 @@ public class CollectionDialogFragment extends BaseDialogFragment<CollectionDialo
                                 edCollectionLink.getText().toString().trim());
                     }else {
                         //更新
-                        webBookMark.setName(edCollectionTitle.getText().toString());
-                        webBookMark.setLink(edCollectionLink.getText().toString().trim());
-                        mPresenter.getUpdateCollectWebData(getActivity(),webBookMark,position);
+                        if (webBookMark!=null){
+                            webBookMark.setName(edCollectionTitle.getText().toString());
+                            webBookMark.setLink(edCollectionLink.getText().toString().trim());
+                            mPresenter.getUpdateCollectWebData(getActivity(),webBookMark,position);
+                        }
                     }
                 }else if(Constants.COLLECTION_ARTICLE_TYPE.equals(dialogType)){
                     //收藏文章（主动）
@@ -185,8 +187,6 @@ public class CollectionDialogFragment extends BaseDialogFragment<CollectionDialo
                 dismiss();
                 break;
             case R.id.btn_cancel_close:
-                dismiss();
-                break;
             case R.id.iv_close_dialog:
                 dismiss();
                 break;

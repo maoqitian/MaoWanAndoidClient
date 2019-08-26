@@ -87,9 +87,9 @@ public class CollectionPresenter extends RxBasePresenter<CollectionContract.Coll
                        .subscribe(new BaseObserver<CollectListData>() {
                            @Override
                            public void onSuccess(CollectListData result) {
-                               if(pageNum>0){
+                               if(pageNum >= 1){
                                    //如果加载第二页
-                               if(result.getDatas().size() != 0){
+                               if(result.getDatas().size()> 0){
                                    curPage = result.getCurPage();
                                    mView.showCollectListData(result.getDatas(),isRefresh);
                                }else {
@@ -99,12 +99,13 @@ public class CollectionPresenter extends RxBasePresenter<CollectionContract.Coll
                                }else {
                                    //收藏首页 则直接反回数据 方便没有收藏数据判空
                                    mView.showCollectListData(result.getDatas(),isRefresh);
+                                   curPage = result.getCurPage();
                                }
                            }
 
                            @Override
                            public void onFailure(Throwable e, String errorMsg) {
-
+                                    mView.showError();
                            }
                        });
     }
