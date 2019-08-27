@@ -21,7 +21,6 @@ import butterknife.BindView;
 import mao.com.mao_wanandroid_client.R;
 import mao.com.mao_wanandroid_client.application.Constants;
 import mao.com.mao_wanandroid_client.base.fragment.BaseFragment;
-import mao.com.mao_wanandroid_client.base.fragment.RootBaseFragment;
 import mao.com.mao_wanandroid_client.model.modelbean.home.HomeArticleData;
 import mao.com.mao_wanandroid_client.model.modelbean.webmark.WebBookMark;
 import mao.com.mao_wanandroid_client.presenter.drawer.CollectionWebContract;
@@ -35,7 +34,7 @@ import mao.com.mao_wanandroid_client.view.drawer.adapter.CollectionWebAdapter;
  * @Description: 收藏网站
  * @date 2019/8/20 0020 17:03
  */
-public class CollectionWebFragment extends RootBaseFragment<CollectionWebPresenter>
+public class CollectionWebFragment extends BaseFragment<CollectionWebPresenter>
         implements CollectionWebContract.CollectionWeb,
         BaseQuickAdapter.OnItemClickListener, View.OnClickListener {
 
@@ -124,7 +123,7 @@ public class CollectionWebFragment extends RootBaseFragment<CollectionWebPresent
                     if (!getActivity().isDestroyed() && collectionDialogFragment.isAdded()) {
                         collectionDialogFragment.dismiss();
                     }
-                    collectionDialogFragment.show(getChildFragmentManager(),"showCollectionDialog");
+                    collectionDialogFragment.show(getChildFragmentManager(),"showUpdateCollectionDialog");
                     break;
             }
         });
@@ -140,8 +139,8 @@ public class CollectionWebFragment extends RootBaseFragment<CollectionWebPresent
     @Override
     protected void initEventAndData() {
         super.initEventAndData();
-        showLoading();
         mPresenter.getCollectWebData();
+        mSmartRefreshLayout.autoRefresh();
     }
 
     @Override
@@ -206,6 +205,7 @@ public class CollectionWebFragment extends RootBaseFragment<CollectionWebPresent
 
     @Override
     public void showCollectionWebFailStatus(String msg) {
+        mSmartRefreshLayout.finishRefresh();
         Toast.makeText(getActivity(),msg,Toast.LENGTH_SHORT).show();
     }
 
@@ -231,20 +231,8 @@ public class CollectionWebFragment extends RootBaseFragment<CollectionWebPresent
                 if (!getActivity().isDestroyed() && collectionDialogFragment.isAdded()) {
                     collectionDialogFragment.dismiss();
                 }
-                collectionDialogFragment.show(getChildFragmentManager(),"showCollectionDialog");
+                collectionDialogFragment.show(getChildFragmentManager(),"showWebCollectionDialog");
                 break;
         }
-    }
-
-    @Override
-    public void showError() {
-        super.showError();
-        mSmartRefreshLayout.finishRefresh();
-    }
-
-    @Override
-    public void reload() {
-        showLoading();
-        mPresenter.getCollectWebData();
     }
 }

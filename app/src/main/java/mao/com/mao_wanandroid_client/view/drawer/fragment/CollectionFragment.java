@@ -35,7 +35,7 @@ import mao.com.mao_wanandroid_client.view.drawer.adapter.CollectionAdapter;
  * @Description: 收藏文章 Fragment
  * @date 2019/7/26 0026 15:50
  */
-public class CollectionFragment extends RootBaseFragment<CollectionPresenter>
+public class CollectionFragment extends BaseFragment<CollectionPresenter>
         implements CollectionContract.CollectionView, BaseQuickAdapter.OnItemClickListener, View.OnClickListener {
 
     //收藏文章数据
@@ -141,9 +141,8 @@ public class CollectionFragment extends RootBaseFragment<CollectionPresenter>
     @Override
     protected void initEventAndData() {
         super.initEventAndData();
-        showLoading();
         mPresenter.getCollectListData();
-        //mSmartRefreshLayout.autoRefresh();
+        mSmartRefreshLayout.autoRefresh();
     }
 
     @Override
@@ -200,6 +199,8 @@ public class CollectionFragment extends RootBaseFragment<CollectionPresenter>
 
     @Override
     public void showCancelCollectArticleFail(String msg) {
+        mSmartRefreshLayout.finishRefresh();
+        mSmartRefreshLayout.finishLoadMore();
         Toast.makeText(_mActivity,msg,Toast.LENGTH_SHORT).show();
     }
 
@@ -219,26 +220,13 @@ public class CollectionFragment extends RootBaseFragment<CollectionPresenter>
             case R.id.fab_add :
             case R.id.tv_add_collection :
                 if (collectionDialogFragment == null) {
-                    collectionDialogFragment = CollectionDialogFragment.newInstance(Constants.COLLECTION_ARTICLE_TYPE, false, null,-1);
+                    collectionDialogFragment = CollectionDialogFragment.newInstance(Constants.COLLECTION_ARTICLE_TYPE, true, null,-1);
                 }
                 if (!getActivity().isDestroyed() && collectionDialogFragment.isAdded()) {
                     collectionDialogFragment.dismiss();
                 }
-                collectionDialogFragment.show(getChildFragmentManager(),"showCollectionDialog");
+                collectionDialogFragment.show(getChildFragmentManager(),"showArticleCollectionDialog");
                 break;
         }
-    }
-
-    @Override
-    public void showError() {
-        super.showError();
-        mSmartRefreshLayout.finishRefresh();
-        mSmartRefreshLayout.finishLoadMore();
-    }
-
-    @Override
-    public void reload() {
-        showLoading();
-        mPresenter.getCollectListData();
     }
 }

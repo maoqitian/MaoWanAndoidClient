@@ -41,13 +41,13 @@ public abstract class SimpleDialogFragment extends DialogFragment {
         window.setAttributes(lp);*/
         view = inflater.inflate(getLayoutId(), container, false);
         mUnbinder=ButterKnife.bind(this,view);
-        initViewAndData();
         return view;
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        initViewAndData();
         initLoadingView();
     }
 

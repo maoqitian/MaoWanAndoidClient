@@ -73,7 +73,7 @@ public class CollectionWebPresenter extends RxBasePresenter<CollectionWebContrac
 
                        @Override
                        public void onFailure(Throwable e, String errorMsg) {
-                           mView.showError();
+                           mView.showCollectionWebFailStatus(errorMsg);
                        }
                    });
     }

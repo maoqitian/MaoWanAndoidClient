@@ -105,7 +105,7 @@ public class CollectionPresenter extends RxBasePresenter<CollectionContract.Coll
 
                            @Override
                            public void onFailure(Throwable e, String errorMsg) {
-                                    mView.showError();
+                                    mView.showCancelCollectArticleFail(errorMsg);
                            }
                        });
     }

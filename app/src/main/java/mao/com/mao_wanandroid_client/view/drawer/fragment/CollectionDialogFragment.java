@@ -82,6 +82,7 @@ public class CollectionDialogFragment extends BaseDialogFragment<CollectionDialo
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getIntentData();
     }
 
     @Override
@@ -113,7 +114,6 @@ public class CollectionDialogFragment extends BaseDialogFragment<CollectionDialo
         //确认按钮不可点击
         btnConfirmCollection.setEnabled(false);
         EditTextUtils.textChangeListener textChangeListener = new EditTextUtils.textChangeListener(btnConfirmCollection);
-        getIntentData();
         if (Constants.COLLECTION_WEB_TYPE.equals(dialogType)){
             //收藏网站
             textChangeListener.addAllEditText(edCollectionTitle,edCollectionLink);
@@ -140,7 +140,7 @@ public class CollectionDialogFragment extends BaseDialogFragment<CollectionDialo
         assert arguments != null;
         //启动搜索页面的类型 普通搜索 公众号搜索
         dialogType = arguments.getString("dialogType");
-        isAdd = arguments.getBoolean("isAdd",true);
+        isAdd = arguments.getBoolean("isAdd");
         webBookMark = (WebBookMark) arguments.getSerializable("WebBookMark");
         position = arguments.getInt("position",-1);
     }
