@@ -117,9 +117,7 @@ public class CollectionWebFragment extends BaseFragment<CollectionWebPresenter>
                             (dialog, which) -> dialog.dismiss());
                     break;
                 case R.id.iv_web_edit: //编辑
-                    if (collectionDialogFragment == null) {
-                        collectionDialogFragment = CollectionDialogFragment.newInstance(Constants.COLLECTION_WEB_TYPE, false, webBookMark,position);
-                    }
+                    collectionDialogFragment = CollectionDialogFragment.newInstance(Constants.COLLECTION_WEB_TYPE, false, webBookMark,position);
                     if (!getActivity().isDestroyed() && collectionDialogFragment.isAdded()) {
                         collectionDialogFragment.dismiss();
                     }
@@ -225,9 +223,7 @@ public class CollectionWebFragment extends BaseFragment<CollectionWebPresenter>
             //添加收藏
             case R.id.fab_add :
             case R.id.tv_add_collection :
-                if (collectionDialogFragment == null) {
-                    collectionDialogFragment = CollectionDialogFragment.newInstance(Constants.COLLECTION_WEB_TYPE, true, null,-1);
-                }
+                collectionDialogFragment = CollectionDialogFragment.newInstance(Constants.COLLECTION_WEB_TYPE, true, null,-1);
                 if (!getActivity().isDestroyed() && collectionDialogFragment.isAdded()) {
                     collectionDialogFragment.dismiss();
                 }
