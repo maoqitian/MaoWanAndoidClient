@@ -14,6 +14,9 @@ import mao.com.mao_wanandroid_client.model.modelbean.login.LoginData;
 import mao.com.mao_wanandroid_client.model.modelbean.navigation.NavigationListData;
 import mao.com.mao_wanandroid_client.model.modelbean.project.ProjectClassifyData;
 import mao.com.mao_wanandroid_client.model.modelbean.project.ProjectListData;
+import mao.com.mao_wanandroid_client.model.modelbean.rank.CoinBaseListData;
+import mao.com.mao_wanandroid_client.model.modelbean.rank.CoinRecordData;
+import mao.com.mao_wanandroid_client.model.modelbean.rank.RankData;
 import mao.com.mao_wanandroid_client.model.modelbean.search.HotKeyData;
 import mao.com.mao_wanandroid_client.model.modelbean.knowlegetree.KnowledgeHierarchyData;
 import mao.com.mao_wanandroid_client.model.modelbean.webmark.WebBookMark;
@@ -319,5 +322,29 @@ public interface ApiService {
     /**
      * todo 接口
      */
+
+    /**
+     * 积分接口
+     */
+
+    /**
+     * 积分排行榜接口
+     * @param pageNum 页码：拼接在url 中，从1开始
+     */
+    @GET("/coin/rank/{pageNum}/json")
+    Observable<ResponseBody<CoinBaseListData<RankData>>>getCoinRank(@Path("pageNum") int pageNum);
+
+    /**
+     * 获取个人积分，需要登录后访问
+     */
+    @GET("/lg/coin/getcount/json")
+    Observable<ResponseBody<Integer>>getCoinCount();
+
+    /**
+     * 获取个人积分获取列表，需要登录后访问
+     * @param pageNum 页码：拼接在url 中，从1开始
+     */
+    @GET("/lg/coin/list/{pageNum}/json")
+    Observable<ResponseBody<CoinBaseListData<CoinRecordData>>>getPersonalCoinList(@Path("pageNum") int pageNum);
 
 }

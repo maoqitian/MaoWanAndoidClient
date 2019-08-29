@@ -14,9 +14,14 @@ import mao.com.mao_wanandroid_client.model.modelbean.login.LoginData;
 import mao.com.mao_wanandroid_client.model.modelbean.navigation.NavigationListData;
 import mao.com.mao_wanandroid_client.model.modelbean.project.ProjectClassifyData;
 import mao.com.mao_wanandroid_client.model.modelbean.project.ProjectListData;
+import mao.com.mao_wanandroid_client.model.modelbean.rank.CoinBaseListData;
+import mao.com.mao_wanandroid_client.model.modelbean.rank.CoinRecordData;
+import mao.com.mao_wanandroid_client.model.modelbean.rank.RankData;
 import mao.com.mao_wanandroid_client.model.modelbean.search.HotKeyData;
 import mao.com.mao_wanandroid_client.model.modelbean.knowlegetree.KnowledgeHierarchyData;
 import mao.com.mao_wanandroid_client.model.modelbean.webmark.WebBookMark;
+import retrofit2.http.GET;
+import retrofit2.http.Path;
 
 
 /**
@@ -215,4 +220,20 @@ public interface IHttpHelper {
              int id, int pageNum, String key);
 
 
+    /**
+     * 积分排行榜接口
+     * @param pageNum 页码：拼接在url 中，从1开始
+     */
+    Observable<ResponseBody<CoinBaseListData<RankData>>>getCoinRank(int pageNum);
+
+    /**
+     * 获取个人积分，需要登录后访问
+     */
+    Observable<ResponseBody<Integer>>getCoinCount();
+
+    /**
+     * 获取个人积分获取列表，需要登录后访问
+     * @param pageNum 页码：拼接在url 中，从1开始
+     */
+    Observable<ResponseBody<CoinBaseListData<CoinRecordData>>>getPersonalCoinList(int pageNum);
 }

@@ -6,6 +6,9 @@ import io.reactivex.Observable;
 import mao.com.mao_wanandroid_client.model.dao.SearchHistoryData;
 import mao.com.mao_wanandroid_client.model.db.DbHelper;
 import mao.com.mao_wanandroid_client.model.http.helper.IHttpHelper;
+import mao.com.mao_wanandroid_client.model.modelbean.rank.CoinBaseListData;
+import mao.com.mao_wanandroid_client.model.modelbean.rank.CoinRecordData;
+import mao.com.mao_wanandroid_client.model.modelbean.rank.RankData;
 import mao.com.mao_wanandroid_client.model.modelbean.webmark.WebBookMark;
 import mao.com.mao_wanandroid_client.model.sp.SharedPreferenceHelper;
 import mao.com.mao_wanandroid_client.model.modelbean.ResponseBody;
@@ -199,6 +202,21 @@ public class DataClient implements IHttpHelper,SharedPreferenceHelper,DbHelper {
     @Override
     public Observable<ResponseBody<HomeArticleListData>> getWxArticleHistoryByKey(int id, int pageNum, String key) {
         return mIHttpHelper.getWxArticleHistoryByKey(id,pageNum,key);
+    }
+
+    @Override
+    public Observable<ResponseBody<CoinBaseListData<RankData>>> getCoinRank(int pageNum) {
+        return mIHttpHelper.getCoinRank(pageNum);
+    }
+
+    @Override
+    public Observable<ResponseBody<Integer>> getCoinCount() {
+        return mIHttpHelper.getCoinCount();
+    }
+
+    @Override
+    public Observable<ResponseBody<CoinBaseListData<CoinRecordData>>> getPersonalCoinList(int pageNum) {
+        return mIHttpHelper.getPersonalCoinList(pageNum);
     }
 
     @Override

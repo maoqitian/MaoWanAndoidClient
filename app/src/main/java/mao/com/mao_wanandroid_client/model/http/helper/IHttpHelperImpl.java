@@ -18,6 +18,9 @@ import mao.com.mao_wanandroid_client.model.modelbean.login.LoginData;
 import mao.com.mao_wanandroid_client.model.modelbean.navigation.NavigationListData;
 import mao.com.mao_wanandroid_client.model.modelbean.project.ProjectClassifyData;
 import mao.com.mao_wanandroid_client.model.modelbean.project.ProjectListData;
+import mao.com.mao_wanandroid_client.model.modelbean.rank.CoinBaseListData;
+import mao.com.mao_wanandroid_client.model.modelbean.rank.CoinRecordData;
+import mao.com.mao_wanandroid_client.model.modelbean.rank.RankData;
 import mao.com.mao_wanandroid_client.model.modelbean.search.HotKeyData;
 import mao.com.mao_wanandroid_client.model.modelbean.knowlegetree.KnowledgeHierarchyData;
 import mao.com.mao_wanandroid_client.model.modelbean.webmark.WebBookMark;
@@ -301,6 +304,21 @@ public class IHttpHelperImpl implements IHttpHelper{
     @Override
     public Observable<ResponseBody<HomeArticleListData>> getWxArticleHistoryByKey(int id, int pageNum, String key) {
         return getApiServiceGson().getWxArticleHistoryByKey(id,pageNum,key);
+    }
+
+    @Override
+    public Observable<ResponseBody<CoinBaseListData<RankData>>> getCoinRank(int pageNum) {
+        return getApiServiceGson().getCoinRank(pageNum);
+    }
+
+    @Override
+    public Observable<ResponseBody<Integer>> getCoinCount() {
+        return getApiServiceGson().getCoinCount();
+    }
+
+    @Override
+    public Observable<ResponseBody<CoinBaseListData<CoinRecordData>>> getPersonalCoinList(int pageNum) {
+        return getApiServiceGson().getPersonalCoinList(pageNum);
     }
 
 
