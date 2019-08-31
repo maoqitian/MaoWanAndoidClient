@@ -1,5 +1,6 @@
 package mao.com.mao_wanandroid_client.view.drawer.fragment;
 
+import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
@@ -30,6 +31,16 @@ public class CollectionPageFragment extends BaseFragment<CollectionPagePresenter
 
     List<String> mTitle;
     List<Fragment> mFragments;
+
+
+    public static CollectionPageFragment newInstance() {
+
+        Bundle args = new Bundle();
+
+        CollectionPageFragment fragment = new CollectionPageFragment();
+        fragment.setArguments(args);
+        return fragment;
+    }
 
     @Override
     protected void initEventAndData() {

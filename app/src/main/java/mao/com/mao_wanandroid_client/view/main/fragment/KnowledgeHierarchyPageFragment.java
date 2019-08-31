@@ -1,5 +1,6 @@
 package mao.com.mao_wanandroid_client.view.main.fragment;
 
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
@@ -40,6 +41,16 @@ public class KnowledgeHierarchyPageFragment extends RootBaseFragment<KnowledgeHi
     StaggeredGridLayoutManager layoutManager;
     KnowledgeHierarchyAdapter mAdapter;
     List<KnowledgeHierarchyData> mKnowledgeHierarchyData;
+
+    public static KnowledgeHierarchyPageFragment newInstance() {
+
+        Bundle args = new Bundle();
+
+        KnowledgeHierarchyPageFragment fragment = new KnowledgeHierarchyPageFragment();
+        fragment.setArguments(args);
+        return fragment;
+    }
+
 
     @Override
     protected void initView() {

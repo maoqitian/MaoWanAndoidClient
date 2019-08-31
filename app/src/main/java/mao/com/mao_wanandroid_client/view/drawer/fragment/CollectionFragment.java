@@ -1,5 +1,6 @@
 package mao.com.mao_wanandroid_client.view.drawer.fragment;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.FloatingActionButton;
@@ -186,13 +187,16 @@ public class CollectionFragment extends BaseFragment<CollectionPresenter>
     }
 
     //是否显示空白添加新数据
+    @SuppressLint("RestrictedApi")
     private void showCollectionDataChange() {
         List<CollectData> data = mAdapter.getData();
         if(data.size() == 0){
             mClEmpty.setVisibility(View.VISIBLE);
+            mFabAdd.setVisibility(View.GONE);
             mSmartRefreshLayout.setVisibility(View.GONE);
         }else {
             mClEmpty.setVisibility(View.GONE);
+            mFabAdd.setVisibility(View.VISIBLE);
             mSmartRefreshLayout.setVisibility(View.VISIBLE);
         }
     }

@@ -1,5 +1,6 @@
 package mao.com.mao_wanandroid_client.view.main.fragment;
 
+import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -36,6 +37,16 @@ public class OfficialAccountsPageFragment extends RootBaseFragment<OfficialAccou
     OfficialAccountsAdapter mAdapter;
 
     List<KnowledgeHierarchyData> mOfficialAccountsListData;
+
+
+    public static OfficialAccountsPageFragment newInstance() {
+
+        Bundle args = new Bundle();
+
+        OfficialAccountsPageFragment fragment = new OfficialAccountsPageFragment();
+        fragment.setArguments(args);
+        return fragment;
+    }
 
     @Override
     protected void initView() {

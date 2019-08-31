@@ -1,5 +1,6 @@
 package mao.com.mao_wanandroid_client.view.main.fragment;
 
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.LinearLayoutManager;
@@ -62,6 +63,16 @@ public class NavigationFragment extends RootBaseFragment<NavigationPresenter> im
     private int indexPosition;
     //VerticalTabLayout 点击获取位置让 RecycleView滑动到相应位置
     private int scrollToPosition;
+
+
+    public static NavigationFragment newInstance() {
+
+        Bundle args = new Bundle();
+
+        NavigationFragment fragment = new NavigationFragment();
+        fragment.setArguments(args);
+        return fragment;
+    }
 
     @Override
     protected int getLayoutId() {

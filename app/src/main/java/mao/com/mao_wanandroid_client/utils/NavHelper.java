@@ -18,12 +18,16 @@ public class NavHelper<T> {
 
     private final SparseArray<Tab<T>> tabs = new SparseArray<Tab<T>>();
 
+    private final SparseArray<Fragment> tabFragments = new SparseArray<Fragment>();
+
     private final Context mContext;
     private final int containerId;
     private final FragmentManager fragmentManager;
     private final OnTabChangeListener<T> mListener;
 
     private Tab<T> currentTab;
+
+    private Fragment currentFragment;
 
     public NavHelper(Context mContext, int containerId, FragmentManager fragmentManager, OnTabChangeListener<T> mListener) {
         this.mContext = mContext;
@@ -43,6 +47,17 @@ public class NavHelper<T> {
         tabs.put(menuId, tab);
         return this;
     }
+    /**
+     * 添加 fragment ab
+     *
+     * @param menuId
+     * @param fragment
+     * @return
+     */
+    public NavHelper<T> add(int menuId, Fragment fragment) {
+        tabFragments.put(menuId, fragment);
+        return this;
+    }
 
     /**
      * 获取当前Tab
@@ -51,6 +66,23 @@ public class NavHelper<T> {
      */
     public Tab<T> getCurrentTab() {
         return currentTab;
+    }
+
+    private int lastIndexId = R.id.tab_main;
+
+    public boolean performClickMenuFragment(int menuId){
+            FragmentTransaction ft = fragmentManager.beginTransaction();
+            Fragment currentFragment = tabFragments.get(menuId);
+            Fragment lastFragment = tabFragments.get(lastIndexId);
+            lastIndexId = menuId;
+            ft.hide(lastFragment);
+            if (!currentFragment.isAdded()) {
+                fragmentManager.beginTransaction().remove(currentFragment).commit();
+                ft.add(containerId, currentFragment);
+            }
+            ft.show(currentFragment);
+            ft.commitAllowingStateLoss();
+            return true;
     }
 
     /**

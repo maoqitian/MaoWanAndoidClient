@@ -1,5 +1,6 @@
 package mao.com.mao_wanandroid_client.view.main.fragment;
 
+import android.os.Bundle;
 import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -38,6 +39,16 @@ public class ProjectFragment extends BaseFragment<ProjectPresenter> implements P
     List<ProjectClassifyData> mProjectClassifyDataList;
     List<Fragment> mProjectFragmentsList;
     List<String> mTitle;
+
+    public static ProjectFragment newInstance() {
+
+        Bundle args = new Bundle();
+
+        ProjectFragment fragment = new ProjectFragment();
+        fragment.setArguments(args);
+        return fragment;
+    }
+
     @Override
     protected void initView() {
         mProjectClassifyDataList = new ArrayList<>();

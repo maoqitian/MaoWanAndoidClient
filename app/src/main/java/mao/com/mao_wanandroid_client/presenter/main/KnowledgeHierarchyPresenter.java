@@ -41,7 +41,11 @@ public class KnowledgeHierarchyPresenter extends RxBasePresenter<KnowledgeHierar
                               .subscribe(new BaseObserver<List<KnowledgeHierarchyData>>() {
                                   @Override
                                   public void onSuccess(List<KnowledgeHierarchyData> result) {
-                                      mView.showKnowledgeHierarchyData(result);
+                                      if(result!=null){
+                                          mView.showKnowledgeHierarchyData(result);
+                                      }else {
+                                          mView.showError();
+                                      }
                                   }
 
                                   @Override

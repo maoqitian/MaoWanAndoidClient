@@ -106,6 +106,12 @@ public class MainActivity extends BaseActivity<MainPresenter>
         pageTitle.setText(getString(R.string.page_home));
         //沉浸式状态栏
         StatusBarUtil.setColorNoTranslucentForDrawerLayout(this,drawer,ContextCompat.getColor(this,R.color.colorPrimary));
+
+    }
+
+    @Override
+    protected void onViewCreated() {
+        super.onViewCreated();
         initFragment();
         initView();
     }
@@ -116,14 +122,22 @@ public class MainActivity extends BaseActivity<MainPresenter>
             loadRootFragment(R.id.page_fragment_container, HomePageFragment.newInstance());
             //loadMultipleRootFragment();
         }*/
-       mNavHelper =new NavHelper<String>(this,R.id.page_fragment_container,getSupportFragmentManager(),this)
+       /*mNavHelper =new NavHelper<String>(this,R.id.page_fragment_container,getSupportFragmentManager(),this)
                .add(R.id.tab_main,new NavHelper.Tab<String>(HomePageFragment.class,getString(R.string.page_home),Constants.TAG_HOME))
                .add(R.id.nav_home,new NavHelper.Tab<String>(HomePageFragment.class,getString(R.string.page_home),Constants.TAG_HOME))
                .add(R.id.tab_knowledge_hierarchy,new NavHelper.Tab<String>(KnowledgeHierarchyPageFragment.class,getString(R.string.knowledge_hierarchy),Constants.TAG_KNOWLEGER))
                .add(R.id.tab_official_accounts,new NavHelper.Tab<String>(OfficialAccountsPageFragment.class,getString(R.string.official_accounts),Constants.TAG_OFFICIAL))
                .add(R.id.tab_navigation,new NavHelper.Tab<String>(NavigationFragment.class,getString(R.string.navigation),Constants.TAG_NAVIGATION))
                .add(R.id.tab_project,new NavHelper.Tab<String>(ProjectFragment.class,getString(R.string.project),Constants.TAG_PROJECT))
-               .add(R.id.collect_page,new NavHelper.Tab<String>(CollectionPageFragment.class,getString(R.string.nav_collect),Constants.TAG_COLLECTION));
+               .add(R.id.collect_page,new NavHelper.Tab<String>(CollectionPageFragment.class,getString(R.string.nav_collect),Constants.TAG_COLLECTION));*/
+        mNavHelper =new NavHelper<String>(this,R.id.page_fragment_container,getSupportFragmentManager(),this)
+                .add(R.id.tab_main,HomePageFragment.newInstance())
+                .add(R.id.nav_home,HomePageFragment.newInstance())
+                .add(R.id.tab_knowledge_hierarchy,KnowledgeHierarchyPageFragment.newInstance())
+                .add(R.id.tab_official_accounts,OfficialAccountsPageFragment.newInstance())
+                .add(R.id.tab_navigation,NavigationFragment.newInstance())
+                .add(R.id.tab_project,ProjectFragment.newInstance())
+                .add(R.id.collect_page,CollectionPageFragment.newInstance());
     }
 
     private void initView() {
@@ -230,17 +244,25 @@ public class MainActivity extends BaseActivity<MainPresenter>
         }*/
         //DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         //点击之后关闭DrawerLayout
-        if(R.id.common_website != id ){
-            //如果是 常用网站则不改变选中状态
-            //navigationView 选中
-            navigationView.setCheckedItem(id);
-        }
-        /*if(R.id.nav_settings == id){
-            //如果是设置 让其选中首页状态
-            navigationView.setCheckedItem(R.id.nav_home);
-        }*/
         drawer.closeDrawer(GravityCompat.START);
-        return mNavHelper.performClickMenu(id);
+        if(R.id.common_website ==  id || R.id.nav_settings ==id || R.id.nav_todo ==id){
+            //如果是 常用网站 todo 则不改变选中状态
+            //navigationView 选中
+            return false;
+        }else {
+            navigationView.setCheckedItem(id);
+            return mNavHelper.performClickMenuFragment(id);
+        }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                drawer.openDrawer(GravityCompat.START);
+                break;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     /**
