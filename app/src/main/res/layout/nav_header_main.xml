@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="@dimen/nav_header_height"
@@ -29,6 +29,9 @@
         app:civ_border_width="@dimen/dp_2"
         android:src="@drawable/ic_default_avatar"
         android:paddingTop="@dimen/nav_header_vertical_spacing"
+        android:layout_marginTop="@dimen/dp_40"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         />
 
     <!--<android.support.v4.widget.CircleImageView
@@ -42,22 +45,48 @@
 
     <TextView
         android:id="@+id/textView_user_name"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingTop="@dimen/nav_header_vertical_spacing"
+        android:layout_marginTop="@dimen/nav_header_vertical_spacing"
         android:text="@string/nav_header_title"
         android:textColor="@android:color/white"
         android:textSize="@dimen/sp_15"
         android:textStyle="bold"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
-
-    <TextView
-        android:id="@+id/textView_user_email"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/nav_header_subtitle"
-        android:textColor="@android:color/white"
-        android:visibility="gone"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/imageView_user_icon"
         />
 
-</LinearLayout>
+    <TextView
+        android:id="@+id/tv_user_coin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/nav_header_vertical_spacing"
+        android:text="本站积分"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/sp_14"
+        android:textStyle="bold"
+        android:visibility="gone"
+        android:layout_marginStart="@dimen/dp_10"
+        app:layout_constraintTop_toBottomOf="@id/imageView_user_icon"
+        app:layout_constraintLeft_toRightOf="@id/textView_user_name"
+        />
+
+    <TextView
+        android:id="@+id/tv_user_rank"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="lv 5"
+        android:visibility="gone"
+        android:textColor="@android:color/white"
+        android:layout_marginStart="@dimen/dp_10"
+        android:background="@drawable/tag_rank_white_background"
+        android:layout_marginTop="@dimen/nav_header_vertical_spacing"
+        android:padding="@dimen/dp_4"
+        android:textSize="@dimen/sp_10"
+        android:textStyle="bold"
+        app:layout_constraintLeft_toRightOf="@id/tv_user_coin"
+        app:layout_constraintTop_toBottomOf="@id/imageView_user_icon"
+        />
+
+</android.support.constraint.ConstraintLayout>

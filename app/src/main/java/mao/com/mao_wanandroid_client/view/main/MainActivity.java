@@ -37,7 +37,6 @@ import mao.com.mao_wanandroid_client.presenter.main.MainPresenter;
 import mao.com.mao_wanandroid_client.utils.NavHelper;
 import mao.com.mao_wanandroid_client.utils.StartDetailPage;
 import mao.com.mao_wanandroid_client.utils.StatusBarUtil;
-import mao.com.mao_wanandroid_client.view.drawer.fragment.CollectionFragment;
 import mao.com.mao_wanandroid_client.view.drawer.fragment.CollectionPageFragment;
 import mao.com.mao_wanandroid_client.view.drawer.fragment.CommonWebFragment;
 import mao.com.mao_wanandroid_client.view.drawer.fragment.SettingsFragment;
@@ -77,6 +76,11 @@ public class MainActivity extends BaseActivity<MainPresenter>
     private CircleImageView userImageIcon;
     //用户名
     private TextView mUserName;
+    //积分 等级
+    private TextView mUserCoin;
+    private TextView mUserRank;
+
+    //导航 tab 切换帮助类
     private NavHelper mNavHelper;
 
     SearchFragment mSearchFragment;
@@ -324,6 +328,7 @@ public class MainActivity extends BaseActivity<MainPresenter>
         mUserName = navigationView.getHeaderView(0).findViewById(R.id.textView_user_name);
         mUserName.setText(mPresenter.getLoginUserName());
         userImageIcon.setImageDrawable(getDrawable(R.mipmap.ic_launcher));
+        mPresenter.getCoinAndRank();
 
     }
 
@@ -346,6 +351,21 @@ public class MainActivity extends BaseActivity<MainPresenter>
     @Override
     public void showSingOutFail(String errorMsg) {
         Toast.makeText(this,errorMsg,Toast.LENGTH_SHORT).show();
+    }
+    //登录成功显示积分模块
+    @Override
+    public void showCoinAndRank(int coin) {
+        mUserCoin = navigationView.getHeaderView(0).findViewById(R.id.tv_user_coin);
+        mUserRank = navigationView.getHeaderView(0).findViewById(R.id.tv_user_rank);
+        mUserCoin.setVisibility(View.VISIBLE);
+        mUserCoin.setText("积分："+coin);
+        mUserRank.setVisibility(View.VISIBLE);
+        if(coin>100){
+            mUserRank.setText("lv "+(coin-(coin%100))/100+1);
+        }else {
+            mUserRank.setText("lv 1");
+        }
+
     }
 
     @Override

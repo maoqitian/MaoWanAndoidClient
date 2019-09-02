@@ -14,6 +14,8 @@ public interface MainContract {
         void showSingOutSuccess();
 
         void showSingOutFail(String errorMsg);
+
+        void showCoinAndRank(int coin);
     }
 
 
@@ -21,6 +23,10 @@ public interface MainContract {
 
         void getSingOut();
 
+        /**
+         * 获取我的积分
+         */
+        void getCoinAndRank();
     }
 
 }

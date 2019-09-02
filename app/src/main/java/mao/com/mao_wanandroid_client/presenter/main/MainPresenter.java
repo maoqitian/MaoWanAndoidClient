@@ -100,4 +100,21 @@ public class MainPresenter extends RxBasePresenter<MainContract.MainView> implem
                     }
                 });
     }
+
+    @Override
+    public void getCoinAndRank() {
+        Observable<ResponseBody<Integer>> coinCount = mDataClient.getCoinCount();
+        coinCount.compose(RxSchedulers.observableIO2Main())
+                 .subscribe(new BaseObserver<Integer>() {
+                     @Override
+                     public void onSuccess(Integer result) {
+                         mView.showCoinAndRank(result);
+                     }
+
+                     @Override
+                     public void onFailure(Throwable e, String errorMsg) {
+                         mView.showSingOutFail(errorMsg);
+                     }
+                 });
+    }
 }

@@ -11,7 +11,7 @@ import mao.com.mao_wanandroid_client.R;
 
 /**
  * @author maoqitian
- * @Description: BottomNavigationView fragment 切换帮助类 https://www.jianshu.com/p/93b4920a7459
+ * @Description: BottomNavigationView fragment 切换帮助类
  * @date 2019/5/7 0007 10:58
  */
 public class NavHelper<T> {
