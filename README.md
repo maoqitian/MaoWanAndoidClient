@@ -2,8 +2,11 @@
 [![License](https://img.shields.io/badge/license-Apache%202-green.svg)](https://www.apache.org/licenses/LICENSE-2.0)
 <img src="https://img.shields.io/badge/Android-1.0.1-blue.svg" align=left />
 ## 项目简介
-- 首先感谢[**鸿洋**](https://github.com/hongyangAndroid)大佬提供的[玩Android开放API](https://www.wanandroid.com/blog/show/2)，这是一款有较好用户体验的开源**玩Android客户端。**提供丰富完整的功能，更好的体验，旨在更好的浏览[https://www.wanandroid.com/](https://www.wanandroid.com/)网站内容，更好的在手机上进行学习。项目使用**Retrofit2 + RxJava2 + Dagger2 +MVP+RxBus**架构，尽量使用**Material Design**控件进行开发。如果觉得本项目对你有帮助，希望您给我一个点一个**Star**. 
-- clone 本项目之后需编译生成dagger对应文件。
+- 首先感谢[**鸿洋**](https://github.com/hongyangAndroid)大佬提供的[玩Android开放API](https://www.wanandroid.com/blog/show/2)，这是一款有较好用户体验的开源**玩Android客户端。**提供丰富完整的功能，更好的体验，旨在更好的浏览[https://www.wanandroid.com/](https://www.wanandroid.com/)网站内容，更好的在手机上进行学习。项目使用**Retrofit2 + RxJava2 + Dagger2 +MVP+RxBus**架构，尽量使用**Material Design**控件进行开发。如果觉得本项目对你有帮助，希望您给我来一个**Star**. 
+### MVP项目架构解析
+- [Android 基本架构之MVP分析与实践](https://juejin.im/post/5d680af66fb9a06af92bb780)
+#### 注意
+- 下载本项目建议clone master分支,clone 本项目之后需编译生成dagger对应文件。
 ## 项目基本架构
 ![MVP-WanAndroid-Architecture](https://github.com/maoqitian/MaoMdPhoto/raw/master/WanAndroid/MVP-WanAndroid-Architecture1.jpg)
 ## API
@@ -50,6 +53,10 @@
 - 首页文章搜索
 - 在某个公众号中搜索历史文章
 
+### 积分
+- 获取个人积分
+- 获取个人积分获取列表
+
 ### 设置
 - 夜间模式
 - 清除缓存
@@ -86,9 +93,16 @@
 - [**历史版本下载地址**](https://github.com/maoqitian/MaoWanAndoidClient/releases)
 ### **最新版本下载二维码**
 - 可以手机浏览器输入以下地址下载 [https://fir.im/kgy2](https://fir.im/kgy2)
-![downloadApk](https://github.com/maoqitian/MaoMdPhoto/raw/master/WanAndroid/downloadApk-v1.0.1.jpg)
+![downloadApk](https://github.com/maoqitian/MaoMdPhoto/raw/master/WanAndroid/downloadApk-v1.0.2.jpg)
 
 # 版本更新日志
+
+## v1.0.2 (2019/9/3)
+### 新增我的积分模块
+- 获取个人积分
+- 获取个人积分获取列表
+- 登录之后侧拉Drawer 显示等级和积分
+- 修复上个版本存在的bug
 
 ## v1.0.1 (2019/8/29)
 ### 完善收藏模块功能
