@@ -37,6 +37,7 @@ import mao.com.mao_wanandroid_client.presenter.main.MainPresenter;
 import mao.com.mao_wanandroid_client.utils.NavHelper;
 import mao.com.mao_wanandroid_client.utils.StartDetailPage;
 import mao.com.mao_wanandroid_client.utils.StatusBarUtil;
+import mao.com.mao_wanandroid_client.view.drawer.fragment.CoinFragment;
 import mao.com.mao_wanandroid_client.view.drawer.fragment.CollectionPageFragment;
 import mao.com.mao_wanandroid_client.view.drawer.fragment.CommonWebFragment;
 import mao.com.mao_wanandroid_client.view.drawer.fragment.SettingsFragment;
@@ -86,6 +87,7 @@ public class MainActivity extends BaseActivity<MainPresenter>
     SearchFragment mSearchFragment;
     CommonWebFragment mCommonWebFragment;
     SettingsFragment mSettingsFragment;
+    CoinFragment mCoinFragment;
 
     // 是否开启了主页，没有开启则会返回主页
     public static boolean isLaunch = false;
@@ -238,6 +240,21 @@ public class MainActivity extends BaseActivity<MainPresenter>
                 }
                 mCommonWebFragment.show(getSupportFragmentManager(),"showCommonWeb");
                 break;
+            case R.id.nav_coin:
+                //我的积分
+                if(!mPresenter.getLoginStatus()){
+                    //是否已经登录
+                    StartDetailPage.start(this,null, Constants.PAGE_LOGIN,Constants.ACTION_LOGIN_ACTIVITY);
+                    return false;
+                }
+                if (mCoinFragment == null) {
+                    mCoinFragment = CoinFragment.newInstance();
+                }
+                if (!isDestroyed() && mCoinFragment.isAdded()) {
+                    mCoinFragment.dismiss();
+                }
+                mCoinFragment.show(getSupportFragmentManager(),"showCoin");
+                break;
                 default:
                     break;
         }
@@ -249,7 +266,7 @@ public class MainActivity extends BaseActivity<MainPresenter>
         //DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         //点击之后关闭DrawerLayout
         drawer.closeDrawer(GravityCompat.START);
-        if(R.id.common_website ==  id || R.id.nav_settings ==id || R.id.nav_todo ==id){
+        if(R.id.common_website ==  id || R.id.nav_settings ==id || R.id.nav_todo ==id || R.id.nav_coin == id){
             //如果是 常用网站 todo 则不改变选中状态
             //navigationView 选中
             return false;
@@ -360,12 +377,13 @@ public class MainActivity extends BaseActivity<MainPresenter>
         mUserCoin.setVisibility(View.VISIBLE);
         mUserCoin.setText("积分："+coin);
         mUserRank.setVisibility(View.VISIBLE);
-        if(coin>100){
-            mUserRank.setText("lv "+(coin-(coin%100))/100+1);
+        int mCoin = coin;
+        if(mCoin>100){
+            mCoin = (coin-(coin%100))/100+1;
         }else {
-            mUserRank.setText("lv 1");
+            mCoin = 1;
         }
-
+        mUserRank.setText("lv "+mCoin);
     }
 
     @Override

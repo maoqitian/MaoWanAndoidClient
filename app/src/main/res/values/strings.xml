@@ -90,4 +90,6 @@
     <string name="action_share">share</string>
 
     <string name="todo_text">TODO</string>
+    <string name="my_coin">Coin</string>
+    <string name="coin_record_text">Coin Record</string>
 </resources>

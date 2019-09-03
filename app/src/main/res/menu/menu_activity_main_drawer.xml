@@ -26,6 +26,11 @@
         android:title="@string/nav_settings" />
 
     <item
+        android:id="@+id/nav_coin"
+        android:icon="@drawable/ic_coin"
+        android:title="@string/my_coin" />
+
+    <item
         android:id="@+id/nav_todo"
         android:icon="@drawable/ic_todo"
         android:title="@string/todo_text" />

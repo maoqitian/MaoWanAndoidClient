@@ -91,4 +91,6 @@
     <string name="action_share">分享</string>
 
     <string name="todo_text">TODO</string>
+    <string name="my_coin">我的积分</string>
+    <string name="coin_record_text">积分记录</string>
 </resources>
