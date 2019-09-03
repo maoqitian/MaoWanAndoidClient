@@ -69,7 +69,7 @@
         android:visibility="gone"
         android:layout_marginStart="@dimen/dp_10"
         app:layout_constraintTop_toBottomOf="@id/imageView_user_icon"
-        app:layout_constraintLeft_toRightOf="@id/textView_user_name"
+        app:layout_constraintLeft_toRightOf="@id/tv_user_rank"
         />
 
     <TextView
@@ -85,7 +85,7 @@
         android:padding="@dimen/dp_4"
         android:textSize="@dimen/sp_10"
         android:textStyle="bold"
-        app:layout_constraintLeft_toRightOf="@id/tv_user_coin"
+        app:layout_constraintLeft_toRightOf="@id/textView_user_name"
         app:layout_constraintTop_toBottomOf="@id/imageView_user_icon"
         />
 

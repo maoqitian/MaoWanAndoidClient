@@ -357,6 +357,10 @@ public class MainActivity extends BaseActivity<MainPresenter>
         mUserName.setText(getString(R.string.nav_header_title));
         CookieManager.getInstance().clearAllCookie();
         userImageIcon.setImageDrawable(getDrawable(R.drawable.ic_default_avatar));
+        mUserCoin = navigationView.getHeaderView(0).findViewById(R.id.tv_user_coin);
+        mUserRank = navigationView.getHeaderView(0).findViewById(R.id.tv_user_rank);
+        mUserCoin.setVisibility(View.GONE);
+        mUserRank.setVisibility(View.GONE);
     }
 
     @Override
