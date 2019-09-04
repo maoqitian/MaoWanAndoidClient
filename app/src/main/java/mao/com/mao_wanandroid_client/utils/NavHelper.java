@@ -71,18 +71,22 @@ public class NavHelper<T> {
     private int lastIndexId = R.id.tab_main;
 
     public boolean performClickMenuFragment(int menuId){
-            FragmentTransaction ft = fragmentManager.beginTransaction();
-            Fragment currentFragment = tabFragments.get(menuId);
-            Fragment lastFragment = tabFragments.get(lastIndexId);
-            lastIndexId = menuId;
-            ft.hide(lastFragment);
-            if (!currentFragment.isAdded()) {
-                fragmentManager.beginTransaction().remove(currentFragment).commit();
-                ft.add(containerId, currentFragment);
+            if (tabFragments.get(menuId)!= null){
+                FragmentTransaction ft = fragmentManager.beginTransaction();
+                Fragment currentFragment = tabFragments.get(menuId);
+                Fragment lastFragment = tabFragments.get(lastIndexId);
+                lastIndexId = menuId;
+                ft.hide(lastFragment);
+                if (!currentFragment.isAdded()) {
+                    fragmentManager.beginTransaction().remove(currentFragment).commit();
+                    ft.add(containerId, currentFragment);
+                }
+                ft.show(currentFragment);
+                ft.commitAllowingStateLoss();
+                return true;
+            }else {
+                return false;
             }
-            ft.show(currentFragment);
-            ft.commitAllowingStateLoss();
-            return true;
     }
 
     /**

@@ -49,16 +49,16 @@ public abstract class RootBaseFragment <T extends AbstractBasePresenter>extends 
     }
 
     public void addLoadingView(){
-        //加入errorView 到 mBaseView 并返回 root 布局为 mBaseView
+        //加入loadingView 到 mBaseView 并返回 root 布局为 mBaseView
         LayoutInflater.from(_mActivity).inflate(R.layout.view_loading, mBaseView,true);
         loadingView = mBaseView.findViewById(R.id.loading_view_container);
         mLoadingView = loadingView.findViewById(R.id.view_loading);
     }
 
     public void addErrorView(){
-        //加入loadingView 到 mBaseView 并返回 root 布局为 mBaseView
-        LayoutInflater.from(_mActivity).inflate(R.layout.view_error,mBaseView,true);
-        errorView = mBaseView.findViewById(R.id.view_error);
+        //让 errorView 不处在任何一个容器中 root不为null，attachToRoot为false 指定为当前 fragment 布局，防止加载在根布局出现多个 errorView add
+        errorView = LayoutInflater.from(_mActivity).inflate(R.layout.view_error, inflateView, false);
+        mBaseView.addView(errorView);
         tvReload = errorView.findViewById(R.id.tv_reload);
         tvReload.setOnClickListener(v -> reload());
     }

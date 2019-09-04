@@ -50,14 +50,13 @@ public abstract class RootActivity<T extends RxBasePresenter> extends BaseActivi
 
 
     public void addLoadingView(){
-        //加入errorView 到 mBaseView 并返回 root 布局为 mBaseView
+        //加入loadingView 到 mBaseView 并返回 root 布局为 mBaseView
         LayoutInflater.from(this).inflate(R.layout.view_loading, mBaseView,true);
         loadingView = mBaseView.findViewById(R.id.loading_view_container);
         mLoadingView = loadingView.findViewById(R.id.view_loading);
     }
 
     public void addErrorView(){
-        //加入loadingView 到 mBaseView 并返回 root 布局为 mBaseView
         LayoutInflater.from(this).inflate(R.layout.view_error,mBaseView,true);
         errorView = mBaseView.findViewById(R.id.view_error);
         tvReload = errorView.findViewById(R.id.tv_reload);

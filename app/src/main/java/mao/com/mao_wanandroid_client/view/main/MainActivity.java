@@ -266,7 +266,7 @@ public class MainActivity extends BaseActivity<MainPresenter>
         //DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         //点击之后关闭DrawerLayout
         drawer.closeDrawer(GravityCompat.START);
-        if(R.id.common_website ==  id || R.id.nav_settings ==id || R.id.nav_todo ==id || R.id.nav_coin == id){
+        if(R.id.common_website ==  id || R.id.nav_settings ==id || R.id.nav_todo ==id ){
             //如果是 常用网站 todo 则不改变选中状态
             //navigationView 选中
             return false;

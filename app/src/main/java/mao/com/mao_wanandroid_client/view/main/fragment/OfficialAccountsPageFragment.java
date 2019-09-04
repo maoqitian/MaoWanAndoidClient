@@ -30,7 +30,7 @@ public class OfficialAccountsPageFragment extends RootBaseFragment<OfficialAccou
         BaseQuickAdapter.OnItemClickListener {
 
 
-    @BindView(R.id.official_accounts_recyclerview)
+    @BindView(R.id.inflate_view)
     RecyclerView mRecyclerView;
 
     RecyclerView.LayoutManager layoutManager;

@@ -22,6 +22,7 @@ import android.view.ViewGroup;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
@@ -56,7 +57,7 @@ import mao.com.mao_wanandroid_client.view.main.MainActivity;
  *   - 返回网页上一层、显示网页标题
  *   JS交互部分：
  *   - 前端代码嵌入js(缺乏灵活性)
- *  *- 网页自带js跳转
+ *   - 网页自带js跳转
  *   被作为第三方浏览器打开
  * @Time 2019/5/31 0031 0:01
  */
@@ -73,13 +74,16 @@ public class PageDetailActivity extends BaseActivity<PageDetailPresenter> implem
     // 进度条
     @BindView(R.id.pb_progress)
     ProgressBar mProgressBar;
+    //收藏
+    @BindView(R.id.iv_toolbar_collect)
+    ImageView mCollectView;
 
     // 全屏时视频加载view
     private FrameLayout videoFullView;
     // 加载视频相关
     private MyWebChromeClient mWebChromeClient;
 
-    HomeArticleData homeArticleData;
+    HomeArticleData mHomeArticleData;
 
 
     private String pageType;//当前web 页面类型（是否可以收藏）
@@ -93,7 +97,7 @@ public class PageDetailActivity extends BaseActivity<PageDetailPresenter> implem
     @Override
     protected void initToolbar() {
         getIntentData();
-        mToolbar.setTitle(Html.fromHtml(homeArticleData.getTitle()));
+        mToolbar.setTitle(Html.fromHtml(mHomeArticleData.getTitle()));
         mToolbar.setTitleTextColor(Color.WHITE);
         setSupportActionBar(mToolbar);
         mToolbar.setNavigationIcon(R.drawable.ic_arrow_back_24dp);
@@ -106,13 +110,32 @@ public class PageDetailActivity extends BaseActivity<PageDetailPresenter> implem
                 handleFinish();
             }
         });
+        if(Constants.PAGE_WEB_COLLECT.equals(pageType)){
+            mCollectView.setVisibility(View.VISIBLE);
+            setCollectionDrawable(mHomeArticleData);
+        }else if(Constants.PAGE_WEB_NOT_COLLECT.equals(pageType)){
+            mCollectView.setVisibility(View.GONE);
+        }
+        mCollectView.setOnClickListener(v -> {
+            if(mHomeArticleData!=null){
+               addOrCancelCollect(0,mHomeArticleData);
+            }
+        });
+    }
+
+    private void setCollectionDrawable(HomeArticleData homeArticleData) {
+        if(homeArticleData.isCollect()){
+            mCollectView.setImageDrawable(ContextCompat.getDrawable(mContext,R.drawable.ic_favorite_collect_24dp));
+        }else {
+            mCollectView.setImageDrawable(ContextCompat.getDrawable(mContext,R.drawable.ic_favorite_white));
+        }
     }
 
     private void getIntentData() {
-        homeArticleData= (HomeArticleData) getIntent().getSerializableExtra(Constants.HOME_ARTICLE_DATA);
+        mHomeArticleData= (HomeArticleData) getIntent().getSerializableExtra(Constants.HOME_ARTICLE_DATA);
         pageType = getIntent().getStringExtra(Constants.PAGE_TYPE);
-        if(homeArticleData!=null){
-            Log.e("毛麒添","详情页PageDetailActivity数据 :"+homeArticleData.toString());
+        if(mHomeArticleData!=null){
+            Log.e("毛麒添","详情页PageDetailActivity数据 :"+mHomeArticleData.toString());
         }
     }
 
@@ -155,8 +178,7 @@ public class PageDetailActivity extends BaseActivity<PageDetailPresenter> implem
     protected void initEventAndData() {
         super.initEventAndData();
         initWebView();
-        webView.loadUrl(homeArticleData.getLink());
-
+        webView.loadUrl(mHomeArticleData.getLink());
     }
 
     private void initWebView() {
@@ -497,5 +519,22 @@ public class PageDetailActivity extends BaseActivity<PageDetailPresenter> implem
     private void hideCustomView() {
         mWebChromeClient.onHideCustomView();
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+    }
+
+    @Override
+    public void showAddArticleCollectStatus(int position, HomeArticleData homeArticleData, String msg) {
+        showCollectStatus(position,homeArticleData,msg);
+    }
+
+    //显示收藏 或取消 收藏之后的状态
+    private void showCollectStatus(int position,HomeArticleData homeArticleData,String msg){
+        mHomeArticleData = homeArticleData;
+        setCollectionDrawable(mHomeArticleData);
+        Toast.makeText(this,msg,Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void showCancelArticleCollectStatus(int position, HomeArticleData homeArticleData, String msg) {
+        showCollectStatus(position,homeArticleData,msg);
     }
 }

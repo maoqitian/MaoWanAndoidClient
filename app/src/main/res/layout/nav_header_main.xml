@@ -62,13 +62,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/nav_header_vertical_spacing"
-        android:text="本站积分"
+        android:text="积分：999"
         android:textColor="@android:color/white"
         android:textSize="@dimen/sp_14"
         android:textStyle="bold"
         android:visibility="gone"
         android:layout_marginStart="@dimen/dp_10"
         app:layout_constraintTop_toBottomOf="@id/imageView_user_icon"
+        app:layout_constraintBaseline_toBaselineOf="@id/tv_user_rank"
         app:layout_constraintLeft_toRightOf="@id/tv_user_rank"
         />
 
@@ -82,10 +83,14 @@
         android:layout_marginStart="@dimen/dp_10"
         android:background="@drawable/tag_rank_white_background"
         android:layout_marginTop="@dimen/nav_header_vertical_spacing"
-        android:padding="@dimen/dp_4"
+        android:paddingLeft="@dimen/dp_3"
+        android:paddingRight="@dimen/dp_3"
+        android:paddingTop="@dimen/dp_1"
+        android:paddingBottom="@dimen/dp_1"
         android:textSize="@dimen/sp_10"
         android:textStyle="bold"
         app:layout_constraintLeft_toRightOf="@id/textView_user_name"
+        app:layout_constraintBaseline_toBaselineOf="@id/textView_user_name"
         app:layout_constraintTop_toBottomOf="@id/imageView_user_icon"
         />
 
