@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.content.res.Resources;
 import android.graphics.Color;
 import android.graphics.Rect;
 import android.net.ConnectivityManager;
@@ -225,5 +226,16 @@ public class ToolsUtils {
             e.printStackTrace();
             return "null";
         }
+    }
+
+    /**
+     * 根据手机的分辨率从 dp 的单位 转成为 px(像素)
+     * @param dpValue 虚拟像素
+     * @return 像素
+     */
+    //<editor-fold desc="像素密度">
+    private static float density = Resources.getSystem().getDisplayMetrics().density;
+    public static int dp2px(float dpValue) {
+        return (int) (0.5f + dpValue * density);
     }
 }

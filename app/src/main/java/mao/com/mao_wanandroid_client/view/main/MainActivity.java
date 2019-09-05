@@ -307,7 +307,8 @@ public class MainActivity extends BaseActivity<MainPresenter>
                      StartDetailPage.start(MainActivity.this,null, Constants.PAGE_LOGIN,Constants.ACTION_LOGIN_ACTIVITY);
                  }else {
                      //TODO 进入个人中心 暂未实现
-                     Toast.makeText(MainActivity.this,"进入个人中心暂未实现",Toast.LENGTH_SHORT).show();
+                     //Toast.makeText(MainActivity.this,"进入个人中心暂未实现",Toast.LENGTH_SHORT).show();
+                     startActivity(new Intent(this,SearchResultActivity.class));
                  }
                  break;
              case R.id.iv_search:
