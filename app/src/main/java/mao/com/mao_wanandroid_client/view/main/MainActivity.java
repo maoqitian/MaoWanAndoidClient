@@ -308,7 +308,7 @@ public class MainActivity extends BaseActivity<MainPresenter>
                  }else {
                      //TODO 进入个人中心 暂未实现
                      //Toast.makeText(MainActivity.this,"进入个人中心暂未实现",Toast.LENGTH_SHORT).show();
-                     startActivity(new Intent(this,SearchResultActivity.class));
+                     startActivity(new Intent(this, UserCenterActivity.class));
                  }
                  break;
              case R.id.iv_search:

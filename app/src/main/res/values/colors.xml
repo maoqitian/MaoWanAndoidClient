@@ -26,5 +26,6 @@
     <color name="item_title_text_color">#FF434343</color>
     <color name="own_coin_text_color">#73C4FF</color>
     <color name="coin_text_color">#108EE9</color>
+    <color name="colorTrans">#00000000</color>
 
 </resources>

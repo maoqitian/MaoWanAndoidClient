@@ -7,21 +7,21 @@ import mao.com.mao_wanandroid_client.model.http.DataClient;
 
 /**
  * @author maoqitian
- * @Description 搜索结果
+ * @Description 用户中心
  * @Time 2019/5/8 0008 23:30
  */
-public class SearchResultPresenter extends RxBasePresenter<SearchResultContract.SearchResultView>
-        implements SearchResultContract.SearchResultActivityPresenter {
+public class UserCenterPresenter extends RxBasePresenter<UserCenterContract.UserCenterView>
+        implements UserCenterContract.UserCenterActivityPresenter {
 
     private DataClient mDataClient;
     @Inject
-    public SearchResultPresenter(DataClient dataClient) {
+    public UserCenterPresenter(DataClient dataClient) {
         super(dataClient);
         this.mDataClient = dataClient;
     }
 
     @Override
-    public void attachView(SearchResultContract.SearchResultView view) {
+    public void attachView(UserCenterContract.UserCenterView view) {
         super.attachView(view);
     }
 }

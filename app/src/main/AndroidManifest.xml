@@ -78,7 +78,7 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name=".view.main.SearchResultActivity"
+        <activity android:name=".view.main.UserCenterActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="com.mao.mao_wanandroid.action.SEARCH_RESULT" />

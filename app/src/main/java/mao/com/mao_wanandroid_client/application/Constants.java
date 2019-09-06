@@ -125,6 +125,7 @@ public class Constants {
     //获取项目模块 项目列表数据 id
     public static final String BUNDLE_PROJECT_ID = "projectId";
 
+
     //设置 item type
     // 清除缓存
     public static final String SETTINGS_CLEAR_CACHE_TYPE = "settings_clear_cache_type";
@@ -140,7 +141,13 @@ public class Constants {
     public static final String RESPONSE_TOP_ARTICLE_TYPE = "homeTopArticleDataObservable";
     public static final String RESPONSE_ARTICLE_TYPE = "homeArticleListDataObservable";
 
-    //Dialog
+    //收藏 Dialog type
     public static final String COLLECTION_WEB_TYPE = "collection_web_type";
     public static final String COLLECTION_ARTICLE_TYPE = "collection_article_type";
+
+    //收藏 fragment type 是否有下拉刷新能力
+    public static final String COLLECTION_REFRESH_TYPE = "collection_refresh_type";
+    public static final String COLLECTION_NOT_REFRESH_TYPE = "collection_not_refresh_type";
+    //收藏 fragment tag 是否有下拉刷新能力
+    public static final String COLLECTION_REFRESH_TAG = "collection_refresh_tag";
 }

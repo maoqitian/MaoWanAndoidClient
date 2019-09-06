@@ -53,8 +53,8 @@ public class CollectionPageFragment extends BaseFragment<CollectionPagePresenter
         mFragments = new ArrayList<>();
         mTitle.add(getString(R.string.collection_article));
         mTitle.add(getString(R.string.collection_web));
-        mFragments.add(CollectionFragment.newInstance());
-        mFragments.add(CollectionWebFragment.newInstance());
+        mFragments.add(CollectionFragment.newInstance(""));
+        mFragments.add(CollectionWebFragment.newInstance(""));
 
         //下划线间距
         ToolsUtils.setIndicatorWidth(mCollectionTab,getResources().getDimensionPixelSize(R.dimen.dp_30));

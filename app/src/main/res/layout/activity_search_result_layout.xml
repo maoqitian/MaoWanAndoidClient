@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorBackground"
-    tools:context=".view.main.SearchResultActivity">
+    tools:context=".view.main.UserCenterActivity">
 
     <ImageView
         android:id="@+id/iv_parallax"
@@ -30,156 +30,79 @@
             android:layout_height="wrap_content"
             app:srlPrimaryColor="@android:color/transparent"
             app:srlAccentColor="@android:color/white"/>
-        <android.support.v4.widget.NestedScrollView
-            android:id="@+id/ns_view"
+
+        <android.support.design.widget.CoordinatorLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:overScrollMode="never"
-            android:fillViewport="true"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior">
-            <!--ScrollView can host only one direct child 包裹一层LinearLayout -->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
+            android:layout_height="match_parent">
+
+        <android.support.design.widget.AppBarLayout
+            android:id="@+id/appbar_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorTrans">
 
             <android.support.design.widget.CollapsingToolbarLayout
-                        android:id="@+id/collapse"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        app:titleEnabled="false"
-                        app:contentScrim="@color/colorPrimary"
-                        app:layout_scrollFlags="scroll|exitUntilCollapsed">
+                android:id="@+id/collapse"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:titleEnabled="false"
+                app:contentScrim="@color/colorPrimary"
+                app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
-                        <android.support.constraint.ConstraintLayout
-                            android:id="@+id/panel_lyt"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="150dp">
-                            <android.support.constraint.ConstraintLayout
-                                android:id="@+id/panel"
-                                android:layout_width="match_parent"
-                                android:layout_height="@dimen/dp_135"
-                                android:paddingTop="@dimen/dp_10"
-                                android:paddingBottom="@dimen/dp_10"
-                                android:paddingLeft="@dimen/dp_15"
-                                android:paddingRight="@dimen/dp_15"
-                                app:layout_constraintTop_toBottomOf="@id/visitor"
-                                android:background="@android:color/white">
+                <include layout="@layout/user_center_head_layout"/>
 
-                                <TextView
-                                    android:id="@+id/tv_nickname"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="maoqitian"
-                                    android:textSize="@dimen/sp_17"
-                                    android:textColor="@color/textColorPrimary"
-                                    app:layout_constraintBottom_toTopOf="@id/tv_user_center_rank"
-                                    app:layout_constraintStart_toStartOf="parent"
-                                    />
+                <android.support.v7.widget.Toolbar
+                    android:id="@+id/toolbar1"
+                    style="@style/AppTheme.Toolbar"
+                    android:layout_width="match_parent"
+                    android:background="#00000000"
+                    android:visibility="invisible"
+                    app:layout_collapseMode="pin" />
 
-                                    <TextView
-                                        android:id="@+id/tv_user_center_rank"
-                                        style="@style/AppTheme.Label"
-                                        app:layout_constraintBottom_toTopOf="@id/signature"
-                                        app:layout_constraintStart_toStartOf="parent"
-                                        />
-                                    <TextView
-                                        android:id="@+id/tv_line"
-                                        style="@style/AppTheme.Label"
-                                        android:layout_marginStart="@dimen/dp_10"
-                                        android:text="|"
-                                        app:layout_constraintBottom_toTopOf="@id/signature"
-                                        app:layout_constraintStart_toEndOf="@id/tv_user_center_rank"
-                                        />
-                                    <TextView style="@style/AppTheme.Label"
-                                        android:id="@+id/tv_user_center_coin"
-                                        android:layout_marginStart="@dimen/dp_10"
-                                        app:layout_constraintBottom_toTopOf="@id/signature"
-                                        app:layout_constraintStart_toEndOf="@id/tv_line"
-                                        />
-                                <TextView
-                                    style="@style/AppTheme.Label.Description"
-                                    android:id="@+id/signature"
-                                    android:layout_marginTop="@dimen/dp_10"
-                                    android:textColor="@color/textColorPrimary"
-                                    app:layout_constraintBottom_toBottomOf="parent"
-                                    app:layout_constraintLeft_toLeftOf="parent"
-                                    android:text="这个人很懒，什么也没留下..."/>
+            </android.support.design.widget.CollapsingToolbarLayout>
 
-                            </android.support.constraint.ConstraintLayout>
+            <android.support.design.widget.TabLayout
+                android:id="@+id/collection_tab"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/viewBackground"
+                app:tabTextColor="@color/font_hint"
+                app:tabSelectedTextColor="@color/colorPrimary"
+                app:tabIndicatorColor="@color/colorAccent"
+                app:tabGravity="center"
+                app:tabMode="fixed"
+                >
+            </android.support.design.widget.TabLayout>
 
-                            <mao.com.mao_wanandroid_client.widget.CircleImageView
-                                android:id="@+id/avatar"
-                                android:layout_width="80dp"
-                                android:layout_height="80dp"
-                                android:layout_marginTop="@dimen/dp_10"
-                                android:layout_marginStart="@dimen/dp_10"
-                                android:src="@mipmap/ic_launcher"
-                                app:layout_constraintTop_toTopOf="parent"
-                                app:layout_constraintLeft_toLeftOf="parent"
-                                app:civ_border_width="3dp"
-                                app:civ_border_color="@android:color/darker_gray"
-                                app:civ_border_overlay="true"
-                                />
-
-                            <TextView style="@style/AppTheme.Label.Layout"
-                                android:id="@+id/visitor"
-                                android:background="?attr/selectableItemBackground"
-                                android:shadowColor="#aa000000"
-                                android:shadowDx="2.5"
-                                android:shadowDy="2.5"
-                                android:shadowRadius="10"
-                                android:textColor="@android:color/white"
-                                app:layout_constraintTop_toTopOf="parent"
-                                app:layout_constraintRight_toRightOf="parent"
-                                android:text="访客总量 15"/>
-
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="@dimen/dp_1"
-                                android:layout_alignParentEnd="true"
-                                android:layout_alignParentBottom="true"
-                                android:background="@color/item_divider_color"
-                                app:layout_constraintBottom_toBottomOf="parent" />
-                        </android.support.constraint.ConstraintLayout>
-                 </android.support.design.widget.CollapsingToolbarLayout>
-
-               <include layout="@layout/collection_page_fragment_layout"/>
-
-            </LinearLayout>
-        </android.support.v4.widget.NestedScrollView>
+            </android.support.design.widget.AppBarLayout>
+            <android.support.v4.view.ViewPager
+                android:id="@+id/collection_view_pager"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior"
+                >
+            </android.support.v4.view.ViewPager>
+        </android.support.design.widget.CoordinatorLayout>
     </com.scwang.smartrefresh.layout.SmartRefreshLayout>
 
     <android.support.v7.widget.Toolbar
         style="@style/AppTheme.Toolbar"
         android:id="@+id/user_toolbar"
         android:background="@android:color/transparent"
-        android:layout_marginBottom="0dp"
         app:navigationIcon="?attr/homeAsUpIndicator"
         app:layout_collapseMode="pin">
         <android.support.v7.widget.ButtonBarLayout
             android:id="@+id/buttonBarLayout"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content">
-           <!-- <mao.com.mao_wanandroid_client.widget.CircleImageView
-                android:id="@+id/tb_avatar"
-                android:layout_width="@dimen/dp_30"
-                android:layout_height="@dimen/dp_30"
-                android:layout_marginLeft="@dimen/dp_10"
-                android:layout_marginStart="@dimen/dp_10"
-                android:src="@mipmap/ic_launcher"
-                app:civ_border_width="3dp"
-                app:civ_border_color="@android:color/darker_gray"
-                app:civ_border_overlay="true"/>-->
             <TextView
                 android:id="@+id/tv_toolbar_name"
                 android:layout_gravity="center"
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
                 android:textSize="16sp"
+                android:visibility="invisible"
                 android:textColor="@android:color/white"
-                android:text="maoqitian"
                 />
         </android.support.v7.widget.ButtonBarLayout>
     </android.support.v7.widget.Toolbar>

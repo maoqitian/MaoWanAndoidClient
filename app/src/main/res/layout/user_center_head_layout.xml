@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/panel_lyt"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="150dp">
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/panel"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_135"
+        android:paddingTop="@dimen/dp_10"
+        android:paddingBottom="@dimen/dp_10"
+        android:paddingLeft="@dimen/dp_15"
+        android:paddingRight="@dimen/dp_15"
+        app:layout_constraintTop_toBottomOf="@id/visitor"
+        android:background="@color/viewBackground">
+
+        <TextView
+            android:id="@+id/tv_nickname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="maoqitian"
+            android:textSize="@dimen/sp_17"
+            android:textColor="@color/textColorPrimary"
+            app:layout_constraintBottom_toTopOf="@id/tv_user_center_rank"
+            app:layout_constraintStart_toStartOf="parent"
+            />
+
+        <TextView
+            android:id="@+id/tv_user_center_rank"
+            style="@style/AppTheme.Label"
+            app:layout_constraintBottom_toTopOf="@id/signature"
+            app:layout_constraintStart_toStartOf="parent"
+            />
+        <TextView
+            android:id="@+id/tv_line"
+            style="@style/AppTheme.Label"
+            android:layout_marginStart="@dimen/dp_10"
+            android:text="|"
+            app:layout_constraintBottom_toTopOf="@id/signature"
+            app:layout_constraintStart_toEndOf="@id/tv_user_center_rank"
+            />
+        <TextView style="@style/AppTheme.Label"
+            android:id="@+id/tv_user_center_coin"
+            android:layout_marginStart="@dimen/dp_10"
+            app:layout_constraintBottom_toTopOf="@id/signature"
+            app:layout_constraintStart_toEndOf="@id/tv_line"
+            />
+        <TextView
+            style="@style/AppTheme.Label.Description"
+            android:id="@+id/signature"
+            android:layout_marginTop="@dimen/dp_10"
+            android:textColor="@color/textColorPrimary"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:text="这个人很懒，什么也没留下..."/>
+
+    </android.support.constraint.ConstraintLayout>
+
+    <mao.com.mao_wanandroid_client.widget.CircleImageView
+        android:id="@+id/avatar"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="@dimen/dp_10"
+        android:layout_marginStart="@dimen/dp_10"
+        android:src="@mipmap/ic_launcher"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:civ_border_width="3dp"
+        app:civ_border_color="@android:color/darker_gray"
+        app:civ_border_overlay="true"
+        />
+
+    <TextView style="@style/AppTheme.Label.Layout"
+        android:id="@+id/visitor"
+        android:background="?attr/selectableItemBackground"
+        android:shadowColor="#aa000000"
+        android:shadowDx="2.5"
+        android:shadowDy="2.5"
+        android:shadowRadius="10"
+        android:textColor="@android:color/white"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:text="访客总量 15"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_1"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:background="@color/item_divider_color"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+</android.support.constraint.ConstraintLayout>

@@ -2,6 +2,7 @@ package mao.com.mao_wanandroid_client.view.drawer.fragment;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.LinearLayoutManager;
@@ -61,12 +62,26 @@ public class CollectionFragment extends BaseFragment<CollectionPresenter>
     //下拉刷新头部
     private MaterialHeader mMaterialHeader;
 
-    public static CollectionFragment newInstance() {
+    String mType;
+
+    /**
+     * @param type type 代表是否有下拉刷新和上拉加载更多
+     * @return
+     */
+    public static CollectionFragment newInstance(String type) {
 
         Bundle args = new Bundle();
         CollectionFragment fragment = new CollectionFragment();
+        args.putString(Constants.COLLECTION_REFRESH_TAG,type);
         fragment.setArguments(args);
         return fragment;
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        assert getArguments() != null;
+        mType = getArguments().getString(Constants.COLLECTION_REFRESH_TAG,Constants.COLLECTION_REFRESH_TYPE);
     }
 
     @Override
@@ -142,8 +157,14 @@ public class CollectionFragment extends BaseFragment<CollectionPresenter>
     @Override
     protected void initEventAndData() {
         super.initEventAndData();
+        if(Constants.COLLECTION_NOT_REFRESH_TYPE.equals(mType)){
+            mSmartRefreshLayout.setEnableLoadMore(false);
+            mSmartRefreshLayout.setEnableRefresh(false);
+        }else {
+            mSmartRefreshLayout.autoRefresh();
+        }
         mPresenter.getCollectListData();
-        mSmartRefreshLayout.autoRefresh();
+
     }
 
     @Override
@@ -189,6 +210,9 @@ public class CollectionFragment extends BaseFragment<CollectionPresenter>
     //是否显示空白添加新数据
     @SuppressLint("RestrictedApi")
     private void showCollectionDataChange() {
+        if(Constants.COLLECTION_NOT_REFRESH_TYPE.equals(mType)){
+            return;
+        }
         List<CollectData> data = mAdapter.getData();
         if(data.size() == 0){
             mClEmpty.setVisibility(View.VISIBLE);
