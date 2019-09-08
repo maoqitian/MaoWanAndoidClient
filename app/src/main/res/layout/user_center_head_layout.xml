@@ -4,7 +4,7 @@
     android:id="@+id/panel_lyt"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginTop="150dp">
+    android:layout_marginTop="100dp">
 
     <android.support.constraint.ConstraintLayout
         android:id="@+id/panel"
@@ -31,6 +31,12 @@
         <TextView
             android:id="@+id/tv_user_center_rank"
             style="@style/AppTheme.Label"
+            android:textStyle="bold"
+            android:paddingLeft="@dimen/dp_3"
+            android:paddingRight="@dimen/dp_3"
+            android:paddingTop="@dimen/dp_1"
+            android:paddingBottom="@dimen/dp_1"
+            android:background="@drawable/tag_rank_gray_background"
             app:layout_constraintBottom_toTopOf="@id/signature"
             app:layout_constraintStart_toStartOf="parent"
             />
@@ -61,8 +67,8 @@
 
     <mao.com.mao_wanandroid_client.widget.CircleImageView
         android:id="@+id/avatar"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
         android:layout_marginTop="@dimen/dp_10"
         android:layout_marginStart="@dimen/dp_10"
         android:src="@mipmap/ic_launcher"
@@ -80,6 +86,7 @@
         android:shadowDx="2.5"
         android:shadowDy="2.5"
         android:shadowRadius="10"
+        android:visibility="invisible"
         android:textColor="@android:color/white"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintRight_toRightOf="parent"

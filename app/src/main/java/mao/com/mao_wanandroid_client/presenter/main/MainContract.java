@@ -15,7 +15,6 @@ public interface MainContract {
 
         void showSingOutFail(String errorMsg);
 
-        void showCoinAndRank(int coin);
     }
 
 

@@ -9,6 +9,9 @@ import android.view.ViewGroup;
 
 import java.util.List;
 
+import mao.com.mao_wanandroid_client.view.drawer.fragment.CollectionFragment;
+import mao.com.mao_wanandroid_client.view.drawer.fragment.CollectionWebFragment;
+
 /**
  * @author maoqitian
  * @Description 首页 tablayout fragment 适配器
@@ -45,5 +48,20 @@ public class HomeTabPageAdapter extends FragmentPagerAdapter {
     @Override
     public void destroyItem(@NonNull ViewGroup container, int position, @NonNull Object object) {
         //super.destroyItem(container,position,object);
+    }
+
+    /**
+     * CollectionFragment  CollectionWebFragment 收藏界面做处理，方便个人中心下拉刷新
+     * @param object
+     * @return
+     */
+    @Override
+    public int getItemPosition(@NonNull Object object) {
+        if(object instanceof CollectionFragment){
+            ((CollectionFragment) object).updateDate();
+        }else if(object instanceof CollectionWebFragment){
+            ((CollectionWebFragment) object).updateDate();
+        }
+        return super.getItemPosition(object);
     }
 }

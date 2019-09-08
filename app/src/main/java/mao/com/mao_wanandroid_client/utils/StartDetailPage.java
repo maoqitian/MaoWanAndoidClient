@@ -41,7 +41,7 @@ public class StartDetailPage{
             context.startActivity(intent);
             return;
         }
-        Toast.makeText(context, "该页面暂未实现", Toast.LENGTH_SHORT).show();
+        ToastUtils.showToast("该页面暂未实现");
     }
 
     public static void start2(final Context context, KnowledgeHierarchyData unit, String pageType, String activityType) {
@@ -59,8 +59,7 @@ public class StartDetailPage{
             context.startActivity(intent);
             return;
         }
-
-        Toast.makeText(context, "该页面暂未实现", Toast.LENGTH_SHORT).show();
+        ToastUtils.showToast("该页面暂未实现");
     }
 
 }

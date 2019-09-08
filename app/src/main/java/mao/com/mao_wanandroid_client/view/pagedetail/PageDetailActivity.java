@@ -36,6 +36,7 @@ import mao.com.mao_wanandroid_client.model.modelbean.home.HomeArticleData;
 import mao.com.mao_wanandroid_client.presenter.pagedetail.PageDetailContract;
 import mao.com.mao_wanandroid_client.presenter.pagedetail.PageDetailPresenter;
 import mao.com.mao_wanandroid_client.utils.StatusBarUtil;
+import mao.com.mao_wanandroid_client.utils.ToastUtils;
 import mao.com.mao_wanandroid_client.utils.ToolsUtils;
 import mao.com.mao_wanandroid_client.utils.webview.FullscreenHolder;
 import mao.com.mao_wanandroid_client.utils.webview.IWebPageView;
@@ -282,7 +283,7 @@ public class PageDetailActivity extends BaseActivity<PageDetailPresenter> implem
                 break;
             case R.id.webview_actionbar_copy:// 复制链接
                 WebTools.copy(webView.getUrl());
-                Toast.makeText(this, "复制成功", Toast.LENGTH_LONG).show();
+                ToastUtils.showToastShort(this,"复制成功");
                 break;
             case R.id.webview_actionbar_open:// 打开链接
                 WebTools.openLink(PageDetailActivity.this, webView.getUrl());
@@ -530,7 +531,7 @@ public class PageDetailActivity extends BaseActivity<PageDetailPresenter> implem
     private void showCollectStatus(int position,HomeArticleData homeArticleData,String msg){
         mHomeArticleData = homeArticleData;
         setCollectionDrawable(mHomeArticleData);
-        Toast.makeText(this,msg,Toast.LENGTH_SHORT).show();
+        ToastUtils.showToast(msg);
     }
 
     @Override

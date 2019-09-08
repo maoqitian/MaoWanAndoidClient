@@ -15,6 +15,7 @@ import java.util.TimerTask;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import mao.com.mao_wanandroid_client.R;
+import mao.com.mao_wanandroid_client.utils.ToastUtils;
 import me.yokeyword.fragmentation.SupportFragment;
 
 /**
@@ -81,7 +82,7 @@ public abstract class SimpleFragment extends SupportFragment {
         Timer exitTimer = null;
         if (!mIsExit) {
             mIsExit = true;
-            Toast.makeText(_mActivity,_mActivity.getString(R.string.exit_again),Toast.LENGTH_SHORT).show();
+            ToastUtils.showToast(_mActivity.getString(R.string.exit_again));
             exitTimer = new Timer();
             exitTimer.schedule(new TimerTask() {
                 @Override

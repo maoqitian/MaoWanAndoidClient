@@ -16,6 +16,7 @@ import mao.com.mao_wanandroid_client.base.BaseView;
 import mao.com.mao_wanandroid_client.base.presenter.AbstractBasePresenter;
 import mao.com.mao_wanandroid_client.model.modelbean.home.HomeArticleData;
 import mao.com.mao_wanandroid_client.utils.StartDetailPage;
+import mao.com.mao_wanandroid_client.utils.ToastUtils;
 
 /**
  * @author maoqitian
@@ -77,7 +78,7 @@ public abstract class BaseFragment <T extends AbstractBasePresenter> extends Sim
 
     @Override
     public void showErrorMsg(String errorMsg) {
-        Toast.makeText(getContext(),errorMsg,Toast.LENGTH_SHORT).show();
+        ToastUtils.showToast(errorMsg);
     }
 
     @Override
@@ -107,7 +108,7 @@ public abstract class BaseFragment <T extends AbstractBasePresenter> extends Sim
 
     @Override
     public void reload() {
-        Toast.makeText(getContext(),"点击重新加载",Toast.LENGTH_SHORT).show();
+        ToastUtils.showToast("点击重新加载");
     }
     //收藏或者取消收藏
     protected void addOrCancelCollect(int position,HomeArticleData homeArticleData) {
@@ -122,6 +123,11 @@ public abstract class BaseFragment <T extends AbstractBasePresenter> extends Sim
             //取消收藏
             mPresenter.cancelArticleCollect(position,homeArticleData);
         }
+    }
+
+    @Override
+    public void showCoinAndRank(int coin) {
+
     }
 
     @Override

@@ -37,6 +37,7 @@ import mao.com.mao_wanandroid_client.presenter.main.MainPresenter;
 import mao.com.mao_wanandroid_client.utils.NavHelper;
 import mao.com.mao_wanandroid_client.utils.StartDetailPage;
 import mao.com.mao_wanandroid_client.utils.StatusBarUtil;
+import mao.com.mao_wanandroid_client.utils.ToastUtils;
 import mao.com.mao_wanandroid_client.view.drawer.fragment.CoinFragment;
 import mao.com.mao_wanandroid_client.view.drawer.fragment.CollectionPageFragment;
 import mao.com.mao_wanandroid_client.view.drawer.fragment.CommonWebFragment;
@@ -206,7 +207,7 @@ public class MainActivity extends BaseActivity<MainPresenter>
                 break;
             case R.id.nav_todo:
                 //TODO
-                Toast.makeText(this,"暂未实现",Toast.LENGTH_SHORT).show();
+                ToastUtils.showToast("暂未实现");
                 break;
             case R.id.nav_home:
             case R.id.tab_main:
@@ -372,7 +373,7 @@ public class MainActivity extends BaseActivity<MainPresenter>
 
     @Override
     public void showSingOutFail(String errorMsg) {
-        Toast.makeText(this,errorMsg,Toast.LENGTH_SHORT).show();
+        ToastUtils.showToast(errorMsg);
     }
     //登录成功显示积分模块
     @Override
@@ -409,7 +410,7 @@ public class MainActivity extends BaseActivity<MainPresenter>
         Timer exitTimer = null;
         if (!mIsExit) {
             mIsExit = true;
-            Toast.makeText(getApplicationContext(),getString(R.string.exit_again),Toast.LENGTH_SHORT).show();
+            ToastUtils.showToast(getString(R.string.exit_again));
             exitTimer = new Timer();
             exitTimer.schedule(new TimerTask() {
                 @Override

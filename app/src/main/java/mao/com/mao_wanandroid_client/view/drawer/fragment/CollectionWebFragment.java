@@ -29,6 +29,7 @@ import mao.com.mao_wanandroid_client.presenter.drawer.CollectionWebContract;
 import mao.com.mao_wanandroid_client.presenter.drawer.CollectionWebPresenter;
 import mao.com.mao_wanandroid_client.utils.NormalAlertDialog;
 import mao.com.mao_wanandroid_client.utils.StartDetailPage;
+import mao.com.mao_wanandroid_client.utils.ToastUtils;
 import mao.com.mao_wanandroid_client.view.drawer.adapter.CollectionWebAdapter;
 
 /**
@@ -176,7 +177,7 @@ public class CollectionWebFragment extends BaseFragment<CollectionWebPresenter>
     public void showAddCollectWebSuccess(WebBookMark webBookMark, String msg) {
         mAdapter.addData(webBookMark);
         showCollectionDataChange();
-        Toast.makeText(getActivity(),msg,Toast.LENGTH_SHORT).show();
+        ToastUtils.showToastShort(getActivity(),msg);
     }
 
     /**
@@ -185,7 +186,7 @@ public class CollectionWebFragment extends BaseFragment<CollectionWebPresenter>
     @Override
     public void showUpdateCollectWebSuccess(int position, WebBookMark webBookMark, String msg) {
         mAdapter.setData(position,webBookMark);
-        Toast.makeText(getActivity(),msg,Toast.LENGTH_SHORT).show();
+        ToastUtils.showToastShort(getActivity(),msg);
     }
 
 
@@ -196,7 +197,7 @@ public class CollectionWebFragment extends BaseFragment<CollectionWebPresenter>
     public void showDeleteCollectWebSuccess(int position, String msg) {
         mAdapter.remove(position);
         showCollectionDataChange();
-        Toast.makeText(getActivity(),msg,Toast.LENGTH_SHORT).show();
+        ToastUtils.showToastShort(getActivity(),msg);
     }
     //是否显示空白添加新数据
     @SuppressLint("RestrictedApi")
@@ -219,7 +220,7 @@ public class CollectionWebFragment extends BaseFragment<CollectionWebPresenter>
     @Override
     public void showCollectionWebFailStatus(String msg) {
         mSmartRefreshLayout.finishRefresh();
-        Toast.makeText(getActivity(),msg,Toast.LENGTH_SHORT).show();
+        ToastUtils.showToastShort(getActivity(),msg);
     }
 
     @Override
@@ -245,5 +246,9 @@ public class CollectionWebFragment extends BaseFragment<CollectionWebPresenter>
                 collectionDialogFragment.show(getChildFragmentManager(),"showWebCollectionDialog");
                 break;
         }
+    }
+
+    public void updateDate() {
+        mPresenter.getCollectWebData();
     }
 }

@@ -90,4 +90,9 @@ public interface AbstractBasePresenter<T extends BaseView> {
      * @param homeArticleData 文章信息
      */
     void cancelArticleCollect(int position,HomeArticleData homeArticleData);
+
+    /**
+     * 获取积分
+     */
+    void getCoinAndRank();
 }

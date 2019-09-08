@@ -30,6 +30,7 @@ import mao.com.mao_wanandroid_client.presenter.main.OfficialAccountsDetailContra
 import mao.com.mao_wanandroid_client.presenter.main.OfficialAccountsDetailPresenter;
 import mao.com.mao_wanandroid_client.utils.StartDetailPage;
 import mao.com.mao_wanandroid_client.utils.StatusBarUtil;
+import mao.com.mao_wanandroid_client.utils.ToastUtils;
 import mao.com.mao_wanandroid_client.utils.ToolsUtils;
 import mao.com.mao_wanandroid_client.view.main.adapter.HomePageAdapter;
 import mao.com.mao_wanandroid_client.view.main.fragment.SearchFragment;
@@ -190,7 +191,7 @@ public class OfficialAccountsDetailActivity extends BaseActivity<OfficialAccount
         if(homeArticleData!=null && mAdapter!=null){
             mAdapter.setData(position,homeArticleData);
         }
-        Toast.makeText(this,msg,Toast.LENGTH_SHORT).show();
+        ToastUtils.showToast(msg);
     }
 
     @Override

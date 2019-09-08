@@ -46,6 +46,7 @@ import mao.com.mao_wanandroid_client.presenter.main.SearchPageContract;
 import mao.com.mao_wanandroid_client.presenter.main.SearchPagePresenter;
 import mao.com.mao_wanandroid_client.utils.NormalAlertDialog;
 import mao.com.mao_wanandroid_client.utils.StartDetailPage;
+import mao.com.mao_wanandroid_client.utils.ToastUtils;
 import mao.com.mao_wanandroid_client.utils.ToolsUtils;
 import mao.com.mao_wanandroid_client.view.main.adapter.HomePageAdapter;
 import mao.com.mao_wanandroid_client.widget.LoadingView;
@@ -220,7 +221,8 @@ public class SearchFragment extends BaseDialogFragment<SearchPagePresenter> impl
                             keyword = mEditTextSearch.getText().toString().trim();
                             getSearchData(keyword);
                         } else {
-                            Toast.makeText(getContext(),"请输入搜索的关键字"+keyword,Toast.LENGTH_SHORT).show();
+                            ToastUtils.showToast("请输入搜索的关键字"+keyword);
+                            //Toast.makeText(getContext(),"请输入搜索的关键字"+keyword,Toast.LENGTH_SHORT).show();
                         }
                         return true;
                     }
@@ -345,7 +347,8 @@ public class SearchFragment extends BaseDialogFragment<SearchPagePresenter> impl
     @Override
     public void showLoadDataMessage(String msg) {
         mSmartRefreshLayout.finishLoadMore();
-        Toast.makeText(getContext(),msg,Toast.LENGTH_SHORT).show();
+        ToastUtils.showToast(msg);
+        //Toast.makeText(getContext(),msg,Toast.LENGTH_SHORT).show();
     }
     //大家都在搜
     @Override
@@ -463,7 +466,7 @@ public class SearchFragment extends BaseDialogFragment<SearchPagePresenter> impl
         if(homeArticleData!=null && mSearchResultAdapter!=null){
             mSearchResultAdapter.setData(position,homeArticleData);
         }
-        Toast.makeText(getContext(),msg,Toast.LENGTH_SHORT).show();
+        ToastUtils.showToast(msg);
     }
 
     @Override

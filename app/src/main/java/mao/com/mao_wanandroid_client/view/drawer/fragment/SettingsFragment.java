@@ -31,6 +31,7 @@ import mao.com.mao_wanandroid_client.presenter.drawer.SettingsContract;
 import mao.com.mao_wanandroid_client.presenter.drawer.SettingsPresenter;
 import mao.com.mao_wanandroid_client.utils.CacheManager;
 import mao.com.mao_wanandroid_client.utils.NormalAlertDialog;
+import mao.com.mao_wanandroid_client.utils.ToastUtils;
 import mao.com.mao_wanandroid_client.view.drawer.adapter.SettingsPageAdapter;
 
 /**
@@ -142,7 +143,7 @@ public class SettingsFragment extends BaseDialogFragment<SettingsPresenter> impl
                 NormalAlertDialog.getInstance().showAlertDialog(getActivity(), getString(R.string.confirm_clear_cache_text),
                         getString(R.string.confirm_text), getString(R.string.cancel_text), (dialog, which) -> {
                             CacheManager.deleteFolderFile(cacheFile, true);
-                            Toast.makeText(getActivity(),getString(R.string.finish_clear_cache_text),Toast.LENGTH_SHORT).show();
+                            ToastUtils.showToastShort(getActivity(),getString(R.string.finish_clear_cache_text));
                         }, (dialog, which) -> dialog.dismiss());
                 break;
             case Constants.SETTINGS_NIGHT_MODE_TYPE:
@@ -188,6 +189,6 @@ public class SettingsFragment extends BaseDialogFragment<SettingsPresenter> impl
 
     @Override
     public void showSingOutFail(String errorMsg) {
-        Toast.makeText(getActivity(),errorMsg,Toast.LENGTH_SHORT).show();
+        ToastUtils.showToast(errorMsg);
     }
 }

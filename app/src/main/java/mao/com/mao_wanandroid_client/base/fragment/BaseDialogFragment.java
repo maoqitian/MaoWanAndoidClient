@@ -131,6 +131,11 @@ public abstract class BaseDialogFragment<T extends AbstractBasePresenter> extend
     }
 
     @Override
+    public void showCoinAndRank(int coin) {
+
+    }
+
+    @Override
     public void showAddArticleCollectStatus(int position, HomeArticleData homeArticleData, String msg) {
 
     }

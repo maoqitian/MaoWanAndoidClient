@@ -21,6 +21,7 @@ import mao.com.mao_wanandroid_client.presenter.login.LoginPresenter;
 import mao.com.mao_wanandroid_client.utils.EditTextUtils;
 import mao.com.mao_wanandroid_client.utils.StartDetailPage;
 import mao.com.mao_wanandroid_client.utils.StatusBarUtil;
+import mao.com.mao_wanandroid_client.utils.ToastUtils;
 import mao.com.mao_wanandroid_client.utils.ToolsUtils;
 
 /**
@@ -86,13 +87,13 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
     @Override
     public void showLoginSuccess() {
         //关闭登录页面
-        Toast.makeText(this,getString(R.string.login_success),Toast.LENGTH_SHORT).show();
+        ToastUtils.showToast(getString(R.string.login_success));
         finish();
     }
 
     @Override
     public void showLoginFail(String errorMsg) {
-        Toast.makeText(this,errorMsg,Toast.LENGTH_SHORT).show();
+        ToastUtils.showToastShort(this,errorMsg);
     }
 
     @Override

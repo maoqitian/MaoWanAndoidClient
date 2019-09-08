@@ -37,6 +37,7 @@ import mao.com.mao_wanandroid_client.model.modelbean.home.HomeArticleListData;
 import mao.com.mao_wanandroid_client.presenter.main.HomeFirstTabPresenter;
 import mao.com.mao_wanandroid_client.presenter.main.HomePageFirstTabContract;
 import mao.com.mao_wanandroid_client.utils.StartDetailPage;
+import mao.com.mao_wanandroid_client.utils.ToastUtils;
 import mao.com.mao_wanandroid_client.view.main.adapter.HomePageAdapter;
 import mao.com.mao_wanandroid_client.view.main.holder.BannerHolderView;
 
@@ -286,7 +287,7 @@ public class HomeFirstTabFragment extends RootBaseFragment<HomeFirstTabPresenter
         if(homeArticleData!=null && mAdapter!=null){
             mAdapter.setData(position,homeArticleData);
         }
-        Toast.makeText(_mActivity,msg,Toast.LENGTH_SHORT).show();
+        ToastUtils.showToast(msg);
     }
 
     @Override

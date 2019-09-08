@@ -26,6 +26,7 @@ import mao.com.mao_wanandroid_client.model.modelbean.home.HomeArticleData;
 import mao.com.mao_wanandroid_client.presenter.main.HomePageSecondTabContract;
 import mao.com.mao_wanandroid_client.presenter.main.HomeSecondTabPresenter;
 import mao.com.mao_wanandroid_client.utils.StartDetailPage;
+import mao.com.mao_wanandroid_client.utils.ToastUtils;
 import mao.com.mao_wanandroid_client.view.main.adapter.HomeLatestProjectAdapter;
 
 /**
@@ -202,7 +203,7 @@ public class HomeSecondTabFragment extends RootBaseFragment<HomeSecondTabPresent
         if(homeArticleData!=null && mLatestProjectAdapter!=null){
             mLatestProjectAdapter.setData(position,homeArticleData);
         }
-        Toast.makeText(_mActivity,msg,Toast.LENGTH_SHORT).show();
+        ToastUtils.showToast(msg);
     }
 
     @Override

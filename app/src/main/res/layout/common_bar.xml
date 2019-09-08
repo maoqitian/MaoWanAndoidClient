@@ -28,6 +28,24 @@
         android:visibility="gone"
         android:src="@drawable/ic_search_24dp"
         />
+
+    <TextView
+        android:id="@+id/tv_integral_rule"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:gravity="center_vertical"
+        android:text="@string/coin_rule_text"
+        android:textColor="@color/color_white"
+        android:textSize="@dimen/sp_16"
+        android:visibility="gone"
+        android:paddingStart="@dimen/dp_10"
+        android:paddingTop="@dimen/dp_10"
+        android:paddingBottom="@dimen/dp_10"
+        android:paddingEnd="@dimen/dp_5"
+        android:layout_marginEnd="@dimen/dp_15"
+        />
+
     <ImageView
         android:id="@+id/iv_toolbar_collect"
         android:layout_width="wrap_content"

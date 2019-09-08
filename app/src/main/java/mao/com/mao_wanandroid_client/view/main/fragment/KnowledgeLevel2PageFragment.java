@@ -23,6 +23,7 @@ import mao.com.mao_wanandroid_client.model.modelbean.home.HomeArticleListData;
 import mao.com.mao_wanandroid_client.presenter.main.Level2PageContract;
 import mao.com.mao_wanandroid_client.presenter.main.Level2PagePresenter;
 import mao.com.mao_wanandroid_client.utils.StartDetailPage;
+import mao.com.mao_wanandroid_client.utils.ToastUtils;
 import mao.com.mao_wanandroid_client.view.main.adapter.HomePageAdapter;
 
 /**
@@ -165,7 +166,7 @@ public class KnowledgeLevel2PageFragment extends RootBaseFragment<Level2PagePres
     @Override
     public void showLoadDataMessage(String msg) {
         smartRefreshLayout.finishLoadMore();
-        Toast.makeText(_mActivity,msg,Toast.LENGTH_SHORT).show();
+        ToastUtils.showToastShort(_mActivity,msg);
     }
 
     //显示收藏 或取消 收藏之后的状态
@@ -173,6 +174,6 @@ public class KnowledgeLevel2PageFragment extends RootBaseFragment<Level2PagePres
         if(homeArticleData!=null && mAdapter!=null){
             mAdapter.setData(position,homeArticleData);
         }
-        Toast.makeText(_mActivity,msg,Toast.LENGTH_SHORT).show();
+        ToastUtils.showToastShort(_mActivity,msg);
     }
 }

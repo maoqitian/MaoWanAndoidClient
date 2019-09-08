@@ -92,4 +92,5 @@
     <string name="todo_text">TODO</string>
     <string name="my_coin">Coin</string>
     <string name="coin_record_text">Coin Record</string>
+    <string name="coin_rule_text">Integral rule</string>
 </resources>

@@ -6,6 +6,7 @@ import android.support.v4.app.DialogFragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -15,10 +16,14 @@ import java.util.List;
 
 import butterknife.BindView;
 import mao.com.mao_wanandroid_client.R;
+import mao.com.mao_wanandroid_client.application.Constants;
 import mao.com.mao_wanandroid_client.base.fragment.BaseDialogFragment;
+import mao.com.mao_wanandroid_client.model.modelbean.home.HomeArticleData;
 import mao.com.mao_wanandroid_client.model.modelbean.rank.CoinRecordData;
 import mao.com.mao_wanandroid_client.presenter.drawer.CoinContract;
 import mao.com.mao_wanandroid_client.presenter.drawer.CoinPresenter;
+import mao.com.mao_wanandroid_client.utils.StartDetailPage;
+import mao.com.mao_wanandroid_client.utils.ToastUtils;
 import mao.com.mao_wanandroid_client.view.drawer.adapter.CoinRecordAdapter;
 
 /**
@@ -37,7 +42,8 @@ public class CoinFragment extends BaseDialogFragment<CoinPresenter> implements C
     RecyclerView mRecyclerView;
     @BindView(R.id.tv_coin)
     TextView mTextCoin;
-
+    @BindView(R.id.tv_integral_rule)
+    TextView mTvCoinRule;
 
     private RecyclerView.LayoutManager layoutManager;
     CoinRecordAdapter mAdapter;
@@ -70,6 +76,16 @@ public class CoinFragment extends BaseDialogFragment<CoinPresenter> implements C
         mToolbar.setNavigationIcon(R.drawable.ic_arrow_back_24dp);
         mToolbar.setNavigationOnClickListener(v -> dismiss());
         mPageTitle.setText(getString(R.string.my_coin));
+        mTvCoinRule.setVisibility(View.VISIBLE);
+        mTvCoinRule.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                HomeArticleData homeArticleData = new HomeArticleData();
+                homeArticleData.setTitle(getString(R.string.coin_rule_text));
+                homeArticleData.setLink("https://www.wanandroid.com/blog/show/2653");
+                StartDetailPage.start(getActivity(),homeArticleData, Constants.PAGE_WEB_NOT_COLLECT,Constants.ACTION_PAGE_DETAIL_ACTIVITY);
+            }
+        });
         initRecyclerView();
         mPresenter.getCoinCount();
         mPresenter.getPersonalCoinList();
@@ -99,6 +115,6 @@ public class CoinFragment extends BaseDialogFragment<CoinPresenter> implements C
 
     @Override
     public void showFail(String msg) {
-        Toast.makeText(getContext(),msg,Toast.LENGTH_SHORT).show();
+        ToastUtils.showToast(msg);
     }
 }

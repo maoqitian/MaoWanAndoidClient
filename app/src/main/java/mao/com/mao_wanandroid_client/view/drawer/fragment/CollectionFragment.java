@@ -30,6 +30,7 @@ import mao.com.mao_wanandroid_client.presenter.drawer.CollectionContract;
 import mao.com.mao_wanandroid_client.presenter.drawer.CollectionPresenter;
 import mao.com.mao_wanandroid_client.utils.NormalAlertDialog;
 import mao.com.mao_wanandroid_client.utils.StartDetailPage;
+import mao.com.mao_wanandroid_client.utils.ToastUtils;
 import mao.com.mao_wanandroid_client.view.drawer.adapter.CollectionAdapter;
 
 /**
@@ -117,7 +118,7 @@ public class CollectionFragment extends BaseFragment<CollectionPresenter>
                         if (collectData != null){
                             mPresenter.getCancelCollectArticleData(_mActivity,collectData.getId(),collectData.getOriginId(),position);
                         }else {
-                            Toast.makeText(_mActivity,"取消收藏数据为空",Toast.LENGTH_SHORT).show();
+                            ToastUtils.showToastShort(_mActivity,"取消收藏数据为空");
                         }
                         NormalAlertDialog.getInstance().cancelBottomDialog();
                     });
@@ -189,7 +190,7 @@ public class CollectionFragment extends BaseFragment<CollectionPresenter>
 
     @Override
     public void showLoadDataMessage(String msg) {
-        Toast.makeText(_mActivity,msg,Toast.LENGTH_SHORT).show();
+        ToastUtils.showToast(msg);
         mSmartRefreshLayout.finishLoadMore();
     }
 
@@ -201,7 +202,7 @@ public class CollectionFragment extends BaseFragment<CollectionPresenter>
 
     @Override
     public void showCancelCollectArticleSuccess(int position, String msg) {
-        Toast.makeText(_mActivity,msg,Toast.LENGTH_SHORT).show();
+        ToastUtils.showToast(msg);
         mAdapter.remove(position);
         showCollectionDataChange();
         //mAdapter.notifyDataSetChanged();
@@ -229,7 +230,7 @@ public class CollectionFragment extends BaseFragment<CollectionPresenter>
     public void showCancelCollectArticleFail(String msg) {
         mSmartRefreshLayout.finishRefresh();
         mSmartRefreshLayout.finishLoadMore();
-        Toast.makeText(_mActivity,msg,Toast.LENGTH_SHORT).show();
+        ToastUtils.showToast(msg);
     }
 
     @Override
@@ -256,5 +257,10 @@ public class CollectionFragment extends BaseFragment<CollectionPresenter>
                 collectionDialogFragment.show(getChildFragmentManager(),"showArticleCollectionDialog");
                 break;
         }
+    }
+
+    public void updateDate() {
+        //刷新数据
+        mPresenter.getCollectListData();
     }
 }

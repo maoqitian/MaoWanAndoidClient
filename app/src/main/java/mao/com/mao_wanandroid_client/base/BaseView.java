@@ -32,6 +32,7 @@ public interface BaseView {
      */
     void showLoading();
 
+    void showCoinAndRank(int coin);
 
     /**
      * 显示错误信息

@@ -74,6 +74,8 @@ public class UserCenterActivity extends BaseActivity<UserCenterPresenter> implem
     private int mOffset = 0;
     private int mScrollY = 0;
 
+    HomeTabPageAdapter mAdapter;
+
     @Override
     protected void initToolbar() {
         mToolBar.setNavigationOnClickListener(v -> finish());
@@ -84,7 +86,7 @@ public class UserCenterActivity extends BaseActivity<UserCenterPresenter> implem
 
     @Override
     protected int getLayout() {
-        return R.layout.activity_search_result_layout;
+        return R.layout.activity_user_center_layout;
     }
 
     @Override
@@ -92,10 +94,33 @@ public class UserCenterActivity extends BaseActivity<UserCenterPresenter> implem
         super.initEventAndData();
         tvNickName.setText(mPresenter.getLoginUserName());
         tvTbNickName.setText(mPresenter.getLoginUserName());
+        refreshListener();
+        mAppbarLayout.addOnOffsetChangedListener(this);
+        mToolBar.setBackgroundColor(0);
+        initCollectionView();
+        mPresenter.getCoinAndRank();
+    }
+
+    @Override
+    public void showCoinAndRank(int coin) {
+        tvUserCenterCoin.setText("积分："+coin);
+        int mCoin = coin;
+        if(mCoin>100){
+            mCoin = (coin-(coin%100))/100+1;
+        }else {
+            mCoin = 1;
+        }
+        tvUserCenterRank.setText("lv "+mCoin);
+    }
+
+    private void refreshListener() {
         mSmartRefreshLayout.setOnMultiPurposeListener(new SimpleMultiPurposeListener(){
             @Override
             public void onRefresh(@NonNull RefreshLayout refreshLayout) {
                 refreshLayout.finishRefresh(3000);
+                mPresenter.getCoinAndRank();
+                mAdapter.notifyDataSetChanged();
+                ToolsUtils.setIndicatorWidth(mCollectionTab,getResources().getDimensionPixelSize(R.dimen.dp_30));
             }
 
             @Override
@@ -110,9 +135,6 @@ public class UserCenterActivity extends BaseActivity<UserCenterPresenter> implem
                 mToolBar.setAlpha(1 - Math.min(percent, 1));
             }
         });
-        mAppbarLayout.addOnOffsetChangedListener(this);
-        mToolBar.setBackgroundColor(0);
-        initCollectionView();
     }
 
     private void initCollectionView() {
@@ -125,7 +147,8 @@ public class UserCenterActivity extends BaseActivity<UserCenterPresenter> implem
 
         //下划线间距
         ToolsUtils.setIndicatorWidth(mCollectionTab,getResources().getDimensionPixelSize(R.dimen.dp_30));
-        mViewPager.setAdapter(new HomeTabPageAdapter(getSupportFragmentManager(),mTitle,mFragments));
+        mAdapter = new HomeTabPageAdapter(getSupportFragmentManager(),mTitle,mFragments);
+        mViewPager.setAdapter(mAdapter);
         mCollectionTab.setupWithViewPager(mViewPager);
     }
 

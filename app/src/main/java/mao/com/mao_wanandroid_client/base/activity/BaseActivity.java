@@ -18,6 +18,7 @@ import mao.com.mao_wanandroid_client.base.BaseView;
 import mao.com.mao_wanandroid_client.base.presenter.AbstractBasePresenter;
 import mao.com.mao_wanandroid_client.model.modelbean.home.HomeArticleData;
 import mao.com.mao_wanandroid_client.utils.StartDetailPage;
+import mao.com.mao_wanandroid_client.utils.ToastUtils;
 
 /**
  * @author maoqitian
@@ -76,7 +77,7 @@ public abstract class  BaseActivity <T extends AbstractBasePresenter> extends Ab
 
     @Override
     public void showErrorMsg(String errorMsg) {
-
+        ToastUtils.showToast(errorMsg);
     }
 
     @Override
@@ -141,6 +142,11 @@ public abstract class  BaseActivity <T extends AbstractBasePresenter> extends Ab
             //取消收藏
             mPresenter.cancelArticleCollect(position,homeArticleData);
         }
+    }
+
+    @Override
+    public void showCoinAndRank(int coin) {
+
     }
 
     @Override

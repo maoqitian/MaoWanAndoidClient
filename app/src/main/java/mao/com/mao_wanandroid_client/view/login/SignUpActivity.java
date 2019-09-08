@@ -18,6 +18,7 @@ import mao.com.mao_wanandroid_client.presenter.login.SignUpPresenter;
 import mao.com.mao_wanandroid_client.utils.EditTextUtils;
 import mao.com.mao_wanandroid_client.utils.StartDetailPage;
 import mao.com.mao_wanandroid_client.utils.StatusBarUtil;
+import mao.com.mao_wanandroid_client.utils.ToastUtils;
 import mao.com.mao_wanandroid_client.utils.ToolsUtils;
 
 /**
@@ -91,7 +92,7 @@ public class SignUpActivity extends BaseActivity<SignUpPresenter> implements Sig
                 password = mSignUpPassword.getText().toString().trim();
                 repassword = mReSignUpPassword.getText().toString().trim();
                 if(!password.equals(repassword)){
-                    Toast.makeText(this,getString(R.string.passwordInconsistency),Toast.LENGTH_SHORT).show();
+                    showErrorMsg(getString(R.string.passwordInconsistency));
                 }else {
                     //注册
                     mPresenter.getSignUpLogin(this,userName,password,repassword);
@@ -108,6 +109,6 @@ public class SignUpActivity extends BaseActivity<SignUpPresenter> implements Sig
 
     @Override
     public void showSignUpFail(String errorMsg) {
-        Toast.makeText(this,errorMsg,Toast.LENGTH_SHORT).show();
+        ToastUtils.showToastShort(this,errorMsg);
     }
 }
