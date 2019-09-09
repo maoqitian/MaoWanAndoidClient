@@ -1,6 +1,6 @@
 # MaoWanAndoidClient
 [![License](https://img.shields.io/badge/license-Apache%202-green.svg)](https://www.apache.org/licenses/LICENSE-2.0)
-<img src="https://img.shields.io/badge/Android-1.0.1-blue.svg" align=left />
+<img src="https://img.shields.io/badge/Android-1.0.3-blue.svg" align=left />
 ## 项目简介
 - 首先感谢[**鸿洋**](https://github.com/hongyangAndroid)大佬提供的[玩Android开放API](https://www.wanandroid.com/blog/show/2)，这是一款有较好用户体验的开源**玩Android客户端。**提供丰富完整的功能，更好的体验，旨在更好的浏览[https://www.wanandroid.com/](https://www.wanandroid.com/)网站内容，更好的在手机上进行学习。项目使用**Retrofit2 + RxJava2 + Dagger2 +MVP+RxBus**架构，尽量使用**Material Design**控件进行开发。如果觉得本项目对你有帮助，希望您给我来一个**Star**. 
 ### MVP项目架构解析
@@ -12,10 +12,11 @@
 ## API
 [**玩Android开放API**](https://www.wanandroid.com/blog/show/2)
 ## 项目gif、截图展示
-<img src="https://github.com/maoqitian/MaoWanAndoidClient/raw/master/preview/show.gif"  height="300" width="170"><img src="https://github.com/maoqitian/MaoWanAndoidClient/raw/master/preview/homePage.jpg"  height="300" width="170"> <img src="https://github.com/maoqitian/MaoWanAndoidClient/raw/master/preview/knowledge.jpg"  height="300" width="170"><img src="https://github.com/maoqitian/MaoWanAndoidClient/raw/master/preview/search.jpg"  height="300" width="170"><img src="https://github.com/maoqitian/MaoMdPhoto/raw/master/WanAndroid/navigation.jpg"  height="300" width="170">
+<img src="https://github.com/maoqitian/MaoWanAndoidClient/raw/master/preview/show.gif"  height="300" width="170"><img src="https://raw.githubusercontent.com/maoqitian/MaoWanAndoidClient/dev/preview/usercenter.gif"  height="300" width="170"><img src="https://github.com/maoqitian/MaoWanAndoidClient/raw/master/preview/homePage.jpg"  height="300" width="170"> <img src="https://github.com/maoqitian/MaoWanAndoidClient/raw/master/preview/knowledge.jpg"  height="300" width="170"><img src="https://github.com/maoqitian/MaoWanAndoidClient/raw/master/preview/search.jpg"  height="300" width="170">
 <img src="https://github.com/maoqitian/MaoWanAndoidClient/raw/master/preview/project.jpg"  height="300" width="170"><img src="https://github.com/maoqitian/MaoWanAndoidClient/raw/master/preview/setting.jpg"  height="300" width="170"><img src="https://github.com/maoqitian/MaoWanAndoidClient/raw/master/preview/officialA.jpg"  height="300" width="170"><img src="https://github.com/maoqitian/MaoWanAndoidClient/raw/master/preview/commonWeb.jpg"  height="300" width="170"><img src="https://github.com/maoqitian/MaoWanAndoidClient/raw/master/preview/collect.jpg"  height="300" width="170">
 <img src="https://github.com/maoqitian/MaoWanAndoidClient/raw/master/preview/drawer.jpg"  height="300" width="170"><img src="https://github.com/maoqitian/MaoWanAndoidClient/raw/master/preview/login.jpg"  height="300" width="170"><img src="https://github.com/maoqitian/MaoWanAndoidClient/raw/master/preview/loginout.jpg"  height="300" width="170"><img src="https://github.com/maoqitian/MaoWanAndoidClient/raw/master/preview/webviewPage.jpg"  height="300" width="170"><img src="https://github.com/maoqitian/MaoWanAndoidClient/raw/master/preview/AddCollectionArticle.png"  height="300" width="170">
-<img src="https://github.com/maoqitian/MaoWanAndoidClient/raw/master/preview/UpdateCollectionWeb.png"  height="300" width="170"><img src="https://github.com/maoqitian/MaoWanAndoidClient/raw/master/preview/homeDark.jpg"  height="300" width="170"><img src="https://github.com/maoqitian/MaoWanAndoidClient/raw/master/preview/projectDark.jpg"  height="300" width="170"><img src="https://github.com/maoqitian/MaoWanAndoidClient/raw/master/preview/searchDark.jpg"  height="300" width="170"><img src="https://github.com/maoqitian/MaoWanAndoidClient/raw/master/preview/knowledgeDark.jpg"  height="300" width="170">
+<img src="https://github.com/maoqitian/MaoMdPhoto/raw/master/WanAndroid/navigation.jpg"  height="300" width="170"><img src="https://github.com/maoqitian/MaoWanAndoidClient/raw/master/preview/UpdateCollectionWeb.png"  height="300" width="170"><img src="https://github.com/maoqitian/MaoWanAndoidClient/raw/master/preview/homeDark.jpg"  height="300" width="170"><img src="https://github.com/maoqitian/MaoWanAndoidClient/raw/master/preview/projectDark.jpg"  height="300" width="170"><img src="https://github.com/maoqitian/MaoWanAndoidClient/raw/master/preview/searchDark.jpg"  height="300" width="170">
+<img src="https://github.com/maoqitian/MaoWanAndoidClient/raw/master/preview/knowledgeDark.jpg"  height="300" width="170">
 
 ## 项目功能
 ### 首页
@@ -96,6 +97,12 @@
 ![downloadApk](https://github.com/maoqitian/MaoMdPhoto/raw/master/WanAndroid/downloadApk-v1.0.2.jpg)
 
 # 版本更新日志
+
+## v1.0.3 (2019/9/9)
+### 新增个人中心模块
+- 点击头像进入个人中心，仿B站个人中心效果
+- 文章浏览页面增加收藏功能
+- 修复上个版本存在的bug
 
 ## v1.0.2 (2019/9/3)
 ### 新增我的积分模块
