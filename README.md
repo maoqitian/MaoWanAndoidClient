@@ -94,7 +94,7 @@
 - [**历史版本下载地址**](https://github.com/maoqitian/MaoWanAndoidClient/releases)
 ### **最新版本下载二维码**
 - 可以手机浏览器输入以下地址下载 [https://fir.im/kgy2](https://fir.im/kgy2)
-![downloadApk](https://github.com/maoqitian/MaoMdPhoto/raw/master/WanAndroid/downloadApk-v1.0.2.jpg)
+![downloadApk](https://raw.githubusercontent.com/maoqitian/MaoMdPhoto/master/WanAndroid/downloadApk-v1.0.3.png)
 
 # 版本更新日志
 
