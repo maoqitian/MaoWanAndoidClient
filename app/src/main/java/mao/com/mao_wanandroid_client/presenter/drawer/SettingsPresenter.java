@@ -6,7 +6,9 @@ import java.util.List;
 import javax.inject.Inject;
 
 import io.reactivex.Observable;
+import mao.com.mao_wanandroid_client.R;
 import mao.com.mao_wanandroid_client.application.Constants;
+import mao.com.mao_wanandroid_client.application.MyApplication;
 import mao.com.mao_wanandroid_client.base.presenter.RxBasePresenter;
 import mao.com.mao_wanandroid_client.model.http.DataClient;
 import mao.com.mao_wanandroid_client.model.http.control.BaseObserver;
@@ -38,9 +40,9 @@ public class SettingsPresenter extends RxBasePresenter<SettingsContract.Settings
     @Override
     public void getSettingsItemData() {
         List<SettingData> settingDataList = new ArrayList<>();
-        settingDataList.add(new SettingData("夜间模式",true, Constants.SETTINGS_NIGHT_MODE_TYPE));
-        settingDataList.add(new SettingData("清除缓存",false,Constants.SETTINGS_CLEAR_CACHE_TYPE));
-        settingDataList.add(new SettingData("版本",false,Constants.SETTINGS_VERSION_TYPE));
+        settingDataList.add(new SettingData(MyApplication.getInstance().getString(R.string.night_mode_text),true, Constants.SETTINGS_NIGHT_MODE_TYPE));
+        settingDataList.add(new SettingData(MyApplication.getInstance().getString(R.string.clear_cache_text),false,Constants.SETTINGS_CLEAR_CACHE_TYPE));
+        settingDataList.add(new SettingData(MyApplication.getInstance().getString(R.string.about_us_text),false,Constants.SETTINGS_VERSION_TYPE));
         mView.showSettingsItemData(settingDataList);
     }
 

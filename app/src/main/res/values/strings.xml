@@ -93,4 +93,7 @@
     <string name="my_coin">Coin</string>
     <string name="coin_record_text">Coin Record</string>
     <string name="coin_rule_text">Integral rule</string>
+    <string name="night_mode_text">Night mode</string>
+    <string name="clear_cache_text">Clear Cache</string>
+    <string name="about_us_text">About us</string>
 </resources>

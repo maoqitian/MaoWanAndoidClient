@@ -93,8 +93,10 @@ public class Constants {
     public static final String ACTION_LOGIN_ACTIVITY = "com.mao.mao_wanandroid.action.LOGIN_ACTIVITY";
     //注册页
     public static final String ACTION_SIGN_UP_ACTIVITY = "com.mao.mao_wanandroid.action.SIGN_UP_ACTIVITY";
-    //搜索结果
-    public static final String ACTION_SEARCH_RESULT_ACTIVITY = "com.mao.mao_wanandroid.action.SEARCH_RESULT";
+    //个人中心
+    public static final String ACTION_USER_CENTER_ACTIVITY = "com.mao.mao_wanandroid.action.USER_CENTER";
+    //关于我们
+    public static final String ACTION_ABOUT_US_ACTIVITY = "com.mao.mao_wanandroid.action.ABOUT_US";
 
 
     //页面跳转 code 标识是来自 哪个模块跳转

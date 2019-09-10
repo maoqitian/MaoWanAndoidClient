@@ -81,7 +81,14 @@
         <activity android:name=".view.main.UserCenterActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
-                <action android:name="com.mao.mao_wanandroid.action.SEARCH_RESULT" />
+                <action android:name="com.mao.mao_wanandroid.action.USER_CENTER" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".view.drawer.AboutUsActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="com.mao.mao_wanandroid.action.ABOUT_US" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
