@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="@dimen/dp_12"
+    android:layout_marginTop="@dimen/dp_4"
+    android:layout_marginEnd="@dimen/dp_12"
+    android:layout_marginBottom="@dimen/dp_4"
+    app:cardBackgroundColor="@color/viewBackground"
+    app:cardCornerRadius="@dimen/dp_8"
+    app:cardElevation="@dimen/dp_3">
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <TextView
+            android:id="@+id/tv_rank_des"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_45"
+            android:padding="@dimen/dp_10"
+            android:ellipsize="end"
+            android:lines="1"
+            android:text="物品(尤指整套中的一件)，每日一问 View的onAttachedToWindow ,onDetachedFromWindow 调用时机，使用场景是什么？"
+            android:textSize="@dimen/sp_16"
+            android:textStyle="bold"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            tools:ignore="MissingConstraints" />
+    </android.support.constraint.ConstraintLayout>
+
+</android.support.v7.widget.CardView>

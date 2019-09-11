@@ -92,6 +92,7 @@
 
     <string name="todo_text">TODO</string>
     <string name="my_coin">我的积分</string>
+    <string name="coin_rank_text">积分排行榜</string>
     <string name="coin_record_text">积分记录</string>
     <string name="coin_rule_text">积分规则</string>
 

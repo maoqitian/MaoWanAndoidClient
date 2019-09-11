@@ -77,14 +77,11 @@ public class CoinFragment extends BaseDialogFragment<CoinPresenter> implements C
         mToolbar.setNavigationOnClickListener(v -> dismiss());
         mPageTitle.setText(getString(R.string.my_coin));
         mTvCoinRule.setVisibility(View.VISIBLE);
-        mTvCoinRule.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                HomeArticleData homeArticleData = new HomeArticleData();
-                homeArticleData.setTitle(getString(R.string.coin_rule_text));
-                homeArticleData.setLink("https://www.wanandroid.com/blog/show/2653");
-                StartDetailPage.start(getActivity(),homeArticleData, Constants.PAGE_WEB_NOT_COLLECT,Constants.ACTION_PAGE_DETAIL_ACTIVITY);
-            }
+        mTvCoinRule.setOnClickListener(view -> {
+            HomeArticleData homeArticleData = new HomeArticleData();
+            homeArticleData.setTitle(getString(R.string.coin_rule_text));
+            homeArticleData.setLink("https://www.wanandroid.com/blog/show/2653");
+            StartDetailPage.start(getActivity(),homeArticleData, Constants.PAGE_WEB_NOT_COLLECT,Constants.ACTION_PAGE_DETAIL_ACTIVITY);
         });
         initRecyclerView();
         mPresenter.getCoinCount();
