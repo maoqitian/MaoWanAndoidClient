@@ -74,7 +74,7 @@ public class CoinRankFragment extends BaseDialogFragment <CoinRankPresenter> imp
         // use a linear layout manager
         layoutManager = new LinearLayoutManager(getActivity());
         mRecyclerView.setLayoutManager(layoutManager);
-        mAdapter = new CoinRankAdapter(R.layout.coin_rank_fragment_layout);
+        mAdapter = new CoinRankAdapter(R.layout.rank_item_cardview_layout);
         mRecyclerView.setAdapter(mAdapter);
     }
 
