@@ -1,5 +1,6 @@
 package mao.com.mao_wanandroid_client.view.drawer.fragment;
 
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -154,6 +155,7 @@ public class SettingsFragment extends BaseDialogFragment<SettingsPresenter> impl
                 break;
             case Constants.SETTINGS_VERSION_TYPE:
                 //版本 关于我们
+                mContext.startActivity(new Intent(Constants.ACTION_ABOUT_US_ACTIVITY));
                 break;
               default:
                   break;

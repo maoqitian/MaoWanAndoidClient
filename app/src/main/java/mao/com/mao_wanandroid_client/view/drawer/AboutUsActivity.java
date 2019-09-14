@@ -1,14 +1,20 @@
 package mao.com.mao_wanandroid_client.view.drawer;
 
 import android.graphics.Color;
+import android.os.Build;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.Toolbar;
+import android.text.Html;
 import android.widget.TextView;
 
 import butterknife.BindView;
 import mao.com.mao_wanandroid_client.R;
+import mao.com.mao_wanandroid_client.application.Constants;
 import mao.com.mao_wanandroid_client.base.activity.AbstractSimpleActivity;
+import mao.com.mao_wanandroid_client.model.modelbean.home.HomeArticleData;
+import mao.com.mao_wanandroid_client.utils.StartDetailPage;
 import mao.com.mao_wanandroid_client.utils.StatusBarUtil;
+import mao.com.mao_wanandroid_client.utils.ToolsUtils;
 
 /**
  * @author maoqitian
@@ -24,7 +30,8 @@ public class AboutUsActivity extends AbstractSimpleActivity {
     TextView tvVersionCode;
     @BindView(R.id.tv_about_content)
     TextView tvAboutContent;
-
+    @BindView(R.id.tv_code_content)
+    TextView tvCodeContent;
 
     @Override
     protected void onViewCreated() {
@@ -43,7 +50,20 @@ public class AboutUsActivity extends AbstractSimpleActivity {
 
     @Override
     protected void initEventAndData() {
-
+        tvVersionCode.setText("当前版本 V"+ ToolsUtils.getVersion(this));
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            tvAboutContent.setText(Html.fromHtml(getString(R.string.about_us_content),Html.FROM_HTML_MODE_LEGACY));
+            tvCodeContent.setText(Html.fromHtml(getString(R.string.code_content),Html.FROM_HTML_MODE_LEGACY));
+        }else {
+            tvAboutContent.setText(Html.fromHtml(getString(R.string.about_us_content)));
+            tvCodeContent.setText(Html.fromHtml(getString(R.string.code_content)));
+        }
+        tvCodeContent.setOnClickListener(view -> {
+            HomeArticleData homeArticleData = new HomeArticleData();
+            homeArticleData.setTitle("MaoWanAndoidClient");
+            homeArticleData.setLink("https://github.com/maoqitian/MaoWanAndoidClient");
+            StartDetailPage.start(this,homeArticleData, Constants.PAGE_WEB_NOT_COLLECT,Constants.ACTION_PAGE_DETAIL_ACTIVITY);
+        });
     }
 
     @Override

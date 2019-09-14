@@ -7,12 +7,17 @@ package mao.com.mao_wanandroid_client.model.modelbean.rank;
  */
 public class RankData {
 
+
     /**
-     * coinCount : 448
-     * username : maoqitian
+     * coinCount : 621
+     * rank : 26
+     * userId : 863
+     * username : m**qitian
      */
 
     private int coinCount;
+    private int rank;
+    private int userId;
     private String username;
 
     public int getCoinCount() {
@@ -21,6 +26,22 @@ public class RankData {
 
     public void setCoinCount(int coinCount) {
         this.coinCount = coinCount;
+    }
+
+    public int getRank() {
+        return rank;
+    }
+
+    public void setRank(int rank) {
+        this.rank = rank;
+    }
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 
     public String getUsername() {

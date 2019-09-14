@@ -39,6 +39,7 @@ import mao.com.mao_wanandroid_client.utils.StartDetailPage;
 import mao.com.mao_wanandroid_client.utils.StatusBarUtil;
 import mao.com.mao_wanandroid_client.utils.ToastUtils;
 import mao.com.mao_wanandroid_client.view.drawer.fragment.CoinFragment;
+import mao.com.mao_wanandroid_client.view.drawer.fragment.CoinRankFragment;
 import mao.com.mao_wanandroid_client.view.drawer.fragment.CollectionPageFragment;
 import mao.com.mao_wanandroid_client.view.drawer.fragment.CommonWebFragment;
 import mao.com.mao_wanandroid_client.view.drawer.fragment.SettingsFragment;
@@ -89,7 +90,7 @@ public class MainActivity extends BaseActivity<MainPresenter>
     CommonWebFragment mCommonWebFragment;
     SettingsFragment mSettingsFragment;
     CoinFragment mCoinFragment;
-
+    CoinRankFragment mCoinRankFragment;
     // 是否开启了主页，没有开启则会返回主页
     public static boolean isLaunch = false;
 
@@ -240,6 +241,16 @@ public class MainActivity extends BaseActivity<MainPresenter>
                     mCommonWebFragment.dismiss();
                 }
                 mCommonWebFragment.show(getSupportFragmentManager(),"showCommonWeb");
+                break;
+            case R.id.nav_coin_rank:
+                //积分排行榜
+                if (mCoinRankFragment == null) {
+                    mCoinRankFragment = CoinRankFragment.newInstance();
+                }
+                if (!isDestroyed() && mCoinRankFragment.isAdded()) {
+                    mCoinRankFragment.dismiss();
+                }
+                mCoinRankFragment.show(getSupportFragmentManager(),"showCoinRank");
                 break;
             case R.id.nav_coin:
                 //我的积分

@@ -21,15 +21,17 @@
             android:title="@string/own_collect" />
     </group>
     <item
-        android:id="@+id/nav_settings"
-        android:icon="@drawable/ic_settings_24dp"
-        android:title="@string/nav_settings" />
-
+        android:id="@+id/nav_coin_rank"
+        android:icon="@drawable/ic_rank"
+        android:title="@string/coin_rank_text" />
     <item
         android:id="@+id/nav_coin"
         android:icon="@drawable/ic_coin"
         android:title="@string/my_coin" />
-
+    <item
+        android:id="@+id/nav_settings"
+        android:icon="@drawable/ic_settings_24dp"
+        android:title="@string/nav_settings" />
     <item
         android:id="@+id/nav_todo"
         android:icon="@drawable/ic_todo"
