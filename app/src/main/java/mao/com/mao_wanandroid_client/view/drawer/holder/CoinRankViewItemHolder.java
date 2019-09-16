@@ -19,6 +19,8 @@ public class CoinRankViewItemHolder extends BaseViewHolder {
 
     @BindView(R.id.tv_rank_des)
     TextView mTvRank;
+    @BindView(R.id.tv_rank_coin)
+    TextView mTvRankCoin;
 
     public CoinRankViewItemHolder(View view) {
         super(view);

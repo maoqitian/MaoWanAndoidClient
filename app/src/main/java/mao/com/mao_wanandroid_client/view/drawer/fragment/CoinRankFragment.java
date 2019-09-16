@@ -67,6 +67,9 @@ public class CoinRankFragment extends BaseDialogFragment <CoinRankPresenter> imp
         mPageTitle.setText(getString(R.string.coin_rank_text));
         initRecyclerView();
         mPresenter.getCoinRank();
+        if(mPresenter.getLoginStatus()){
+           mAdapter.setUserName(mPresenter.getLoginUserName());
+        }
     }
 
     private void initRecyclerView() {
