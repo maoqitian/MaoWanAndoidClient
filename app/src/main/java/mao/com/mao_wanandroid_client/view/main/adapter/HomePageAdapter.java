@@ -3,6 +3,7 @@ package mao.com.mao_wanandroid_client.view.main.adapter;
 
 import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
+import android.text.Html;
 import android.view.View;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
@@ -36,7 +37,7 @@ public class HomePageAdapter extends BaseQuickAdapter<HomeArticleData, HomePageV
     @Override
     protected void convert(HomePageViewItemHolder helper, HomeArticleData item) {
          helper.setText(R.id.tv_author_name,item.getAuthor())
-                 .setText(R.id.tv_artical_title,item.getTitle())
+                 .setText(R.id.tv_artical_title, Html.fromHtml(item.getTitle()))
                  .setText(R.id.tv_super_chapterName,item.getSuperChapterName()+" | "+item.getChapterName())
                  //.setText(R.id.tv_chapterName,item.getChapterName())
                  .setText(R.id.tv_artical_date,item.getNiceDate())

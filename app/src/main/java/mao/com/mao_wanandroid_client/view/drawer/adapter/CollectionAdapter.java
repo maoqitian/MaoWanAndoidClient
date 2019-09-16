@@ -1,6 +1,7 @@
 package mao.com.mao_wanandroid_client.view.drawer.adapter;
 
 import android.support.annotation.Nullable;
+import android.text.Html;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 
@@ -32,7 +33,7 @@ public class CollectionAdapter extends BaseQuickAdapter<CollectData,CollectionVi
     @Override
     protected void convert(CollectionViewItemHolder helper, CollectData item) {
         helper.setText(R.id.tv_collection_author_name,item.getAuthor())
-                .setText(R.id.tv_collection_article_title,item.getTitle())
+                .setText(R.id.tv_collection_article_title, Html.fromHtml(item.getTitle()))
                 .setText(R.id.collection_super_chapterName,item.getChapterName())
                 .setText(R.id.tv_collection_date,item.getNiceDate())
                 .addOnClickListener(R.id.more_collect)
