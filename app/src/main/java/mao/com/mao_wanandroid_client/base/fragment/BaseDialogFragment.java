@@ -15,6 +15,7 @@ import mao.com.mao_wanandroid_client.base.BaseView;
 import mao.com.mao_wanandroid_client.base.presenter.AbstractBasePresenter;
 import mao.com.mao_wanandroid_client.model.modelbean.home.HomeArticleData;
 import mao.com.mao_wanandroid_client.utils.StartDetailPage;
+import mao.com.mao_wanandroid_client.utils.ToastUtils;
 
 /**
  * @author maoqitian
@@ -90,7 +91,7 @@ public abstract class BaseDialogFragment<T extends AbstractBasePresenter> extend
 
     @Override
     public void showErrorMsg(String errorMsg) {
-
+        ToastUtils.showToast(errorMsg);
     }
 
 

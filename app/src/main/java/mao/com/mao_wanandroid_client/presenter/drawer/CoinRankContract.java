@@ -14,12 +14,14 @@ import mao.com.mao_wanandroid_client.model.modelbean.rank.RankData;
 public interface CoinRankContract {
 
     interface CoinRankView extends BaseView{
-        void showCoinRankData(List<RankData> rankDataList);
+        void showCoinRankData(List<RankData> rankDataList,boolean isRefresh);
     }
 
 
     interface CoinRankFragmentPresenter extends AbstractBasePresenter<CoinRankView>{
         void getCoinRank();
+
+        void getLoadMoreRankData();
     }
 
 }

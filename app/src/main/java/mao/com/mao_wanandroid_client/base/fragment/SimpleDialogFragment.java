@@ -47,8 +47,8 @@ public abstract class SimpleDialogFragment extends DialogFragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        initViewAndData();
         initLoadingView();
+        initViewAndData();
     }
 
     @Override

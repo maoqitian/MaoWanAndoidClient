@@ -38,6 +38,7 @@ import mao.com.mao_wanandroid_client.utils.NavHelper;
 import mao.com.mao_wanandroid_client.utils.StartDetailPage;
 import mao.com.mao_wanandroid_client.utils.StatusBarUtil;
 import mao.com.mao_wanandroid_client.utils.ToastUtils;
+import mao.com.mao_wanandroid_client.utils.ToolsUtils;
 import mao.com.mao_wanandroid_client.view.drawer.fragment.CoinFragment;
 import mao.com.mao_wanandroid_client.view.drawer.fragment.CoinRankFragment;
 import mao.com.mao_wanandroid_client.view.drawer.fragment.CollectionPageFragment;
@@ -394,13 +395,7 @@ public class MainActivity extends BaseActivity<MainPresenter>
         mUserCoin.setVisibility(View.VISIBLE);
         mUserCoin.setText("积分："+coin);
         mUserRank.setVisibility(View.VISIBLE);
-        int mCoin = coin;
-        if(mCoin>100){
-            mCoin = (coin-(coin%100))/100+1;
-        }else {
-            mCoin = 1;
-        }
-        mUserRank.setText("lv "+mCoin);
+        mUserRank.setText("lv "+ ToolsUtils.getRank(coin));
     }
 
     @Override

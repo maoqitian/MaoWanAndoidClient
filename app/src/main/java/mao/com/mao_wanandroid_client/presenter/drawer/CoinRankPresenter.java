@@ -5,13 +5,14 @@ package mao.com.mao_wanandroid_client.presenter.drawer;
 import javax.inject.Inject;
 
 import io.reactivex.Observable;
+import mao.com.mao_wanandroid_client.R;
+import mao.com.mao_wanandroid_client.application.MyApplication;
 import mao.com.mao_wanandroid_client.base.presenter.RxBasePresenter;
 import mao.com.mao_wanandroid_client.model.http.DataClient;
 import mao.com.mao_wanandroid_client.model.http.control.BaseObserver;
 import mao.com.mao_wanandroid_client.model.http.control.RxSchedulers;
 import mao.com.mao_wanandroid_client.model.modelbean.ResponseBody;
 import mao.com.mao_wanandroid_client.model.modelbean.rank.CoinBaseListData;
-import mao.com.mao_wanandroid_client.model.modelbean.rank.CoinRecordData;
 import mao.com.mao_wanandroid_client.model.modelbean.rank.RankData;
 
 /**
@@ -38,18 +39,32 @@ public class CoinRankPresenter extends RxBasePresenter<CoinRankContract.CoinRank
 
     @Override
     public void getCoinRank() {
-        Observable<ResponseBody<CoinBaseListData<RankData>>> coinRank = mDataClient.getCoinRank(1);
+        getCoinRankData(1,false);
+    }
+
+    private void getCoinRankData(int pageNum, boolean isRefresh) {
+        Observable<ResponseBody<CoinBaseListData<RankData>>> coinRank = mDataClient.getCoinRank(pageNum);
         coinRank.compose(RxSchedulers.observableIO2Main())
                 .subscribe(new BaseObserver<CoinBaseListData<RankData>>() {
                     @Override
                     public void onSuccess(CoinBaseListData<RankData> result) {
-                         mView.showCoinRankData(result.getDatas());
+                        if(result.getDatas().size()!= 0){
+                            curPage = result.getCurPage();
+                            mView.showCoinRankData(result.getDatas(),isRefresh);
+                        }else {
+                            mView.showErrorMsg(MyApplication.getInstance().getString(R.string.not_load_more_msg));
+                        }
                     }
 
                     @Override
                     public void onFailure(Throwable e, String errorMsg) {
-
+                        mView.showErrorMsg(errorMsg);
                     }
                 });
+    }
+
+    @Override
+    public void getLoadMoreRankData() {
+        getCoinRankData(curPage+1,true);
     }
 }

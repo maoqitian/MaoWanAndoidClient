@@ -229,6 +229,22 @@ public class ToolsUtils {
     }
 
     /**
+     * 根据积分获取等级
+     * @param coin
+     * @return
+     */
+    public static int getRank(int coin) {
+        int mCoin = coin;
+        if(mCoin>100){
+            mCoin = (coin-(coin%100))/100+1;
+        }else {
+            mCoin = 1;
+        }
+        return mCoin;
+    }
+
+
+    /**
      * 根据手机的分辨率从 dp 的单位 转成为 px(像素)
      * @param dpValue 虚拟像素
      * @return 像素

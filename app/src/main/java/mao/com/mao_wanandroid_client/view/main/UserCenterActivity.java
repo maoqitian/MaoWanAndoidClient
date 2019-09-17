@@ -104,13 +104,7 @@ public class UserCenterActivity extends BaseActivity<UserCenterPresenter> implem
     @Override
     public void showCoinAndRank(int coin) {
         tvUserCenterCoin.setText("积分："+coin);
-        int mCoin = coin;
-        if(mCoin>100){
-            mCoin = (coin-(coin%100))/100+1;
-        }else {
-            mCoin = 1;
-        }
-        tvUserCenterRank.setText("lv "+mCoin);
+        tvUserCenterRank.setText("lv "+ToolsUtils.getRank(coin));
     }
 
     private void refreshListener() {
