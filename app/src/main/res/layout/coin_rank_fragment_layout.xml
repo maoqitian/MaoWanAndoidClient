@@ -1,35 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
     android:background="@color/colorBackground">
-
     <include
         layout="@layout/common_bar"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         />
-
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/coin_rank_recycleview"
+    <com.scwang.smartrefresh.layout.SmartRefreshLayout
+        android:id="@+id/inflate_view"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginTop="@dimen/dp_2"
-        app:layout_constraintTop_toBottomOf="@id/toolbar"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_height="match_parent"
+        app:srlAccentColor="@color/colorPrimaryDark"
+        app:srlPrimaryColor="@color/colorPrimary"
+        app:srlEnableLoadMoreWhenContentNotFull="false"
+        app:srlEnableAutoLoadMore="true"
+        android:background="@color/colorBackground"
         >
-    </android.support.v7.widget.RecyclerView>
-    <TextView
-        android:id="@+id/tv_owm_rank"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="30. m**qitian，积分:621 lv 7"
-        android:visibility="gone"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        />
-</android.support.constraint.ConstraintLayout>
+        <com.scwang.smartrefresh.header.MaterialHeader
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/coin_rank_recycleview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="@dimen/dp_2"
+            >
+        </android.support.v7.widget.RecyclerView>
+        <com.scwang.smartrefresh.header.TaurusHeader
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+</LinearLayout>
