@@ -79,8 +79,8 @@ public class NetworkUtils {
     public OkHttpClient getOkHttpClient(){
         OkHttpClient.Builder clientBuilder=new OkHttpClient.Builder();
         if(BuildConfig.DEBUG){
-            HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor();
-            loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BASIC);
+            HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor(new HttpLogger());
+            loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
             //加入日志拦截器
             clientBuilder.addInterceptor(loggingInterceptor);
         }
@@ -92,7 +92,13 @@ public class NetworkUtils {
             if(!ToolsUtils.isNetworkConnected()){
                 //如果没有网络
                 //仅仅使用缓存
-             request =request.newBuilder().cacheControl(CacheControl.FORCE_CACHE).build();
+                //max-age:告知缓存多长时间，在没有超过缓存时间的情况下，请求会返回缓存内的数据，在超出max-age的情况下向服务端发起新的请求，请求失败的情况下返回缓存数据,否则向服务端重新发起请求。
+                //max-stale:指示客户机可以接收超出max-age时间的响应消息，max-stale在请求设置中有效，在响应设置中无效（参见博客https://www.jianshu.com/p/db197279f053）
+                //max-age和max-stale在请求中同时使用的情况下，缓存的时间可以为max-age和max-stale的和
+                //设置超时为一周
+                CacheControl cacheControl = new CacheControl.Builder().onlyIfCached()
+                                                                   .maxStale(60 * 60 * 24 * 7, TimeUnit.SECONDS).build();
+                request =request.newBuilder().cacheControl(cacheControl).build();
             }
             Response response = chain.proceed(request);
             if(ToolsUtils.isNetworkConnected()){
@@ -104,7 +110,7 @@ public class NetworkUtils {
                         .removeHeader("Pragma")
                         .build();
             }else {
-                // 无网络时，设置超时为2周
+                // 无网络时，设置超时为2周，在响应体中设置无效 issue #6
                 int maxStale = 60 * 60 * 24 * 14;
                 response.newBuilder()
                         .header("Cache-Control", "public, only-if-cached, max-stale=" + maxStale)
@@ -126,5 +132,12 @@ public class NetworkUtils {
         // cookie 操作处理
         clientBuilder.cookieJar(CookieManager.getInstance());
         return clientBuilder.build();
+    }
+
+    public class HttpLogger implements HttpLoggingInterceptor.Logger {
+        @Override
+        public void log(String message) {
+            Log.d("HttpLogInfo", message);
+        }
     }
 }
