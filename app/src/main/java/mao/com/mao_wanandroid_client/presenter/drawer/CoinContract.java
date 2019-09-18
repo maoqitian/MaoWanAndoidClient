@@ -17,7 +17,6 @@ public interface CoinContract {
 
         void showPersonalCoinList(List<CoinRecordData> coinDataList);
 
-        void showFail(String msg);
     }
 
 
