@@ -110,8 +110,4 @@ public class CoinFragment extends BaseDialogFragment<CoinPresenter> implements C
         mAdapter.replaceData(mCoinDataList);
     }
 
-    @Override
-    public void showFail(String msg) {
-        ToastUtils.showToast(msg);
-    }
 }

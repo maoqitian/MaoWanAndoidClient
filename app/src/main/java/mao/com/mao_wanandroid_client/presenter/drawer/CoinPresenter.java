@@ -46,7 +46,7 @@ public class CoinPresenter extends RxBasePresenter<CoinContract.CoinView> implem
 
                     @Override
                     public void onFailure(Throwable e, String errorMsg) {
-                        mView.showFail(errorMsg);
+                        mView.showErrorMsg(errorMsg);
                     }
                 });
     }
@@ -63,7 +63,7 @@ public class CoinPresenter extends RxBasePresenter<CoinContract.CoinView> implem
 
                             @Override
                             public void onFailure(Throwable e, String errorMsg) {
-                                mView.showFail(errorMsg);
+                                mView.showErrorMsg(errorMsg);
                             }
                         });
     }
