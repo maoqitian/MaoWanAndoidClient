@@ -213,7 +213,7 @@ public class ToolsUtils {
                 android.R.color.holo_red_light,
                 android.R.color.holo_blue_light,
                 android.R.color.holo_orange_light};
-        int temp=random.nextInt(5);
+        int temp = random.nextInt(5);
         return  ContextCompat.getColor(context, color[temp]);
     }
 
@@ -236,8 +236,14 @@ public class ToolsUtils {
     public static int getRank(int coin) {
         int mCoin = coin;
         if(mCoin>100){
-            mCoin = (coin-(coin%100))/100+1;
+            if(coin % 100 == 0){
+                //整数等级不增加
+                mCoin = (coin-(coin%100))/100;
+            }else {
+                mCoin = (coin-(coin%100))/100+1;
+            }
         }else {
+            //100积分以下
             mCoin = 1;
         }
         return mCoin;
