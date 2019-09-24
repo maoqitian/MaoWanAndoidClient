@@ -1,14 +1,14 @@
-package mao.com.mao_wanandroid_client.model.modelbean.rank;
+package mao.com.mao_wanandroid_client.model.modelbean;
 
 import java.util.List;
 
 
 /**
  * @author maoqitian
- * @Description: 积分 base list data
+ * @Description: base list data
  * @date 2019/8/29 0029 16:25
  */
-public class CoinBaseListData<T> {
+public class BaseListData<T> {
     private int curPage;
     private List<T> datas;
     private int offset;

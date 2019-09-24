@@ -12,7 +12,7 @@ import mao.com.mao_wanandroid_client.model.http.DataClient;
 import mao.com.mao_wanandroid_client.model.http.control.BaseObserver;
 import mao.com.mao_wanandroid_client.model.http.control.RxSchedulers;
 import mao.com.mao_wanandroid_client.model.modelbean.ResponseBody;
-import mao.com.mao_wanandroid_client.model.modelbean.rank.CoinBaseListData;
+import mao.com.mao_wanandroid_client.model.modelbean.BaseListData;
 import mao.com.mao_wanandroid_client.model.modelbean.rank.RankData;
 
 /**
@@ -43,11 +43,11 @@ public class CoinRankPresenter extends RxBasePresenter<CoinRankContract.CoinRank
     }
 
     private void getCoinRankData(int pageNum, boolean isRefresh) {
-        Observable<ResponseBody<CoinBaseListData<RankData>>> coinRank = mDataClient.getCoinRank(pageNum);
+        Observable<ResponseBody<BaseListData<RankData>>> coinRank = mDataClient.getCoinRank(pageNum);
         coinRank.compose(RxSchedulers.observableIO2Main())
-                .subscribe(new BaseObserver<CoinBaseListData<RankData>>() {
+                .subscribe(new BaseObserver<BaseListData<RankData>>() {
                     @Override
-                    public void onSuccess(CoinBaseListData<RankData> result) {
+                    public void onSuccess(BaseListData<RankData> result) {
                         if(result.getDatas().size()!= 0){
                             curPage = result.getCurPage();
                             mView.showCoinRankData(result.getDatas(),isRefresh);

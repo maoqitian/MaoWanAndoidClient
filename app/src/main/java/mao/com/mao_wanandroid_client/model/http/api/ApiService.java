@@ -1,5 +1,6 @@
 package mao.com.mao_wanandroid_client.model.http.api;
 
+import java.util.Date;
 import java.util.List;
 
 import io.reactivex.Observable;
@@ -14,11 +15,12 @@ import mao.com.mao_wanandroid_client.model.modelbean.login.LoginData;
 import mao.com.mao_wanandroid_client.model.modelbean.navigation.NavigationListData;
 import mao.com.mao_wanandroid_client.model.modelbean.project.ProjectClassifyData;
 import mao.com.mao_wanandroid_client.model.modelbean.project.ProjectListData;
-import mao.com.mao_wanandroid_client.model.modelbean.rank.CoinBaseListData;
+import mao.com.mao_wanandroid_client.model.modelbean.BaseListData;
 import mao.com.mao_wanandroid_client.model.modelbean.rank.CoinRecordData;
 import mao.com.mao_wanandroid_client.model.modelbean.rank.RankData;
 import mao.com.mao_wanandroid_client.model.modelbean.search.HotKeyData;
 import mao.com.mao_wanandroid_client.model.modelbean.knowlegetree.KnowledgeHierarchyData;
+import mao.com.mao_wanandroid_client.model.modelbean.todo.TodoData;
 import mao.com.mao_wanandroid_client.model.modelbean.webmark.WebBookMark;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
@@ -320,8 +322,74 @@ public interface ApiService {
             @Query("k") String key);
 
     /**
-     * todo 接口
+     * TODO接口
      */
+
+    /**
+     * 新增一个TODO
+     * @param title 新增标题（必须）
+     * @param content 新增详情（必须）
+     * @param date  2019-09-24 预定完成时间（不传默认当天，建议传）
+     * @param type  大于0的整数（可选）type 可以用于，在app 中预定义几个类别：例如 工作1；生活2；娱乐3；新增的时候传入1，2，3，
+     *              查询的时候，传入type 进行筛选,如果不设置type则为 0，未来无法做 type=0的筛选，会显示全部（筛选 type 必须为大于 0 的整数）
+     * @param priority 大于0的整数（可选） priority 主要用于定义优先级，在app 中预定义几个优先级：重要（1） 一般（2）等
+     *                 查询的时候，传入priority 进行筛选
+     *
+     * @return
+     */
+    @POST("/lg/todo/add/json")
+    @FormUrlEncoded
+    Observable<ResponseBody<TodoData>>addTodo(@Field("title") String title,
+                                              @Field("content") String content,
+                                              @Field("date") Date date,
+                                              @Field("type") int type,
+                                              @Field("priority") int priority);
+
+    /**
+     * 更新一个TODO
+     * @param id 拼接在链接上，为唯一标识，列表数据返回时，每个todo 都会有个id标识 （必须）
+     * @param title 更新标题 （必须）
+     * @param content 新增详情（必须）
+     * @param date  2018-08-01（必须）
+     * @param status 0为未完成，1为完成 如果有当前状态没有携带，会被默认值更新，比如当前todo status=1，更新时没有带上，会认为被重置。
+     *               当更新 status=1时，会自动设置服务器当前时间为完成时间。
+     * @param type 同todo新增接口
+     * @param priority 同todo新增接口
+     * @return
+     */
+    @POST("/lg/todo/update/{id}/json")
+    @FormUrlEncoded
+    Observable<ResponseBody<TodoData>>updateTodo(@Path("id") int id,@Field("title") String title,
+                                                 @Field("content") String content,
+                                                 @Field("date") Date date,
+                                                 @Field("status") int status,
+                                                 @Field("type") int type,
+                                                 @Field("priority") int priority);
+
+    /**
+     *  删除一个TODO
+     * @param id 拼接在链接上，为唯一标识
+     * @return
+     */
+    @POST("/lg/todo/delete/{id}/json")
+    Observable<ResponseBody<String>>deleteTodo(@Path("id") int id);
+
+    /**
+     * 仅更新完成状态TODO
+     * @param id 拼接在链接上，为唯一标识
+     * @param status 0或1，传1代表未完成到已完成，反之则反之。 只会变更status，未完成->已经完成 or 已经完成->未完成。
+     * @return
+     */
+    @POST("/lg/todo/done/{id}/json")
+    @FormUrlEncoded
+    Observable<ResponseBody<TodoData>>updateDoneTodo(@Path("id") int id, @Field("status") int status);
+
+    /**
+     * TODO列表  待添加
+     */
+
+    
+
 
     /**
      * 积分接口
@@ -332,7 +400,7 @@ public interface ApiService {
      * @param pageNum 页码：拼接在url 中，从1开始
      */
     @GET("/coin/rank/{pageNum}/json")
-    Observable<ResponseBody<CoinBaseListData<RankData>>>getCoinRank(@Path("pageNum") int pageNum);
+    Observable<ResponseBody<BaseListData<RankData>>>getCoinRank(@Path("pageNum") int pageNum);
 
     /**
      * 获取个人积分，需要登录后访问
@@ -345,6 +413,6 @@ public interface ApiService {
      * @param pageNum 页码：拼接在url 中，从1开始
      */
     @GET("/lg/coin/list/{pageNum}/json")
-    Observable<ResponseBody<CoinBaseListData<CoinRecordData>>>getPersonalCoinList(@Path("pageNum") int pageNum);
+    Observable<ResponseBody<BaseListData<CoinRecordData>>>getPersonalCoinList(@Path("pageNum") int pageNum);
 
 }

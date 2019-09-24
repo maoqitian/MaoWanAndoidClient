@@ -10,7 +10,7 @@ import mao.com.mao_wanandroid_client.model.http.DataClient;
 import mao.com.mao_wanandroid_client.model.http.control.BaseObserver;
 import mao.com.mao_wanandroid_client.model.http.control.RxSchedulers;
 import mao.com.mao_wanandroid_client.model.modelbean.ResponseBody;
-import mao.com.mao_wanandroid_client.model.modelbean.rank.CoinBaseListData;
+import mao.com.mao_wanandroid_client.model.modelbean.BaseListData;
 import mao.com.mao_wanandroid_client.model.modelbean.rank.CoinRecordData;
 
 /**
@@ -53,11 +53,11 @@ public class CoinPresenter extends RxBasePresenter<CoinContract.CoinView> implem
 
     @Override
     public void getPersonalCoinList() {
-        Observable<ResponseBody<CoinBaseListData<CoinRecordData>>> personalCoinList = mDataClient.getPersonalCoinList(1);
+        Observable<ResponseBody<BaseListData<CoinRecordData>>> personalCoinList = mDataClient.getPersonalCoinList(1);
         personalCoinList.compose(RxSchedulers.observableIO2Main())
-                        .subscribe(new BaseObserver<CoinBaseListData<CoinRecordData>>() {
+                        .subscribe(new BaseObserver<BaseListData<CoinRecordData>>() {
                             @Override
-                            public void onSuccess(CoinBaseListData<CoinRecordData> result) {
+                            public void onSuccess(BaseListData<CoinRecordData> result) {
                                 mView.showPersonalCoinList(result.getDatas());
                             }
 

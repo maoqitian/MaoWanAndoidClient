@@ -6,7 +6,7 @@ import io.reactivex.Observable;
 import mao.com.mao_wanandroid_client.model.dao.SearchHistoryData;
 import mao.com.mao_wanandroid_client.model.db.DbHelper;
 import mao.com.mao_wanandroid_client.model.http.helper.IHttpHelper;
-import mao.com.mao_wanandroid_client.model.modelbean.rank.CoinBaseListData;
+import mao.com.mao_wanandroid_client.model.modelbean.BaseListData;
 import mao.com.mao_wanandroid_client.model.modelbean.rank.CoinRecordData;
 import mao.com.mao_wanandroid_client.model.modelbean.rank.RankData;
 import mao.com.mao_wanandroid_client.model.modelbean.webmark.WebBookMark;
@@ -205,7 +205,7 @@ public class DataClient implements IHttpHelper,SharedPreferenceHelper,DbHelper {
     }
 
     @Override
-    public Observable<ResponseBody<CoinBaseListData<RankData>>> getCoinRank(int pageNum) {
+    public Observable<ResponseBody<BaseListData<RankData>>> getCoinRank(int pageNum) {
         return mIHttpHelper.getCoinRank(pageNum);
     }
 
@@ -215,7 +215,7 @@ public class DataClient implements IHttpHelper,SharedPreferenceHelper,DbHelper {
     }
 
     @Override
-    public Observable<ResponseBody<CoinBaseListData<CoinRecordData>>> getPersonalCoinList(int pageNum) {
+    public Observable<ResponseBody<BaseListData<CoinRecordData>>> getPersonalCoinList(int pageNum) {
         return mIHttpHelper.getPersonalCoinList(pageNum);
     }
 

@@ -18,7 +18,7 @@ import mao.com.mao_wanandroid_client.model.modelbean.login.LoginData;
 import mao.com.mao_wanandroid_client.model.modelbean.navigation.NavigationListData;
 import mao.com.mao_wanandroid_client.model.modelbean.project.ProjectClassifyData;
 import mao.com.mao_wanandroid_client.model.modelbean.project.ProjectListData;
-import mao.com.mao_wanandroid_client.model.modelbean.rank.CoinBaseListData;
+import mao.com.mao_wanandroid_client.model.modelbean.BaseListData;
 import mao.com.mao_wanandroid_client.model.modelbean.rank.CoinRecordData;
 import mao.com.mao_wanandroid_client.model.modelbean.rank.RankData;
 import mao.com.mao_wanandroid_client.model.modelbean.search.HotKeyData;
@@ -307,7 +307,7 @@ public class IHttpHelperImpl implements IHttpHelper{
     }
 
     @Override
-    public Observable<ResponseBody<CoinBaseListData<RankData>>> getCoinRank(int pageNum) {
+    public Observable<ResponseBody<BaseListData<RankData>>> getCoinRank(int pageNum) {
         return getApiServiceGson().getCoinRank(pageNum);
     }
 
@@ -317,7 +317,7 @@ public class IHttpHelperImpl implements IHttpHelper{
     }
 
     @Override
-    public Observable<ResponseBody<CoinBaseListData<CoinRecordData>>> getPersonalCoinList(int pageNum) {
+    public Observable<ResponseBody<BaseListData<CoinRecordData>>> getPersonalCoinList(int pageNum) {
         return getApiServiceGson().getPersonalCoinList(pageNum);
     }
 
