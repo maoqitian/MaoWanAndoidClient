@@ -1,6 +1,8 @@
 package mao.com.mao_wanandroid_client.model.http.helper;
 
+import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -23,6 +25,7 @@ import mao.com.mao_wanandroid_client.model.modelbean.rank.CoinRecordData;
 import mao.com.mao_wanandroid_client.model.modelbean.rank.RankData;
 import mao.com.mao_wanandroid_client.model.modelbean.search.HotKeyData;
 import mao.com.mao_wanandroid_client.model.modelbean.knowlegetree.KnowledgeHierarchyData;
+import mao.com.mao_wanandroid_client.model.modelbean.todo.TodoData;
 import mao.com.mao_wanandroid_client.model.modelbean.webmark.WebBookMark;
 
 
@@ -319,6 +322,31 @@ public class IHttpHelperImpl implements IHttpHelper{
     @Override
     public Observable<ResponseBody<BaseListData<CoinRecordData>>> getPersonalCoinList(int pageNum) {
         return getApiServiceGson().getPersonalCoinList(pageNum);
+    }
+
+    @Override
+    public Observable<ResponseBody<TodoData>> addTodo(String title, String content, Date date, int type, int priority) {
+        return getApiServiceGson().addTodo(title,content,date,type,priority);
+    }
+
+    @Override
+    public Observable<ResponseBody<TodoData>> updateTodo(int id, String title, String content, Date date, int status, int type, int priority) {
+        return getApiServiceGson().updateTodo(id,title,content,date,status,type,priority);
+    }
+
+    @Override
+    public Observable<ResponseBody<String>> deleteTodo(int id) {
+        return getApiServiceGson().deleteTodo(id);
+    }
+
+    @Override
+    public Observable<ResponseBody<TodoData>> updateDoneTodo(int id, int status) {
+        return getApiServiceGson().updateDoneTodo(id,status);
+    }
+
+    @Override
+    public Observable<ResponseBody<TodoData>> getTodoListData(int pageNum, Map<String, Integer> param) {
+        return getApiServiceGson().getTodoListData(pageNum,param);
     }
 
 

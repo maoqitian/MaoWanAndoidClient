@@ -2,6 +2,7 @@ package mao.com.mao_wanandroid_client.model.http.api;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 import io.reactivex.Observable;
 import mao.com.mao_wanandroid_client.model.modelbean.ResponseBody;
@@ -28,6 +29,7 @@ import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
+import retrofit2.http.QueryMap;
 
 /**
  * Api接口
@@ -385,12 +387,23 @@ public interface ApiService {
     Observable<ResponseBody<TodoData>>updateDoneTodo(@Path("id") int id, @Field("status") int status);
 
     /**
-     * TODO列表  待添加
+     * 根据条件 获取 TODO列表
+     * @param pageNum 页码从1开始，拼接在url 上
+     * @param param status 状态， 1-完成；0未完成; 默认全部展示；
+     *              type 创建时传入的类型, 默认全部展示
+     *              priority 创建时传入的优先级；默认全部展示
+     *              orderby 1:完成日期顺序；2.完成日期逆序；3.创建日期顺序；4.创建日期逆序(默认)；
+     * @return
      */
-
-    
-
-
+    /*@GET("/lg/todo/v2/list/{pageNum}/json")
+    Observable<ResponseBody<TodoData>>getTodoListData(@Path("pageNum") int pageNum,
+                                                      @Query("status") int status,
+                                                      @Query("type") int type,
+                                                      @Query("priority") int priority,
+                                                      @Query("orderby") int orderby);*/
+    @GET("/lg/todo/v2/list/{pageNum}/json")
+    Observable<ResponseBody<TodoData>>getTodoListData(@Path("pageNum") int pageNum,
+                                                      @QueryMap Map<String,Integer> param);
     /**
      * 积分接口
      */

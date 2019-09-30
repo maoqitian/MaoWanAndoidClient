@@ -1,6 +1,8 @@
 package mao.com.mao_wanandroid_client.model.http;
 
+import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 import io.reactivex.Observable;
 import mao.com.mao_wanandroid_client.model.dao.SearchHistoryData;
@@ -9,6 +11,7 @@ import mao.com.mao_wanandroid_client.model.http.helper.IHttpHelper;
 import mao.com.mao_wanandroid_client.model.modelbean.BaseListData;
 import mao.com.mao_wanandroid_client.model.modelbean.rank.CoinRecordData;
 import mao.com.mao_wanandroid_client.model.modelbean.rank.RankData;
+import mao.com.mao_wanandroid_client.model.modelbean.todo.TodoData;
 import mao.com.mao_wanandroid_client.model.modelbean.webmark.WebBookMark;
 import mao.com.mao_wanandroid_client.model.sp.SharedPreferenceHelper;
 import mao.com.mao_wanandroid_client.model.modelbean.ResponseBody;
@@ -217,6 +220,31 @@ public class DataClient implements IHttpHelper,SharedPreferenceHelper,DbHelper {
     @Override
     public Observable<ResponseBody<BaseListData<CoinRecordData>>> getPersonalCoinList(int pageNum) {
         return mIHttpHelper.getPersonalCoinList(pageNum);
+    }
+
+    @Override
+    public Observable<ResponseBody<TodoData>> addTodo(String title, String content, Date date, int type, int priority) {
+        return mIHttpHelper.addTodo(title,content,date,type,priority);
+    }
+
+    @Override
+    public Observable<ResponseBody<TodoData>> updateTodo(int id, String title, String content, Date date, int status, int type, int priority) {
+        return mIHttpHelper.updateTodo(id,title,content,date,status,type,priority);
+    }
+
+    @Override
+    public Observable<ResponseBody<String>> deleteTodo(int id) {
+        return mIHttpHelper.deleteTodo(id);
+    }
+
+    @Override
+    public Observable<ResponseBody<TodoData>> updateDoneTodo(int id, int status) {
+        return mIHttpHelper.updateDoneTodo(id,status);
+    }
+
+    @Override
+    public Observable<ResponseBody<TodoData>> getTodoListData(int pageNum, Map<String, Integer> param) {
+        return mIHttpHelper.getTodoListData(pageNum,param);
     }
 
     @Override
