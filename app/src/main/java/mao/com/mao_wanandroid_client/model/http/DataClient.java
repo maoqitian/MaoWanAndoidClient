@@ -9,6 +9,7 @@ import mao.com.mao_wanandroid_client.model.dao.SearchHistoryData;
 import mao.com.mao_wanandroid_client.model.db.DbHelper;
 import mao.com.mao_wanandroid_client.model.http.helper.IHttpHelper;
 import mao.com.mao_wanandroid_client.model.modelbean.BaseListData;
+import mao.com.mao_wanandroid_client.model.modelbean.BaseMultipleData;
 import mao.com.mao_wanandroid_client.model.modelbean.rank.CoinRecordData;
 import mao.com.mao_wanandroid_client.model.modelbean.rank.RankData;
 import mao.com.mao_wanandroid_client.model.modelbean.todo.TodoData;
@@ -245,6 +246,16 @@ public class DataClient implements IHttpHelper,SharedPreferenceHelper,DbHelper {
     @Override
     public Observable<ResponseBody<TodoData>> getTodoListData(int pageNum, Map<String, Integer> param) {
         return mIHttpHelper.getTodoListData(pageNum,param);
+    }
+
+    @Override
+    public Observable<ResponseBody<BaseListData<HomeArticleData>>> getUserArticleList(int pageNum) {
+        return mIHttpHelper.getUserArticleList(pageNum);
+    }
+
+    @Override
+    public Observable<ResponseBody<BaseMultipleData<RankData, BaseListData<HomeArticleData>>>> getUserShareArticlesData(int id, int pageNum) {
+        return mIHttpHelper.getUserShareArticlesData(id,pageNum);
     }
 
     @Override

@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import io.reactivex.Observable;
+import mao.com.mao_wanandroid_client.model.modelbean.BaseMultipleData;
 import mao.com.mao_wanandroid_client.model.modelbean.ResponseBody;
 import mao.com.mao_wanandroid_client.model.modelbean.banner.HomePageBannerModel;
 import mao.com.mao_wanandroid_client.model.modelbean.collect.CollectData;
@@ -23,12 +24,6 @@ import mao.com.mao_wanandroid_client.model.modelbean.search.HotKeyData;
 import mao.com.mao_wanandroid_client.model.modelbean.knowlegetree.KnowledgeHierarchyData;
 import mao.com.mao_wanandroid_client.model.modelbean.todo.TodoData;
 import mao.com.mao_wanandroid_client.model.modelbean.webmark.WebBookMark;
-import retrofit2.http.Field;
-import retrofit2.http.FormUrlEncoded;
-import retrofit2.http.GET;
-import retrofit2.http.POST;
-import retrofit2.http.Path;
-import retrofit2.http.QueryMap;
 
 
 /**
@@ -297,5 +292,25 @@ public interface IHttpHelper {
      * @return
      */
     Observable<ResponseBody<TodoData>>getTodoListData(int pageNum, Map<String,Integer> param);
+
+    /**
+     * 广场接口
+     */
+
+    /**
+     * 广场列表数据
+     * @param pageNum 页码拼接在url上从0开始
+     * @return
+     */
+    Observable<ResponseBody<BaseListData<HomeArticleData>>>getUserArticleList(int pageNum);
+
+
+    /**
+     * 分享人对应列表数据
+     * @param id 分享人 id
+     * @param pageNum 页码拼接在url上从1开始
+     * @return
+     */
+    Observable<ResponseBody<BaseMultipleData<RankData,BaseListData<HomeArticleData>>>>getUserShareArticlesData(int id, int pageNum);
 
 }

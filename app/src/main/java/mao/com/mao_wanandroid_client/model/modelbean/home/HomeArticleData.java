@@ -37,6 +37,11 @@ public class HomeArticleData implements Serializable {
      * userId : -1
      * visible : 1
      * zan : 0
+     * audit : 1
+     * niceShareDate : 2019-09-30
+     * selfVisible : 0
+     * shareDate : 1569813874000
+     * shareUser : maoqitian
      */
 
     private String apkLink;
@@ -63,6 +68,11 @@ public class HomeArticleData implements Serializable {
     private int visible;
     private int zan;
     private List<TagsBean> tags;
+    private int audit;
+    private String niceShareDate;
+    private int selfVisible;
+    private long shareDate;
+    private String shareUser;
 
     public String getApkLink() {
         return apkLink;
@@ -256,6 +266,46 @@ public class HomeArticleData implements Serializable {
         this.tags = tags;
     }
 
+    public int getAudit() {
+        return audit;
+    }
+
+    public void setAudit(int audit) {
+        this.audit = audit;
+    }
+
+    public String getNiceShareDate() {
+        return niceShareDate;
+    }
+
+    public void setNiceShareDate(String niceShareDate) {
+        this.niceShareDate = niceShareDate;
+    }
+
+    public int getSelfVisible() {
+        return selfVisible;
+    }
+
+    public void setSelfVisible(int selfVisible) {
+        this.selfVisible = selfVisible;
+    }
+
+    public long getShareDate() {
+        return shareDate;
+    }
+
+    public void setShareDate(long shareDate) {
+        this.shareDate = shareDate;
+    }
+
+    public String getShareUser() {
+        return shareUser;
+    }
+
+    public void setShareUser(String shareUser) {
+        this.shareUser = shareUser;
+    }
+
     public static class TagsBean implements Serializable{
         /**
          * name : 导航
@@ -309,6 +359,11 @@ public class HomeArticleData implements Serializable {
                 ", visible=" + visible +
                 ", zan=" + zan +
                 ", tags=" + tags +
+                ", audit=" + audit +
+                ", niceShareDate='" + niceShareDate + '\'' +
+                ", selfVisible=" + selfVisible +
+                ", shareDate=" + shareDate +
+                ", shareUser='" + shareUser + '\'' +
                 '}';
     }
 }

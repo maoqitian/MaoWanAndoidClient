@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import io.reactivex.Observable;
+import mao.com.mao_wanandroid_client.model.modelbean.BaseMultipleData;
 import mao.com.mao_wanandroid_client.model.modelbean.ResponseBody;
 import mao.com.mao_wanandroid_client.model.modelbean.banner.HomePageBannerModel;
 import mao.com.mao_wanandroid_client.model.modelbean.collect.CollectData;
@@ -427,5 +428,28 @@ public interface ApiService {
      */
     @GET("/lg/coin/list/{pageNum}/json")
     Observable<ResponseBody<BaseListData<CoinRecordData>>>getPersonalCoinList(@Path("pageNum") int pageNum);
+
+
+    /**
+     * 广场接口
+     */
+
+    /**
+     * 广场列表数据
+     * @param pageNum 页码拼接在url上从0开始
+     * @return
+     */
+    @GET("/user_article/list/{pageNum}/json")
+    Observable<ResponseBody<BaseListData<HomeArticleData>>>getUserArticleList(@Path("pageNum") int pageNum);
+
+
+    /**
+     * 分享人对应列表数据
+     * @param id 分享人 id
+     * @param pageNum 页码拼接在url上从1开始
+     * @return
+     */
+    @GET("/user/{id}/share_articles/{pageNum}/json")
+    Observable<ResponseBody<BaseMultipleData<RankData,BaseListData<HomeArticleData>>>>getUserShareArticlesData(@Path("id") int id,@Path("pageNum") int pageNum);
 
 }

@@ -9,6 +9,7 @@ import javax.inject.Inject;
 import io.reactivex.Observable;
 import mao.com.mao_wanandroid_client.model.http.api.ApiService;
 import mao.com.mao_wanandroid_client.model.http.tools.NetworkUtils;
+import mao.com.mao_wanandroid_client.model.modelbean.BaseMultipleData;
 import mao.com.mao_wanandroid_client.model.modelbean.ResponseBody;
 import mao.com.mao_wanandroid_client.model.modelbean.banner.HomePageBannerModel;
 import mao.com.mao_wanandroid_client.model.modelbean.collect.CollectData;
@@ -347,6 +348,16 @@ public class IHttpHelperImpl implements IHttpHelper{
     @Override
     public Observable<ResponseBody<TodoData>> getTodoListData(int pageNum, Map<String, Integer> param) {
         return getApiServiceGson().getTodoListData(pageNum,param);
+    }
+
+    @Override
+    public Observable<ResponseBody<BaseListData<HomeArticleData>>> getUserArticleList(int pageNum) {
+        return getApiServiceGson().getUserArticleList(pageNum);
+    }
+
+    @Override
+    public Observable<ResponseBody<BaseMultipleData<RankData, BaseListData<HomeArticleData>>>> getUserShareArticlesData(int id, int pageNum) {
+        return getApiServiceGson().getUserShareArticlesData(id,pageNum);
     }
 
 
