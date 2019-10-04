@@ -44,6 +44,7 @@ import mao.com.mao_wanandroid_client.view.drawer.fragment.CoinRankFragment;
 import mao.com.mao_wanandroid_client.view.drawer.fragment.CollectionPageFragment;
 import mao.com.mao_wanandroid_client.view.drawer.fragment.CommonWebFragment;
 import mao.com.mao_wanandroid_client.view.drawer.fragment.SettingsFragment;
+import mao.com.mao_wanandroid_client.view.drawer.fragment.SquareFragment;
 import mao.com.mao_wanandroid_client.view.main.fragment.HomePageFragment;
 import mao.com.mao_wanandroid_client.view.main.fragment.KnowledgeHierarchyPageFragment;
 import mao.com.mao_wanandroid_client.view.main.fragment.NavigationFragment;
@@ -146,7 +147,8 @@ public class MainActivity extends BaseActivity<MainPresenter>
                 .add(R.id.tab_official_accounts,OfficialAccountsPageFragment.newInstance())
                 .add(R.id.tab_navigation,NavigationFragment.newInstance())
                 .add(R.id.tab_project,ProjectFragment.newInstance())
-                .add(R.id.collect_page,CollectionPageFragment.newInstance());
+                .add(R.id.collect_page,CollectionPageFragment.newInstance())
+                .add(R.id.square_page, SquareFragment.newInstance());
     }
 
     private void initView() {
@@ -216,6 +218,10 @@ public class MainActivity extends BaseActivity<MainPresenter>
                 //主页
                 initPageTitle(getString(R.string.page_home));
                 bottomNavigationView.setVisibility(View.VISIBLE);
+                break;
+            case R.id.square_page:
+                initPageTitle(getString(R.string.square_text));
+                bottomNavigationView.setVisibility(View.GONE);
                 break;
             case R.id.tab_knowledge_hierarchy:
                 //知识体系
@@ -319,7 +325,6 @@ public class MainActivity extends BaseActivity<MainPresenter>
                      //进入登录界面
                      StartDetailPage.start(MainActivity.this,null, Constants.PAGE_LOGIN,Constants.ACTION_LOGIN_ACTIVITY);
                  }else {
-                     //TODO 进入个人中心 暂未实现
                      //Toast.makeText(MainActivity.this,"进入个人中心暂未实现",Toast.LENGTH_SHORT).show();
                      startActivity(new Intent(this, UserCenterActivity.class));
                  }

@@ -181,7 +181,7 @@ public class HomeSecondTabFragment extends RootBaseFragment<HomeSecondTabPresent
         }else {
             mHomeArticleDataList.clear();
             mHomeArticleDataList.addAll(homeArticleDataList);
-            mLatestProjectAdapter.replaceData(homeArticleDataList);
+            mLatestProjectAdapter.replaceData(mHomeArticleDataList);
             showNormal();
         }
         mSmartRefreshLayout.finishRefresh();

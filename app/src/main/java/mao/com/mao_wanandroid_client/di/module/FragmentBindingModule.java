@@ -11,6 +11,7 @@ import mao.com.mao_wanandroid_client.view.drawer.fragment.CollectionPageFragment
 import mao.com.mao_wanandroid_client.view.drawer.fragment.CollectionWebFragment;
 import mao.com.mao_wanandroid_client.view.drawer.fragment.CommonWebFragment;
 import mao.com.mao_wanandroid_client.view.drawer.fragment.SettingsFragment;
+import mao.com.mao_wanandroid_client.view.drawer.fragment.SquareFragment;
 import mao.com.mao_wanandroid_client.view.main.fragment.HomeFirstTabFragment;
 import mao.com.mao_wanandroid_client.view.main.fragment.HomePageFragment;
 import mao.com.mao_wanandroid_client.view.main.fragment.HomeSecondTabFragment;
@@ -96,4 +97,8 @@ public abstract class FragmentBindingModule {
     @FragmentScope
     @ContributesAndroidInjector(modules = CoinRankFragmentModule.class)
     abstract CoinRankFragment contributeCoinRankFragment();
+
+    @FragmentScope
+    @ContributesAndroidInjector(modules = SquareFragmentModule.class)
+    abstract SquareFragment contributeSquareFragment();
 }

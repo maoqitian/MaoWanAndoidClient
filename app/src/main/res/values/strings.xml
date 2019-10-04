@@ -63,6 +63,7 @@
     <string name="confirm_text">confirm</string>
     <string name="own_collect">my collect</string>
     <string name="common_web">common_web</string>
+    <string name="square_text">square</string>
     <string name="exit_again">Exit the app again</string>
     <string name="collection_article" >Collection Article</string>
     <string name="collection_web" >Collection Web</string>

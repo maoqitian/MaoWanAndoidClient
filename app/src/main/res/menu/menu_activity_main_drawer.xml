@@ -12,6 +12,10 @@
             android:icon="@drawable/ic_home_normal_24dp"
             android:title="@string/page_home" />
         <item
+            android:id="@+id/square_page"
+            android:icon="@drawable/ic_square"
+            android:title="@string/square_text" />
+        <item
             android:id="@+id/common_website"
             android:icon="@drawable/ic_common_website"
             android:title="@string/common_web" />
