@@ -23,6 +23,8 @@ public interface SquareContract {
 
 
           void getSquareArticleList();
+
+          void getLoadSquareArticleListData();
     }
 
 }

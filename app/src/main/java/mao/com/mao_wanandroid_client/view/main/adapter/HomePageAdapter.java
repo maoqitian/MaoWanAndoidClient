@@ -4,6 +4,7 @@ package mao.com.mao_wanandroid_client.view.main.adapter;
 import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
 import android.text.Html;
+import android.text.TextUtils;
 import android.view.View;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
@@ -22,6 +23,17 @@ import mao.com.mao_wanandroid_client.view.main.holder.HomePageViewItemHolder;
 public class HomePageAdapter extends BaseQuickAdapter<HomeArticleData, HomePageViewItemHolder> {
 
 
+    public boolean isUserShare() {
+        return isUserShare;
+    }
+
+    public void setUserShare(boolean userShare) {
+        isUserShare = userShare;
+    }
+    //是否展示广场用户数据
+    boolean isUserShare = false;
+
+
     public HomePageAdapter(int layoutResId, @Nullable List<HomeArticleData> data) {
         super(layoutResId, data);
     }
@@ -36,13 +48,16 @@ public class HomePageAdapter extends BaseQuickAdapter<HomeArticleData, HomePageV
 
     @Override
     protected void convert(HomePageViewItemHolder helper, HomeArticleData item) {
-         helper.setText(R.id.tv_author_name,item.getAuthor())
+         helper.setText(R.id.tv_author_name, TextUtils.isEmpty(item.getAuthor()) ? item.getShareUser() : item.getAuthor())
                  .setText(R.id.tv_artical_title, Html.fromHtml(item.getTitle()))
                  .setText(R.id.tv_super_chapterName,item.getSuperChapterName()+" | "+item.getChapterName())
                  //.setText(R.id.tv_chapterName,item.getChapterName())
                  .setText(R.id.tv_artical_date,item.getNiceDate())
                  .addOnClickListener(R.id.image_collect)
-                 .addOnClickListener(R.id.tv_super_chapterName);
+                 .addOnClickListener(R.id.tv_super_chapterName)
+                 .addOnClickListener(R.id.tv_author_name)
+                 .addOnClickListener(R.id.image_author_icon)
+                 .setTextColor(R.id.tv_author_name,TextUtils.isEmpty(item.getAuthor()) && isUserShare ?ContextCompat.getColor(mContext, R.color.light_blue) : ContextCompat.getColor(mContext, R.color.textColorPrimary));
                  //.addOnClickListener(R.id.tv_chapterName);
          // tag
          if(item.getTags().size()>0){

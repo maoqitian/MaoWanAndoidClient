@@ -289,7 +289,11 @@ public class MainActivity extends BaseActivity<MainPresenter>
             //如果是 常用网站 todo 则不改变选中状态
             //navigationView 选中
             return false;
-        }else {
+        }else if(R.id.nav_home == id){
+            //回到首页
+            bottomNavigationView.setSelectedItemId(R.id.tab_main);
+            return mNavHelper.performClickMenuFragment(R.id.tab_main);
+        } else {
             navigationView.setCheckedItem(id);
             return mNavHelper.performClickMenuFragment(id);
         }
