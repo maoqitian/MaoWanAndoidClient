@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import io.reactivex.Observable;
+import io.reactivex.annotations.SchedulerSupport;
 import mao.com.mao_wanandroid_client.model.modelbean.BaseMultipleData;
 import mao.com.mao_wanandroid_client.model.modelbean.ResponseBody;
 import mao.com.mao_wanandroid_client.model.modelbean.banner.HomePageBannerModel;
@@ -451,5 +452,33 @@ public interface ApiService {
      */
     @GET("/user/{id}/share_articles/{pageNum}/json")
     Observable<ResponseBody<BaseMultipleData<RankData,BaseListData<HomeArticleData>>>>getUserShareArticlesData(@Path("id") int id,@Path("pageNum") int pageNum);
+
+    /**
+     * 自己的分享的文章列表
+     * @param pageNum 页码，从1开始
+     * @return
+     */
+    @GET("/user/lg/private_articles/{pageNum}/json")
+    Observable<ResponseBody<BaseMultipleData<RankData,BaseListData<HomeArticleData>>>>getPrivateShareArticlesData(@Path("pageNum") int pageNum);
+
+    /**
+     * 删除自己分享的文章
+     * @param id 文章id，拼接在链接上
+     * @return
+     */
+    @POST("/lg/user_article/delete/{id}/json")
+    Observable<ResponseBody<String>>getUserArticleDelete(@Path("id") int id);
+
+    /**
+     * 分享文章
+     * @param title 文章标题
+     * @param link 文章链接
+     * @return
+     */
+    @POST("/lg/user_article/add/json")
+    @FormUrlEncoded
+    Observable<ResponseBody<String>>getUserArticleShare(@Field("title") String title,
+                                                       @Field("link") String link);
+
 
 }

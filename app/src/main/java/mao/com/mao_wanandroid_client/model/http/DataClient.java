@@ -259,6 +259,21 @@ public class DataClient implements IHttpHelper,SharedPreferenceHelper,DbHelper {
     }
 
     @Override
+    public Observable<ResponseBody<BaseMultipleData<RankData, BaseListData<HomeArticleData>>>> getPrivateShareArticlesData(int pageNum) {
+        return mIHttpHelper.getPrivateShareArticlesData(pageNum);
+    }
+
+    @Override
+    public Observable<ResponseBody<String>> getUserArticleDelete(int id) {
+        return mIHttpHelper.getUserArticleDelete(id);
+    }
+
+    @Override
+    public Observable<ResponseBody<String>> getUserArticleShare(String title, String link) {
+        return mIHttpHelper.getUserArticleShare(title, link);
+    }
+
+    @Override
     public void setLoginUserName(String userName) {
         mSharedPreferenceHelper.setLoginUserName(userName);
     }

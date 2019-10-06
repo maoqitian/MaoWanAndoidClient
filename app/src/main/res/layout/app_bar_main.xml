@@ -41,6 +41,17 @@
         android:visibility="invisible"
         app:layout_behavior="@string/scroll_aware_fab_behavior"
         app:srcCompat="@drawable/ic_arrow_upward_black_24dp" />
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fab_share"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginBottom="@dimen/dp_70"
+            android:layout_marginEnd="@dimen/dp_16"
+            android:layout_gravity="bottom|end"
+            android:visibility="gone"
+            app:srcCompat="@drawable/ic_add_24dp" />
     </android.support.design.widget.CoordinatorLayout>
 
     <android.support.design.widget.BottomNavigationView

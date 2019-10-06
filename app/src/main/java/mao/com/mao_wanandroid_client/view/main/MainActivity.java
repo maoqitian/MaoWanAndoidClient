@@ -39,8 +39,10 @@ import mao.com.mao_wanandroid_client.utils.StartDetailPage;
 import mao.com.mao_wanandroid_client.utils.StatusBarUtil;
 import mao.com.mao_wanandroid_client.utils.ToastUtils;
 import mao.com.mao_wanandroid_client.utils.ToolsUtils;
+import mao.com.mao_wanandroid_client.view.drawer.fragment.ArticleShareDialogFragment;
 import mao.com.mao_wanandroid_client.view.drawer.fragment.CoinFragment;
 import mao.com.mao_wanandroid_client.view.drawer.fragment.CoinRankFragment;
+import mao.com.mao_wanandroid_client.view.drawer.fragment.CollectionDialogFragment;
 import mao.com.mao_wanandroid_client.view.drawer.fragment.CollectionPageFragment;
 import mao.com.mao_wanandroid_client.view.drawer.fragment.CommonWebFragment;
 import mao.com.mao_wanandroid_client.view.drawer.fragment.SettingsFragment;
@@ -65,6 +67,8 @@ public class MainActivity extends BaseActivity<MainPresenter>
     Toolbar toolbar;
     @BindView(R.id.fab)
     FloatingActionButton fab;
+    @BindView(R.id.fab_share)
+    FloatingActionButton fabShare;
     @BindView(R.id.drawer_layout)
     DrawerLayout drawer;
     @BindView(R.id.nav_view)
@@ -93,6 +97,8 @@ public class MainActivity extends BaseActivity<MainPresenter>
     SettingsFragment mSettingsFragment;
     CoinFragment mCoinFragment;
     CoinRankFragment mCoinRankFragment;
+    ArticleShareDialogFragment articleShareDialogFragment;
+
     // 是否开启了主页，没有开启则会返回主页
     public static boolean isLaunch = false;
 
@@ -153,6 +159,7 @@ public class MainActivity extends BaseActivity<MainPresenter>
 
     private void initView() {
         fab.setOnClickListener(this);
+        fabShare.setOnClickListener(this);
         mSearch.setVisibility(View.VISIBLE);
         mSearch.setOnClickListener(this);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -220,7 +227,9 @@ public class MainActivity extends BaseActivity<MainPresenter>
                 bottomNavigationView.setVisibility(View.VISIBLE);
                 break;
             case R.id.square_page:
+                //广场
                 initPageTitle(getString(R.string.square_text));
+                fab.setVisibility(View.GONE);
                 bottomNavigationView.setVisibility(View.GONE);
                 break;
             case R.id.tab_knowledge_hierarchy:
@@ -285,8 +294,14 @@ public class MainActivity extends BaseActivity<MainPresenter>
         //DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         //点击之后关闭DrawerLayout
         drawer.closeDrawer(GravityCompat.START);
+        if(R.id.square_page == id){
+           fabShare.setVisibility(View.VISIBLE);
+        }else{
+            fabShare.setVisibility(View.GONE);
+        }
+
         if(R.id.common_website ==  id || R.id.nav_settings ==id || R.id.nav_todo ==id ){
-            //如果是 常用网站 todo 则不改变选中状态
+            //如果是 常用网站todo 则不改变选中状态
             //navigationView 选中
             return false;
         }else if(R.id.nav_home == id){
@@ -321,8 +336,21 @@ public class MainActivity extends BaseActivity<MainPresenter>
     @Override
     public void onClick(View view) {
          switch (view.getId()){
-             case R.id.fab:
-                 //Toast.makeText(MainActivity.this,"点击了回到顶部",Toast.LENGTH_SHORT).show();
+             case R.id.fab_share:
+                 //分享文章
+                 if(!mPresenter.getLoginStatus()){
+                     //进入登录界面
+                     StartDetailPage.start(MainActivity.this,null, Constants.PAGE_LOGIN,Constants.ACTION_LOGIN_ACTIVITY);
+                 }else {
+                     //开启 分享 dialog
+                     if (articleShareDialogFragment == null) {
+                         articleShareDialogFragment = ArticleShareDialogFragment.newInstance();
+                     }
+                     if (!isDestroyed() && articleShareDialogFragment.isAdded()) {
+                         articleShareDialogFragment.dismiss();
+                     }
+                     articleShareDialogFragment.show(getSupportFragmentManager(),"showArticleCollectionDialog");
+                 }
                  break;
              case R.id.imageView_user_icon: //用户个人头像点击
                  if(!mPresenter.getLoginStatus()){

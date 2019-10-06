@@ -3,6 +3,7 @@ package mao.com.mao_wanandroid_client.di.module;
 import dagger.Module;
 import dagger.android.ContributesAndroidInjector;
 import mao.com.mao_wanandroid_client.di.scope.FragmentScope;
+import mao.com.mao_wanandroid_client.view.drawer.fragment.ArticleShareDialogFragment;
 import mao.com.mao_wanandroid_client.view.drawer.fragment.CoinFragment;
 import mao.com.mao_wanandroid_client.view.drawer.fragment.CoinRankFragment;
 import mao.com.mao_wanandroid_client.view.drawer.fragment.CollectionDialogFragment;
@@ -89,6 +90,10 @@ public abstract class FragmentBindingModule {
     @FragmentScope
     @ContributesAndroidInjector(modules = CollectionDialogFragmentModule.class)
     abstract CollectionDialogFragment contributeCollectionDialogFragment();
+
+    @FragmentScope
+    @ContributesAndroidInjector(modules = ArticleShareDialogFragmentModule.class)
+    abstract ArticleShareDialogFragment contributeArticleShareDialogFragment();
 
     @FragmentScope
     @ContributesAndroidInjector(modules = CoinFragmentModule.class)

@@ -360,5 +360,20 @@ public class IHttpHelperImpl implements IHttpHelper{
         return getApiServiceGson().getUserShareArticlesData(id,pageNum);
     }
 
+    @Override
+    public Observable<ResponseBody<BaseMultipleData<RankData, BaseListData<HomeArticleData>>>> getPrivateShareArticlesData(int pageNum) {
+        return getApiServiceGson().getPrivateShareArticlesData(pageNum);
+    }
+
+    @Override
+    public Observable<ResponseBody<String>> getUserArticleDelete(int id) {
+        return getApiServiceGson().getUserArticleDelete(id);
+    }
+
+    @Override
+    public Observable<ResponseBody<String>> getUserArticleShare(String title, String link) {
+        return getApiServiceGson().getUserArticleShare(title,link);
+    }
+
 
 }

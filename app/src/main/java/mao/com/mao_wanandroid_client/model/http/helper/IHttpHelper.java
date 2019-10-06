@@ -313,4 +313,26 @@ public interface IHttpHelper {
      */
     Observable<ResponseBody<BaseMultipleData<RankData,BaseListData<HomeArticleData>>>>getUserShareArticlesData(int id, int pageNum);
 
+
+    /**
+     * 自己的分享的文章列表
+     * @param pageNum 页码，从1开始
+     * @return
+     */
+    Observable<ResponseBody<BaseMultipleData<RankData,BaseListData<HomeArticleData>>>>getPrivateShareArticlesData(int pageNum);
+
+    /**
+     * 删除自己分享的文章
+     * @param id 文章id，拼接在链接上
+     * @return
+     */
+    Observable<ResponseBody<String>>getUserArticleDelete(int id);
+
+    /**
+     * 分享文章
+     * @param title 文章标题
+     * @param link 文章链接
+     * @return
+     */
+    Observable<ResponseBody<String>>getUserArticleShare(String title, String link);
 }
