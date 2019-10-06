@@ -10,6 +10,7 @@ import mao.com.mao_wanandroid_client.application.Constants;
 import mao.com.mao_wanandroid_client.base.presenter.RxBasePresenter;
 import mao.com.mao_wanandroid_client.compoent.RxBus;
 import mao.com.mao_wanandroid_client.compoent.event.CollectionWebArticleEvent;
+import mao.com.mao_wanandroid_client.compoent.event.ShareArticleEvent;
 import mao.com.mao_wanandroid_client.model.http.DataClient;
 import mao.com.mao_wanandroid_client.model.http.control.ProgressObserver;
 import mao.com.mao_wanandroid_client.model.http.control.RxSchedulers;
@@ -41,5 +42,18 @@ public class ArticleShareDialogPresenter extends RxBasePresenter<ArticleShareDia
     @Override
     public void getAddCollectWebData(Context context, String title, String link) {
 
+        Observable<ResponseBody<String>> userArticleShare = mDataClient.getUserArticleShare(title, link);
+        userArticleShare.compose(RxSchedulers.observableIO2Main(context))
+                        .subscribe(new ProgressObserver<String>(context, "正在分享") {
+                            @Override
+                            public void onSuccess(String result) {
+                                RxBus.getDefault().post(new ShareArticleEvent(true,"分享成功"));
+                            }
+
+                            @Override
+                            public void onFailure(Throwable e, String errorMsg) {
+                                RxBus.getDefault().post(new ShareArticleEvent(false,errorMsg));
+                            }
+                        });
     }
 }

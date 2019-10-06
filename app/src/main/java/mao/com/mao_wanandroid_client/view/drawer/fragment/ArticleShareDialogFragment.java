@@ -4,7 +4,9 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.util.Log;
+import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
@@ -19,6 +21,7 @@ import mao.com.mao_wanandroid_client.R;
 import mao.com.mao_wanandroid_client.base.fragment.BaseDialogFragment;
 import mao.com.mao_wanandroid_client.presenter.drawer.ArticleShareDialogContract;
 import mao.com.mao_wanandroid_client.presenter.drawer.ArticleShareDialogPresenter;
+import mao.com.mao_wanandroid_client.utils.EditTextUtils;
 import mao.com.mao_wanandroid_client.utils.ToolsUtils;
 
 /**
@@ -26,21 +29,22 @@ import mao.com.mao_wanandroid_client.utils.ToolsUtils;
  * @Author: maoqitian
  * @Date: 2019-10-06 16:26
  */
-public class ArticleShareDialogFragment extends BaseDialogFragment<ArticleShareDialogPresenter> implements ArticleShareDialogContract.ArticleShareDialogView {
+public class ArticleShareDialogFragment extends BaseDialogFragment<ArticleShareDialogPresenter> implements
+        ArticleShareDialogContract.ArticleShareDialogView , View.OnClickListener{
 
 
     @BindView(R.id.btn_share)
-    Button btnConfirmCollection;
+    Button btnConfirmShare;
     @BindView(R.id.btn_cancel_share)
-    Button btnCancelCancelDialog;
+    Button btnCancelDialog;
     @BindView(R.id.tv_share_dialog_title)
     TextView tvDialogTitle ;
     @BindView(R.id.et_share_title)
-    EditText edCollectionTitle;
+    EditText edShareTitle;
     @BindView(R.id.et_share_author_name)
-    EditText edCollectionAuthorName;
+    EditText edShareAuthorName;
     @BindView(R.id.et_share_link)
-    EditText edCollectionLink ;
+    EditText edShareLink ;
     @BindView(R.id.iv_close_share)
     ImageView ivCloseDialog;
 
@@ -54,6 +58,10 @@ public class ArticleShareDialogFragment extends BaseDialogFragment<ArticleShareD
         return fragment;
     }
 
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+    }
 
     @Override
     protected int getLayoutId() {
@@ -77,15 +85,25 @@ public class ArticleShareDialogFragment extends BaseDialogFragment<ArticleShareD
         layoutParams.width = getActivity().getResources().getDisplayMetrics().widthPixels-100;
         view.setLayoutParams(layoutParams);
         //设置焦点并弹出键盘
-        ToolsUtils.showSoftInput2(edCollectionTitle);
+        ToolsUtils.showSoftInput2(edShareTitle);
     }
 
     @Override
     protected void initViewAndData() {
+        super.initViewAndData();
         //确认按钮不可点击
-        btnConfirmCollection.setEnabled(false);
+        btnConfirmShare.setEnabled(false);
+        EditTextUtils.textChangeListener textChangeListener = new EditTextUtils.textChangeListener(btnConfirmShare);
+        textChangeListener.addAllEditText(edShareTitle,edShareLink);
+        edShareAuthorName.setHint(mPresenter.getLoginUserName());
+        //分享用户名设置不可编辑且无点击事件
+        edShareAuthorName.setFocusable(false);
+        edShareAuthorName.setFocusableInTouchMode(false);
+        edShareAuthorName.setOnClickListener(null);
 
-
+        btnConfirmShare.setOnClickListener(this);
+        btnCancelDialog.setOnClickListener(this);
+        ivCloseDialog.setOnClickListener(this);
 
 
     }
@@ -110,6 +128,22 @@ public class ArticleShareDialogFragment extends BaseDialogFragment<ArticleShareD
             Log.e("毛麒添","软键盘没关闭");
             InputMethodManager inputMgr = (InputMethodManager) mContext.getSystemService(Context.INPUT_METHOD_SERVICE);
             inputMgr.toggleSoftInput(InputMethodManager.HIDE_NOT_ALWAYS, 0);
+        }
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.btn_share:
+
+                mPresenter.getAddCollectWebData(getActivity(),edShareTitle.getText().toString(),
+                                                edShareLink.getText().toString().trim());
+                dismiss();
+                break;
+            case R.id.btn_cancel_share:
+            case R.id.iv_close_share:
+                dismiss();
+                break;
         }
     }
 }

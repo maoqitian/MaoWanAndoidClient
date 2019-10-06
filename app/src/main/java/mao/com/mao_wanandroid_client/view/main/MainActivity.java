@@ -343,9 +343,7 @@ public class MainActivity extends BaseActivity<MainPresenter>
                      StartDetailPage.start(MainActivity.this,null, Constants.PAGE_LOGIN,Constants.ACTION_LOGIN_ACTIVITY);
                  }else {
                      //开启 分享 dialog
-                     if (articleShareDialogFragment == null) {
-                         articleShareDialogFragment = ArticleShareDialogFragment.newInstance();
-                     }
+                     articleShareDialogFragment = ArticleShareDialogFragment.newInstance();
                      if (!isDestroyed() && articleShareDialogFragment.isAdded()) {
                          articleShareDialogFragment.dismiss();
                      }

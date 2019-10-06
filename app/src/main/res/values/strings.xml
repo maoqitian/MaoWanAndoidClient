@@ -84,6 +84,8 @@
     <string name="empty">Empty!</string>
     <string name="str_none" />
 
+    <string name="share_article_text">share article</string>
+
     <string name="actionbar_webview_share">web share</string>
     <string name="actionbar_webview_copy">web copy</string>
     <string name="actionbar_webview_open">open web browser</string>

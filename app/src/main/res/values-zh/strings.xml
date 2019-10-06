@@ -41,7 +41,7 @@
     <string name="login_out_text">乃确定不是手滑了么？</string>
 
     <string name="passwordInconsistency">两次密码输入不一致！</string>
-
+    <string name="share_article_text">分享文章</string>
     <string name="collection_success">收藏文章成功！</string>
     <string name="collection_fail">收藏文章失败！</string>
 

@@ -1,5 +1,7 @@
 package mao.com.mao_wanandroid_client.base.presenter;
 
+import android.util.Log;
+
 import io.reactivex.Observable;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
@@ -42,6 +44,9 @@ public class RxBasePresenter<T extends BaseView> implements AbstractBasePresente
     @Override
     public void attachView(T view) {
        this.mView=view;
+        if(mView != null){
+            Log.e("毛麒添","mView 不为空" + mView.getClass());
+        }
     }
 
     @Override

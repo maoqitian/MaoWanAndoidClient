@@ -20,7 +20,7 @@
         android:id="@+id/tv_share_dialog_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="分享文章"
+        android:text="@string/share_article_text"
         android:textSize="@dimen/sp_16"
         android:textStyle="bold"
         android:layout_marginTop="@dimen/dp_10"

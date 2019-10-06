@@ -6,10 +6,13 @@ import java.util.List;
 import javax.inject.Inject;
 
 import io.reactivex.Observable;
+import io.reactivex.functions.Consumer;
 import mao.com.mao_wanandroid_client.R;
 import mao.com.mao_wanandroid_client.application.Constants;
 import mao.com.mao_wanandroid_client.application.MyApplication;
 import mao.com.mao_wanandroid_client.base.presenter.RxBasePresenter;
+import mao.com.mao_wanandroid_client.compoent.RxBus;
+import mao.com.mao_wanandroid_client.compoent.event.ShareArticleEvent;
 import mao.com.mao_wanandroid_client.model.http.DataClient;
 import mao.com.mao_wanandroid_client.model.http.control.BaseObserver;
 import mao.com.mao_wanandroid_client.model.http.control.RxSchedulers;
@@ -38,6 +41,19 @@ public class SquarePresenter extends RxBasePresenter<SquareContract.SquareView> 
     @Override
     public void attachView(SquareContract.SquareView view) {
         super.attachView(view);
+
+        addEventSubscribe(RxBus.getDefault().toFlowable(ShareArticleEvent.class).subscribe(new Consumer<ShareArticleEvent>() {
+            @Override
+            public void accept(ShareArticleEvent shareArticleEvent) throws Exception {
+                if(shareArticleEvent.ismIsShareSuccess()){
+                    //分享成功 刷新广场页面数据
+                    getSquareArticleListData(false,0);
+                    mView.showErrorMsg(shareArticleEvent.getmMsg());
+                }else{
+                    mView.showErrorMsg(shareArticleEvent.getmMsg());
+                }
+            }
+        }));
     }
 
     @Override
@@ -65,8 +81,6 @@ public class SquarePresenter extends RxBasePresenter<SquareContract.SquareView> 
                                    //哥这回真没了
                                    mView.showErrorMsg(MyApplication.getInstance().getString(R.string.not_load_more_msg));
                                }
-
-
                            }
 
                            @Override
