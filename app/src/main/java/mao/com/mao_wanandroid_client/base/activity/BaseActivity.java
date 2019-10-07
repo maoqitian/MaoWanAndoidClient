@@ -77,7 +77,7 @@ public abstract class  BaseActivity <T extends AbstractBasePresenter> extends Ab
 
     @Override
     public void showErrorMsg(String errorMsg) {
-        ToastUtils.showToast(errorMsg);
+        ToastUtils.showToastShort(this,errorMsg);
     }
 
     @Override

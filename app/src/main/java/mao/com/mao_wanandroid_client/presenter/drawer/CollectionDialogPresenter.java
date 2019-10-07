@@ -53,11 +53,13 @@ public class CollectionDialogPresenter extends RxBasePresenter<CollectionDialogC
                         collectionWebArticleEvent.setDialogType(Constants.COLLECTION_WEB_TYPE);
                         collectionWebArticleEvent.setAdd(true);
                         RxBus.getDefault().post(collectionWebArticleEvent);
+                        showCollectionstate();
                     }
 
                     @Override
                     public void onFailure(Throwable e, String errorMsg) {
                         RxBus.getDefault().post(new CollectionWebArticleEvent(-1,errorMsg));
+                        showCollectionstate();
                     }
                 });
     }
@@ -78,11 +80,13 @@ public class CollectionDialogPresenter extends RxBasePresenter<CollectionDialogC
                         collectionWebArticleEvent.setDialogType(Constants.COLLECTION_WEB_TYPE);
                         collectionWebArticleEvent.setAdd(false);
                         RxBus.getDefault().post(collectionWebArticleEvent);
+                        showCollectionstate();
                     }
 
                     @Override
                     public void onFailure(Throwable e, String errorMsg) {
                         RxBus.getDefault().post(new CollectionWebArticleEvent(-1,errorMsg));
+                        showCollectionstate();
                     }
                 });
     }
@@ -99,12 +103,19 @@ public class CollectionDialogPresenter extends RxBasePresenter<CollectionDialogC
                                       collectionWebArticleEvent.setDialogType(Constants.COLLECTION_ARTICLE_TYPE);
                                       collectionWebArticleEvent.setAdd(false);
                                       RxBus.getDefault().post(collectionWebArticleEvent);
+                                      showCollectionstate();
                                   }
 
                                   @Override
                                   public void onFailure(Throwable e, String errorMsg) {
                                       RxBus.getDefault().post(new CollectionWebArticleEvent(-1,errorMsg));
+                                      showCollectionstate();
                                   }
                               });
+    }
+
+
+    private void showCollectionstate(){
+        mView.showConfirmCollectionStatus();
     }
 }

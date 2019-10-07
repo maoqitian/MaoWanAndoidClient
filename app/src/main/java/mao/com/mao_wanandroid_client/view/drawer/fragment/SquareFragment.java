@@ -175,10 +175,13 @@ public class SquareFragment extends RootBaseFragment<SquarePresenter> implements
     @Override
     public void reload() {
         super.reload();
+        mPresenter.getSquareArticleList();
     }
 
     @Override
     public void showError() {
         super.showError();
+        mSmartRefreshLayout.finishLoadMore();
+        mSmartRefreshLayout.finishRefresh();
     }
 }

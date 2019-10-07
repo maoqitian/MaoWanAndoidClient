@@ -14,17 +14,11 @@ import mao.com.mao_wanandroid_client.model.modelbean.webmark.WebBookMark;
 public interface ArticleShareDialogContract {
 
     interface ArticleShareDialogView extends BaseView{
-        /*void showCollectionWebData(List<WebBookMark> collectionWebDataList);
 
-
-        void showAddCollectWebSuccess(WebBookMark webBookMark, String msg);
-        void showAddCollectWebFail(String msg);
-
-        void showUpdateCollectWebSuccess(int position, WebBookMark webBookMark, String msg);
-        void showUpdateCollectWebFail(String msg);
-
-        void showDeleteCollectWebSuccess(int position, String msg);
-        void showDeleteCollectWebFail(String msg);*/
+        /**
+         * 不管分享是否成功 ， 关闭 dialog 而不是直接关闭（这样网络请求会被中断接收不到返回状态）
+         */
+        void showConfirmShareStatus();
 
     }
 

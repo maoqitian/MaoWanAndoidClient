@@ -12,6 +12,7 @@ public class ShareArticleEvent {
 
     public ShareArticleEvent(boolean isShareSuccess,String msg){
         this.mIsShareSuccess = isShareSuccess;
+        this.mMsg = msg;
     }
 
 

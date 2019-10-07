@@ -48,11 +48,13 @@ public class ArticleShareDialogPresenter extends RxBasePresenter<ArticleShareDia
                             @Override
                             public void onSuccess(String result) {
                                 RxBus.getDefault().post(new ShareArticleEvent(true,"分享成功"));
+                                mView.showConfirmShareStatus();
                             }
 
                             @Override
                             public void onFailure(Throwable e, String errorMsg) {
                                 RxBus.getDefault().post(new ShareArticleEvent(false,errorMsg));
+                                mView.showConfirmShareStatus();
                             }
                         });
     }

@@ -16,17 +16,8 @@ import mao.com.mao_wanandroid_client.model.modelbean.webmark.WebBookMark;
 public interface CollectionDialogContract {
 
     interface CollectionDialogView extends BaseView{
-        /*void showCollectionWebData(List<WebBookMark> collectionWebDataList);
 
-
-        void showAddCollectWebSuccess(WebBookMark webBookMark, String msg);
-        void showAddCollectWebFail(String msg);
-
-        void showUpdateCollectWebSuccess(int position, WebBookMark webBookMark, String msg);
-        void showUpdateCollectWebFail(String msg);
-
-        void showDeleteCollectWebSuccess(int position, String msg);
-        void showDeleteCollectWebFail(String msg);*/
+        void showConfirmCollectionStatus();
 
     }
 

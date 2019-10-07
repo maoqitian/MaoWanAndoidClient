@@ -78,7 +78,7 @@ public abstract class BaseFragment <T extends AbstractBasePresenter> extends Sim
 
     @Override
     public void showErrorMsg(String errorMsg) {
-        ToastUtils.showToast(errorMsg);
+        ToastUtils.showToastShort(_mActivity,errorMsg);
     }
 
     @Override

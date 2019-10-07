@@ -184,7 +184,6 @@ public class CollectionDialogFragment extends BaseDialogFragment<CollectionDialo
                             edCollectionAuthorName.getText().toString(),
                             edCollectionLink.getText().toString().trim());
                 }
-                dismiss();
                 break;
             case R.id.btn_cancel_close:
             case R.id.iv_close_dialog:
@@ -202,5 +201,11 @@ public class CollectionDialogFragment extends BaseDialogFragment<CollectionDialo
             InputMethodManager inputMgr = (InputMethodManager) mContext.getSystemService(Context.INPUT_METHOD_SERVICE);
             inputMgr.toggleSoftInput(InputMethodManager.HIDE_NOT_ALWAYS, 0);
         }
+    }
+
+
+    @Override
+    public void showConfirmCollectionStatus() {
+        dismiss();
     }
 }

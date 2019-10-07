@@ -135,15 +135,19 @@ public class ArticleShareDialogFragment extends BaseDialogFragment<ArticleShareD
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.btn_share:
-
                 mPresenter.getAddCollectWebData(getActivity(),edShareTitle.getText().toString(),
                                                 edShareLink.getText().toString().trim());
-                dismiss();
                 break;
             case R.id.btn_cancel_share:
             case R.id.iv_close_share:
                 dismiss();
                 break;
         }
+    }
+
+    @Override
+    public void showConfirmShareStatus() {
+        //关闭 dialog
+        dismiss();
     }
 }
