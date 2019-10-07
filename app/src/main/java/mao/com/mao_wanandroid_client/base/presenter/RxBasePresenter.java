@@ -13,6 +13,7 @@ import mao.com.mao_wanandroid_client.model.http.control.BaseObserver;
 import mao.com.mao_wanandroid_client.model.http.control.RxSchedulers;
 import mao.com.mao_wanandroid_client.model.modelbean.ResponseBody;
 import mao.com.mao_wanandroid_client.model.modelbean.home.HomeArticleData;
+import mao.com.mao_wanandroid_client.model.modelbean.rank.RankData;
 
 /**
  * @author maoqitian
@@ -141,11 +142,11 @@ public class RxBasePresenter<T extends BaseView> implements AbstractBasePresente
 
     @Override
     public void getCoinAndRank() {
-        Observable<ResponseBody<Integer>> coinCount = mDataClient.getCoinCount();
+        Observable<ResponseBody<RankData>> coinCount = mDataClient.getCoinCount();
         coinCount.compose(RxSchedulers.observableIO2Main())
-                .subscribe(new BaseObserver<Integer>() {
+                .subscribe(new BaseObserver<RankData>() {
                     @Override
-                    public void onSuccess(Integer result) {
+                    public void onSuccess(RankData result) {
                         mView.showCoinAndRank(result);
                     }
 

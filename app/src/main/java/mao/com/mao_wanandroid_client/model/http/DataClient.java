@@ -214,7 +214,7 @@ public class DataClient implements IHttpHelper,SharedPreferenceHelper,DbHelper {
     }
 
     @Override
-    public Observable<ResponseBody<Integer>> getCoinCount() {
+    public Observable<ResponseBody<RankData>> getCoinCount() {
         return mIHttpHelper.getCoinCount();
     }
 

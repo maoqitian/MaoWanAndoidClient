@@ -420,8 +420,8 @@ public interface ApiService {
     /**
      * 获取个人积分，需要登录后访问
      */
-    @GET("/lg/coin/getcount/json")
-    Observable<ResponseBody<Integer>>getCoinCount();
+    @GET("/lg/coin/userinfo/json")
+    Observable<ResponseBody<RankData>>getCoinCount();
 
     /**
      * 获取个人积分获取列表，需要登录后访问

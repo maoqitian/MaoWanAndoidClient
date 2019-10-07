@@ -15,6 +15,7 @@ import mao.com.mao_wanandroid_client.application.Constants;
 import mao.com.mao_wanandroid_client.base.BaseView;
 import mao.com.mao_wanandroid_client.base.presenter.AbstractBasePresenter;
 import mao.com.mao_wanandroid_client.model.modelbean.home.HomeArticleData;
+import mao.com.mao_wanandroid_client.model.modelbean.rank.RankData;
 import mao.com.mao_wanandroid_client.utils.StartDetailPage;
 import mao.com.mao_wanandroid_client.utils.ToastUtils;
 
@@ -126,7 +127,7 @@ public abstract class BaseFragment <T extends AbstractBasePresenter> extends Sim
     }
 
     @Override
-    public void showCoinAndRank(int coin) {
+    public void showCoinAndRank(RankData rankData) {
 
     }
 

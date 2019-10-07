@@ -231,7 +231,7 @@ public interface IHttpHelper {
     /**
      * 获取个人积分，需要登录后访问
      */
-    Observable<ResponseBody<Integer>>getCoinCount();
+    Observable<ResponseBody<RankData>>getCoinCount();
 
     /**
      * 获取个人积分获取列表，需要登录后访问

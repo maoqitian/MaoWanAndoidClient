@@ -24,6 +24,7 @@ import butterknife.BindView;
 import mao.com.mao_wanandroid_client.R;
 import mao.com.mao_wanandroid_client.application.Constants;
 import mao.com.mao_wanandroid_client.base.activity.BaseActivity;
+import mao.com.mao_wanandroid_client.model.modelbean.rank.RankData;
 import mao.com.mao_wanandroid_client.presenter.main.UserCenterContract;
 import mao.com.mao_wanandroid_client.presenter.main.UserCenterPresenter;
 import mao.com.mao_wanandroid_client.utils.StatusBarUtil;
@@ -102,9 +103,9 @@ public class UserCenterActivity extends BaseActivity<UserCenterPresenter> implem
     }
 
     @Override
-    public void showCoinAndRank(int coin) {
-        tvUserCenterCoin.setText("积分："+coin);
-        tvUserCenterRank.setText("lv "+ToolsUtils.getRank(coin));
+    public void showCoinAndRank(RankData rankData) {
+        tvUserCenterCoin.setText("积分："+rankData.getCoinCount());
+        tvUserCenterRank.setText("lv "+ToolsUtils.getRank(rankData.getCoinCount()));
     }
 
     private void refreshListener() {

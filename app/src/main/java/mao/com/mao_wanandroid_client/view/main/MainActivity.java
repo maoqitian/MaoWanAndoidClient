@@ -32,6 +32,7 @@ import mao.com.mao_wanandroid_client.base.activity.BaseActivity;
 import mao.com.mao_wanandroid_client.compoent.RxBus;
 import mao.com.mao_wanandroid_client.compoent.event.LoginStatusEvent;
 import mao.com.mao_wanandroid_client.model.http.cookie.CookieManager;
+import mao.com.mao_wanandroid_client.model.modelbean.rank.RankData;
 import mao.com.mao_wanandroid_client.presenter.main.MainContract;
 import mao.com.mao_wanandroid_client.presenter.main.MainPresenter;
 import mao.com.mao_wanandroid_client.utils.NavHelper;
@@ -424,13 +425,13 @@ public class MainActivity extends BaseActivity<MainPresenter>
     }
     //登录成功显示积分模块
     @Override
-    public void showCoinAndRank(int coin) {
+    public void showCoinAndRank(RankData rankData) {
         mUserCoin = navigationView.getHeaderView(0).findViewById(R.id.tv_user_coin);
         mUserRank = navigationView.getHeaderView(0).findViewById(R.id.tv_user_rank);
         mUserCoin.setVisibility(View.VISIBLE);
-        mUserCoin.setText("积分："+coin);
+        mUserCoin.setText("积分："+rankData.getCoinCount());
         mUserRank.setVisibility(View.VISIBLE);
-        mUserRank.setText("lv "+ ToolsUtils.getRank(coin));
+        mUserRank.setText("lv "+ ToolsUtils.getRank(rankData.getCoinCount()));
     }
 
     @Override

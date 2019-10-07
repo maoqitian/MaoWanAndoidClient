@@ -12,6 +12,7 @@ import mao.com.mao_wanandroid_client.model.http.control.RxSchedulers;
 import mao.com.mao_wanandroid_client.model.modelbean.ResponseBody;
 import mao.com.mao_wanandroid_client.model.modelbean.BaseListData;
 import mao.com.mao_wanandroid_client.model.modelbean.rank.CoinRecordData;
+import mao.com.mao_wanandroid_client.model.modelbean.rank.RankData;
 
 /**
  * @author maoqitian
@@ -36,11 +37,11 @@ public class CoinPresenter extends RxBasePresenter<CoinContract.CoinView> implem
 
     @Override
     public void getCoinCount() {
-        Observable<ResponseBody<Integer>> coinCount = mDataClient.getCoinCount();
+        Observable<ResponseBody<RankData>> coinCount = mDataClient.getCoinCount();
         coinCount.compose(RxSchedulers.observableIO2Main())
-                .subscribe(new BaseObserver<Integer>() {
+                .subscribe(new BaseObserver<RankData>() {
                     @Override
-                    public void onSuccess(Integer result) {
+                    public void onSuccess(RankData result) {
                         mView.showCoinCount(result);
                     }
 

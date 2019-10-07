@@ -316,7 +316,7 @@ public class IHttpHelperImpl implements IHttpHelper{
     }
 
     @Override
-    public Observable<ResponseBody<Integer>> getCoinCount() {
+    public Observable<ResponseBody<RankData>> getCoinCount() {
         return getApiServiceGson().getCoinCount();
     }
 

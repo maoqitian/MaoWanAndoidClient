@@ -1,6 +1,7 @@
 package mao.com.mao_wanandroid_client.base;
 
 import mao.com.mao_wanandroid_client.model.modelbean.home.HomeArticleData;
+import mao.com.mao_wanandroid_client.model.modelbean.rank.RankData;
 
 /**
  * @author maoqitian
@@ -32,7 +33,7 @@ public interface BaseView {
      */
     void showLoading();
 
-    void showCoinAndRank(int coin);
+    void showCoinAndRank(RankData rankData);
 
     /**
      * 显示错误信息

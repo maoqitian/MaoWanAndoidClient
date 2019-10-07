@@ -20,6 +20,7 @@ import mao.com.mao_wanandroid_client.application.Constants;
 import mao.com.mao_wanandroid_client.base.fragment.BaseDialogFragment;
 import mao.com.mao_wanandroid_client.model.modelbean.home.HomeArticleData;
 import mao.com.mao_wanandroid_client.model.modelbean.rank.CoinRecordData;
+import mao.com.mao_wanandroid_client.model.modelbean.rank.RankData;
 import mao.com.mao_wanandroid_client.presenter.drawer.CoinContract;
 import mao.com.mao_wanandroid_client.presenter.drawer.CoinPresenter;
 import mao.com.mao_wanandroid_client.utils.StartDetailPage;
@@ -99,8 +100,8 @@ public class CoinFragment extends BaseDialogFragment<CoinPresenter> implements C
 
 
     @Override
-    public void showCoinCount(int coin) {
-         mTextCoin.setText(String.valueOf(coin));
+    public void showCoinCount(RankData rankData) {
+         mTextCoin.setText(String.valueOf(rankData.getCoinCount()));
     }
 
     @Override
