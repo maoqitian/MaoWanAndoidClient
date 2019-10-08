@@ -1,6 +1,9 @@
 package mao.com.mao_wanandroid_client.view.main;
 
+import android.content.Intent;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -77,6 +80,20 @@ public class UserCenterActivity extends BaseActivity<UserCenterPresenter> implem
 
     HomeTabPageAdapter mAdapter;
 
+
+    private int userId;
+
+    private String pageType;
+
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        Intent intent = getIntent();
+        userId = intent.getIntExtra(Constants.USER_ID,-1);
+        pageType = intent.getStringExtra(Constants.PAGE_TYPE);
+
+    }
+
     @Override
     protected void initToolbar() {
         mToolBar.setNavigationOnClickListener(v -> finish());
@@ -99,7 +116,6 @@ public class UserCenterActivity extends BaseActivity<UserCenterPresenter> implem
         mAppbarLayout.addOnOffsetChangedListener(this);
         mToolBar.setBackgroundColor(0);
         initCollectionView();
-        mPresenter.getCoinAndRank();
     }
 
     @Override
@@ -133,18 +149,30 @@ public class UserCenterActivity extends BaseActivity<UserCenterPresenter> implem
     }
 
     private void initCollectionView() {
+
         mTitle = new ArrayList<>();
         mFragments = new ArrayList<>();
-        mTitle.add(getString(R.string.collection_article));
-        mTitle.add(getString(R.string.collection_web));
-        mFragments.add(CollectionFragment.newInstance(Constants.COLLECTION_NOT_REFRESH_TYPE));
-        mFragments.add(CollectionWebFragment.newInstance(Constants.COLLECTION_NOT_REFRESH_TYPE));
 
-        //下划线间距
-        ToolsUtils.setIndicatorWidth(mCollectionTab,getResources().getDimensionPixelSize(R.dimen.dp_30));
-        mAdapter = new HomeTabPageAdapter(getSupportFragmentManager(),mTitle,mFragments);
-        mViewPager.setAdapter(mAdapter);
-        mCollectionTab.setupWithViewPager(mViewPager);
+        if(Constants.SQUARE_USER_TYPE.equals(pageType)){
+            mTitle.add(getString(R.string.share_article_text));
+            mAdapter = new HomeTabPageAdapter(getSupportFragmentManager(),mTitle,mFragments);
+            mViewPager.setAdapter(mAdapter);
+            mCollectionTab.setupWithViewPager(mViewPager);
+
+            mPresenter.getUserShareArticlesData(userId,1);
+        }else {
+            mTitle.add(getString(R.string.collection_article));
+            mTitle.add(getString(R.string.collection_web));
+            mFragments.add(CollectionFragment.newInstance(Constants.COLLECTION_NOT_REFRESH_TYPE));
+            mFragments.add(CollectionWebFragment.newInstance(Constants.COLLECTION_NOT_REFRESH_TYPE));
+            //下划线间距
+            ToolsUtils.setIndicatorWidth(mCollectionTab,getResources().getDimensionPixelSize(R.dimen.dp_30));
+            mAdapter = new HomeTabPageAdapter(getSupportFragmentManager(),mTitle,mFragments);
+            mViewPager.setAdapter(mAdapter);
+            mCollectionTab.setupWithViewPager(mViewPager);
+            mPresenter.getCoinAndRank();
+        }
+
     }
 
 

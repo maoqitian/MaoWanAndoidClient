@@ -1,5 +1,6 @@
 package mao.com.mao_wanandroid_client.view.drawer.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -114,6 +115,10 @@ public class SquareFragment extends RootBaseFragment<SquarePresenter> implements
                 case R.id.tv_author_name:
                 case R.id.image_author_icon:
                     ToastUtils.showToast("点击了广场用户信息");
+                    Intent intent = new Intent(Constants.ACTION_USER_CENTER_ACTIVITY);
+                    intent.putExtra(Constants.USER_ID,homeArticleData.getUserId());
+                    intent.putExtra(Constants.PAGE_TYPE,Constants.SQUARE_USER_TYPE);
+                    startActivity(intent);
                     break;
             }
         });

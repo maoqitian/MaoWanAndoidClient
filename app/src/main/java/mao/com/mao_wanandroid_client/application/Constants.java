@@ -116,6 +116,8 @@ public class Constants {
     public static final String KNOWLEDGE_DATA = "knowledgeData";
     //跳转标识
     public static final String PAGE_TYPE = "pageType";
+    //用户id 标识
+    public static final String USER_ID = "userid";
     //公众号id 标识
     public static final String WX_ID = "wxid";
     //公众号名称 标识
@@ -152,4 +154,7 @@ public class Constants {
     public static final String COLLECTION_NOT_REFRESH_TYPE = "collection_not_refresh_type";
     //收藏 fragment tag 是否有下拉刷新能力
     public static final String COLLECTION_REFRESH_TAG = "collection_refresh_tag";
+
+    //个人中心 type 广场用户个人信息
+    public static final String SQUARE_USER_TYPE = "square_user_type";
 }

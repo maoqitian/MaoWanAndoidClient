@@ -26,4 +26,12 @@ public class BaseMultipleData<T,V> {
     public void setData2(V data2) {
         this.data2 = data2;
     }
+
+    @Override
+    public String toString() {
+        return "BaseMultipleData{" +
+                "data1=" + data1 +
+                ", data2=" + data2 +
+                '}';
+    }
 }

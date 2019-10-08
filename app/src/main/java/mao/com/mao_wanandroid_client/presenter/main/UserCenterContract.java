@@ -16,5 +16,7 @@ public interface UserCenterContract {
 
     interface UserCenterActivityPresenter extends AbstractBasePresenter<UserCenterView> {
 
+        void getUserShareArticlesData(int id,int pageNum);
+
     }
 }

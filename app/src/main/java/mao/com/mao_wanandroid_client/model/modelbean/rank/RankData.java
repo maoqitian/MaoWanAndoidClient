@@ -51,4 +51,15 @@ public class RankData {
     public void setUsername(String username) {
         this.username = username;
     }
+
+
+    @Override
+    public String toString() {
+        return "RankData{" +
+                "coinCount=" + coinCount +
+                ", rank=" + rank +
+                ", userId=" + userId +
+                ", username='" + username + '\'' +
+                '}';
+    }
 }
