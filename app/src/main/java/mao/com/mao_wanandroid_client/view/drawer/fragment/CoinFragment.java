@@ -8,7 +8,6 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 
 
 import java.util.ArrayList;
@@ -24,7 +23,6 @@ import mao.com.mao_wanandroid_client.model.modelbean.rank.RankData;
 import mao.com.mao_wanandroid_client.presenter.drawer.CoinContract;
 import mao.com.mao_wanandroid_client.presenter.drawer.CoinPresenter;
 import mao.com.mao_wanandroid_client.utils.StartDetailPage;
-import mao.com.mao_wanandroid_client.utils.ToastUtils;
 import mao.com.mao_wanandroid_client.view.drawer.adapter.CoinRecordAdapter;
 
 /**

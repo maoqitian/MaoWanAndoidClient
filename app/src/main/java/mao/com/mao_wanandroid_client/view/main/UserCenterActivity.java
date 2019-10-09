@@ -92,6 +92,8 @@ public class UserCenterActivity extends BaseActivity<UserCenterPresenter> implem
         userId = intent.getIntExtra(Constants.USER_ID,-1);
         pageType = intent.getStringExtra(Constants.PAGE_TYPE);
 
+        initCollectionView();
+
     }
 
     @Override
@@ -110,16 +112,16 @@ public class UserCenterActivity extends BaseActivity<UserCenterPresenter> implem
     @Override
     protected void initEventAndData() {
         super.initEventAndData();
-        tvNickName.setText(mPresenter.getLoginUserName());
-        tvTbNickName.setText(mPresenter.getLoginUserName());
         refreshListener();
         mAppbarLayout.addOnOffsetChangedListener(this);
         mToolBar.setBackgroundColor(0);
-        initCollectionView();
+
     }
 
     @Override
     public void showCoinAndRank(RankData rankData) {
+        tvNickName.setText(rankData.getUsername());
+        tvTbNickName.setText(rankData.getUsername());
         tvUserCenterCoin.setText("积分："+rankData.getCoinCount());
         tvUserCenterRank.setText("lv "+ToolsUtils.getRank(rankData.getCoinCount()));
     }
@@ -161,6 +163,8 @@ public class UserCenterActivity extends BaseActivity<UserCenterPresenter> implem
 
             mPresenter.getUserShareArticlesData(userId,1);
         }else {
+            tvNickName.setText(mPresenter.getLoginUserName());
+            tvTbNickName.setText(mPresenter.getLoginUserName());
             mTitle.add(getString(R.string.collection_article));
             mTitle.add(getString(R.string.collection_web));
             mFragments.add(CollectionFragment.newInstance(Constants.COLLECTION_NOT_REFRESH_TYPE));
