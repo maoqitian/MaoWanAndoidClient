@@ -132,9 +132,14 @@ public class UserCenterActivity extends BaseActivity<UserCenterPresenter> implem
             @Override
             public void onRefresh(@NonNull RefreshLayout refreshLayout) {
                 refreshLayout.finishRefresh(3000);
-                mPresenter.getCoinAndRank();
-                mAdapter.notifyDataSetChanged();
-                ToolsUtils.setIndicatorWidth(mCollectionTab,getResources().getDimensionPixelSize(R.dimen.dp_30));
+                if(Constants.SQUARE_USER_TYPE.equals(pageType)){
+                    mPresenter.getUserShareArticlesData(userId,1);
+                }else {
+                    mPresenter.getCoinAndRank();
+                    mAdapter.notifyDataSetChanged();
+                    ToolsUtils.setIndicatorWidth(mCollectionTab,getResources().getDimensionPixelSize(R.dimen.dp_30));
+                }
+
             }
 
             @Override
@@ -158,7 +163,8 @@ public class UserCenterActivity extends BaseActivity<UserCenterPresenter> implem
 
         if(Constants.SQUARE_USER_TYPE.equals(pageType)){
             mTitle.add(getString(R.string.share_article_text));
-            mFragments.add(PrivateArticleFragment.newInstance());
+            mFragments.add(PrivateArticleFragment.newInstance(Constants.SQUARE_USER_TYPE,userId));
+            mCollectionTab.setTabMode(TabLayout.MODE_SCROLLABLE);
             mPresenter.getUserShareArticlesData(userId,1);
         }else {
             tvNickName.setText(mPresenter.getLoginUserName());
@@ -167,7 +173,7 @@ public class UserCenterActivity extends BaseActivity<UserCenterPresenter> implem
             mTitle.add(getString(R.string.share_article_text));
             mTitle.add(getString(R.string.collection_web));
             mFragments.add(CollectionFragment.newInstance(Constants.COLLECTION_NOT_REFRESH_TYPE));
-            mFragments.add(PrivateArticleFragment.newInstance());
+            mFragments.add(PrivateArticleFragment.newInstance("",-1));
             mFragments.add(CollectionWebFragment.newInstance(Constants.COLLECTION_NOT_REFRESH_TYPE));
             //下划线间距
             ToolsUtils.setIndicatorWidth(mCollectionTab,getResources().getDimensionPixelSize(R.dimen.dp_30));

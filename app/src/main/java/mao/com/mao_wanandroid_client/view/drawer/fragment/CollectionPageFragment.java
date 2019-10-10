@@ -24,7 +24,7 @@ import mao.com.mao_wanandroid_client.view.main.adapter.HomeTabPageAdapter;
 public class CollectionPageFragment extends BaseFragment<CollectionPagePresenter> implements CollectionPageContract.CollectionPageView {
 
 
-    @BindView(R.id.collection_tab)
+    @BindView(R.id.collection_page_tab)
     TabLayout mCollectionTab;
     @BindView(R.id.collection_view_pager)
     ViewPager mViewPager;

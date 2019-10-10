@@ -5,7 +5,7 @@
     android:background="@color/colorBackground"
     android:orientation="vertical">
     <android.support.design.widget.TabLayout
-            android:id="@+id/collection_tab"
+            android:id="@+id/collection_page_tab"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/viewBackground"

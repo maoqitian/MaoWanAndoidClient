@@ -21,6 +21,8 @@ public interface PrivateArticleContract {
 
     interface  PrivateArticleFragmentPresenter extends AbstractBasePresenter<PrivateArticleView>{
          void getPrivateArticleData();
+
+         void getUserShareArticlesData(int userId);
     }
 }
 

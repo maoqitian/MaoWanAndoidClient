@@ -11,6 +11,7 @@ import java.util.List;
 
 import mao.com.mao_wanandroid_client.view.drawer.fragment.CollectionFragment;
 import mao.com.mao_wanandroid_client.view.drawer.fragment.CollectionWebFragment;
+import mao.com.mao_wanandroid_client.view.drawer.fragment.PrivateArticleFragment;
 
 /**
  * @author maoqitian
@@ -61,6 +62,8 @@ public class HomeTabPageAdapter extends FragmentPagerAdapter {
             ((CollectionFragment) object).updateDate();
         }else if(object instanceof CollectionWebFragment){
             ((CollectionWebFragment) object).updateDate();
+        }else if(object instanceof PrivateArticleFragment){
+            ((PrivateArticleFragment) object).updateDate();
         }
         return super.getItemPosition(object);
     }

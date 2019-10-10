@@ -1,6 +1,7 @@
 package mao.com.mao_wanandroid_client.view.drawer.fragment;
 
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.LinearLayoutManager;
@@ -16,6 +17,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import mao.com.mao_wanandroid_client.R;
+import mao.com.mao_wanandroid_client.application.Constants;
 import mao.com.mao_wanandroid_client.base.fragment.BaseFragment;
 import mao.com.mao_wanandroid_client.model.modelbean.home.HomeArticleData;
 import mao.com.mao_wanandroid_client.presenter.drawer.PrivateArticleContract;
@@ -49,15 +51,34 @@ public class PrivateArticleFragment extends BaseFragment<PrivateArticlePresenter
 
     String mType;
 
+    int mUserId;
+
     PrivateArticleAdapter mAdapter;
 
-    public static PrivateArticleFragment newInstance() {
+    /**
+     *
+     * @param pageType 代表页面展示类型 广场进入展示用户信息和用户分享文章 用户中心进入展示用户的个人分享文章和用户信息
+     * @param userId
+     * @return
+     */
+    public static PrivateArticleFragment newInstance(String pageType,int userId) {
 
         Bundle args = new Bundle();
-
         PrivateArticleFragment fragment = new PrivateArticleFragment();
+        args.putString(Constants.PAGE_TYPE,pageType);
+        args.putInt(Constants.USER_ID,userId);
         fragment.setArguments(args);
         return fragment;
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        Bundle arguments = getArguments();
+        assert arguments != null;
+        mType = arguments.getString(Constants.PAGE_TYPE);
+        mUserId = arguments.getInt(Constants.USER_ID,-1);
+
     }
 
     @Override
@@ -109,8 +130,13 @@ public class PrivateArticleFragment extends BaseFragment<PrivateArticlePresenter
     @Override
     protected void initEventAndData() {
         super.initEventAndData();
-
-        mPresenter.getPrivateArticleData();
+        if(Constants.SQUARE_USER_TYPE.equals(mType)){
+            //广场用户个人中心
+            mPresenter.getUserShareArticlesData(mUserId);
+        }else {
+            //登录用户个人中心
+            mPresenter.getPrivateArticleData();
+        }
 
     }
 
@@ -134,4 +160,13 @@ public class PrivateArticleFragment extends BaseFragment<PrivateArticlePresenter
     }
 
 
+    public void updateDate() {
+        if(Constants.SQUARE_USER_TYPE.equals(mType)){
+            //广场用户个人中心
+            mPresenter.getUserShareArticlesData(mUserId);
+        }else {
+            //登录用户个人中心
+            mPresenter.getPrivateArticleData();
+        }
+    }
 }
