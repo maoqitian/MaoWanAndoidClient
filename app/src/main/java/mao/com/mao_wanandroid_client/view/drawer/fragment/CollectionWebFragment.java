@@ -137,7 +137,6 @@ public class CollectionWebFragment extends BaseFragment<CollectionWebPresenter>
                     break;
             }
         });
-        //下拉刷新
 
     }
 
@@ -165,7 +164,6 @@ public class CollectionWebFragment extends BaseFragment<CollectionWebPresenter>
         mAdapter.replaceData(mCollectionWebDataList);
         mSmartRefreshLayout.finishRefresh();
         showCollectionDataChange();
-        showNormal();
     }
 
     /**

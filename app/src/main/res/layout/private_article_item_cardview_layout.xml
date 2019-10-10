@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/dp_120"
+    android:layout_marginStart="@dimen/dp_12"
+    android:layout_marginTop="@dimen/dp_4"
+    android:layout_marginEnd="@dimen/dp_12"
+    android:layout_marginBottom="@dimen/dp_4"
+    app:cardBackgroundColor="@color/viewBackground"
+    app:cardCornerRadius="@dimen/dp_8"
+    app:cardElevation="@dimen/dp_3">
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <!--<ImageView
+            android:id="@+id/collection_web_author_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_4"
+            android:layout_marginStart="@dimen/dp_16"
+            android:layout_marginEnd="269dp"
+            android:src="@drawable/ic_user_circle_solid"
+            app:layout_constraintRight_toLeftOf="@id/tv_collection_web_author_name"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="MissingConstraints" />-->
+
+       <!-- <TextView
+            android:id="@+id/tv_collection_web_author_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp_12"
+            android:layout_marginTop="@dimen/dp_8"
+            android:layout_marginBottom="@dimen/dp_8"
+            android:text="author"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toRightOf="@+id/collection_web_author_icon"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0"
+            tools:ignore="MissingConstraints" />-->
+
+        <ImageView
+            android:id="@+id/iv_delete_article"
+            android:layout_width="@dimen/dp_35"
+            android:layout_height="@dimen/dp_35"
+            android:padding="@dimen/dp_7"
+            android:layout_marginTop="@dimen/dp_10"
+            android:layout_marginEnd="@dimen/dp_10"
+            android:layout_marginBottom="@dimen/dp_5"
+            android:src="@drawable/ic_trash"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            tools:ignore="MissingConstraints" />
+
+        <TextView
+            android:id="@+id/tv_private_article_title"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dp_45"
+            android:layout_marginStart="@dimen/dp_16"
+            android:layout_marginEnd="@dimen/dp_16"
+            android:layout_marginBottom="@dimen/dp_30"
+            android:ellipsize="end"
+            android:lines="2"
+            android:text="物品(尤指整套中的一件)，每日一问 View的onAttachedToWindow ,onDetachedFromWindow 调用时机，使用场景是什么？"
+            android:textSize="@dimen/sp_16"
+            android:textStyle="bold"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:ignore="MissingConstraints" />
+
+        <TextView
+            android:id="@+id/tv_private_article_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp_16"
+            android:layout_marginBottom="@dimen/dp_7"
+            android:padding="@dimen/dp_5"
+            tools:text="2019-05-22"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:ignore="MissingConstraints" />
+
+       <!-- <TextView
+            android:id="@+id/collection_super_chapterName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="网络访问"
+            android:textColor="@color/light_blue"
+            android:layout_marginStart="@dimen/dp_16"
+            android:layout_marginBottom="@dimen/dp_5"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:ignore="MissingConstraints"
+            />-->
+
+
+    </android.support.constraint.ConstraintLayout>
+
+</android.support.v7.widget.CardView>

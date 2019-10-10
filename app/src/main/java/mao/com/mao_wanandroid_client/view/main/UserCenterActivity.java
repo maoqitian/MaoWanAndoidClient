@@ -34,6 +34,7 @@ import mao.com.mao_wanandroid_client.utils.StatusBarUtil;
 import mao.com.mao_wanandroid_client.utils.ToolsUtils;
 import mao.com.mao_wanandroid_client.view.drawer.fragment.CollectionFragment;
 import mao.com.mao_wanandroid_client.view.drawer.fragment.CollectionWebFragment;
+import mao.com.mao_wanandroid_client.view.drawer.fragment.PrivateArticleFragment;
 import mao.com.mao_wanandroid_client.view.main.adapter.HomeTabPageAdapter;
 
 /**
@@ -157,25 +158,24 @@ public class UserCenterActivity extends BaseActivity<UserCenterPresenter> implem
 
         if(Constants.SQUARE_USER_TYPE.equals(pageType)){
             mTitle.add(getString(R.string.share_article_text));
-            mAdapter = new HomeTabPageAdapter(getSupportFragmentManager(),mTitle,mFragments);
-            mViewPager.setAdapter(mAdapter);
-            mCollectionTab.setupWithViewPager(mViewPager);
-
+            mFragments.add(PrivateArticleFragment.newInstance());
             mPresenter.getUserShareArticlesData(userId,1);
         }else {
             tvNickName.setText(mPresenter.getLoginUserName());
             tvTbNickName.setText(mPresenter.getLoginUserName());
             mTitle.add(getString(R.string.collection_article));
+            mTitle.add(getString(R.string.share_article_text));
             mTitle.add(getString(R.string.collection_web));
             mFragments.add(CollectionFragment.newInstance(Constants.COLLECTION_NOT_REFRESH_TYPE));
+            mFragments.add(PrivateArticleFragment.newInstance());
             mFragments.add(CollectionWebFragment.newInstance(Constants.COLLECTION_NOT_REFRESH_TYPE));
             //下划线间距
             ToolsUtils.setIndicatorWidth(mCollectionTab,getResources().getDimensionPixelSize(R.dimen.dp_30));
-            mAdapter = new HomeTabPageAdapter(getSupportFragmentManager(),mTitle,mFragments);
-            mViewPager.setAdapter(mAdapter);
-            mCollectionTab.setupWithViewPager(mViewPager);
             mPresenter.getCoinAndRank();
         }
+        mAdapter = new HomeTabPageAdapter(getSupportFragmentManager(),mTitle,mFragments);
+        mViewPager.setAdapter(mAdapter);
+        mCollectionTab.setupWithViewPager(mViewPager);
 
     }
 

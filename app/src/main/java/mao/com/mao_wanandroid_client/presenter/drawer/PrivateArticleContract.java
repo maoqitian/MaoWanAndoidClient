@@ -5,6 +5,7 @@ import java.util.List;
 import mao.com.mao_wanandroid_client.base.BaseView;
 import mao.com.mao_wanandroid_client.base.presenter.AbstractBasePresenter;
 import mao.com.mao_wanandroid_client.model.modelbean.frienduser.CommonWebData;
+import mao.com.mao_wanandroid_client.model.modelbean.home.HomeArticleData;
 
 /**
  * @author maoqitian
@@ -14,12 +15,12 @@ import mao.com.mao_wanandroid_client.model.modelbean.frienduser.CommonWebData;
 public interface PrivateArticleContract {
 
     interface PrivateArticleView extends BaseView{
-        //void showCommonWebData(List<CommonWebData> commonWebDataList);
+        void showPrivateArticleData(List<HomeArticleData> articleDataList);
     }
     
 
     interface  PrivateArticleFragmentPresenter extends AbstractBasePresenter<PrivateArticleView>{
-         //void getCommonWebData();
+         void getPrivateArticleData();
     }
 }
 
