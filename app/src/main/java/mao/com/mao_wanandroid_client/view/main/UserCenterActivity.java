@@ -162,6 +162,7 @@ public class UserCenterActivity extends BaseActivity<UserCenterPresenter> implem
         mFragments = new ArrayList<>();
 
         if(Constants.SQUARE_USER_TYPE.equals(pageType)){
+            ToolsUtils.setIndicatorWidth(mCollectionTab,getResources().getDimensionPixelSize(R.dimen.dp_30));
             mTitle.add(getString(R.string.share_article_text));
             mFragments.add(PrivateArticleFragment.newInstance(Constants.SQUARE_USER_TYPE,userId));
             mCollectionTab.setTabMode(TabLayout.MODE_SCROLLABLE);

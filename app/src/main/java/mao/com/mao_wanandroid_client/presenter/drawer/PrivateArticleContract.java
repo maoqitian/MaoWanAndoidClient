@@ -1,5 +1,7 @@
 package mao.com.mao_wanandroid_client.presenter.drawer;
 
+import android.content.Context;
+
 import java.util.List;
 
 import mao.com.mao_wanandroid_client.base.BaseView;
@@ -23,6 +25,8 @@ public interface PrivateArticleContract {
          void getPrivateArticleData();
 
          void getUserShareArticlesData(int userId);
+
+         void getUserArticleDelete(Context context,int id);
     }
 }
 

@@ -69,6 +69,8 @@
     <string name="collection_web" >Collection Web</string>
     <string name="update_collection_web" >Update Collection Web</string>
     <string name="delete_collection_web" >Delete Collection Web</string>
+    <string name="delete_article_success_text" >Delete Article Success！</string>
+    <string name="delete_article_text" >Delete Article</string>
     <string name="collection_web_success" >Collection Web Success!</string>
     <string name="update_collection_web_success" >Update Collection Web Success!</string>
     <string name="add_collection" >Add Favorites</string>

@@ -1,5 +1,6 @@
 package mao.com.mao_wanandroid_client.view.drawer.fragment;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.constraint.ConstraintLayout;
@@ -22,10 +23,12 @@ import mao.com.mao_wanandroid_client.base.fragment.BaseFragment;
 import mao.com.mao_wanandroid_client.model.modelbean.home.HomeArticleData;
 import mao.com.mao_wanandroid_client.presenter.drawer.PrivateArticleContract;
 import mao.com.mao_wanandroid_client.presenter.drawer.PrivateArticlePresenter;
+import mao.com.mao_wanandroid_client.utils.NormalAlertDialog;
+import mao.com.mao_wanandroid_client.utils.StartDetailPage;
 import mao.com.mao_wanandroid_client.view.drawer.adapter.PrivateArticleAdapter;
 
 /**
- * @Description: 自己分享文章列表
+ * @Description: 自己分享 用户分享 文章列表
  * @Author: maoqitian
  * @Date: 2019-10-09 23:49
  */
@@ -54,6 +57,9 @@ public class PrivateArticleFragment extends BaseFragment<PrivateArticlePresenter
     int mUserId;
 
     PrivateArticleAdapter mAdapter;
+
+
+    ArticleShareDialogFragment articleShareDialogFragment;
 
     /**
      *
@@ -87,8 +93,8 @@ public class PrivateArticleFragment extends BaseFragment<PrivateArticlePresenter
         //拖动Header的时候是否同时拖动内容（默认true）
         mSmartRefreshLayout.setEnableHeaderTranslationContent(false);
         //关闭下拉刷新
-        mSmartRefreshLayout.setEnableRefresh(true);
-
+        mSmartRefreshLayout.setEnableRefresh(false);
+        mSmartRefreshLayout.setEnableLoadMore(false);
         initRecyclerView();
         //添加收藏网站监听
         tvAddFavorites.setOnClickListener(this);
@@ -110,14 +116,14 @@ public class PrivateArticleFragment extends BaseFragment<PrivateArticlePresenter
         mRecyclerView.setAdapter(mAdapter);
         mAdapter.setOnItemChildClickListener((adapter, view, position) -> {
             HomeArticleData homeArticleData = (HomeArticleData) adapter.getItem(position);
-            //点击收藏
-            if (view.getId() == R.id.iv_delete_article) { //点击删除
+            //点击删除分享文章
+            if (view.getId() == R.id.iv_delete_article) {
                 assert homeArticleData != null;
-                    /*NormalAlertDialog.getInstance().showAlertDialog(
-                            getActivity(), "确定删除" + webBookMark.getName() + "?",
+                NormalAlertDialog.getInstance().showAlertDialog(
+                            getActivity(), "确定删除" + homeArticleData.getTitle() + "文章?",
                             getString(R.string.confirm_text), getString(R.string.cancel_text),
-                            (dialog, which) -> mPresenter.getDeleteCollectWebData(getActivity(),webBookMark.getId(),position),
-                            (dialog, which) -> dialog.dismiss());*/
+                            (dialog, which) -> mPresenter.getUserArticleDelete(getActivity(),homeArticleData.getId()),
+                            (dialog, which) -> dialog.dismiss());
             }
         });
     }
@@ -127,15 +133,18 @@ public class PrivateArticleFragment extends BaseFragment<PrivateArticlePresenter
         return R.layout.collection_fragment_layout;
     }
 
+    @SuppressLint("RestrictedApi")
     @Override
     protected void initEventAndData() {
         super.initEventAndData();
         if(Constants.SQUARE_USER_TYPE.equals(mType)){
             //广场用户个人中心
+            mFabAdd.setVisibility(View.GONE);
             mPresenter.getUserShareArticlesData(mUserId);
         }else {
             //登录用户个人中心
             mPresenter.getPrivateArticleData();
+            mAdapter.setPrivate(true);
         }
 
     }
@@ -152,11 +161,20 @@ public class PrivateArticleFragment extends BaseFragment<PrivateArticlePresenter
     @Override
     public void onClick(View v) {
 
+        if(v.getId() == R.id.fab_add){
+            //开启 分享 dialog
+            articleShareDialogFragment = ArticleShareDialogFragment.newInstance();
+            if (!getActivity().isDestroyed() && articleShareDialogFragment.isAdded()) {
+                articleShareDialogFragment.dismiss();
+            }
+            articleShareDialogFragment.show(getChildFragmentManager(),"showArticleCollectionDialog");
+        }
     }
 
     @Override
     public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-
+        HomeArticleData homeArticleData = (HomeArticleData) adapter.getItem(position);
+        StartDetailPage.start(_mActivity,homeArticleData, Constants.PAGE_WEB_NOT_COLLECT,Constants.ACTION_PAGE_DETAIL_ACTIVITY);
     }
 
 

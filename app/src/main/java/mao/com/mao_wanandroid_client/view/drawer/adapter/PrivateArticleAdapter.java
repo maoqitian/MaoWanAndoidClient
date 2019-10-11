@@ -20,6 +20,15 @@ import mao.com.mao_wanandroid_client.view.drawer.holder.PrivateArticleItemHolder
 public class PrivateArticleAdapter extends BaseQuickAdapter<HomeArticleData, PrivateArticleItemHolder> {
 
 
+
+
+    //是否为个人分享文章列表 控制是否显示删除按钮
+    boolean isPrivate=false;
+
+    public void setPrivate(boolean aPrivate) {
+        isPrivate = aPrivate;
+    }
+
     public PrivateArticleAdapter(int layoutResId, @Nullable List<HomeArticleData> data) {
         super(layoutResId, data);
     }
@@ -37,5 +46,7 @@ public class PrivateArticleAdapter extends BaseQuickAdapter<HomeArticleData, Pri
         helper.setText(R.id.tv_private_article_title,item.getTitle())
               .setText(R.id.tv_private_article_date,item.getNiceShareDate())
               .addOnClickListener(R.id.iv_delete_article);
+
+        helper.setVisible(R.id.iv_delete_article,isPrivate);
     }
 }

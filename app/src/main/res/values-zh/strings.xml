@@ -59,6 +59,8 @@
     <string name="cancel_text">取消</string>
     <string name="cancel_collection_text">取消收藏</string>
     <string name="delete_collection_text">正在删除收藏</string>
+    <string name="delete_article_text" >正在删除文章</string>
+    <string name="delete_article_success_text" >删除文章成功！</string>
     <string name="confirm_text">确认</string>
     <string name="confirm_clear_cache_text">确定清除缓存？</string>
     <string name="finish_clear_cache_text">清除缓存完毕</string>
