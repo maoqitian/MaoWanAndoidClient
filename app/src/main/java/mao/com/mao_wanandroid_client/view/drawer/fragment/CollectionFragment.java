@@ -263,4 +263,9 @@ public class CollectionFragment extends BaseFragment<CollectionPresenter>
         //刷新数据
         mPresenter.getCollectListData();
     }
+
+    public void loadDate() {
+        //加载更多
+        mPresenter.getLoadCollectListData();
+    }
 }

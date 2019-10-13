@@ -9,6 +9,7 @@ import javax.inject.Inject;
 import io.reactivex.Observable;
 import io.reactivex.functions.Consumer;
 import mao.com.mao_wanandroid_client.R;
+import mao.com.mao_wanandroid_client.application.MyApplication;
 import mao.com.mao_wanandroid_client.base.presenter.RxBasePresenter;
 import mao.com.mao_wanandroid_client.compoent.RxBus;
 import mao.com.mao_wanandroid_client.compoent.event.ShareArticleEvent;
@@ -31,6 +32,8 @@ public class PrivateArticlePresenter extends RxBasePresenter<PrivateArticleContr
 
     private DataClient mDataClient;
 
+    private int curPage;
+
     @Inject
     public PrivateArticlePresenter(DataClient dataClient) {
         super(dataClient);
@@ -46,7 +49,7 @@ public class PrivateArticlePresenter extends RxBasePresenter<PrivateArticleContr
             public void accept(ShareArticleEvent shareArticleEvent) throws Exception {
                 if(shareArticleEvent.ismIsShareSuccess()){
                     //分享成功 刷新页面数据
-                    getPrivateArticleDataList(0);
+                    getPrivateArticleDataList(1,false);
                     mView.showErrorMsg(shareArticleEvent.getmMsg());
                 }else{
                     mView.showErrorMsg(shareArticleEvent.getmMsg());
@@ -55,20 +58,31 @@ public class PrivateArticlePresenter extends RxBasePresenter<PrivateArticleContr
         }));
     }
 
+    //个人分享数据
     @Override
     public void getPrivateArticleData() {
 
-        getPrivateArticleDataList(0);
+        getPrivateArticleDataList(1,false);
+    }
+    //获取更多个人分享数据
+    @Override
+    public void getPrivateArticleMoreData() {
+        getPrivateArticleDataList(curPage+1,true);
     }
 
     //广场用户信息获取
     @Override
     public void getUserShareArticlesData(int userId) {
 
-        getUserShareArticlesDataList(userId,1);
-
-
+        getUserShareArticlesDataList(userId,1,false);
     }
+
+    //用户分享 获取更多数据
+    @Override
+    public void getUserShareArticlesMoreData(int userId) {
+        getUserShareArticlesDataList(userId,curPage+1,true);
+    }
+
 
     //删除自己分享的文章
     @Override
@@ -79,7 +93,7 @@ public class PrivateArticlePresenter extends RxBasePresenter<PrivateArticleContr
                              @Override
                              public void onSuccess(String result) {
                                  //分享成功 刷新页面数据
-                                 getPrivateArticleDataList(0);
+                                 getPrivateArticleDataList(1,false);
                                  mView.showErrorMsg(context.getString(R.string.delete_article_success_text));
                              }
 
@@ -92,13 +106,19 @@ public class PrivateArticlePresenter extends RxBasePresenter<PrivateArticleContr
     }
 
     //用户分享文章列表
-    private void getUserShareArticlesDataList(int userId, int pageNum) {
+    private void getUserShareArticlesDataList(int userId, int pageNum,boolean isLoadMore) {
         Observable<ResponseBody<BaseMultipleData<RankData, BaseListData<HomeArticleData>>>> userShareArticlesData = mDataClient.getUserShareArticlesData(userId, pageNum);
         userShareArticlesData.compose(RxSchedulers.observableIO2Main())
                              .subscribe(new BaseObserver<BaseMultipleData<RankData, BaseListData<HomeArticleData>>>() {
                                  @Override
                                  public void onSuccess(BaseMultipleData<RankData, BaseListData<HomeArticleData>> result) {
-                                     mView.showPrivateArticleData(result.getData2().getDatas());
+                                     if(result.getData2().getDatas().size()> 0){
+                                         curPage = result.getData2().getCurPage();
+                                         mView.showPrivateArticleData(isLoadMore,result.getData2().getDatas());
+                                     }else {
+                                         //哥这回真没了
+                                         mView.showErrorMsg(MyApplication.getInstance().getString(R.string.not_load_more_msg));
+                                     }
                                  }
 
                                  @Override
@@ -110,13 +130,19 @@ public class PrivateArticlePresenter extends RxBasePresenter<PrivateArticleContr
     }
 
     //个人分享文章列表
-    private void getPrivateArticleDataList(int pageNum) {
+    private void getPrivateArticleDataList(int pageNum,boolean isLoadMore) {
         Observable<ResponseBody<BaseMultipleData<RankData, BaseListData<HomeArticleData>>>> privateShareArticlesData = mDataClient.getPrivateShareArticlesData(pageNum);
         privateShareArticlesData.compose(RxSchedulers.observableIO2Main())
                                 .subscribe(new BaseObserver<BaseMultipleData<RankData, BaseListData<HomeArticleData>>>() {
                                     @Override
                                     public void onSuccess(BaseMultipleData<RankData, BaseListData<HomeArticleData>> result) {
-                                        mView.showPrivateArticleData(result.getData2().getDatas());
+                                        if(result.getData2().getDatas().size()> 0){
+                                            curPage = result.getData2().getCurPage();
+                                            mView.showPrivateArticleData(isLoadMore,result.getData2().getDatas());
+                                        }else {
+                                            //哥这回真没了
+                                            mView.showErrorMsg(MyApplication.getInstance().getString(R.string.not_load_more_msg));
+                                        }
                                     }
 
                                     @Override

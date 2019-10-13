@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 
 import java.util.List;
 
+import mao.com.mao_wanandroid_client.application.Constants;
 import mao.com.mao_wanandroid_client.view.drawer.fragment.CollectionFragment;
 import mao.com.mao_wanandroid_client.view.drawer.fragment.CollectionWebFragment;
 import mao.com.mao_wanandroid_client.view.drawer.fragment.PrivateArticleFragment;
@@ -22,6 +23,18 @@ public class HomeTabPageAdapter extends FragmentPagerAdapter {
 
     List<String> mTitle;
     List<Fragment> mFragments;
+
+
+
+    private String type;
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
 
     public HomeTabPageAdapter(FragmentManager fm, List<String> titles, List<Fragment> fragments) {
         super(fm);
@@ -51,6 +64,8 @@ public class HomeTabPageAdapter extends FragmentPagerAdapter {
         //super.destroyItem(container,position,object);
     }
 
+
+
     /**
      * CollectionFragment  CollectionWebFragment 收藏界面做处理，方便个人中心下拉刷新
      * @param object
@@ -59,11 +74,29 @@ public class HomeTabPageAdapter extends FragmentPagerAdapter {
     @Override
     public int getItemPosition(@NonNull Object object) {
         if(object instanceof CollectionFragment){
-            ((CollectionFragment) object).updateDate();
+            if(Constants.REFRESH_TYPE.equals(type)){
+                ((CollectionFragment) object).updateDate();
+            }else if(Constants.LOAD_MORE_TYPE.equals(type)){
+                ((CollectionFragment) object).loadDate();
+            }else {
+                return super.getItemPosition(object);
+            }
         }else if(object instanceof CollectionWebFragment){
-            ((CollectionWebFragment) object).updateDate();
+            if(Constants.REFRESH_TYPE.equals(type)){
+                ((CollectionWebFragment) object).updateDate();
+            }else if(Constants.LOAD_MORE_TYPE.equals(type)){
+                ((CollectionWebFragment) object).loadDate();
+            }else {
+                return super.getItemPosition(object);
+            }
         }else if(object instanceof PrivateArticleFragment){
-            ((PrivateArticleFragment) object).updateDate();
+            if(Constants.REFRESH_TYPE.equals(type)){
+                ((PrivateArticleFragment) object).updateDate();
+            }else if(Constants.LOAD_MORE_TYPE.equals(type)){
+                ((PrivateArticleFragment) object).loadDate();
+            }else {
+                return super.getItemPosition(object);
+            }
         }
         return super.getItemPosition(object);
     }

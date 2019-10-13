@@ -157,4 +157,11 @@ public class Constants {
 
     //个人中心 type 广场用户个人信息
     public static final String SQUARE_USER_TYPE = "square_user_type";
+
+    //个人 中心 fragment 刷新 type（用于辨别当前adapter 动作）
+    public static final String REFRESH_TYPE = "refresh_type";
+
+    //个人 中心 fragment 加载更多 type
+    public static final String LOAD_MORE_TYPE = "load_more_type";
+
 }

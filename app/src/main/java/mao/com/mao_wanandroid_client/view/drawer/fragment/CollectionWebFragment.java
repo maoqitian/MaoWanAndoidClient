@@ -249,4 +249,7 @@ public class CollectionWebFragment extends BaseFragment<CollectionWebPresenter>
     public void updateDate() {
         mPresenter.getCollectWebData();
     }
+
+    public void loadDate() {
+    }
 }

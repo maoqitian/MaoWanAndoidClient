@@ -92,19 +92,15 @@ public class PrivateArticleFragment extends BaseFragment<PrivateArticlePresenter
         mArticleDataList = new ArrayList<>();
         //拖动Header的时候是否同时拖动内容（默认true）
         mSmartRefreshLayout.setEnableHeaderTranslationContent(false);
-        //关闭下拉刷新
+        //关闭下拉刷新 上拉加载
         mSmartRefreshLayout.setEnableRefresh(false);
         mSmartRefreshLayout.setEnableLoadMore(false);
         initRecyclerView();
         //添加收藏网站监听
         tvAddFavorites.setOnClickListener(this);
         mFabAdd.setOnClickListener(this);
-        setSmartRefreshLayoutListener();
     }
 
-    private void setSmartRefreshLayoutListener() {
-
-    }
 
     private void initRecyclerView() {
         mRecyclerView.setHasFixedSize(true);
@@ -150,10 +146,14 @@ public class PrivateArticleFragment extends BaseFragment<PrivateArticlePresenter
     }
 
     @Override
-    public void showPrivateArticleData(List<HomeArticleData> articleDataList) {
-        mArticleDataList.clear();
-        mArticleDataList.addAll(articleDataList);
-        mAdapter.replaceData(mArticleDataList);
+    public void showPrivateArticleData(boolean isLoadMore,List<HomeArticleData> articleDataList) {
+        if(isLoadMore){
+            mAdapter.addData(articleDataList);
+        }else {
+            mArticleDataList.clear();
+            mArticleDataList.addAll(articleDataList);
+            mAdapter.replaceData(mArticleDataList);
+        }
 
     }
 
@@ -185,6 +185,14 @@ public class PrivateArticleFragment extends BaseFragment<PrivateArticlePresenter
         }else {
             //登录用户个人中心
             mPresenter.getPrivateArticleData();
+        }
+    }
+
+    public void loadDate() {
+        if(Constants.SQUARE_USER_TYPE.equals(mType)){
+            mPresenter.getUserShareArticlesMoreData(mUserId);
+        }else {
+            mPresenter.getPrivateArticleMoreData();
         }
     }
 }

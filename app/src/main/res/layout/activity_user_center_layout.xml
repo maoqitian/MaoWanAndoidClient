@@ -83,6 +83,9 @@
                 >
             </android.support.v4.view.ViewPager>
         </android.support.design.widget.CoordinatorLayout>
+        <com.scwang.smartrefresh.header.TaurusHeader
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
     </com.scwang.smartrefresh.layout.SmartRefreshLayout>
 
     <android.support.v7.widget.Toolbar

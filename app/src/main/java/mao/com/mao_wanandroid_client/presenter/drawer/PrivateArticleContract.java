@@ -17,7 +17,7 @@ import mao.com.mao_wanandroid_client.model.modelbean.home.HomeArticleData;
 public interface PrivateArticleContract {
 
     interface PrivateArticleView extends BaseView{
-        void showPrivateArticleData(List<HomeArticleData> articleDataList);
+        void showPrivateArticleData(boolean isLoadMore,List<HomeArticleData> articleDataList);
     }
     
 
@@ -27,6 +27,10 @@ public interface PrivateArticleContract {
          void getUserShareArticlesData(int userId);
 
          void getUserArticleDelete(Context context,int id);
+
+        void getUserShareArticlesMoreData(int userId);
+
+        void getPrivateArticleMoreData();
     }
 }
 

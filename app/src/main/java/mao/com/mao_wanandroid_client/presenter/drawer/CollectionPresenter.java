@@ -90,12 +90,12 @@ public class CollectionPresenter extends RxBasePresenter<CollectionContract.Coll
                                if(pageNum >= 1){
                                    //如果加载第二页
                                if(result.getDatas().size()> 0){
-                                   curPage = result.getCurPage();
-                                   mView.showCollectListData(result.getDatas(),isRefresh);
-                               }else {
-                                   //哥这回真没了
-                                   mView.showLoadDataMessage(MyApplication.getInstance().getString(R.string.not_load_more_msg));
-                                  }
+                                       curPage = result.getCurPage();
+                                       mView.showCollectListData(result.getDatas(),isRefresh);
+                                   }else {
+                                       //哥这回真没了
+                                       mView.showLoadDataMessage(MyApplication.getInstance().getString(R.string.not_load_more_msg));
+                                   }
                                }else {
                                    //收藏首页 则直接反回数据 方便没有收藏数据判空
                                    mView.showCollectListData(result.getDatas(),isRefresh);

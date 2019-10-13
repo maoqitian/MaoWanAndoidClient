@@ -121,8 +121,8 @@ public class UserCenterActivity extends BaseActivity<UserCenterPresenter> implem
 
     @Override
     public void showCoinAndRank(RankData rankData) {
-        tvNickName.setText(rankData.getUsername());
-        tvTbNickName.setText(rankData.getUsername());
+        tvNickName.setText(Constants.SQUARE_USER_TYPE.equals(pageType) ? rankData.getUsername():mPresenter.getLoginUserName());
+        tvTbNickName.setText(Constants.SQUARE_USER_TYPE.equals(pageType) ? rankData.getUsername():mPresenter.getLoginUserName());
         tvUserCenterCoin.setText("积分："+rankData.getCoinCount());
         tvUserCenterRank.setText("lv "+ToolsUtils.getRank(rankData.getCoinCount()));
     }
@@ -131,20 +131,24 @@ public class UserCenterActivity extends BaseActivity<UserCenterPresenter> implem
         mSmartRefreshLayout.setOnMultiPurposeListener(new SimpleMultiPurposeListener(){
             @Override
             public void onRefresh(@NonNull RefreshLayout refreshLayout) {
-                refreshLayout.finishRefresh(3000);
+                refreshLayout.finishRefresh(2000);
                 if(Constants.SQUARE_USER_TYPE.equals(pageType)){
                     mPresenter.getUserShareArticlesData(userId,1);
                 }else {
                     mPresenter.getCoinAndRank();
-                    mAdapter.notifyDataSetChanged();
                     ToolsUtils.setIndicatorWidth(mCollectionTab,getResources().getDimensionPixelSize(R.dimen.dp_30));
                 }
+                mAdapter.setType(Constants.REFRESH_TYPE);
+                mAdapter.notifyDataSetChanged();
 
             }
 
             @Override
             public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
                 refreshLayout.finishLoadMore(2000);
+                mAdapter.setType(Constants.LOAD_MORE_TYPE);
+                mAdapter.notifyDataSetChanged();
+                ToolsUtils.setIndicatorWidth(mCollectionTab,getResources().getDimensionPixelSize(R.dimen.dp_30));
             }
             //处理头部下拉刷新
             @Override
