@@ -64,6 +64,13 @@
 - 获取个人积分
 - 获取个人积分获取列表
 
+### 广场
+- 广场列表数据
+- 分享人对应列表数据
+- 自己的分享的文章列表（个人中心）
+- 删除自己分享的文章（个人中心）
+- 分享文章
+
 ### 设置
 - 夜间模式
 - 清除缓存
@@ -104,9 +111,19 @@
 - [**历史版本下载地址**](https://github.com/maoqitian/MaoWanAndoidClient/releases)
 ### **最新版本下载二维码**
 - 可以手机浏览器输入以下地址下载 [https://fir.im/kgy2](https://fir.im/kgy2)
-![downloadApk](https://raw.githubusercontent.com/maoqitian/MaoMdPhoto/master/WanAndroid/downloadApk-v1.0.4.png)
+![downloadApk](https://raw.githubusercontent.com/maoqitian/MaoMdPhoto/master/WanAndroid/downloadApk-v1.0.5.png)
 
 # 版本更新日志
+
+## v1.0.5 (2019/10/12)
+### 新增广场模块
+- 广场列表数据
+- 分享人对应列表数据
+- 自己的分享的文章列表（个人中心）
+- 删除自己分享的文章（个人中心）
+- 分享文章
+- 个人中心页面支持加载更多
+- 修复上个版本存在的bug
 
 ## v1.0.4 (2019/09/18)
 ### 新增积分排行榜模块
