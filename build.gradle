@@ -11,7 +11,7 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.5.0'
+        classpath 'com.android.tools.build:gradle:3.5.1'
         classpath 'org.greenrobot:greendao-gradle-plugin:3.2.2'// 添加插件 更好支持GreenDao
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         //classpath 'com.jakewharton:butterknife-gradle-plugin:8.4.0'
