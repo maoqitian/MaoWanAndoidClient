@@ -66,6 +66,8 @@ public class KnowledgeLevel2PageActivity extends BaseActivity<KnowledgeLevel2Pag
             homeArticleData= (HomeArticleData) getIntent().getSerializableExtra(Constants.HOME_ARTICLE_DATA);
         }else if(Constants.RESULT_CODE_KNOWLEDGE_PAGE.equals(pageType)){
             mKnowledgeHierarchyData = (KnowledgeHierarchyData) getIntent().getSerializableExtra(Constants.KNOWLEDGE_DATA);
+        }else if(Constants.RESULT_CODE_AUTHOR_ARTICLE_PAGE.equals(pageType)){
+            homeArticleData= (HomeArticleData) getIntent().getSerializableExtra(Constants.HOME_ARTICLE_DATA);
         }
         mTitle = new ArrayList<>();
         mFragments = new ArrayList<>();
@@ -89,13 +91,19 @@ public class KnowledgeLevel2PageActivity extends BaseActivity<KnowledgeLevel2Pag
             mTextTitle.setText(homeArticleData.getChapterName());
             //首页 点击 知识体系 tag
             mTitle.add(homeArticleData.getSuperChapterName());
-            mFragments.add(KnowledgeLevel2PageFragment.newInstance(homeArticleData.getSuperChapterId()));
-        }else if(mKnowledgeHierarchyData !=null && Constants.RESULT_CODE_KNOWLEDGE_PAGE.equals(pageType)){
+            mFragments.add(KnowledgeLevel2PageFragment.newInstance(homeArticleData.getSuperChapterId(),""));
+        }else if(homeArticleData!=null && Constants.RESULT_CODE_AUTHOR_ARTICLE_PAGE.equals(pageType)){
+            mTextTitle.setText(homeArticleData.getChapterName());
+            //首页 点击 作者 显示作者文章 约定 此时id 等于 -1
+            mTitle.add(homeArticleData.getSuperChapterName());
+            mFragments.add(KnowledgeLevel2PageFragment.newInstance(-1,homeArticleData.getAuthor()));
+        }
+        else if(mKnowledgeHierarchyData !=null && Constants.RESULT_CODE_KNOWLEDGE_PAGE.equals(pageType)){
             mTextTitle.setText(mKnowledgeHierarchyData.getName());
             //知识体系 模块正常加载
             for (KnowledgeHierarchyData knowledgeHierarchyData:mKnowledgeHierarchyData.getChildren()) {
                 mTitle.add(knowledgeHierarchyData.getName());
-                mFragments.add(KnowledgeLevel2PageFragment.newInstance(knowledgeHierarchyData.getId()));
+                mFragments.add(KnowledgeLevel2PageFragment.newInstance(knowledgeHierarchyData.getId(),""));
             }
         }
         mViewPager.setAdapter(new HomeTabPageAdapter(getSupportFragmentManager(),mTitle,mFragments));

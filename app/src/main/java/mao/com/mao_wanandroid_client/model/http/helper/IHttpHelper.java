@@ -24,6 +24,9 @@ import mao.com.mao_wanandroid_client.model.modelbean.search.HotKeyData;
 import mao.com.mao_wanandroid_client.model.modelbean.knowlegetree.KnowledgeHierarchyData;
 import mao.com.mao_wanandroid_client.model.modelbean.todo.TodoData;
 import mao.com.mao_wanandroid_client.model.modelbean.webmark.WebBookMark;
+import retrofit2.http.GET;
+import retrofit2.http.Path;
+import retrofit2.http.Query;
 
 
 /**
@@ -79,6 +82,15 @@ public interface IHttpHelper {
      * @return
      */
     Observable<ResponseBody<HomeArticleListData>> getKnowledgeTreeDetailData(int pageNum, int cid);
+
+    /**
+     * 按照作者昵称搜索文章
+     * @param pageNum 页码：拼接在链接上，从0开始
+     * @param author 作者昵称，不支持模糊匹配。
+     * @return
+     */
+    Observable<ResponseBody<HomeArticleListData>> getAuthorArticleData(@Path("pageNum") int pageNum, @Query("author") String author);
+
     /**
      * 获取导航数据(网站 个人博客 社区等网站导航数据)
      * @return

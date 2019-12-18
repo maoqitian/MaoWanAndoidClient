@@ -25,11 +25,11 @@ public interface Level2PageContract {
 
     interface KnowledgeLevel2PageFragmentPresenter extends AbstractBasePresenter<Level2PageContract.Level2PageView> {
 
-        void getSuperChapterArticleData(int cid);
+        void getSuperChapterArticleData(int cid,String author);
         //下拉刷新页面
-        void getRefreshPage(int cid);
+        void getRefreshPage(int cid,String author);
         //上拉加载更多
-        void getLoadMorePage(int cid);
+        void getLoadMorePage(int cid,String author);
     }
 
 }

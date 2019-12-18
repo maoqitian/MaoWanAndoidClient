@@ -30,7 +30,7 @@ public class HomePageAdapter extends BaseQuickAdapter<HomeArticleData, HomePageV
     public void setUserShare(boolean userShare) {
         isUserShare = userShare;
     }
-    //是否展示广场用户数据
+    //是否展示广场用户数据 或者首页数据 作者名称 分类名称颜色变化
     boolean isUserShare = false;
 
 
@@ -57,7 +57,8 @@ public class HomePageAdapter extends BaseQuickAdapter<HomeArticleData, HomePageV
                  .addOnClickListener(R.id.tv_super_chapterName)
                  .addOnClickListener(R.id.tv_author_name)
                  .addOnClickListener(R.id.image_author_icon)
-                 .setTextColor(R.id.tv_author_name,TextUtils.isEmpty(item.getAuthor()) && isUserShare ?ContextCompat.getColor(mContext, R.color.light_blue) : ContextCompat.getColor(mContext, R.color.textColorPrimary));
+                 .setTextColor(R.id.tv_super_chapterName, isUserShare ? ContextCompat.getColor(mContext, R.color.light_blue) : ContextCompat.getColor(mContext, R.color.textColorPrimary))
+                 .setTextColor(R.id.tv_author_name, isUserShare ?ContextCompat.getColor(mContext, R.color.light_blue) : ContextCompat.getColor(mContext, R.color.textColorPrimary));
                  //.addOnClickListener(R.id.tv_chapterName);
          // tag
          if(item.getTags().size()>0){

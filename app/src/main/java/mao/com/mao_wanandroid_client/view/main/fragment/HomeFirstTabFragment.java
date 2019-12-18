@@ -1,9 +1,11 @@
 package mao.com.mao_wanandroid_client.view.main.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -115,6 +117,7 @@ public class HomeFirstTabFragment extends RootBaseFragment<HomeFirstTabPresenter
     //首页推荐页面 init
     private void initHomePage() {
         mAdapter = new HomePageAdapter(R.layout.article_item_cardview_layout);
+        mAdapter.setUserShare(true);
         mAdapter.setOnItemClickListener(this);
         LinearLayout bannerViewLayout = (LinearLayout) LayoutInflater.from(_mActivity).inflate(R.layout.home_banner_view_layout,null);
         mConvenientBanner = bannerViewLayout.findViewById(R.id.convenient_banner);
@@ -155,16 +158,28 @@ public class HomeFirstTabFragment extends RootBaseFragment<HomeFirstTabPresenter
     private void setHomePageItemClickListener() {
         mAdapter.setOnItemChildClickListener((adapter, view, position) -> {
             HomeArticleData homeArticleData= (HomeArticleData) adapter.getItem(position);
+            assert homeArticleData != null;
             switch (view.getId()){
                 case R.id.image_collect: //点击收藏
                     Log.e("毛麒添","点击收藏");
-                    if(homeArticleData!=null){
-                        addOrCancelCollect(position,homeArticleData);
-                    }
+                    addOrCancelCollect(position,homeArticleData);
                     break;
                 case R.id.tv_super_chapterName:
                     //点击 知识体系 tag
                     StartDetailPage.start(_mActivity,homeArticleData,Constants.RESULT_CODE_HOME_PAGE,Constants.ACTION_KNOWLEDGE_LEVEL2_ACTIVITY);
+                    break;
+                case R.id.tv_author_name:
+                    //首页点击用户名
+                    if(TextUtils.isEmpty(homeArticleData.getAuthor())){
+                        //跳转分享人个人中心
+                        Intent intent = new Intent(Constants.ACTION_USER_CENTER_ACTIVITY);
+                        intent.putExtra(Constants.USER_ID,homeArticleData.getUserId());
+                        intent.putExtra(Constants.PAGE_TYPE,Constants.SQUARE_USER_TYPE);
+                        startActivity(intent);
+                    }else {
+                        //跳转分类详情 按照作者昵称搜索文章
+                        StartDetailPage.start(_mActivity,homeArticleData,Constants.RESULT_CODE_AUTHOR_ARTICLE_PAGE,Constants.ACTION_KNOWLEDGE_LEVEL2_ACTIVITY);
+                    }
                     break;
             }
         });

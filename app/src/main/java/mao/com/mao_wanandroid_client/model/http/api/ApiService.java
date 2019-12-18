@@ -108,6 +108,15 @@ public interface ApiService {
     Observable<ResponseBody<HomeArticleListData>> getKnowledgeTreeDetailData(@Path("pageNum") int pageNum, @Query("cid") int cid);
 
     /**
+     * 按照作者昵称搜索文章
+     * @param pageNum 页码：拼接在链接上，从0开始
+     * @param author 作者昵称，不支持模糊匹配。
+     * @return
+     */
+    @GET("/article/list/{pageNum}/json")
+    Observable<ResponseBody<HomeArticleListData>> getAuthorArticleData(@Path("pageNum") int pageNum, @Query("author") String author);
+
+    /**
      * 导航
      */
 

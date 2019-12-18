@@ -35,29 +35,52 @@ public class Level2PagePresenter extends RxBasePresenter<Level2PageContract.Leve
     }
 
     @Override
-    public void getSuperChapterArticleData(int cid) {
-        getSuperChapterArticle(true,curPage,cid);
+    public void getSuperChapterArticleData(int cid,String author) {
+        getSuperChapterArticle(true,curPage,cid, author);
     }
 
-    private void getSuperChapterArticle(boolean isRefresh, int pageNum, int cid) {
-        Observable<ResponseBody<HomeArticleListData>> knowledgeTreeDetailData = mDataClient.getKnowledgeTreeDetailData(pageNum, cid);
-        knowledgeTreeDetailData.compose(RxSchedulers.observableIO2Main())
-                .subscribe(new BaseObserver<HomeArticleListData>() {
-                    @Override
-                    public void onSuccess(HomeArticleListData result) {
-                        if(result.getDatas().size()!= 0){
-                            curPage = result.getCurPage();
-                            mView.ShowSuperChapterArticle(isRefresh,result);
-                        }else {
-                            mView.showLoadDataMessage(MyApplication.getInstance().getString(R.string.not_load_more_msg));
-                        }
-                    }
+    private void getSuperChapterArticle(boolean isRefresh, int pageNum, int cid,String author) {
+        if(-1 == cid){
+            Observable<ResponseBody<HomeArticleListData>> authorArticleData = mDataClient.getAuthorArticleData(pageNum, author);
+            authorArticleData.compose(RxSchedulers.observableIO2Main())
+                             .safeSubscribe(new BaseObserver<HomeArticleListData>(){
 
-                    @Override
-                    public void onFailure(Throwable e, String errorMsg) {
-                        mView.showError();
-                    }
-                });
+                                 @Override
+                                 public void onSuccess(HomeArticleListData result) {
+                                     if(result.getDatas().size()!= 0){
+                                         curPage = result.getCurPage();
+                                         mView.ShowSuperChapterArticle(isRefresh,result);
+                                     }else {
+                                         mView.showLoadDataMessage(MyApplication.getInstance().getString(R.string.not_load_more_msg));
+                                     }
+                                 }
+
+                                 @Override
+                                 public void onFailure(Throwable e, String errorMsg) {
+                                     mView.showError();
+                                 }
+                             });
+        }else {
+            Observable<ResponseBody<HomeArticleListData>> knowledgeTreeDetailData = mDataClient.getKnowledgeTreeDetailData(pageNum, cid);
+            knowledgeTreeDetailData.compose(RxSchedulers.observableIO2Main())
+                    .subscribe(new BaseObserver<HomeArticleListData>() {
+                        @Override
+                        public void onSuccess(HomeArticleListData result) {
+                            if(result.getDatas().size()!= 0){
+                                curPage = result.getCurPage();
+                                mView.ShowSuperChapterArticle(isRefresh,result);
+                            }else {
+                                mView.showLoadDataMessage(MyApplication.getInstance().getString(R.string.not_load_more_msg));
+                            }
+                        }
+
+                        @Override
+                        public void onFailure(Throwable e, String errorMsg) {
+                            mView.showError();
+                        }
+                    });
+        }
+
     }
 
     /*//收藏项目
@@ -98,12 +121,12 @@ public class Level2PagePresenter extends RxBasePresenter<Level2PageContract.Leve
     }*/
     //下拉刷新
     @Override
-    public void getRefreshPage(int cid) {
-        getSuperChapterArticle(true,0,cid);
+    public void getRefreshPage(int cid,String author) {
+        getSuperChapterArticle(true,0,cid,author);
     }
     //加载更多
     @Override
-    public void getLoadMorePage(int cid) {
-        getSuperChapterArticle(false,curPage,cid);
+    public void getLoadMorePage(int cid,String author) {
+        getSuperChapterArticle(false,curPage,cid,author);
     }
 }

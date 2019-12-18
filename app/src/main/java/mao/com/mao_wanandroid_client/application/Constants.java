@@ -106,6 +106,8 @@ public class Constants {
     public static final String RESULT_CODE_KNOWLEDGE_PAGE = "result_code_knowledge_page";
     //微信公众号详情页 跳转
     public static final String RESULT_CODE_OFFICIAL_ACCOUNTS_PAGE = "official_accounts_detail_page";
+    //根据作者昵称搜索文章
+    public static final String RESULT_CODE_AUTHOR_ARTICLE_PAGE = "result_code_author_article_page";
 
     public static final String TAG_TAB_NAME = "tabName";
 

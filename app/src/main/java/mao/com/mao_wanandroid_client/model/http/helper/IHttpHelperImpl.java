@@ -124,6 +124,12 @@ public class IHttpHelperImpl implements IHttpHelper{
     public Observable<ResponseBody<HomeArticleListData>> getKnowledgeTreeDetailData(int pageNum, int cid) {
         return getApiServiceGson().getKnowledgeTreeDetailData(pageNum,cid);
     }
+
+    @Override
+    public Observable<ResponseBody<HomeArticleListData>> getAuthorArticleData(int pageNum, String author) {
+        return getApiServiceGson().getAuthorArticleData(pageNum,author);
+    }
+
     /**
      * 获取导航数据(网站 个人博客 社区等网站导航数据)
      * @return

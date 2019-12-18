@@ -48,13 +48,16 @@ public class KnowledgeLevel2PageFragment extends RootBaseFragment<Level2PagePres
 
     int superChapterId;
 
+    String authorName;
+
     //下拉刷新头部
     private MaterialHeader mMaterialHeader;
 
-    public static KnowledgeLevel2PageFragment newInstance(int cid) {
+    public static KnowledgeLevel2PageFragment newInstance(int cid,String author) {
 
         Bundle args = new Bundle();
         args.putInt(Constants.BUNDLE_TAG_SUPER_CID,cid);
+        args.putString("AuthorName",author);
         KnowledgeLevel2PageFragment fragment = new KnowledgeLevel2PageFragment();
         fragment.setArguments(args);
         return fragment;
@@ -96,13 +99,13 @@ public class KnowledgeLevel2PageFragment extends RootBaseFragment<Level2PagePres
     private void setSmartRefreshLayoutListener() {
         smartRefreshLayout.setOnRefreshListener(refreshLayout -> {
             Log.e("毛麒添","下拉加载");
-            mPresenter.getRefreshPage(superChapterId);
+            mPresenter.getRefreshPage(superChapterId,authorName);
             refreshLayout.autoRefresh();
         });
         //加载更多
         smartRefreshLayout.setOnLoadMoreListener(refreshLayout -> {
             Log.e("毛麒添","加载更多");
-            mPresenter.getLoadMorePage(superChapterId);
+            mPresenter.getLoadMorePage(superChapterId,authorName);
             refreshLayout.autoLoadMore();
         });
     }
@@ -126,8 +129,10 @@ public class KnowledgeLevel2PageFragment extends RootBaseFragment<Level2PagePres
     protected void initEventAndData() {
         if(getArguments()!=null){
           superChapterId = getArguments().getInt(Constants.BUNDLE_TAG_SUPER_CID);
+          authorName = getArguments().getString("AuthorName");
         }
-        mPresenter.getSuperChapterArticleData(superChapterId);
+        mPresenter.getSuperChapterArticleData(superChapterId,authorName);
+
         smartRefreshLayout.autoRefresh();
     }
 

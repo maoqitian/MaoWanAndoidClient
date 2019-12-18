@@ -114,6 +114,11 @@ public class DataClient implements IHttpHelper,SharedPreferenceHelper,DbHelper {
     }
 
     @Override
+    public Observable<ResponseBody<HomeArticleListData>> getAuthorArticleData(int pageNum, String author) {
+        return mIHttpHelper.getAuthorArticleData(pageNum,author);
+    }
+
+    @Override
     public Observable<ResponseBody<List<NavigationListData>>> getNavigationListData() {
         return mIHttpHelper.getNavigationListData();
     }
