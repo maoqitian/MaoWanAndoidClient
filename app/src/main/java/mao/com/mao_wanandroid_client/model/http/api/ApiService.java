@@ -413,7 +413,7 @@ public interface ApiService {
                                                       @Query("priority") int priority,
                                                       @Query("orderby") int orderby);*/
     @GET("/lg/todo/v2/list/{pageNum}/json")
-    Observable<ResponseBody<TodoData>>getTodoListData(@Path("pageNum") int pageNum,
+    Observable<ResponseBody<BaseListData<TodoData>>> getTodoListData(@Path("pageNum") int pageNum,
                                                       @QueryMap Map<String,Integer> param);
     /**
      * 积分接口
