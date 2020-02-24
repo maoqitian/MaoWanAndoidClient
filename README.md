@@ -1,6 +1,9 @@
 # MaoWanAndoidClient
 [![License](https://img.shields.io/badge/license-Apache%202-green.svg)](https://www.apache.org/licenses/LICENSE-2.0)
 <img src="https://img.shields.io/badge/Android-1.0.5-blue.svg" align=left />
+
+### **同款Flutter跨平台版本**（[https://github.com/maoqitian/flutter_wanandroid](https://github.com/maoqitian/flutter_wanandroid)）
+
 ## 项目简介
 - 首先感谢[**鸿洋**](https://github.com/hongyangAndroid)大佬提供的[玩Android开放API](https://www.wanandroid.com/blog/show/2)，这是一款有较好用户体验的开源**玩Android客户端。**提供丰富完整的功能，更好的体验，旨在更好的浏览[https://www.wanandroid.com/](https://www.wanandroid.com/)网站内容，更好的在手机上进行学习。项目使用**Retrofit2 + RxJava2 + Dagger2 +MVP+RxBus**架构，尽量使用**Material Design**控件进行开发。如果觉得本项目对你有帮助，希望您给我来一个**Star**. 
 ### MVP项目架构解析
