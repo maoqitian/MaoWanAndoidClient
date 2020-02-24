@@ -249,7 +249,7 @@ public class DataClient implements IHttpHelper,SharedPreferenceHelper,DbHelper {
     }
 
     @Override
-    public Observable<ResponseBody<TodoData>> getTodoListData(int pageNum, Map<String, Integer> param) {
+    public Observable<ResponseBody<BaseListData<TodoData>>> getTodoListData(int pageNum, Map<String, Integer> param) {
         return mIHttpHelper.getTodoListData(pageNum,param);
     }
 

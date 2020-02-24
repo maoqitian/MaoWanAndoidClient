@@ -303,7 +303,7 @@ public interface IHttpHelper {
      *              orderby 1:完成日期顺序；2.完成日期逆序；3.创建日期顺序；4.创建日期逆序(默认)；
      * @return
      */
-    Observable<ResponseBody<TodoData>>getTodoListData(int pageNum, Map<String,Integer> param);
+    Observable<ResponseBody<BaseListData<TodoData>>>getTodoListData(int pageNum, Map<String,Integer> param);
 
     /**
      * 广场接口

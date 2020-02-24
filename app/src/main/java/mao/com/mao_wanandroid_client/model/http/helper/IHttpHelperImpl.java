@@ -352,7 +352,7 @@ public class IHttpHelperImpl implements IHttpHelper{
     }
 
     @Override
-    public Observable<ResponseBody<TodoData>> getTodoListData(int pageNum, Map<String, Integer> param) {
+    public Observable<ResponseBody<BaseListData<TodoData>>> getTodoListData(int pageNum, Map<String, Integer> param) {
         return getApiServiceGson().getTodoListData(pageNum,param);
     }
 
