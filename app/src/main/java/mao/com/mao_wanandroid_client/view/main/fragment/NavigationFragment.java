@@ -125,7 +125,7 @@ public class NavigationFragment extends RootBaseFragment<NavigationPresenter> im
         tabSelectedListener = new VerticalTabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabView tab, int position) {
-                isClickTab = false;
+                isClickTab = true;
                 //点击标签，使recyclerView滑动
                 moveToPosition(layoutManager, mRecyclerView, position);
             }
